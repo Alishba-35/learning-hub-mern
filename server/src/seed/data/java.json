@@ -1,0 +1,356 @@
+{
+ "slug": "java",
+ "name": "Java",
+ "description": "Java is a strongly typed, object-oriented language used for Android apps, enterprise systems and university courses.",
+ "color": "#e76f00",
+ "order": 6,
+ "topics": [
+  {
+   "slug": "intro",
+   "title": "Introduction to Java",
+   "section": "Getting Started",
+   "order": 1,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Introduction to Java</h1>\n<div class=\"card\">\n<h2>What is Java?</h2>\n<p><strong>Java</strong> is a powerful, object-oriented language used for Android apps, enterprise back-ends, banking systems and big universities' courses. It is <strong>strongly typed</strong>: every variable has a declared type, and the compiler catches many mistakes before the program runs.</p>\n<ul><li><strong>JDK</strong> (Java Development Kit): tools to write and compile code.</li><li><strong>JVM</strong> (Java Virtual Machine): runs the compiled code, so the same program works on Windows, Mac and Linux (\"write once, run anywhere\").</li><li>Source files end in <code>.java</code>; the compiler turns them into <code>.class</code> files (bytecode).</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Hello, World</h2>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, Learning Hub!\");\n        System.out.println(2 + 3);\n        System.out.print(\"No new line, \");\n        System.out.println(\"then a new line\"); // comment\n    }\n}",
+     "output": "Hello, Learning Hub!\n5\nNo new line, then a new line"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li><code>public class Main</code>: every Java program lives inside a class. The file must be named after the public class (<code>Main.java</code>).</li><li><code>public static void main(String[] args)</code> is the entry point: the JVM starts here.</li><li><code>System.out.println()</code> prints a line. Every statement ends with a semicolon <code>;</code>.</li></ul>\n<pre><code>javac Main.java     # compile\njava Main           # run</code></pre>\n</div>\n\n<div class=\"card\">\n<h2>Syntax Rules to Remember</h2>\n<table><tr><th>Rule</th><th>Example</th></tr><tr><td>Case sensitive</td><td><code>Main</code> and <code>main</code> are different</td></tr><tr><td>Blocks use braces</td><td><code>{ ... }</code></td></tr><tr><td>Comments</td><td><code>// one line</code> and <code>/* many lines */</code></td></tr><tr><td>Class names</td><td><code>PascalCase</code> (<code>BankAccount</code>)</td></tr><tr><td>Variables and methods</td><td><code>camelCase</code> (<code>totalMarks</code>)</td></tr></table>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "variables-types",
+   "title": "Variables & Data Types",
+   "section": "Getting Started",
+   "order": 2,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Variables & Data Types</h1>\n<div class=\"card\">\n<h2>Declaring Variables</h2>\n<p>In Java you write the <strong>type</strong> first, then the name. Once declared, a variable can only hold that type.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        int age = 20;\n        double price = 19.99;\n        boolean student = true;\n        char grade = 'A';\n        String name = \"Ayesha\";\n        final int MAX = 100;\n\n        System.out.println(name + \" is \" + age + \" years old\");\n        System.out.println(\"Grade \" + grade + \", student: \" + student);\n        System.out.println(price * 2);\n        System.out.println(MAX);\n    }\n}",
+     "output": "Ayesha is 20 years old\nGrade A, student: true\n39.98\n100"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li><code>final</code> makes a constant that cannot change.</li><li><code>String</code> starts with a capital S: it is a class, not a primitive.</li><li>Characters use single quotes (<code>&#x27;A&#x27;</code>), strings use double quotes.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Primitive Types</h2>\n<table><tr><th>Type</th><th>Holds</th><th>Example</th></tr><tr><td><code>int</code></td><td>Whole numbers (about +-2 billion)</td><td><code>42</code></td></tr><tr><td><code>long</code></td><td>Very big whole numbers</td><td><code>9000000000L</code></td></tr><tr><td><code>double</code></td><td>Decimal numbers</td><td><code>3.14</code></td></tr><tr><td><code>boolean</code></td><td>true or false</td><td><code>true</code></td></tr><tr><td><code>char</code></td><td>One character</td><td><code>&#x27;A&#x27;</code></td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>Type Casting and Integer Division</h2>\n<p>Java converts a smaller type to a bigger one automatically (<code>int</code> to <code>double</code>). Going the other way needs an explicit <strong>cast</strong>. Dividing two ints gives an int.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        int a = 7, b = 2;\n        System.out.println(a / b);              // int division\n        System.out.println((double) a / b);     // cast first\n        System.out.println(a % b);\n\n        double d = 9.99;\n        int cut = (int) d;                      // casting cuts the decimals\n        System.out.println(cut);\n\n        long big = a;                           // automatic widening\n        System.out.println(big + 1);\n    }\n}",
+     "output": "3\n3.5\n1\n9\n8"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "operators-conditions",
+   "title": "Operators & Conditions",
+   "section": "Getting Started",
+   "order": 3,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Operators & Conditions</h1>\n<div class=\"card\">\n<h2>Operators</h2>\n<table><tr><th>Kind</th><th>Operators</th></tr><tr><td>Arithmetic</td><td><code>+  -  *  /  %</code></td></tr><tr><td>Increment</td><td><code>i++  i--  +=  -=</code></td></tr><tr><td>Comparison</td><td><code>==  !=  &lt;  &gt;  &lt;=  &gt;=</code></td></tr><tr><td>Logical</td><td><code>&amp;&amp;  ||  !</code></td></tr></table>\n<p>Important: use <code>==</code> to compare numbers, but <strong><code>.equals()</code></strong> to compare String contents.</p>\n</div>\n\n<div class=\"card\">\n<h2>if / else if / else</h2>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        int marks = 72;\n        String grade;\n        if (marks >= 90) {\n            grade = \"A\";\n        } else if (marks >= 75) {\n            grade = \"B\";\n        } else if (marks >= 60) {\n            grade = \"C\";\n        } else {\n            grade = \"F\";\n        }\n        System.out.println(\"Marks \" + marks + \" -> \" + grade);\n\n        String a = \"java\";\n        String b = new String(\"java\");\n        System.out.println(a == b);        // compares references\n        System.out.println(a.equals(b));   // compares text\n    }\n}",
+     "output": "Marks 72 -> C\nfalse\ntrue"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>switch</h2>\n<p>Use <code>switch</code> when you compare one value with many fixed options. The modern arrow form (<code>-&gt;</code>) needs no <code>break</code>.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        int day = 3;\n        switch (day) {\n            case 1 -> System.out.println(\"Monday\");\n            case 2 -> System.out.println(\"Tuesday\");\n            case 3 -> System.out.println(\"Wednesday\");\n            default -> System.out.println(\"Another day\");\n        }\n\n        int age = 17;\n        String type = age >= 18 ? \"adult\" : \"minor\";\n        System.out.println(type);\n    }\n}",
+     "output": "Wednesday\nminor"
+    },
+    {
+     "kind": "html",
+     "html": "<p>The ternary operator <code>condition ? a : b</code> is a short if/else for values.</p>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "loops",
+   "title": "Loops",
+   "section": "Control & Methods",
+   "order": 4,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Loops</h1>\n<div class=\"card\">\n<h2>for, while and do-while</h2>\n<table><tr><th>Loop</th><th>Use it when</th></tr><tr><td><code>for</code></td><td>You know how many times</td></tr><tr><td><code>while</code></td><td>You repeat until a condition changes</td></tr><tr><td><code>do-while</code></td><td>The body must run at least once</td></tr></table>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 3; i++) {\n            System.out.println(\"for round \" + i);\n        }\n\n        int n = 3;\n        while (n > 0) {\n            System.out.println(\"while \" + n);\n            n--;\n        }\n\n        int k = 10;\n        do {\n            System.out.println(\"do-while runs once, k = \" + k);\n        } while (k < 5);\n    }\n}",
+     "output": "for round 1\nfor round 2\nfor round 3\nwhile 3\nwhile 2\nwhile 1\ndo-while runs once, k = 10"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Enhanced for, break and continue</h2>\n<ul><li>The <strong>enhanced for</strong> loop visits every item of an array or collection.</li><li><code>break</code> exits the loop; <code>continue</code> skips to the next round.</li></ul>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        int[] numbers = {4, 8, 15, 16, 23, 42};\n        int sum = 0;\n        for (int x : numbers) {\n            if (x % 2 != 0) continue;     // skip odd numbers\n            if (x > 30) break;            // stop at big numbers\n            sum += x;\n        }\n        System.out.println(\"Sum of small even numbers: \" + sum);\n    }\n}",
+     "output": "Sum of small even numbers: 28"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Nested Loops</h2>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        for (int row = 1; row <= 3; row++) {\n            for (int col = 1; col <= 3; col++) {\n                System.out.print(row * col + \"\\t\");\n            }\n            System.out.println();\n        }\n    }\n}",
+     "output": "1\t2\t3\n2\t4\t6\n3\t6\t9"
+    },
+    {
+     "kind": "html",
+     "html": "<p>The inner loop runs completely for each round of the outer loop.</p>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "arrays-strings",
+   "title": "Arrays & Strings",
+   "section": "Control & Methods",
+   "order": 5,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Arrays & Strings</h1>\n<div class=\"card\">\n<h2>Arrays</h2>\n<p>An <strong>array</strong> holds a fixed number of values of the same type. The size cannot change after creation, and indexes start at 0.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "import java.util.Arrays;\n\npublic class Main {\n    public static void main(String[] args) {\n        int[] marks = {72, 95, 60, 88};\n        System.out.println(marks.length + \" marks, first = \" + marks[0]);\n\n        marks[2] = 65;                       // change an element\n        Arrays.sort(marks);\n        System.out.println(Arrays.toString(marks));\n\n        int[] empty = new int[3];            // filled with 0\n        System.out.println(Arrays.toString(empty));\n\n        try {\n            System.out.println(marks[10]);\n        } catch (ArrayIndexOutOfBoundsException e) {\n            System.out.println(\"Index 10 is outside the array\");\n        }\n    }\n}",
+     "output": "4 marks, first = 72\n[65, 72, 88, 95]\n[0, 0, 0]\nIndex 10 is outside the array"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li><code>array.length</code> (no parentheses) is the size.</li><li>Going outside the range throws <code>ArrayIndexOutOfBoundsException</code>.</li><li><code>Arrays.sort()</code>, <code>Arrays.toString()</code> come from <code>java.util.Arrays</code>.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>2D Arrays</h2>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "import java.util.Arrays;\n\npublic class Main {\n    public static void main(String[] args) {\n        int[][] grid = {\n            {1, 2, 3},\n            {4, 5, 6}\n        };\n        System.out.println(grid[1][2]);\n        System.out.println(grid.length + \" rows, \" + grid[0].length + \" columns\");\n        for (int[] row : grid) {\n            System.out.println(Arrays.toString(row));\n        }\n    }\n}",
+     "output": "6\n2 rows, 3 columns\n[1, 2, 3]\n[4, 5, 6]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Strings</h2>\n<p>A <code>String</code> is an <strong>immutable</strong> object: methods return a new string instead of changing the old one.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        String s = \"Learning Hub\";\n        System.out.println(s.length());\n        System.out.println(s.charAt(0));\n        System.out.println(s.substring(0, 8));\n        System.out.println(s.indexOf(\"Hub\"));\n        System.out.println(s.toUpperCase());\n        System.out.println(String.join(\"-\", s.split(\" \")));\n        System.out.println(s.replace(\"Hub\", \"Center\"));\n        System.out.println(s);   // the original is unchanged\n    }\n}",
+     "output": "12\nL\nLearning\n9\nLEARNING HUB\nLearning-Hub\nLearning Center\nLearning Hub"
+    },
+    {
+     "kind": "html",
+     "html": "<table><tr><th>Method</th><th>Result</th></tr><tr><td><code>length()</code></td><td>Number of characters</td></tr><tr><td><code>charAt(i)</code></td><td>Character at index i</td></tr><tr><td><code>substring(a, b)</code></td><td>Part from a up to b</td></tr><tr><td><code>indexOf(&quot;x&quot;)</code></td><td>Position or -1</td></tr><tr><td><code>toUpperCase()</code></td><td>Upper-case copy</td></tr><tr><td><code>split(&quot; &quot;)</code></td><td>Array of pieces</td></tr></table>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "methods",
+   "title": "Methods",
+   "section": "Control & Methods",
+   "order": 6,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Methods</h1>\n<div class=\"card\">\n<h2>Writing Methods</h2>\n<p>A <strong>method</strong> is a named block of code. Its header says who can call it, whether it belongs to the class (<code>static</code>), what it returns and what it takes.</p>\n<pre><code>public static int add(int a, int b) {\n    return a + b;\n}</code></pre>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(add(2, 3));\n        System.out.println(isEven(10) + \" \" + isEven(7));\n        greet(\"Ali\");\n    }\n\n    static int add(int a, int b) {\n        return a + b;\n    }\n\n    static boolean isEven(int n) {\n        return n % 2 == 0;\n    }\n\n    static void greet(String name) {\n        System.out.println(\"Hello, \" + name);\n    }\n}",
+     "output": "5\ntrue false\nHello, Ali"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li><code>void</code> means the method returns nothing.</li><li>Parameters are a copy of the values you pass: Java is <strong>pass-by-value</strong>.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Overloading</h2>\n<p>You can have several methods with the same name if their parameters differ. This is called <strong>overloading</strong>.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(area(5));\n        System.out.println(area(4, 6));\n        System.out.println(area(2.5));\n    }\n\n    static int area(int side) {\n        return side * side;\n    }\n\n    static int area(int width, int height) {\n        return width * height;\n    }\n\n    static double area(double radius) {\n        return 3.14 * radius * radius;\n    }\n}",
+     "output": "25\n24\n19.625"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Pass by Value</h2>\n<p>Changing a primitive parameter inside a method does not change the caller's variable. (For arrays and objects the <em>reference</em> is copied, so changes to the contents are visible.)</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        int number = 5;\n        int[] array = {1, 2, 3};\n        change(number, array);\n        System.out.println(number);              // unchanged\n        System.out.println(array[0]);            // contents changed\n    }\n\n    static void change(int n, int[] a) {\n        n = 99;        // only the local copy\n        a[0] = 99;     // same array as the caller\n    }\n}",
+     "output": "5\n99"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "classes-objects",
+   "title": "Classes & Objects",
+   "section": "Object-Oriented Java",
+   "order": 7,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Classes & Objects</h1>\n<div class=\"card\">\n<h2>Classes, Objects and Constructors</h2>\n<p>A <strong>class</strong> is a blueprint with <em>fields</em> (data) and <em>methods</em> (actions). <code>new</code> creates an <strong>object</strong>, and the <strong>constructor</strong> sets it up. <code>this</code> means the current object.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        Student a = new Student(\"Ayesha\", 82);\n        Student b = new Student(\"Bilal\", 41);\n        System.out.println(a.name + \" passed? \" + a.passed());\n        System.out.println(b.name + \" passed? \" + b.passed());\n    }\n}\n\nclass Student {\n    String name;\n    int marks;\n\n    Student(String name, int marks) {\n        this.name = name;\n        this.marks = marks;\n    }\n\n    boolean passed() {\n        return marks >= 50;\n    }\n}",
+     "output": "Ayesha passed? true\nBilal passed? false"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Encapsulation</h2>\n<p>Make fields <code>private</code> and give controlled access through public <strong>getters and setters</strong>. This lets the class protect its own rules.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        Account acc = new Account(100);\n        acc.withdraw(30);\n        acc.withdraw(500);          // refused\n        System.out.println(acc.getBalance());\n        // acc.balance = 1000000;   // would not compile: balance is private\n    }\n}\n\nclass Account {\n    private double balance;\n\n    Account(double balance) {\n        this.balance = balance;\n    }\n\n    void withdraw(double amount) {\n        if (amount > 0 && amount <= balance) balance -= amount;\n    }\n\n    double getBalance() {\n        return balance;\n    }\n}",
+     "output": "70.0"
+    },
+    {
+     "kind": "html",
+     "html": "<table><tr><th>Modifier</th><th>Visible from</th></tr><tr><td><code>private</code></td><td>Only inside the class</td></tr><tr><td>(none)</td><td>Same package</td></tr><tr><td><code>protected</code></td><td>Same package and subclasses</td></tr><tr><td><code>public</code></td><td>Everywhere</td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>static Members</h2>\n<p>A <code>static</code> field or method belongs to the <strong>class</strong>, not to a single object. All objects share it.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        new Counter();\n        new Counter();\n        new Counter();\n        System.out.println(\"Objects created: \" + Counter.created);\n        System.out.println(Counter.describe());\n    }\n}\n\nclass Counter {\n    static int created = 0;      // shared by all objects\n\n    Counter() {\n        created++;\n    }\n\n    static String describe() {\n        return \"Counter class\";\n    }\n}",
+     "output": "Objects created: 3\nCounter class"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "inheritance-interfaces",
+   "title": "Inheritance & Interfaces",
+   "section": "Object-Oriented Java",
+   "order": 8,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Inheritance & Interfaces</h1>\n<div class=\"card\">\n<h2>Inheritance</h2>\n<p>A class can <code>extend</code> another to reuse its fields and methods. The child may <strong>override</strong> a method (mark it with <code>@Override</code>) and calls the parent's constructor with <code>super(...)</code>. Java allows only <em>one</em> parent class.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        Dog d = new Dog(\"Rex\");\n        System.out.println(d.name + \" says \" + d.speak());\n        System.out.println(d.describe());\n    }\n}\n\nclass Animal {\n    String name;\n    Animal(String name) { this.name = name; }\n    String speak() { return \"...\"; }\n    String describe() { return \"I am \" + name; }\n}\n\nclass Dog extends Animal {\n    Dog(String name) { super(name); }\n    @Override\n    String speak() { return \"Woof\"; }\n}",
+     "output": "Rex says Woof\nI am Rex"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Polymorphism and Abstract Classes</h2>\n<p>A parent variable can hold any child object, and Java runs the child's version of the method. An <strong>abstract class</strong> cannot be instantiated; it forces children to implement its abstract methods.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        Shape[] shapes = { new Circle(2), new Rect(3, 4) };\n        for (Shape s : shapes) {\n            System.out.println(s.getClass().getSimpleName() + \" area = \" + s.area());\n        }\n    }\n}\n\nabstract class Shape {\n    abstract double area();\n}\n\nclass Circle extends Shape {\n    double r;\n    Circle(double r) { this.r = r; }\n    double area() { return Math.round(3.14159 * r * r * 100) / 100.0; }\n}\n\nclass Rect extends Shape {\n    double w, h;\n    Rect(double w, double h) { this.w = w; this.h = h; }\n    double area() { return w * h; }\n}",
+     "output": "Circle area = 12.57\nRect area = 12.0"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Interfaces</h2>\n<p>An <strong>interface</strong> is a contract: it lists methods a class promises to have. A class can <code>implement</code> <em>many</em> interfaces.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        Payable[] items = { new Employee(\"Sara\", 50000), new Invoice(1200) };\n        for (Payable p : items) {\n            System.out.println(\"Pay: \" + p.amount());\n        }\n    }\n}\n\ninterface Payable {\n    int amount();\n}\n\nclass Employee implements Payable {\n    String name;\n    int salary;\n    Employee(String name, int salary) { this.name = name; this.salary = salary; }\n    public int amount() { return salary; }\n}\n\nclass Invoice implements Payable {\n    int total;\n    Invoice(int total) { this.total = total; }\n    public int amount() { return total; }\n}",
+     "output": "Pay: 50000\nPay: 1200"
+    },
+    {
+     "kind": "html",
+     "html": "<table><tr><th></th><th>abstract class</th><th>interface</th></tr><tr><td>Can have fields and constructors</td><td>Yes</td><td>No (only constants)</td></tr><tr><td>A class can use</td><td>One (extends)</td><td>Many (implements)</td></tr><tr><td>Best for</td><td>A shared base with some code</td><td>A capability (Comparable, Runnable)</td></tr></table>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "exceptions-collections",
+   "title": "Exceptions & Collections",
+   "section": "Object-Oriented Java",
+   "order": 9,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Exceptions & Collections</h1>\n<div class=\"card\">\n<h2>Exceptions</h2>\n<p>Errors in Java are <strong>exceptions</strong>. Handle them with <code>try</code>, <code>catch</code> and <code>finally</code>. <strong>Checked</strong> exceptions (like <code>IOException</code>) must be handled or declared with <code>throws</code>; <strong>unchecked</strong> ones (like <code>NullPointerException</code>) need not.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(divide(10, 2));\n        try {\n            System.out.println(divide(10, 0));\n        } catch (ArithmeticException e) {\n            System.out.println(\"Caught: \" + e.getMessage());\n        } finally {\n            System.out.println(\"finally always runs\");\n        }\n\n        try {\n            checkAge(-5);\n        } catch (IllegalArgumentException e) {\n            System.out.println(\"Invalid: \" + e.getMessage());\n        }\n    }\n\n    static int divide(int a, int b) {\n        return a / b;\n    }\n\n    static void checkAge(int age) {\n        if (age < 0) throw new IllegalArgumentException(\"age cannot be negative\");\n    }\n}",
+     "output": "5\nCaught: / by zero\nfinally always runs\nInvalid: age cannot be negative"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>ArrayList</h2>\n<p>An <code>ArrayList</code> is a resizable list. The type in angle brackets (<code>&lt;String&gt;</code>) says what it holds. Use wrapper types such as <code>Integer</code> for numbers.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "import java.util.ArrayList;\nimport java.util.Collections;\nimport java.util.List;\n\npublic class Main {\n    public static void main(String[] args) {\n        List<String> names = new ArrayList<>();\n        names.add(\"Zain\");\n        names.add(\"Ayesha\");\n        names.add(\"Hira\");\n        System.out.println(names + \" size \" + names.size());\n\n        names.remove(\"Zain\");\n        Collections.sort(names);\n        System.out.println(names + \" first \" + names.get(0));\n        System.out.println(names.contains(\"Hira\"));\n\n        for (String n : names) System.out.println(\"Hello \" + n);\n    }\n}",
+     "output": "[Zain, Ayesha, Hira] size 3\n[Ayesha, Hira] first Ayesha\ntrue\nHello Ayesha\nHello Hira"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>HashMap</h2>\n<p>A <code>HashMap</code> stores key to value pairs with fast lookup.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "java",
+     "code": "import java.util.HashMap;\nimport java.util.Map;\nimport java.util.TreeMap;\n\npublic class Main {\n    public static void main(String[] args) {\n        Map<String, Integer> marks = new HashMap<>();\n        marks.put(\"Ali\", 70);\n        marks.put(\"Sara\", 95);\n        marks.put(\"Ali\", 75);                    // replaces the old value\n        System.out.println(marks.get(\"Ali\"));\n        System.out.println(marks.getOrDefault(\"Omar\", 0));\n        System.out.println(marks.containsKey(\"Sara\") + \" \" + marks.size());\n\n        for (Map.Entry<String, Integer> e : new TreeMap<>(marks).entrySet()) {\n            System.out.println(e.getKey() + \" -> \" + e.getValue());\n        }\n    }\n}",
+     "output": "75\n0\ntrue 2\nAli -> 75\nSara -> 95"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>Import them first: <code>import java.util.*;</code>.</li><li>Declare with the interface type: <code>List&lt;String&gt; names = new ArrayList&lt;&gt;();</code>.</li></ul>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  }
+ ]
+}

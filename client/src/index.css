@@ -1,0 +1,667 @@
+:root {
+  --app-bg: #0f172a;
+  --nav-bg: #1e293b;
+  --card-bg: #202040;
+  --text: #e2e8f0;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--app-bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.8s ease both;
+}
+
+/* ---------- Welcome + Login/Signup (plum gradient, same as old site) ---------- */
+.page-plum {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: whitesmoke;
+  background: linear-gradient(to top left, #1a161b 0%, #55093d 100%);
+}
+
+.page-plum--landing {
+  background: url('/images/welcome-bg.svg') center / cover no-repeat,
+    linear-gradient(to top left, #1a161b 0%, #55093d 100%);
+}
+
+.page-plum--auth {
+  background: linear-gradient(to top left, #514754 0, #441535 100%);
+}
+
+.page-plum img {
+  max-width: 100%;
+  height: auto;
+}
+
+.landing-actions {
+  width: 100%;
+  max-width: 960px;
+  text-align: right;
+}
+
+/* Login <-> Signup slide (same effect as the old page) */
+.auth-wrapper {
+  display: grid;
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+}
+
+.auth-card {
+  grid-area: 1 / 1;
+  align-self: start;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: left;
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+  transition: transform 0.6s ease, opacity 0.6s ease, visibility 0s;
+}
+
+.auth-card:not(.is-active) {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.6s ease, opacity 0.6s ease, visibility 0s linear 0.6s;
+}
+
+.auth-card--login:not(.is-active) {
+  transform: translateX(-100%);
+}
+
+.auth-card--signup:not(.is-active) {
+  transform: translateX(100%);
+}
+
+.auth-card h3 {
+  text-align: center;
+}
+
+/* ---------- App shell (navbar + pages) ---------- */
+.app-navbar {
+  background: var(--nav-bg);
+}
+
+.app-navbar .nav-link:hover,
+.app-navbar .nav-link.active {
+  color: #38bdf8;
+}
+
+.app-footer {
+  background: var(--nav-bg);
+  color: var(--text);
+}
+
+.center-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Languages page (no navbar, same as old card page) ---------- */
+.page-navy {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: rgb(19, 19, 59);
+}
+
+.lang-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1300px;
+  transition: all 0.3s ease-in-out;
+}
+
+.lang-card {
+  width: 18rem;
+  border: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--card-bg);
+  color: whitesmoke;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.lang-card img {
+  padding: 20px;
+  border-radius: 8px;
+  background: var(--lang-color);
+  -webkit-box-reflect: below 8px linear-gradient(to bottom, rgba(255, 255, 255, 0.25), transparent 70%);
+}
+
+.lang-card:hover img {
+  -webkit-box-reflect: below 5px linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent 40%);
+}
+
+/* Mouse wali devices par: hovered card bara hota hai, baqi dim; text hover par khulta hai.
+   Touch devices par text hamesha dikhta hai (wahan hover hota hi nahi). */
+@media (hover: hover) {
+  .lang-grid:hover .lang-card {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+
+  .lang-grid .lang-card:hover,
+  .lang-grid .lang-card:focus-within {
+    transform: scale(1.1);
+    opacity: 1;
+    z-index: 1;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+
+  .lang-card .card-reveal {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, max-height 0.4s ease;
+  }
+
+  .lang-card:hover .card-reveal,
+  .lang-card:focus-within .card-reveal {
+    opacity: 1;
+    max-height: 260px;
+  }
+}
+
+/* Jin users ne system mein "reduce motion" on kiya hai unke liye animations bohat chhoti */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+}
+
+/* ---------- Lesson pages: topics sidebar ---------- */
+.topics-toggle {
+  color: #e2e8f0;
+}
+
+.topics-sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1045;
+  width: min(280px, 85vw);
+  padding: 1rem;
+  overflow-y: auto;
+  background: #1e293b;
+  color: #e2e8f0;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.topics-sidebar.is-open {
+  transform: none;
+}
+
+.topics-sidebar h5 {
+  color: #e2e8f0;
+}
+
+.topics-language {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.topics-sidebar nav a {
+  display: block;
+  margin-bottom: 10px;
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.topics-sidebar nav a:hover,
+.topics-sidebar nav a.active {
+  color: #38bdf8;
+  padding-left: 5px;
+}
+
+.lesson {
+  min-height: 70vh;
+  padding-top: 1rem;
+}
+
+.topics-section {
+  margin: 18px 0 8px;
+  padding-top: 10px;
+  border-top: 1px solid #334155;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.topics-sidebar nav .topics-section:first-child {
+  margin-top: 4px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* ---------- Progress, dashboard, drafts ---------- */
+.progress-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #334155;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #38bdf8;
+  transition: width 0.4s ease;
+}
+
+.topics-progress {
+  margin: 6px 0 4px;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.topic-check {
+  margin-left: 8px;
+  color: #4ade80;
+  font-weight: 700;
+}
+
+.lesson-complete {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.complete-done {
+  color: #4ade80;
+  font-weight: 700;
+}
+
+.xp-toast {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.draft-status {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.lang-corner {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  display: flex;
+  gap: 18px;
+}
+
+.lang-corner a,
+.lang-corner button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.lang-corner a:hover,
+.lang-corner button:hover {
+  color: #38bdf8;
+  text-decoration: underline;
+}
+
+.dashboard {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.dashboard-title {
+  margin-bottom: 4px;
+}
+
+.dashboard-sub {
+  color: #94a3b8;
+}
+
+.dashboard-heading {
+  margin: 32px 0 14px;
+  font-size: 1.3rem;
+}
+
+.dashboard-heading small {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.stat-card {
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--card-bg);
+}
+
+.stat-label {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.stat-value {
+  margin: 2px 0 8px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.stat-note {
+  margin: 8px 0 0;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.lang-progress-list {
+  display: grid;
+  gap: 12px;
+}
+
+.lang-progress {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--card-bg);
+}
+
+.lang-progress-head {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.lang-progress-head h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.lang-progress-head span {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.badge-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px dashed #475569;
+  border-radius: 12px;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.badge-card.is-earned {
+  border: 1px solid #4ade80;
+  background: rgba(74, 222, 128, 0.08);
+  color: #e2e8f0;
+}
+
+.badge-card strong {
+  font-size: 0.95rem;
+}
+
+.badge-card em {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Quizzes ---------- */
+.topics-quiz {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  margin: -2px 0 12px !important;
+  padding: 6px 10px;
+  border: 1px dashed #475569;
+  border-radius: 8px;
+  color: #38bdf8 !important;
+  font-size: 0.9rem;
+}
+
+.quiz-best {
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.lesson-quiz-cta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+  padding: 14px 16px;
+  border: 1px solid #334155;
+  border-radius: 12px;
+}
+
+.lesson-quiz-cta p {
+  margin: 0;
+}
+
+.quiz {
+  max-width: 760px;
+}
+
+.quiz-crumb {
+  margin-bottom: 4px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.quiz-crumb a {
+  color: #38bdf8;
+}
+
+.quiz-facts {
+  color: #cbd5e1;
+}
+
+.quiz-best-line {
+  font-weight: 700;
+  color: #4ade80;
+}
+
+.quiz-progress-text {
+  margin: 14px 0 6px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.quiz-prompt {
+  margin: 18px 0 12px;
+  font-size: 1.25rem;
+}
+
+.quiz-code {
+  padding: 14px;
+  overflow-x: auto;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background: #0b1220;
+  color: #e2e8f0;
+  font-family: Consolas, 'Fira Code', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.quiz-options {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.quiz-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  background: var(--card-bg);
+  cursor: pointer;
+  white-space: pre-wrap;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.quiz-option:hover {
+  border-color: #38bdf8;
+}
+
+.quiz-option.is-selected {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+}
+
+.quiz-option input {
+  margin-top: 4px;
+}
+
+.quiz-fill label {
+  display: block;
+  margin-bottom: 6px;
+  color: #cbd5e1;
+}
+
+.quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.quiz-note {
+  margin-top: 14px;
+  color: #fbbf24;
+}
+
+.quiz-score {
+  margin-top: 16px;
+}
+
+.quiz-review-title {
+  margin-top: 30px;
+}
+
+.quiz-review {
+  display: grid;
+  gap: 14px;
+  padding: 0;
+  list-style: none;
+}
+
+.quiz-review li {
+  padding: 14px 16px;
+  border-left: 4px solid #64748b;
+  border-radius: 8px;
+  background: var(--card-bg);
+}
+
+.quiz-review li.is-correct {
+  border-left-color: #4ade80;
+}
+
+.quiz-review li.is-wrong {
+  border-left-color: #f87171;
+}
+
+.quiz-verdict {
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.quiz-verdict span {
+  margin-left: 8px;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.quiz-pre {
+  white-space: pre-wrap;
+}
+
+.quiz-explain {
+  margin: 8px 0 0;
+  padding-top: 8px;
+  border-top: 1px solid #334155;
+  color: #cbd5e1;
+}

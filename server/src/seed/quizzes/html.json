@@ -1,0 +1,359 @@
+{
+ "languageSlug": "html",
+ "quizzes": [
+  {
+   "slug": "getting-started",
+   "title": "Getting Started Checkpoint",
+   "section": "Getting Started",
+   "order": 1,
+   "description": "Covers: Introduction, Basic Tags, Attributes & Global Attributes.",
+   "questions": [
+    {
+     "id": "getting-started-1",
+     "type": "choice",
+     "prompt": "Which element holds the visible content of an HTML page?",
+     "options": [
+      "<html>",
+      "<title>",
+      "<body>",
+      "<head>"
+     ],
+     "correctIndex": 2,
+     "explanation": "The <head> holds information about the page (title, meta tags). Everything the user sees goes inside <body>."
+    },
+    {
+     "id": "getting-started-2",
+     "type": "choice",
+     "prompt": "What is the alt attribute of an <img> for?",
+     "options": [
+      "Adding a border around the image",
+      "Linking the image to another page",
+      "Setting the width of the image",
+      "Text for screen readers and for when the image cannot load"
+     ],
+     "correctIndex": 3,
+     "explanation": "alt describes the image in words. Screen readers read it aloud and browsers show it if the file fails to load."
+    },
+    {
+     "id": "getting-started-3",
+     "type": "choice",
+     "prompt": "Which attribute must be unique on a page?",
+     "options": [
+      "lang",
+      "title",
+      "id",
+      "class"
+     ],
+     "correctIndex": 2,
+     "explanation": "An id identifies exactly one element. Many elements can share the same class, title or lang."
+    },
+    {
+     "id": "getting-started-4",
+     "type": "choice",
+     "prompt": "What does the browser show for this code?",
+     "options": [
+      "The tags are printed as plain text",
+      "A paragraph where only the word HTML is bold",
+      "Nothing, because strong is not a valid tag",
+      "The whole sentence in bold"
+     ],
+     "correctIndex": 1,
+     "explanation": "<strong> only affects the text between its own opening and closing tags.",
+     "code": "<p>Learn <strong>HTML</strong> today</p>",
+     "codeLanguage": "html"
+    },
+    {
+     "id": "getting-started-5",
+     "type": "choice",
+     "prompt": "What happens when a user clicks this link?",
+     "options": [
+      "example.com opens in a new tab",
+      "A file download starts",
+      "example.com opens in the same tab",
+      "Nothing happens"
+     ],
+     "correctIndex": 0,
+     "explanation": "target=\"_blank\" tells the browser to open the link in a new tab or window.",
+     "code": "<a href=\"https://example.com\" target=\"_blank\">Open</a>",
+     "codeLanguage": "html"
+    },
+    {
+     "id": "getting-started-6",
+     "type": "fill",
+     "prompt": "Complete the tag so the text becomes a top-level heading.",
+     "code": "<____>Welcome</h1>",
+     "codeLanguage": "html",
+     "answers": [
+      "h1"
+     ],
+     "caseSensitive": false,
+     "explanation": "h1 is the main (top-level) heading. The closing tag </h1> shows which element this is."
+    }
+   ]
+  },
+  {
+   "slug": "structure-content",
+   "title": "Structure & Content Checkpoint",
+   "section": "Structure & Content",
+   "order": 2,
+   "description": "Covers: Semantic & Non-Semantic, Div, Span & Lists.",
+   "questions": [
+    {
+     "id": "structure-content-1",
+     "type": "choice",
+     "prompt": "Which element is the most meaningful choice for the main navigation links?",
+     "options": [
+      "<section>",
+      "<aside>",
+      "<div>",
+      "<nav>"
+     ],
+     "correctIndex": 3,
+     "explanation": "<nav> tells browsers and screen readers that this block contains navigation links."
+    },
+    {
+     "id": "structure-content-2",
+     "type": "choice",
+     "prompt": "What is the main difference between <div> and <span>?",
+     "options": [
+      "span is a block element, div is inline",
+      "div can only contain text",
+      "div is a block element, span is inline",
+      "They are identical in every way"
+     ],
+     "correctIndex": 2,
+     "explanation": "A div starts on a new line and takes the full width. A span stays inside the line of text."
+    },
+    {
+     "id": "structure-content-3",
+     "type": "choice",
+     "prompt": "Which tag creates an ordered (numbered) list?",
+     "options": [
+      "<ul>",
+      "<dl>",
+      "<ol>",
+      "<li>"
+     ],
+     "correctIndex": 2,
+     "explanation": "<ol> is the ordered list. <ul> is bulleted, <li> is a single item and <dl> is a description list."
+    },
+    {
+     "id": "structure-content-4",
+     "type": "choice",
+     "prompt": "How many bullet points appear in total?",
+     "options": [
+      "3",
+      "4",
+      "2",
+      "1"
+     ],
+     "correctIndex": 0,
+     "explanation": "Every <li> is a bullet: Fruits, the nested Apple, and Bread.",
+     "code": "<ul>\n  <li>Fruits\n    <ul>\n      <li>Apple</li>\n    </ul>\n  </li>\n  <li>Bread</li>\n</ul>",
+     "codeLanguage": "html"
+    },
+    {
+     "id": "structure-content-5",
+     "type": "choice",
+     "prompt": "What is the problem with using <div> for every part of a page?",
+     "options": [
+      "It makes the page load slower",
+      "Browsers refuse to display it",
+      "It is not valid HTML",
+      "Screen readers and search engines cannot tell what each part means"
+     ],
+     "correctIndex": 3,
+     "explanation": "div has no meaning. Semantic elements like header, nav, main and footer describe the role of each part."
+    },
+    {
+     "id": "structure-content-6",
+     "type": "fill",
+     "prompt": "Complete the tag for the page footer.",
+     "code": "<____>&copy; 2026 Learning Hub</footer>",
+     "codeLanguage": "html",
+     "answers": [
+      "footer"
+     ],
+     "caseSensitive": false,
+     "explanation": "footer is the semantic element for closing information such as copyright."
+    }
+   ]
+  },
+  {
+   "slug": "tables-forms",
+   "title": "Tables & Forms Checkpoint",
+   "section": "Tables & Forms",
+   "order": 3,
+   "description": "Covers: Table & Form, Forms in Depth & Validation.",
+   "questions": [
+    {
+     "id": "tables-forms-1",
+     "type": "choice",
+     "prompt": "Which tag creates a table row?",
+     "options": [
+      "<th>",
+      "<tr>",
+      "<td>",
+      "<row>"
+     ],
+     "correctIndex": 1,
+     "explanation": "tr is a table row. td is a data cell and th is a header cell inside the row."
+    },
+    {
+     "id": "tables-forms-2",
+     "type": "choice",
+     "prompt": "How do you connect a <label> to its input?",
+     "options": [
+      "Put the label after the input",
+      "Give the label a for attribute that matches the input's id",
+      "Give both the same class",
+      "Use the href attribute"
+     ],
+     "correctIndex": 1,
+     "explanation": "for=\"email\" on the label and id=\"email\" on the input link them, so clicking the label focuses the input."
+    },
+    {
+     "id": "tables-forms-3",
+     "type": "choice",
+     "prompt": "Which input attribute stops the form from being sent when the field is empty?",
+     "options": [
+      "value",
+      "readonly",
+      "placeholder",
+      "required"
+     ],
+     "correctIndex": 3,
+     "explanation": "required makes the browser block submission and show a message until the field is filled."
+    },
+    {
+     "id": "tables-forms-4",
+     "type": "choice",
+     "prompt": "A user types \"sara\" (no @) and presses Submit. What happens?",
+     "options": [
+      "The form is sent normally",
+      "The browser changes it to sara@gmail.com",
+      "The page reloads silently",
+      "The browser blocks the submit and shows an error message"
+     ],
+     "correctIndex": 3,
+     "explanation": "type=\"email\" makes the browser check the format before the form is submitted.",
+     "code": "<input type=\"email\" required>",
+     "codeLanguage": "html"
+    },
+    {
+     "id": "tables-forms-5",
+     "type": "choice",
+     "prompt": "Why must the server validate form data even though the browser already does?",
+     "options": [
+      "Servers are faster at checking",
+      "Browsers do not support validation",
+      "Browser checks can be bypassed by anyone",
+      "HTML forbids client-side validation"
+     ],
+     "correctIndex": 2,
+     "explanation": "Anyone can edit the page or send a request directly. Only server-side checks can be trusted."
+    },
+    {
+     "id": "tables-forms-6",
+     "type": "fill",
+     "prompt": "Complete the attribute so only one radio button of the group can be chosen.",
+     "code": "<input type=\"radio\" ____=\"course\" value=\"html\">",
+     "codeLanguage": "html",
+     "answers": [
+      "name"
+     ],
+     "caseSensitive": false,
+     "explanation": "Radio buttons with the same name form one group, and only one of them can be selected."
+    }
+   ]
+  },
+  {
+   "slug": "best-practices",
+   "title": "Best Practices Checkpoint",
+   "section": "Best Practices",
+   "order": 4,
+   "description": "Covers: Accessibility & SEO Basics.",
+   "questions": [
+    {
+     "id": "best-practices-1",
+     "type": "choice",
+     "prompt": "How many <h1> elements should a page normally have?",
+     "options": [
+      "None",
+      "Exactly three",
+      "One",
+      "As many as possible"
+     ],
+     "correctIndex": 2,
+     "explanation": "One h1 describes the main topic of the page. Use h2, h3 and so on for the sections below it."
+    },
+    {
+     "id": "best-practices-2",
+     "type": "choice",
+     "prompt": "What is the best alt text for a purely decorative image?",
+     "options": [
+      "alt=\"decorative\"",
+      "alt=\"image\"",
+      "An empty alt (alt=\"\")",
+      "The file name"
+     ],
+     "correctIndex": 2,
+     "explanation": "An empty alt tells screen readers to skip the image, so users are not bothered by it."
+    },
+    {
+     "id": "best-practices-3",
+     "type": "choice",
+     "prompt": "Which link text is best for accessibility?",
+     "options": [
+      "More",
+      "Click here",
+      "Read the HTML guide",
+      "Link"
+     ],
+     "correctIndex": 2,
+     "explanation": "Link text should make sense on its own, because screen reader users often jump from link to link."
+    },
+    {
+     "id": "best-practices-4",
+     "type": "choice",
+     "prompt": "What is this tag for?",
+     "options": [
+      "Loading a CSS file",
+      "Making the page display properly on phones",
+      "Adding a title to the browser tab",
+      "Setting the language of the page"
+     ],
+     "correctIndex": 1,
+     "explanation": "The viewport meta tag tells mobile browsers to use the real device width instead of a zoomed-out desktop width.",
+     "code": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+     "codeLanguage": "html"
+    },
+    {
+     "id": "best-practices-5",
+     "type": "choice",
+     "prompt": "Which element sets the text shown on the browser tab?",
+     "options": [
+      "<title>",
+      "<h1>",
+      "<meta charset>",
+      "<header>"
+     ],
+     "correctIndex": 0,
+     "explanation": "<title> inside <head> is used for the tab text and is also important for search results."
+    },
+    {
+     "id": "best-practices-6",
+     "type": "fill",
+     "prompt": "Complete the attribute that sets the language of the page.",
+     "code": "<html ____=\"en\">",
+     "codeLanguage": "html",
+     "answers": [
+      "lang"
+     ],
+     "caseSensitive": false,
+     "explanation": "lang helps screen readers pronounce the content correctly and helps search engines."
+    }
+   ]
+  }
+ ]
+}

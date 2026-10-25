@@ -1,0 +1,369 @@
+{
+ "languageSlug": "javascript",
+ "quizzes": [
+  {
+   "slug": "fundamentals",
+   "title": "Fundamentals Checkpoint",
+   "section": "Fundamentals",
+   "order": 1,
+   "description": "Covers: Introduction, Variables & Data Types, Operators & Conditional Statements, Loops & Strings, Array, Function, Objects & JSON.",
+   "questions": [
+    {
+     "id": "fundamentals-1",
+     "type": "choice",
+     "prompt": "Which keyword declares a variable that cannot be reassigned?",
+     "options": [
+      "const",
+      "var",
+      "static",
+      "let"
+     ],
+     "correctIndex": 0,
+     "explanation": "const creates a binding that cannot be reassigned. let and var can be changed later."
+    },
+    {
+     "id": "fundamentals-2",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "string number string",
+      "string number boolean",
+      "number number boolean",
+      "string string boolean"
+     ],
+     "correctIndex": 1,
+     "explanation": "typeof returns the type name as text: \"5\" in quotes is a string, 5 is a number and true is a boolean.",
+     "code": "console.log(typeof \"5\", typeof 5, typeof true);",
+     "codeLanguage": "javascript"
+    },
+    {
+     "id": "fundamentals-3",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "8\n2",
+      "53\n2",
+      "8\n8",
+      "53\n53"
+     ],
+     "correctIndex": 1,
+     "explanation": "With a string, + joins text (\"53\"). The - operator only does maths, so \"5\" becomes the number 5.",
+     "code": "console.log(\"5\" + 3);\nconsole.log(\"5\" - 3);",
+     "codeLanguage": "javascript"
+    },
+    {
+     "id": "fundamentals-4",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "4 2",
+      "4 1",
+      "3 1",
+      "3 2"
+     ],
+     "correctIndex": 0,
+     "explanation": "push adds to the end, so the length is 4. The value 2 is at index 2 (counting from 0).",
+     "code": "const nums = [3, 1, 2];\nnums.push(4);\nconsole.log(nums.length, nums.indexOf(2));",
+     "codeLanguage": "javascript"
+    },
+    {
+     "id": "fundamentals-5",
+     "type": "choice",
+     "prompt": "What does JSON.stringify do?",
+     "options": [
+      "Turns JSON text into an object",
+      "Converts a JavaScript value into JSON text",
+      "Checks whether a string is valid JSON",
+      "Sorts the keys of an object"
+     ],
+     "correctIndex": 1,
+     "explanation": "stringify goes from object to text. JSON.parse goes from text back to an object."
+    },
+    {
+     "id": "fundamentals-6",
+     "type": "fill",
+     "prompt": "Complete the loop so it prints 0, 1 and 2.",
+     "code": "for (let i = 0; i < ____; i++) {\n  console.log(i);\n}",
+     "codeLanguage": "javascript",
+     "answers": [
+      "3"
+     ],
+     "caseSensitive": true,
+     "explanation": "The loop continues while i < 3, so it runs for i = 0, 1 and 2."
+    }
+   ]
+  },
+  {
+   "slug": "core-concepts",
+   "title": "Core Concepts Checkpoint",
+   "section": "Core Concepts",
+   "order": 2,
+   "description": "Covers: Scope, Hoisting & Closures, ES6+ Essentials, Error Handling, Class & Object.",
+   "questions": [
+    {
+     "id": "core-concepts-1",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "3",
+      "2",
+      "0",
+      "1"
+     ],
+     "correctIndex": 0,
+     "explanation": "The returned function remembers n (a closure). It is increased on each call: 1, 2, then 3.",
+     "code": "function makeCounter() {\n  let n = 0;\n  return () => ++n;\n}\nconst c = makeCounter();\nc();\nc();\nconsole.log(c());",
+     "codeLanguage": "javascript"
+    },
+    {
+     "id": "core-concepts-2",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "null",
+      "undefined",
+      "5",
+      "ReferenceError"
+     ],
+     "correctIndex": 1,
+     "explanation": "var is hoisted: the variable exists from the start but its value is undefined until the line runs.",
+     "code": "console.log(a);\nvar a = 5;",
+     "codeLanguage": "javascript"
+    },
+    {
+     "id": "core-concepts-3",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "Ali null",
+      "Ali undefined",
+      "undefined 18",
+      "Ali 18"
+     ],
+     "correctIndex": 3,
+     "explanation": "Destructuring takes name from the object. Since age is missing, the default value 18 is used.",
+     "code": "const { name, age = 18 } = { name: \"Ali\" };\nconsole.log(name, age);",
+     "codeLanguage": "javascript"
+    },
+    {
+     "id": "core-concepts-4",
+     "type": "choice",
+     "prompt": "Which statement about try...catch...finally is true?",
+     "options": [
+      "try...catch catches errors inside setTimeout callbacks",
+      "catch runs even when no error is thrown",
+      "The finally block runs whether or not an error happened",
+      "finally runs only after an error"
+     ],
+     "correctIndex": 2,
+     "explanation": "finally is for cleanup and always runs. catch only runs after an error, and it cannot catch errors from a later timer callback."
+    },
+    {
+     "id": "core-concepts-5",
+     "type": "choice",
+     "prompt": "What does [...a, 4] do?",
+     "options": [
+      "Creates a function",
+      "Copies the elements of a into a new array and adds 4",
+      "Joins a and 4 into a string",
+      "Removes the elements of a"
+     ],
+     "correctIndex": 1,
+     "explanation": "The spread operator (...) expands an array, so you can build a new array from it."
+    },
+    {
+     "id": "core-concepts-6",
+     "type": "fill",
+     "prompt": "Complete the call so the method defined in the class runs.",
+     "code": "class Dog {\n  constructor(name) { this.name = name; }\n  speak() { return this.name + \" says woof\"; }\n}\nconsole.log(new Dog(\"Rex\").____());",
+     "codeLanguage": "javascript",
+     "answers": [
+      "speak"
+     ],
+     "caseSensitive": true,
+     "explanation": "Methods are called with the dot operator and parentheses: object.method()."
+    }
+   ]
+  },
+  {
+   "slug": "browser-web",
+   "title": "Browser & Web Checkpoint",
+   "section": "Browser & Web",
+   "order": 3,
+   "description": "Covers: DOM, Events, Web Storage.",
+   "questions": [
+    {
+     "id": "browser-web-1",
+     "type": "choice",
+     "prompt": "Which method selects the first element that matches a CSS selector?",
+     "options": [
+      "document.querySelector()",
+      "document.select()",
+      "document.getElement()",
+      "document.find()"
+     ],
+     "correctIndex": 0,
+     "explanation": "querySelector takes any CSS selector (like \"#menu\" or \".card\") and returns the first match."
+    },
+    {
+     "id": "browser-web-2",
+     "type": "choice",
+     "prompt": "Why should you avoid putting text typed by users into innerHTML?",
+     "options": [
+      "It only works with numbers",
+      "It can run malicious HTML or scripts (XSS)",
+      "It is slower than every other method",
+      "It deletes the whole page"
+     ],
+     "correctIndex": 1,
+     "explanation": "innerHTML parses HTML, so a user could inject a script. textContent treats the text as plain text."
+    },
+    {
+     "id": "browser-web-3",
+     "type": "choice",
+     "prompt": "Where does data saved in localStorage stay?",
+     "options": [
+      "Only until the tab is closed",
+      "Only until the page reloads",
+      "In the browser until it is deleted",
+      "On the server forever"
+     ],
+     "correctIndex": 2,
+     "explanation": "localStorage survives reloads and restarts. sessionStorage is the one that ends with the tab."
+    },
+    {
+     "id": "browser-web-4",
+     "type": "choice",
+     "prompt": "What is logged when the button is clicked? (Events bubble up.)",
+     "options": [
+      "only inner",
+      "only outer",
+      "outer, then inner",
+      "inner, then outer"
+     ],
+     "correctIndex": 3,
+     "explanation": "The click starts at the button and then bubbles up to its parents, so inner runs first.",
+     "code": "<div id=\"outer\">\n  <button id=\"inner\">Click</button>\n</div>\n\n<script>\n  outer.addEventListener(\"click\", () => console.log(\"outer\"));\n  inner.addEventListener(\"click\", () => console.log(\"inner\"));\n</script>",
+     "codeLanguage": "html"
+    },
+    {
+     "id": "browser-web-5",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "string undefined",
+      "object dark",
+      "object undefined",
+      "string dark"
+     ],
+     "correctIndex": 3,
+     "explanation": "stringify returns a string. parse turns it back into an object, so .theme is \"dark\".",
+     "code": "const saved = JSON.stringify({ theme: \"dark\" });\nconsole.log(typeof saved, JSON.parse(saved).theme);",
+     "codeLanguage": "javascript"
+    },
+    {
+     "id": "browser-web-6",
+     "type": "fill",
+     "prompt": "Complete the method that saves a value in localStorage.",
+     "code": "localStorage.____(\"theme\", \"dark\");",
+     "codeLanguage": "javascript",
+     "answers": [
+      "setItem"
+     ],
+     "caseSensitive": true,
+     "explanation": "setItem(key, value) saves, and getItem(key) reads it back."
+    }
+   ]
+  },
+  {
+   "slug": "asynchronous-javascript",
+   "title": "Asynchronous JavaScript Checkpoint",
+   "section": "Asynchronous JavaScript",
+   "order": 4,
+   "description": "Covers: Asynchronous, Fetch API.",
+   "questions": [
+    {
+     "id": "asynchronous-javascript-1",
+     "type": "choice",
+     "prompt": "What does fetch() return?",
+     "options": [
+      "Nothing",
+      "A Promise",
+      "A string",
+      "The JSON data directly"
+     ],
+     "correctIndex": 1,
+     "explanation": "fetch returns a Promise that resolves to a Response. You then call response.json() (another Promise)."
+    },
+    {
+     "id": "asynchronous-javascript-2",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "A\nB\nC",
+      "A\nC",
+      "A\nC\nB",
+      "B\nA\nC"
+     ],
+     "correctIndex": 2,
+     "explanation": "Timer callbacks always wait until the current code has finished, even with a delay of 0.",
+     "code": "console.log(\"A\");\nsetTimeout(() => console.log(\"B\"), 0);\nconsole.log(\"C\");",
+     "codeLanguage": "javascript"
+    },
+    {
+     "id": "asynchronous-javascript-3",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "then x",
+      "then x\nsync",
+      "sync",
+      "sync\nthen x"
+     ],
+     "correctIndex": 3,
+     "explanation": ".then callbacks run after the current synchronous code, so \"sync\" is printed first.",
+     "code": "Promise.resolve(\"x\").then((v) => console.log(\"then\", v));\nconsole.log(\"sync\");",
+     "codeLanguage": "javascript"
+    },
+    {
+     "id": "asynchronous-javascript-4",
+     "type": "choice",
+     "prompt": "What does await do inside an async function?",
+     "options": [
+      "Cancels the promise",
+      "Turns the promise into a callback",
+      "Pauses that function until the promise settles, without blocking the page",
+      "Blocks the whole browser until it is done"
+     ],
+     "correctIndex": 2,
+     "explanation": "await pauses only the async function. The rest of the page keeps running."
+    },
+    {
+     "id": "asynchronous-javascript-5",
+     "type": "choice",
+     "prompt": "A request returns 404. What should you do with fetch?",
+     "options": [
+      "Check response.ok and handle the error yourself",
+      "Nothing, fetch always rejects on a 404",
+      "Call response.json() and ignore the status",
+      "Retry forever"
+     ],
+     "correctIndex": 0,
+     "explanation": "fetch only rejects on network failures. A 404 or 500 still resolves, so you must check response.ok."
+    },
+    {
+     "id": "asynchronous-javascript-6",
+     "type": "fill",
+     "prompt": "Complete the method that runs a function when the promise succeeds.",
+     "code": "async function getValue() {\n  return 42;\n}\ngetValue().____((v) => console.log(v));",
+     "codeLanguage": "javascript",
+     "answers": [
+      "then"
+     ],
+     "caseSensitive": true,
+     "explanation": ".then(callback) receives the value the promise resolved with."
+    }
+   ]
+  }
+ ]
+}

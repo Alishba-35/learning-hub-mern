@@ -1,0 +1,273 @@
+{
+ "languageSlug": "css",
+ "quizzes": [
+  {
+   "slug": "css-basics",
+   "title": "CSS Basics Checkpoint",
+   "section": "CSS Basics",
+   "order": 1,
+   "description": "Covers: Introduction, Selectors, Specificity & Inheritance, Box Model, Color, Background & Typography.",
+   "questions": [
+    {
+     "id": "css-basics-1",
+     "type": "choice",
+     "prompt": "Which selector targets the element with id=\"menu\"?",
+     "options": [
+      "menu",
+      "*menu",
+      "#menu",
+      ".menu"
+     ],
+     "correctIndex": 2,
+     "explanation": "# selects by id and . selects by class. A plain name selects an element type."
+    },
+    {
+     "id": "css-basics-2",
+     "type": "choice",
+     "prompt": "Which selector has the highest specificity?",
+     "options": [
+      "nav a",
+      ".menu a",
+      "a",
+      "#nav a"
+     ],
+     "correctIndex": 3,
+     "explanation": "An id counts the most: #nav a is (1,0,1), .menu a is (0,1,1), nav a is (0,0,2), and a is (0,0,1)."
+    },
+    {
+     "id": "css-basics-3",
+     "type": "choice",
+     "prompt": "From the inside out, what is the order of the box model?",
+     "options": [
+      "Content, padding, border, margin",
+      "Content, margin, border, padding",
+      "Content, border, padding, margin",
+      "Padding, content, border, margin"
+     ],
+     "correctIndex": 0,
+     "explanation": "Content is surrounded by padding, then the border, and finally the margin outside."
+    },
+    {
+     "id": "css-basics-4",
+     "type": "choice",
+     "prompt": "With the default box-sizing (content-box), how wide is the box in total (not counting margin)?",
+     "options": [
+      "240px",
+      "200px",
+      "225px",
+      "250px"
+     ],
+     "correctIndex": 3,
+     "explanation": "Total = 200 content + 2 x 20 padding + 2 x 5 border = 250px.",
+     "code": ".box {\n  width: 200px;\n  padding: 20px;\n  border: 5px solid black;\n}",
+     "codeLanguage": "css"
+    },
+    {
+     "id": "css-basics-5",
+     "type": "choice",
+     "prompt": "What colour is the text?",
+     "options": [
+      "black",
+      "blue",
+      "green",
+      "red"
+     ],
+     "correctIndex": 3,
+     "explanation": "All three rules match, but the id selector has the highest specificity, so red wins.",
+     "code": "<p class=\"note\" id=\"intro\">Hi</p>\n\n<style>\n  p { color: blue; }\n  .note { color: green; }\n  #intro { color: red; }\n</style>",
+     "codeLanguage": "html"
+    },
+    {
+     "id": "css-basics-6",
+     "type": "fill",
+     "prompt": "Complete the property that makes the text red.",
+     "code": "p {\n  ____: red;\n}",
+     "codeLanguage": "css",
+     "answers": [
+      "color"
+     ],
+     "caseSensitive": false,
+     "explanation": "color sets the text colour. background-color would change the background instead."
+    }
+   ]
+  },
+  {
+   "slug": "layout-responsive",
+   "title": "Layout & Responsive Checkpoint",
+   "section": "Layout & Responsive",
+   "order": 2,
+   "description": "Covers: Layout & Responsive Design, Flexbox in Depth, CSS Grid in Depth, Spacing & Responsive Design.",
+   "questions": [
+    {
+     "id": "layout-responsive-1",
+     "type": "choice",
+     "prompt": "Which declaration turns an element into a flex container?",
+     "options": [
+      "display: flex",
+      "layout: flex",
+      "position: flex",
+      "flex: container"
+     ],
+     "correctIndex": 0,
+     "explanation": "display: flex on the parent makes its children flex items."
+    },
+    {
+     "id": "layout-responsive-2",
+     "type": "choice",
+     "prompt": "Which property centers flex items along the main axis?",
+     "options": [
+      "justify-content: center",
+      "text-align: flex",
+      "align-content: main",
+      "margin: center"
+     ],
+     "correctIndex": 0,
+     "explanation": "justify-content works along the main axis (a row by default). align-items works on the cross axis."
+    },
+    {
+     "id": "layout-responsive-3",
+     "type": "choice",
+     "prompt": "Which line makes as many grid columns as fit, each at least 160px wide?",
+     "options": [
+      "grid-columns: auto 160px;",
+      "grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));",
+      "grid-template-columns: 160px;",
+      "columns: fit 160px;"
+     ],
+     "correctIndex": 1,
+     "explanation": "repeat(auto-fit, minmax(160px, 1fr)) creates a responsive grid without any media query."
+    },
+    {
+     "id": "layout-responsive-4",
+     "type": "choice",
+     "prompt": "The row has three equal boxes. What does flex-grow: 2 do to the second box?",
+     "options": [
+      "It shrinks to half its size",
+      "It becomes exactly 2px wide",
+      "It gets twice as much of the free space as each other box",
+      "It moves to a second row"
+     ],
+     "correctIndex": 2,
+     "explanation": "flex-grow shares the leftover space in proportion. A value of 2 gets double the share of a box with 1.",
+     "code": ".row { display: flex; gap: 10px; }\n.row div:nth-child(2) { flex-grow: 2; }",
+     "codeLanguage": "css"
+    },
+    {
+     "id": "layout-responsive-5",
+     "type": "choice",
+     "prompt": "What does @media (max-width: 600px) { ... } do?",
+     "options": [
+      "Hides the page on all screens",
+      "Applies the rules only on screens 600px or wider",
+      "Applies the rules only on screens 600px wide or narrower",
+      "Sets the page width to 600px"
+     ],
+     "correctIndex": 2,
+     "explanation": "max-width means \"up to this width\", which is how you style phones and small windows."
+    },
+    {
+     "id": "layout-responsive-6",
+     "type": "fill",
+     "prompt": "Complete the property that lets flex items move onto new lines.",
+     "code": ".row {\n  display: flex;\n  ____: wrap;\n}",
+     "codeLanguage": "css",
+     "answers": [
+      "flex-wrap"
+     ],
+     "caseSensitive": false,
+     "explanation": "flex-wrap: wrap lets items go to the next line instead of squeezing into one row."
+    }
+   ]
+  },
+  {
+   "slug": "effects-advanced",
+   "title": "Effects & Advanced Checkpoint",
+   "section": "Effects & Advanced",
+   "order": 3,
+   "description": "Covers: Pseudo-class & Pseudo-Element, Transitions & Animations, Variables, Units & Modern Functions.",
+   "questions": [
+    {
+     "id": "effects-advanced-1",
+     "type": "choice",
+     "prompt": "Which pseudo-class styles an element while the mouse is over it?",
+     "options": [
+      ":focus",
+      ":active",
+      ":hover",
+      ":visited"
+     ],
+     "correctIndex": 2,
+     "explanation": ":hover is for the mouse pointer. :active is while pressed, :focus is for keyboard focus."
+    },
+    {
+     "id": "effects-advanced-2",
+     "type": "choice",
+     "prompt": "How do you use a CSS variable named --brand?",
+     "options": [
+      "var(--brand)",
+      "get(--brand)",
+      "--brand()",
+      "$brand"
+     ],
+     "correctIndex": 0,
+     "explanation": "Define it with --brand: value; and read it with var(--brand)."
+    },
+    {
+     "id": "effects-advanced-3",
+     "type": "choice",
+     "prompt": "Which properties are best to animate for smooth performance?",
+     "options": [
+      "width and height",
+      "top and left",
+      "transform and opacity",
+      "margin and padding"
+     ],
+     "correctIndex": 2,
+     "explanation": "transform and opacity can be animated by the GPU without recalculating the layout."
+    },
+    {
+     "id": "effects-advanced-4",
+     "type": "choice",
+     "prompt": "What happens when the user hovers over the button?",
+     "options": [
+      "It blinks forever",
+      "Nothing, :hover needs JavaScript",
+      "It switches instantly",
+      "The background fades from blue to orange over 0.3 seconds"
+     ],
+     "correctIndex": 3,
+     "explanation": "The transition on .btn makes the change gradual instead of instant.",
+     "code": ".btn {\n  background: blue;\n  transition: background 0.3s ease;\n}\n.btn:hover {\n  background: orange;\n}",
+     "codeLanguage": "css"
+    },
+    {
+     "id": "effects-advanced-5",
+     "type": "choice",
+     "prompt": "What is the padding of .b?",
+     "options": [
+      "0",
+      "10px",
+      "30px",
+      "40px"
+     ],
+     "correctIndex": 2,
+     "explanation": "A variable can be overridden inside a smaller scope. .b sets its own --size.",
+     "code": ":root { --size: 10px; }\n.a { padding: var(--size); }\n.b { --size: 30px; padding: var(--size); }",
+     "codeLanguage": "css"
+    },
+    {
+     "id": "effects-advanced-6",
+     "type": "fill",
+     "prompt": "Complete the at-rule that defines the steps of an animation.",
+     "code": "@____ bounce {\n  0%   { top: 0; }\n  100% { top: 20px; }\n}",
+     "codeLanguage": "css",
+     "answers": [
+      "keyframes"
+     ],
+     "caseSensitive": false,
+     "explanation": "@keyframes names an animation and describes what happens at each step."
+    }
+   ]
+  }
+ ]
+}

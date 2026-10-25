@@ -1,0 +1,949 @@
+{
+ "slug": "cpp",
+ "name": "C++",
+ "description": "C++ is a fast and powerful object-oriented programming language.",
+ "color": "#143d75",
+ "order": 4,
+ "topics": [
+  {
+   "slug": "intro",
+   "title": "Introduction",
+   "section": "Basics",
+   "order": 1,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1 class=\"text-center mb-4\">Introduction to C++ Programming</h1>\n\n<div class=\"card mb-4\">\n<div class=\"card-header\">\n<h2>What is C++?</h2>\n<div class=\"container\" style=\" justify-content: center;\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"325\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/MNeX4EGtR5Y?si=batZByNr8h9Lz_iP\" title=\"YouTube video player\" width=\"650\"></iframe>\n</div>\n</div>\n<div class=\"card-body\">\n<p>\n                C++ is a <strong>general-purpose, object-oriented programming language</strong> developed by \n                <strong>Bjarne Stroustrup</strong> in <strong>1979</strong> as an extension of the C programming language.\n                It combines the <strong>power of C (procedural programming)</strong> with <strong>object-oriented programming (OOP)</strong> features,\n                making it highly versatile and powerful for building a wide range of applications.\n            </p>\n<p>Common applications of C++ include:</p>\n<ul>\n<li>Operating Systems (e.g., Windows, macOS components)</li>\n<li>Game Engines (e.g., Unreal Engine)</li>\n<li>Web Browsers (e.g., Chrome, Firefox)</li>\n<li>Embedded Systems and IoT devices</li>\n<li>High-performance software like financial modeling tools</li>\n</ul>\n<h4>Key Features of C++</h4>\n<ul>\n<li><strong>Object-Oriented Programming:</strong> Supports classes, objects, inheritance, polymorphism, and encapsulation.</li>\n<li><strong>Portability:</strong> Write once, run anywhere with little modification.</li>\n<li><strong>Performance:</strong> Close to low-level hardware like C, but with modern features.</li>\n<li><strong>Standard Template Library (STL):</strong> Built-in templates for data structures and algorithms.</li>\n<li><strong>Multi-Paradigm:</strong> Supports procedural, object-oriented, and generic programming.</li>\n</ul>\n</div>\n</div>\n\n<div class=\"card mb-4\">\n<div class=\"card-header\">\n<h2>Basic Structure of a C++ Program</h2>\n</div>\n<div class=\"card-body\">\n<pre><code>#include &lt;iostream&gt;  // Header file for input and output\nusing namespace std; // Allows usage of standard names directly\n\nint main() {         // Main function: starting point of execution\n    cout &lt;&lt; \"Hello, World!\";  // Print text to the screen\n    return 0;        // Indicate successful program termination\n}\n</code></pre>\n</div>\n</div>\n\n<div class=\"card mb-4\">\n<div class=\"card-header\">\n<h2>Understanding C++ Syntax and Its Components</h2>\n</div>\n<div class=\"card-body\">\n<h4>1. Preprocessor Directive</h4>\n<p>\n<code>#include &lt;iostream&gt;</code><br/>\n                The <code>#include</code> directive tells the compiler to include a library before compilation. \n                The <code>&lt;iostream&gt;</code> library enables input and output operations:\n                <ul>\n<li><code>cout</code> → Output to screen</li>\n<li><code>cin</code> → Input from user</li>\n</ul>\n</p>\n<h4>2. Namespace Declaration</h4>\n<pre><code>using namespace std;</code></pre>\n<p>\n                This line allows direct access to standard library names like <code>cout</code> and <code>cin</code>.\n                Without it, you'd need to write <code>std::cout</code> every time.\n            </p>\n<h4>3. Main Function</h4>\n<pre><code>int main() {\n    // Code goes here\n    return 0;\n}</code></pre>\n<p>\n                Every C++ program starts from the <code>main()</code> function.  \n                <ul>\n<li><code>int</code> → The function returns an integer.</li>\n<li><code>return 0;</code> → Indicates successful program execution.</li>\n</ul>\n</p>\n<h4>4. Statements</h4>\n<pre><code>cout &lt;&lt; \"Hello, World!\";</code></pre>\n<p>\n                The <code>cout</code> object is used to display output to the screen.  \n                The <code>&lt;&lt;</code> operator inserts data into the output stream.\n                <br/>Every statement must end with a semicolon (<code>;</code>).\n            </p>\n<h4>5. Comments</h4>\n<pre><code>// This is a single-line comment\n\n/* \n   This is a \n   multi-line comment \n*/</code></pre>\n<h4>6. Return Statement</h4>\n<pre><code>return 0;</code></pre>\n<p>\n                Ends the <code>main()</code> function and returns a value to the operating system.\n                <br/><strong>0</strong> means the program ran successfully.\n            </p>\n</div>\n</div>\n<div class=\"text-center my-3\">\n<img alt=\"Integration\" class=\"content-image\" src=\"/images/syntaxcpp.png\" style=\"height:100\"/>\n</div>\n\n<div class=\"card mb-4\">\n<div class=\"card-header\">\n<h2>Flow of a C++ Program Execution</h2>\n</div>\n<div class=\"card-body\">\n<ol>\n<li><strong>Preprocessor Stage:</strong> Handles <code>#include</code> and other directives.</li>\n<li><strong>Compilation:</strong> Converts source code into object code.</li>\n<li><strong>Linking:</strong> Combines object code with libraries like <code>iostream</code>.</li>\n<li><strong>Execution:</strong> Runs the final program.</li>\n</ol>\n</div>\n<div class=\"text-center my-3\">\n<img alt=\"Integration\" class=\"content-image\" src=\"/images/cpp-flowchart.png\"/>\n</div>\n</div>\n\n<div class=\"card mb-4\">\n<div class=\"card-header\">\n<h2>Example: Taking User Input</h2>\n</div>\n<div class=\"card-body\">\n<pre><code>#include &lt;iostream&gt;\nusing namespace std;\n\nint main() {\n    int age;\n    cout &lt;&lt; \"Enter your age: \";   // Output message\n    cin &gt;&gt; age;                   // Take user input\n    cout &lt;&lt; \"You are \" &lt;&lt; age &lt;&lt; \" years old.\" &lt;&lt; endl;\n    return 0;\n}\n</code></pre>\n<h5>New Concepts:</h5>\n<ul>\n<li><code>cin</code> → Reads input from the user.</li>\n<li><code>&gt;&gt;</code> → Extraction operator (opposite of <code>&lt;&lt;</code>).</li>\n<li><code>endl</code> → Ends the line and moves output to a new line.</li>\n</ul>\n</div>\n</div>\n\n<div class=\"card mb-4\">\n<div class=\"card-header\">\n<h2>Summary Table</h2>\n</div>\n<div class=\"card-body\">\n<table>\n<thead>\n<tr>\n<th>Component</th>\n<th>Purpose</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>#include</code></td>\n<td>Includes libraries for functions like input/output.</td>\n</tr>\n<tr>\n<td><code>using namespace std;</code></td>\n<td>Eliminates the need to write <code>std::</code> repeatedly.</td>\n</tr>\n<tr>\n<td><code>main()</code></td>\n<td>Starting point of program execution.</td>\n</tr>\n<tr>\n<td><code>cout</code></td>\n<td>Displays output to the screen.</td>\n</tr>\n<tr>\n<td><code>cin</code></td>\n<td>Takes input from the user.</td>\n</tr>\n<tr>\n<td><code>//</code> or <code>/* */</code></td>\n<td>Used to write comments in code.</td>\n</tr>\n<tr>\n<td><code>;</code> (semicolon)</td>\n<td>Marks the end of a statement.</td>\n</tr>\n<tr>\n<td><code>return 0;</code></td>\n<td>Signals successful program execution.</td>\n</tr>\n</tbody>\n</table>\n</div>\n</div>\n\n\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "datatypevariable",
+   "title": "Data Types & Variables",
+   "section": "Basics",
+   "order": 2,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-5\">\n<h1 class=\"text-center mb-4\">C++ Data Types and Variables</h1>\n\n<div class=\"card mb-4\">\n<div class=\"card-header\">\n<h2>Introduction</h2>\n<div class=\"container\" style=\" justify-content: center;\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"325\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/zgutFVxOlTY?si=NgIryZa9J4WR7BcF\" title=\"YouTube video player\" width=\"650\"></iframe>\n</div>\n</div>\n<div class=\"card-body\">\n<p>\n                In C++, a <strong>data type</strong> defines the type of data that a variable can store, \n                the amount of memory allocated for it, and the operations that can be performed on it.\n            </p>\n<p>\n                Think of data types as containers:\n                <ul>\n<li>A cup for <code>float</code> (decimal numbers)</li>\n<li>A bottle for <code>int</code> (whole numbers)</li>\n<li>A jar for <code>string</code> (text)</li>\n</ul>\n</p>\n<p>\n                C++ has three main categories of data types:\n            </p>\n<ul>\n<li><strong>Primitive (Basic):</strong> Core built-in types like <code>int</code>, <code>float</code>, <code>char</code>.</li>\n<li><strong>Derived:</strong> Built using basic data types, e.g., Arrays, Pointers, Functions.</li>\n<li><strong>User-defined:</strong> Created by programmers, e.g., Classes, Structures, Enums.</li>\n</ul>\n</div>\n</div>\n\n<div class=\"card mb-4\">\n<div class=\"card-header\">\n<h2>Primitive Data Types</h2>\n</div>\n<div class=\"card-body\">\n<p>These are the most commonly used data types in C++:</p>\n<table>\n<thead>\n<tr>\n<th>Data Type</th>\n<th>Size (Typical)</th>\n<th>Example</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>int</code></td>\n<td>4 bytes</td>\n<td><code>int age = 25;</code></td>\n<td>Stores whole numbers</td>\n</tr>\n<tr>\n<td><code>float</code></td>\n<td>4 bytes</td>\n<td><code>float pi = 3.14;</code></td>\n<td>Stores decimal numbers with ~6-7 digits precision</td>\n</tr>\n<tr>\n<td><code>double</code></td>\n<td>8 bytes</td>\n<td><code>double salary = 55000.75;</code></td>\n<td>Stores decimal numbers with high precision (~15 digits)</td>\n</tr>\n<tr>\n<td><code>char</code></td>\n<td>1 byte</td>\n<td><code>char grade = 'A';</code></td>\n<td>Stores a single character using ASCII values</td>\n</tr>\n<tr>\n<td><code>bool</code></td>\n<td>1 byte</td>\n<td><code>bool isStudent = true;</code></td>\n<td>Stores <code>true</code> (1) or <code>false</code> (0)</td>\n</tr>\n</tbody>\n</table>\n</div>\n</div>\n\n<div class=\"card mb-4\">\n<div class=\"card-header\">\n<h2>Derived &amp; User-Defined Data Types</h2>\n</div>\n<div class=\"card-body\">\n<h4>Derived Data Types</h4>\n<ul>\n<li><strong>Array:</strong> <code>int marks[5] = {90, 85, 88, 92, 79};</code></li>\n<li><strong>Pointer:</strong> <code>int x = 10; int* ptr = &amp;x</code></li>\n<li><strong>Reference:</strong> <code>int num = 5; int &amp;ref = num;</code></li>\n<li><strong>Function:</strong> <code>int add(int a, int b) { return a + b; }</code></li>\n</ul>\n<h4>User-Defined Data Types</h4>\n<ul>\n<li><strong>Structure (struct):</strong> Groups different data types together\n                    <pre><code>struct Student {\n    string name;\n    int age;\n    char grade;\n};</code></pre>\n</li>\n<li><strong>Class (class):</strong> Encapsulates data and functions\n                    <pre><code>class Car {\npublic:\n    string brand;\n    void start() {\n        cout &lt;&lt; \"Car started!\";\n    }\n};</code></pre>\n</li>\n<li><strong>Enumeration (enum):</strong> Represents named constants\n                    <pre><code>enum Week { Monday, Tuesday, Wednesday };</code></pre>\n</li>\n</ul>\n</div>\n</div>\n\n<div class=\"card mb-4\">\n<div class=\"card-header\">\n<h2>Variables in C++</h2>\n</div>\n<div class=\"card-body\">\n<p>\n                A <strong>variable</strong> is a named location in memory used to store data. \n                Its value can change during program execution.\n            </p>\n<h4>Syntax:</h4>\n<pre><code>datatype variable_name = value;</code></pre>\n<h5>Example:</h5>\n<pre><code>int age = 20;\nfloat pi = 3.14;\nchar grade = 'A';\nbool isStudent = true;</code></pre>\n<h4>Variable Declaration &amp; Initialization</h4>\n<table>\n<thead>\n<tr>\n<th>Type</th>\n<th>Example</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Declaration Only</td>\n<td><code>int x;</code></td>\n</tr>\n<tr>\n<td>Initialization Only</td>\n<td><code>x = 10;</code></td>\n</tr>\n<tr>\n<td>Declaration + Initialization</td>\n<td><code>int x = 10;</code></td>\n</tr>\n</tbody>\n</table>\n<h4>Rules for Naming Variables</h4>\n<ul>\n<li>Must start with a letter or underscore (<code>_</code>).</li>\n<li>Can contain letters, digits, and underscores.</li>\n<li>Case-sensitive (<code>Age</code> and <code>age</code> are different).</li>\n<li>Cannot use reserved C++ keywords like <code>int</code>, <code>class</code>, etc.</li>\n</ul>\n</div>\n</div>\n\n<div class=\"card mb-4\">\n<div class=\"card-header\">\n<h2>Live Code Example</h2>\n</div>\n<div class=\"card-body\">\n<pre><code>#include &lt;iostream&gt;\nusing namespace std;\n\nint main() {\n    int age = 20;\n    float pi = 3.14;\n    char grade = 'A';\n    bool isStudent = true;\n    double salary = 55000.75;\n\n    cout &lt;&lt; \"Age: \" &lt;&lt; age &lt;&lt; endl;\n    cout &lt;&lt; \"Pi: \" &lt;&lt; pi &lt;&lt; endl;\n    cout &lt;&lt; \"Grade: \" &lt;&lt; grade &lt;&lt; endl;\n    cout &lt;&lt; \"Is Student: \" &lt;&lt; isStudent &lt;&lt; endl;\n    cout &lt;&lt; \"Salary: \" &lt;&lt; salary &lt;&lt; endl;\n\n    return 0;\n}</code></pre>\n<h4>Output:</h4>\n<pre><code>Age: 20\nPi: 3.14\nGrade: A\nIs Student: 1\nSalary: 55000.75</code></pre>\n</div>\n</div>\n\n<div class=\"card mb-4\">\n<div class=\"card-header\">\n<h2>Checking Memory Size with sizeof</h2>\n</div>\n<div class=\"card-body\">\n<pre><code>#include &lt;iostream&gt;\nusing namespace std;\n\nint main() {\n    cout &lt;&lt; \"Size of int: \" &lt;&lt; sizeof(int) &lt;&lt; \" bytes\" &lt;&lt; endl;\n    cout &lt;&lt; \"Size of float: \" &lt;&lt; sizeof(float) &lt;&lt; \" bytes\" &lt;&lt; endl;\n    cout &lt;&lt; \"Size of double: \" &lt;&lt; sizeof(double) &lt;&lt; \" bytes\" &lt;&lt; endl;\n    cout &lt;&lt; \"Size of char: \" &lt;&lt; sizeof(char) &lt;&lt; \" byte\" &lt;&lt; endl;\n    cout &lt;&lt; \"Size of bool: \" &lt;&lt; sizeof(bool) &lt;&lt; \" byte\" &lt;&lt; endl;\n\n    return 0;\n}</code></pre>\n<h4>Sample Output:</h4>\n<pre><code>Size of int: 4 bytes\nSize of float: 4 bytes\nSize of double: 8 bytes\nSize of char: 1 byte\nSize of bool: 1 byte</code></pre>\n</div>\n</div>\n\n<div class=\"card mb-4\">\n<div class=\"card-header\">\n<h2>Summary</h2>\n</div>\n<div class=\"card-body\">\n<ul>\n<li><strong>Data Types</strong> define what kind of data a variable can store.</li>\n<li><strong>Variables</strong> are named memory locations whose values can change during program execution.</li>\n<li>The <code>sizeof</code> operator helps determine memory usage of data types.</li>\n<li>Use the correct data type to optimize memory and improve program efficiency.</li>\n</ul>\n</div>\n</div>\n\n\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "oper-cond",
+   "title": "Operators & Conditional Statements",
+   "section": "Basics",
+   "order": 3,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<header>\n<div class=\"container\">\n<h1 class=\"text-center\">C++ Operators &amp; Conditional Statements</h1>\n<div class=\"text-center my-3\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"325\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/JBgZxnAj4hg?si=xV3r8A0w0nJUTr4Z\" title=\"YouTube video player\" width=\"650\"></iframe>\n</div>\n<p class=\"lead text-center\">\n      Click <strong>Run demo</strong> to see example outputs.\n      You can also edit the code and re-run it for practice.\n    </p>\n</div>\n</header>\n<main class=\"container\">\n<div class=\"grid\">\n\n<section class=\"card my-4 p-3\">\n<h2>Arithmetic Operators</h2>\n<p class=\"sub\"><strong>+</strong>, <strong>-</strong>, <strong>*</strong>, <strong>/</strong>, <strong>%</strong>, <strong>++</strong>, <strong>--</strong></p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 10, b = 5;\n    cout << \"Addition: \" << (a + b) << endl;\n    cout << \"Subtraction: \" << (a - b) << endl;\n    cout << \"Multiplication: \" << (a * b) << endl;\n    cout << \"Division: \" << (a / b) << endl;\n    cout << \"Modulus: \" << (a % b) << endl;\n    return 0;\n}",
+     "output": "Addition: 15\nSubtraction: 5\nMultiplication: 50\nDivision: 2\nModulus: 0"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>Relational Operators</h2>\n<p class=\"sub\"><strong>==</strong>, <strong>!=</strong>, <strong>&gt;</strong>, <strong>&lt;</strong>, <strong>&gt;=</strong>, <strong>&lt;=</strong></p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 5, y = 10;\n    cout << (x == y) << endl;\n    cout << (x != y) << endl;\n    cout << (x > y) << endl;\n    cout << (x < y) << endl;\n    cout << (x >= y) << endl;\n    cout << (x <= y) << endl;\n    return 0;\n}",
+     "output": "0\n1\n0\n1\n0\n1"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>Logical Operators</h2>\n<p class=\"sub\"><strong>&amp;&amp;</strong> (AND), <strong>||</strong> (OR), <strong>!</strong> (NOT)</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 10, b = 20;\n    cout << (a > 5 && b < 30) << endl;\n    cout << (a > 15 || b < 30) << endl;\n    cout << !(a > 5) << endl;\n    return 0;\n}",
+     "output": "1\n1\n0"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n<div class=\"text-center\">\n\n<h3>Operator</h3>\n<img alt=\"operator\" class=\"content-image\" src=\"/images/cppoper.png\"/>\n</div>\n\n<section class=\"card my-4 p-3\">\n<h2>Conditional Statements</h2>\n<div class=\"text-center my-3\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"315\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/fjCyOjGFfU0?si=_klnyzjZZb_O97Dx\" title=\"YouTube video player\" width=\"560\"></iframe>\n</div>\n<h2>If / Else If / Else</h2>\n<p class=\"sub\">Classic branching based on conditions.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int marks;\n    cout << \"Enter marks: \";\n    cin >> marks;\n\n    if (marks >= 90) {\n        cout << \"Grade A\";\n    } else if (marks >= 75) {\n        cout << \"Grade B\";\n    } else if (marks >= 50) {\n        cout << \"Grade C\";\n    } else {\n        cout << \"Fail\";\n    }\n    return 0;\n}",
+     "output": "Enter marks: 80\nGrade B"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>Switch Statement</h2>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int day;\n    cout << \"Enter day number (1-7): \";\n    cin >> day;\n\n    switch(day) {\n        case 1: cout << \"Monday\"; break;\n        case 2: cout << \"Tuesday\"; break;\n        case 3: cout << \"Wednesday\"; break;\n        case 4: cout << \"Thursday\"; break;\n        case 5: cout << \"Friday\"; break;\n        case 6: cout << \"Saturday\"; break;\n        case 7: cout << \"Sunday\"; break;\n        default: cout << \"Invalid day\";\n    }\n    return 0;\n}",
+     "output": "Enter day number (1-7): 5\nFriday"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>Ternary Operator</h2>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int age;\n    cout << \"Enter your age: \";\n    cin >> age;\n\n    string result = (age >= 18) ? \"Adult\" : \"Minor\";\n    cout << \"You are: \" << result;\n    return 0;\n}",
+     "output": "Enter your age: 20\nYou are: Adult"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n</div>\n</main>\n<div class=\"text-center\">\n\n<h3>Conditional Statement</h3>\n<img alt=\"Conditional statement\" class=\"content-image\" src=\"/images/conditional.png\"/>\n</div>"
+    }
+   ],
+   "styles": "\n  .lesson .code {\n    background: #1e293b;\n    padding: 15px;\n    border-radius: 6px;\n    overflow-x: auto;\n    font-family: \"Fira Code\", monospace;\n    color: #e2e8f0;\n    border: 1px solid #334155;\n    margin-bottom: 20px;\n  }\n\n  .lesson .output-box {\n    background: #0f172a;\n    padding: 10px;\n    border-radius: 6px;\n    color: #10b981;\n    border: 1px solid #334155;\n    font-family: \"Fira Code\", monospace;\n    margin-top: 10px;\n    white-space: pre-wrap;\n  }\n\n  .lesson .btn-row {\n    margin-top: 10px;\n    display: flex;\n    gap: 10px;\n  }\n\n  .lesson .sub {\n    margin-bottom: 10px;\n    color: #94a3b8;\n  }\n"
+  },
+  {
+   "slug": "loops",
+   "title": "Loops",
+   "section": "Basics",
+   "order": 4,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<header>\n<div class=\"container\">\n<h1 class=\"text-center\">C++ Loops</h1>\n<div class=\"text-center my-3\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"325\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/a7dfSBrTZtE?si=BylJe0VxhVmdOb9l\" title=\"YouTube video player\" width=\"650\"></iframe>\n</div>\n<p class=\"lead text-center\">\n      Loops allow you to execute a block of code repeatedly.  \n      Click <strong>Run demo</strong> to see simulated outputs for each example.\n    </p>\n</div>\n</header>\n<main class=\"container\">\n\n<section class=\"card my-4 p-3\">\n<h2>For Loop</h2>\n<p class=\"sub\">\n      A <strong>for loop</strong> is used when the number of iterations is known in advance.\n    </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 1; i <= 5; i++) {\n        cout << \"Iteration: \" << i << endl;\n    }\n    return 0;\n}",
+     "output": "Iteration: 1\nIteration: 2\nIteration: 3\nIteration: 4\nIteration: 5"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>While Loop</h2>\n<p class=\"sub\">\n      A <strong>while loop</strong> is used when the number of iterations is not known in advance.  \n      The loop runs as long as the condition is <strong>true</strong>.\n    </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int count = 1;\n    while (count <= 5) {\n        cout << \"Count: \" << count << endl;\n        count++;\n    }\n    return 0;\n}",
+     "output": "Count: 1\nCount: 2\nCount: 3\nCount: 4\nCount: 5"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>Do-While Loop</h2>\n<p class=\"sub\">\n      A <strong>do-while loop</strong> is similar to a while loop,  \n      but it guarantees that the loop body executes <strong>at least once</strong>.\n    </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int num = 1;\n    do {\n        cout << \"Number: \" << num << endl;\n        num++;\n    } while (num <= 5);\n    return 0;\n}",
+     "output": "Number: 1\nNumber: 2\nNumber: 3\nNumber: 4\nNumber: 5"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n<div class=\"text-center\">\n<h3>LOOPS</h3>\n<img alt=\"LOOP\" class=\"content-image\" src=\"/images/cpp-loop.png\"/>\n</div>\n\n<section class=\"card my-4 p-3\">\n<h2>Break and Continue</h2>\n<div class=\"text-center my-3\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"325\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/DJh5NfK7h-U?si=OW8QAdJvuv74OY4v\" title=\"YouTube video player\" width=\"650\"></iframe>\n</div>\n<h2>Break Statement</h2>\n<p class=\"sub\">\n      The <strong>break</strong> statement is used to exit a loop immediately,  \n      even if the loop condition is still true.\n    </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 1; i <= 10; i++) {\n        if (i == 6) {\n            cout << \"Loop stopped at i = \" << i << endl;\n            break;\n        }\n        cout << \"i = \" << i << endl;\n    }\n    return 0;\n}",
+     "output": "i = 1\ni = 2\ni = 3\ni = 4\ni = 5\nLoop stopped at i = 6"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>Continue Statement</h2>\n<p class=\"sub\">\n      The <strong>continue</strong> statement skips the current iteration  \n      and moves to the next iteration of the loop.\n    </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 1; i <= 5; i++) {\n        if (i == 3) {\n            cout << \"Skipping i = \" << i << endl;\n            continue;\n        }\n        cout << \"i = \" << i << endl;\n    }\n    return 0;\n}",
+     "output": "i = 1\ni = 2\nSkipping i = 3\ni = 4\ni = 5"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n</main>"
+    }
+   ],
+   "styles": "\n  .lesson .code {\n    background: #1e293b;\n    padding: 15px;\n    border-radius: 6px;\n    overflow-x: auto;\n    font-family: \"Fira Code\", monospace;\n    color: #e2e8f0;\n    border: 1px solid #334155;\n    margin-bottom: 20px;\n  }\n\n  .lesson .output-box {\n    background: #0f172a;\n    padding: 10px;\n    border-radius: 6px;\n    color: #10b981;\n    border: 1px solid #334155;\n    font-family: \"Fira Code\", monospace;\n    margin-top: 10px;\n    white-space: pre-wrap;\n  }\n\n  .lesson .btn-row {\n    margin-top: 10px;\n    display: flex;\n    gap: 10px;\n  }\n\n  .lesson .sub {\n    margin-bottom: 10px;\n    color: #94a3b8;\n  }\n"
+  },
+  {
+   "slug": "array",
+   "title": "Array",
+   "section": "Basics",
+   "order": 5,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<header>\n<div class=\"container\">\n<h1 class=\"text-center\">C++ Arrays</h1>\n<div class=\"text-center my-3\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/ePJxpxsnkGw?si=tEmUHtDcP425KJEe\" title=\"YouTube video player\" width=\"650\"></iframe>\n</div>\n<p class=\"lead text-center\">\n                Arrays allow storing multiple values of the <strong>same data type</strong> under one variable name.\n                They are fundamental for handling lists of data efficiently in C++.\n            </p>\n</div>\n</header>\n<main class=\"container\">\n\n<section class=\"card my-4 p-3\">\n<h2>Introduction to Arrays</h2>\n<p>\n                An array is a collection of variables of the same type stored at contiguous memory locations.\n                <br/>They are useful for:\n            </p>\n<ul>\n<li>Storing multiple values together</li>\n<li>Accessing values using an index</li>\n<li>Efficiently performing operations like search, sort, etc.</li>\n</ul>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "    #include <iostream>\n    using namespace std;\n\n    int main() {\n        int numbers[5] = {10, 20, 30, 40, 50};\n\n        cout << \"First element: \" << numbers[0] << endl;\n        cout << \"Last element: \" << numbers[4] << endl;\n\n        return 0;\n    }\n    ",
+     "output": "First element: 10\n    Last element: 50"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>1D Arrays</h2>\n<p>\n                A 1D array is a simple list of elements. Each element can be accessed using its index.\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "    #include <iostream>\n    using namespace std;\n\n    int main() {\n        int arr[5] = {1, 2, 3, 4, 5};\n\n        cout << \"Array elements: \";\n        for (int i = 0; i < 5; i++) {\n            cout << arr[i] << \" \";\n        }\n        return 0;\n    }\n    ",
+     "output": "Array elements: 1 2 3 4 5"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>2D Arrays</h2>\n<p>\n                A 2D array is like a table with rows and columns. It is often used to represent matrices.\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "    #include <iostream>\n    using namespace std;\n\n    int main() {\n        int matrix[2][3] = {\n            {1, 2, 3},\n            {4, 5, 6}\n        };\n\n        cout << \"Matrix:\" << endl;\n        for (int i = 0; i < 2; i++) {\n            for (int j = 0; j < 3; j++) {\n                cout << matrix[i][j] << \" \";\n            }\n            cout << endl;\n        }\n        return 0;\n    }\n    ",
+     "output": "Matrix:\n    1 2 3 \n    4 5 6"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n<div class=\"text-center my-3\">\n<img alt=\"Integration\" class=\"content-image\" src=\"/images/cpp-array.png\" style=\"height:100\"/>\n</div>\n\n<section class=\"card my-4 p-3\">\n<h2>Common Array Problems</h2>\n<p>Below are common array operations with code and output.</p>\n\n<h4>Find Maximum Element</h4>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "    #include <iostream>\n    using namespace std;\n\n    int main() {\n        int arr[5] = {10, 25, 5, 40, 15};\n        int max = arr[0];\n\n        for (int i = 1; i < 5; i++) {\n            if (arr[i] > max) {\n                max = arr[i];\n            }\n        }\n\n        cout << \"Maximum element: \" << max;\n        return 0;\n    }\n    ",
+     "output": "Maximum element: 40"
+    },
+    {
+     "kind": "html",
+     "html": "<h4 class=\"mt-4\">Find Minimum Element</h4>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "    #include <iostream>\n    using namespace std;\n\n    int main() {\n        int arr[5] = {10, 25, 5, 40, 15};\n        int min = arr[0];\n\n        for (int i = 1; i < 5; i++) {\n            if (arr[i] < min) {\n                min = arr[i];\n            }\n        }\n\n        cout << \"Minimum element: \" << min;\n        return 0;\n    }\n    ",
+     "output": "Minimum element: 5"
+    },
+    {
+     "kind": "html",
+     "html": "<h4 class=\"mt-4\">Find Sum of Array Elements</h4>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "    #include <iostream>\n    using namespace std;\n\n    int main() {\n        int arr[5] = {1, 2, 3, 4, 5};\n        int sum = 0;\n\n        for (int i = 0; i < 5; i++) {\n            sum += arr[i];\n        }\n\n        cout << \"Sum of elements: \" << sum;\n        return 0;\n    }\n    ",
+     "output": "Sum of elements: 15"
+    },
+    {
+     "kind": "html",
+     "html": "<h4 class=\"mt-4\">Reverse an Array</h4>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "    #include <iostream>\n    using namespace std;\n\n    int main() {\n        int arr[5] = {1, 2, 3, 4, 5};\n\n        cout << \"Original array: \";\n        for (int i = 0; i < 5; i++) {\n            cout << arr[i] << \" \";\n        }\n\n        cout << \"\\nReversed array: \";\n        for (int i = 4; i >= 0; i--) {\n            cout << arr[i] << \" \";\n        }\n\n        return 0;\n    }\n    ",
+     "output": "Original array: 1 2 3 4 5 \n    Reversed array: 5 4 3 2 1"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n</main>"
+    }
+   ],
+   "styles": "\n        .lesson .code {\n            background: #1e293b;\n            padding: 15px;\n            border-radius: 6px;\n            overflow-x: auto;\n            font-family: \"Fira Code\", monospace;\n            color: #e2e8f0;\n            border: 1px solid #334155;\n            margin-bottom: 20px;\n        }\n\n        .lesson .output-box {\n            background: #0f172a;\n            padding: 10px;\n            border-radius: 6px;\n            color: #10b981;\n            border: 1px solid #334155;\n            font-family: \"Fira Code\", monospace;\n            margin-top: 10px;\n            white-space: pre-wrap;\n        }\n\n        .lesson .btn-row {\n            margin-top: 10px;\n            display: flex;\n            gap: 10px;\n        }\n\n        .lesson .sub {\n            margin-bottom: 10px;\n            color: #94a3b8;\n        }\n    "
+  },
+  {
+   "slug": "strings",
+   "title": "Strings",
+   "section": "Basics",
+   "order": 6,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Strings in C++</h1>\n<div class=\"card\">\n<h2>std::string</h2>\n<p>In C++ you work with text using the <strong><code>std::string</code></strong> class from the <code>&lt;string&gt;</code> header. It grows automatically and comes with many helpful functions. (Older C code used raw <code>char</code> arrays.)</p>\n<table><tr><th>Function</th><th>What it does</th></tr><tr><td><code>s.length()</code> / <code>s.size()</code></td><td>Number of characters</td></tr><tr><td><code>s[i]</code> / <code>s.at(i)</code></td><td>Character at index (<code>at</code> checks the range)</td></tr><tr><td><code>s.substr(pos, len)</code></td><td>Part of the string</td></tr><tr><td><code>s.find(&quot;x&quot;)</code></td><td>Index of first match, or <code>string::npos</code> if not found</td></tr><tr><td><code>s.replace(pos, len, &quot;new&quot;)</code></td><td>Replace part of the string</td></tr><tr><td><code>s.append(&quot;x&quot;)</code> / <code>s + t</code></td><td>Join strings</td></tr><tr><td><code>s == t</code>, <code>s &lt; t</code></td><td>Compare strings</td></tr></table>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    string first = \"Learning\";\n    string second = \"Hub\";\n    string full = first + \" \" + second;      // concatenation\n\n    cout << full << endl;\n    cout << \"Length: \" << full.length() << endl;\n    cout << \"First char: \" << full[0] << endl;\n    cout << \"Substring: \" << full.substr(0, 8) << endl;\n    cout << \"Found 'Hub' at index: \" << full.find(\"Hub\") << endl;\n\n    full.replace(0, 8, \"Coding\");           // replace 8 characters from index 0\n    cout << full << endl;\n\n    full.append(\"!\");\n    cout << full << endl;\n    cout << (first == \"Learning\" ? \"Equal\" : \"Different\") << endl;\n    return 0;\n}",
+     "output": "Learning Hub\nLength: 12\nFirst char: L\nSubstring: Learning\nFound 'Hub' at index: 9\nCoding Hub\nCoding Hub!\nEqual"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Looping, Changing Case and Converting</h2>\n<p>A string is a sequence of characters, so you can loop through it with a range-based <code>for</code>. Use <code>char &amp;ch</code> (a reference) when you want to <em>change</em> the characters.</p>\n<ul><li><code>stoi()</code> / <code>stod()</code> turn text into numbers.</li><li><code>to_string()</code> turns numbers into text.</li><li><code>tolower()</code> / <code>toupper()</code> come from <code>&lt;cctype&gt;</code>.</li></ul>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\n#include <string>\n#include <cctype>\nusing namespace std;\n\nint main() {\n    string word = \"Hello World\";\n\n    // loop through every character\n    int vowels = 0;\n    for (char ch : word) {\n        char lower = tolower(ch);\n        if (lower == 'a' || lower == 'e' || lower == 'i' || lower == 'o' || lower == 'u') vowels++;\n    }\n    cout << \"Vowels in \\\"\" << word << \"\\\": \" << vowels << endl;\n\n    // change case\n    for (char &ch : word) ch = toupper(ch);\n    cout << word << endl;\n\n    // numbers <-> strings\n    int age = stoi(\"25\");\n    double price = stod(\"19.99\");\n    string text = \"Total: \" + to_string(age + 5) + \" years, \" + to_string(price) + \" dollars\";\n    cout << text << endl;\n    return 0;\n}",
+     "output": "Vowels in \"Hello World\": 3\nHELLO WORLD\nTotal: 30 years, 19.990000 dollars"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>cin vs getline</h2>\n<p><code>cin &gt;&gt; name</code> stops reading at the first space, so \"Ali Khan\" would only give you \"Ali\". Use <code>getline(cin, name)</code> to read the whole line. If you mix them, call <code>cin.ignore()</code> first to remove the leftover newline.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    string name = \"Ali Khan\";                       // pretend this came from the keyboard\n    cout << \"Hello, \" << name << \"!\" << endl;\n\n    // With real input you would write:\n    //   string word;  cin >> word;          // reads ONE word (stops at space)\n    //   string line;  getline(cin, line);   // reads the WHOLE line\n\n    char oldStyle[] = \"C-string\";                   // C-style string (array of char ending with '\\0')\n    cout << oldStyle << \" has \" << sizeof(oldStyle) << \" bytes\" << endl;\n    return 0;\n}",
+     "output": "Hello, Ali Khan!\nC-string has 9 bytes"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul><li>Using <code>==</code> to compare C-style <code>char[]</code> arrays compares addresses, not text. Use <code>std::string</code> or <code>strcmp()</code>.</li><li>Forgetting <code>#include &lt;string&gt;</code>.</li><li>Checking <code>s.find(&quot;x&quot;) == -1</code> instead of <code>== string::npos</code>.</li></ul>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "function",
+   "title": "Function",
+   "section": "Basics",
+   "order": 7,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<header>\n<div class=\"container\">\n<h1>C++ Functions</h1>\n<div class=\"container\" style=\"display: flex; justify-content: center; margin-bottom: 20px;\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/RFLFX1boGwo?si=40_y0FFUfIRYFa4E\" title=\"YouTube video player\" width=\"650\"></iframe>\n</div>\n<p class=\"lead\">\n            Functions help organize code into smaller reusable blocks. Click <strong>Run demo</strong> to see output.\n        </p>\n</div>\n</header>\n<main class=\"container\">\n<div class=\"grid\">\n\n<section class=\"card\">\n<h2>Introduction to Functions</h2>\n<div class=\"sub\">\n                Functions are reusable blocks of code that perform specific tasks. They improve readability, reusability,\n                and maintainability.\n            </div>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nvoid sayHello() {\n    cout << \"Hello, World!\";\n}\n\nint main() {\n    sayHello(); // Calling the function\n    return 0;\n}",
+     "output": "Hello, World!"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Pass by Value</h2>\n<div class=\"sub\">\n                A copy of the variable is passed to the function. Changes do not affect the original variable.\n            </div>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nvoid changeValue(int x) {\n    x = 100;\n}\n\nint main() {\n    int num = 50;\n    changeValue(num);\n    cout << num; // Output: 50\n    return 0;\n}",
+     "output": "50"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Pass by Reference</h2>\n<div class=\"sub\">\n                The actual variable memory address is passed. Changes inside the function affect the original variable.\n            </div>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nvoid changeValue(int &x) {\n    x = 100;\n}\n\nint main() {\n    int num = 50;\n    changeValue(num);\n    cout << num; // Output: 100\n    return 0;\n}",
+     "output": "100"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Function Overloading</h2>\n<div class=\"sub\">\n                Functions can have the same name but different parameter types.\n            </div>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint add(int a, int b) {\n    return a + b;\n}\n\ndouble add(double a, double b) {\n    return a + b;\n}\n\nint main() {\n    cout << add(5, 3) << endl;\n    cout << add(2.5, 3.5);\n    return 0;\n}",
+     "output": "8\n6.0"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Recursive Function</h2>\n<div class=\"sub\">\n                A recursive function calls itself until a base condition is met.\n            </div>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint factorial(int n) {\n    if (n == 0) return 1;\n    return n * factorial(n - 1);\n}\n\nint main() {\n    cout << factorial(5); // Output: 120\n    return 0;\n}",
+     "output": "120"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n</div>\n<div class=\"text-center mt-5\">\n<h3>Summary of Functions</h3>\n<p>Functions make code modular, reusable, and easy to maintain.</p>\n</div>\n</main>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "pointer-refer",
+   "title": "Pointers & References",
+   "section": "Memory & Pointers",
+   "order": 8,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<header>\n<div class=\"container\">\n<h1 class=\"text-center\">C++ Pointers</h1>\n<div class=\"text-center my-3\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"325\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/qYEjR6M0wSk?si=jF2ijZq5bwszACex\" title=\"YouTube video player\" width=\"650\"></iframe>\n</div>\n<p class=\"lead text-center\">\n      A <strong>pointer</strong> in C++ is a variable that stores the <strong>memory address</strong> of another variable.  \n      They are essential for dynamic memory allocation, working with arrays, and passing data efficiently to functions.\n    </p>\n</div>\n</header>\n<main class=\"container\">\n\n<section class=\"card my-4 p-3\">\n<h2>Introduction to Pointers</h2>\n<p>\n      Pointers allow direct access to memory addresses, making programs more flexible and powerful.\n      <br/>Key concepts:\n    </p>\n<ul>\n<li>Pointers store <strong>addresses</strong> instead of actual values.</li>\n<li>The <code>&amp;</code> operator is used to get the address of a variable.</li>\n<li>The <code>*</code> operator (dereference) is used to access the value at that address.</li>\n</ul>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 10;\n    int* ptr = &a;\n\n    cout << \"Value of a: \" << a << endl;\n    cout << \"Address of a: \" << &a << endl;\n    cout << \"Pointer ptr holds: \" << ptr << endl;\n    cout << \"Value at pointer: \" << *ptr << endl;\n\n    return 0;\n}",
+     "output": "Value of a: 10\nAddress of a: 0x7ffd1234\nPointer ptr holds: 0x7ffd1234\nValue at pointer: 10"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>Declaring and Using Pointers</h2>\n<p>\n      To declare a pointer, use the <code>*</code> symbol:\n    </p>\n<ul>\n<li><code>int *ptr;</code> → A pointer to an integer.</li>\n<li><code>char *cptr;</code> → A pointer to a character.</li>\n</ul>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int num = 42;\n    int* p = &num;  // Pointer holds the address of num\n\n    cout << \"Value of num: \" << num << endl;\n    cout << \"Pointer stores address: \" << p << endl;\n    cout << \"Value using pointer: \" << *p << endl;\n\n    return 0;\n}",
+     "output": "Value of num: 42\nPointer stores address: 0x7ffd5678\nValue using pointer: 42"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>Pointer Arithmetic</h2>\n<p>\n      Pointers can be incremented or decremented to move between memory locations.\n      This is especially useful when working with arrays.\n    </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int arr[3] = {10, 20, 30};\n    int* p = arr; // Points to arr[0]\n\n    cout << *p << endl;   // 10\n    cout << *(p + 1) << endl; // 20\n    cout << *(p + 2) << endl; // 30\n\n    return 0;\n}",
+     "output": "10\n20\n30"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>Pointer to Pointer (Double Pointer)</h2>\n<p>\n      A pointer to a pointer is a variable that stores the address of another pointer.\n      It is often used in dynamic memory and multidimensional arrays.\n    </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 5;\n    int* p = &a;      // Pointer to int\n    int** pp = &p;     // Pointer to pointer\n\n    cout << \"Value of a: \" << a << endl;\n    cout << \"Value using single pointer: \" << *p << endl;\n    cout << \"Value using double pointer: \" << **pp << endl;\n\n    return 0;\n}",
+     "output": "Value of a: 5\nValue using single pointer: 5\nValue using double pointer: 5"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>Pointers with Functions</h2>\n<p>\n      Pointers are used to pass data by reference to functions, allowing the function to modify the original variable.\n    </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nvoid update(int* x) {\n    *x = *x + 10;\n}\n\nint main() {\n    int num = 5;\n    cout << \"Before update: \" << num << endl;\n\n    update(&num);\n\n    cout << \"After update: \" << num << endl;\n\n    return 0;\n}",
+     "output": "Before update: 5\nAfter update: 15"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card my-4 p-3\">\n<h2>Dynamic Memory Allocation</h2>\n<p>\n      Using <code>new</code> and <code>delete</code>, we can allocate and free memory dynamically at runtime.\n    </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int* p = new int;  // Allocate memory\n    *p = 50;\n    cout << \"Value at dynamically allocated memory: \" << *p << endl;\n\n    delete p;          // Free memory\n    return 0;\n}",
+     "output": "Value at dynamically allocated memory: 50"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n</main>"
+    }
+   ],
+   "styles": "\n  .lesson .code {\n    background: #1e293b;\n    padding: 15px;\n    border-radius: 6px;\n    overflow-x: auto;\n    font-family: \"Fira Code\", monospace;\n    color: #e2e8f0;\n    border: 1px solid #334155;\n    margin-bottom: 20px;\n  }\n\n  .lesson .output-box {\n    background: #0f172a;\n    padding: 10px;\n    border-radius: 6px;\n    color: #10b981;\n    border: 1px solid #334155;\n    font-family: \"Fira Code\", monospace;\n    margin-top: 10px;\n    white-space: pre-wrap;\n  }\n\n  .lesson .btn-row {\n    margin-top: 10px;\n    display: flex;\n    gap: 10px;\n  }\n\n  \n"
+  },
+  {
+   "slug": "static-dynamic",
+   "title": "Static & Dynamic Memory",
+   "section": "Memory & Pointers",
+   "order": 9,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<header>\n<div class=\"container\">\n<h1>Static &amp; Dynamic Memory Management in C++</h1>\n<p class=\"lead\">\n            Learn how memory is allocated and managed at compile-time and runtime in C++.\n        </p>\n<div class=\"container\" style=\"display: flex; justify-content: center; margin-bottom: 20px;\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"325\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/q6_lN-CQN2s?si=gg-8wXB9PreyTMg-\" title=\"YouTube video player\" width=\"650\"></iframe>\n</div>\n</div>\n</header>\n<main class=\"container\">\n<div class=\"grid\">\n\n<section class=\"card\">\n<h2>What is Memory Management?</h2>\n<div class=\"sub\">\n                Memory management determines how variables and data structures are stored and managed during program execution.\n                C++ provides both <strong>static memory allocation</strong> (at compile time) and <strong>dynamic memory allocation</strong> (at runtime).\n            </div>\n<div class=\"text-center\">\n<img alt=\"memory management\" class=\"content-image\" src=\"/images/mem-manag.png\"/>\n</div>\n</section>\n\n<section class=\"card\">\n<h2>Static Memory Allocation</h2>\n<div class=\"sub\">\n                Memory is allocated <strong>at compile time</strong>. The size and lifetime of variables are fixed throughout the program.\n                <ul>\n<li>Fast and efficient</li>\n<li>Less flexible (size cannot change)</li>\n<li>Memory is automatically freed when the function ends</li>\n</ul>\n</div>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int arr[5] = {10, 20, 30, 40, 50};\n    for (int i = 0; i < 5; i++) {\n        cout << arr[i] << \" \";\n    }\n    return 0;\n}",
+     "output": "10 20 30 40 50"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Dynamic Memory Allocation</h2>\n<div class=\"sub\">\n                Memory is allocated <strong>at runtime</strong> using <code>new</code> and manually released using <code>delete</code>.\n                <ul>\n<li>Flexible: Memory can be allocated based on user input</li>\n<li>Efficient for large or unknown data sizes</li>\n<li>Programmer is responsible for freeing memory</li>\n</ul>\n</div>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int *ptr = new int;  // Allocate memory\n    *ptr = 42;           // Assign value\n    cout << *ptr;        // Print value\n    delete ptr;          // Free memory\n    return 0;\n}",
+     "output": "42"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Dynamic Array</h2>\n<div class=\"sub\">\n                Create an array dynamically based on user input size using <code>new[]</code> and free it using <code>delete[]</code>.\n            </div>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int size;\n    cout << \"Enter size: \";\n    cin >> size;\n\n    int *arr = new int[size];  // Allocate dynamic array\n\n    for (int i = 0; i < size; i++) {\n        arr[i] = i + 1;\n    }\n\n    for (int i = 0; i < size; i++) {\n        cout << arr[i] << \" \";\n    }\n\n    delete[] arr;  // Free memory\n    return 0;\n}",
+     "output": "Example: 1 2 3 4 5"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Dynamic 2D Array</h2>\n<div class=\"sub\">\n                Allocate memory for a two-dimensional array at runtime.\n            </div>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int rows = 3, cols = 3;\n\n    // Allocate memory for 2D array\n    int **matrix = new int*[rows];\n    for (int i = 0; i < rows; i++) {\n        matrix[i] = new int[cols];\n    }\n\n    // Initialize and print\n    for (int i = 0; i < rows; i++) {\n        for (int j = 0; j < cols; j++) {\n            matrix[i][j] = (i + 1) * (j + 1);\n            cout << matrix[i][j] << \" \";\n        }\n        cout << endl;\n    }\n\n    // Free memory\n    for (int i = 0; i < rows; i++) {\n        delete[] matrix[i];\n    }\n    delete[] matrix;\n\n    return 0;\n}",
+     "output": "1 2 3\n2 4 6\n3 6 9"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Memory Leak Example</h2>\n<div class=\"sub\">\n                A <strong>memory leak</strong> occurs when dynamically allocated memory is not freed, causing wasted memory.\n            </div>\n<div class=\"code\">\n<pre>\n#include &lt;iostream&gt;\nusing namespace std;\n\nvoid createLeak() {\n    int *ptr = new int(100); // Memory allocated but not freed\n}\n\nint main() {\n    for (int i = 0; i &lt; 1000; i++) {\n        createLeak(); // Memory keeps leaking\n    }\n    cout &lt;&lt; \"Memory leak occurred!\";\n    return 0;\n}\n</pre>\n</div>\n<div class=\"note\">\n                ❗ **Solution:** Always use <code>delete</code> or smart pointers like <code>unique_ptr</code> or <code>shared_ptr</code>.\n            </div>\n</section>\n\n<section class=\"card\">\n<h2>Using Smart Pointers</h2>\n<div class=\"sub\">\n                Smart pointers automatically manage memory and prevent leaks.\n            </div>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\n#include <memory> // For smart pointers\nusing namespace std;\n\nint main() {\n    unique_ptr<int> ptr = make_unique<int>(42);\n    cout << *ptr;  // Output: 42\n    // Memory automatically freed when ptr goes out of scope\n    return 0;\n}",
+     "output": "42"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n</div>\n</main>"
+    }
+   ],
+   "styles": "\n.lesson .code {\n    background: #1e293b;\n    padding: 15px;\n    border-radius: 6px;\n    overflow-x: auto;\n    font-family: \"Fira Code\", monospace;\n    color: #e2e8f0;\n    border: 1px solid #334155;\n    margin-bottom: 20px;\n}\n.lesson .out {\n    background: #0f172a;\n    color: #f8fafc;\n    padding: 10px;\n    border-radius: 6px;\n    margin-top: 10px;\n    font-family: \"Fira Code\", monospace;\n}\n.lesson .btn-row {\n    margin-top: 10px;\n}\n.lesson .btn {\n   \n    color: white;\n    padding: 8px 12px;\n    border: none;\n    border-radius: 6px;\n    cursor: pointer;\n}\n.lesson .btn.secondary {\n    background: #475569;\n}\n.lesson .note {\n    background: #39300cff;\n    color: #a13b00ff;\n    padding: 10px;\n    border-left: 4px solid #6b4c17ff;\n    border-radius: 6px;\n    margin-top: 15px;\n}\n.lesson .diagram img {\n    max-width: 100%;\n    height: auto;\n}\n"
+  },
+  {
+   "slug": "structs-enums",
+   "title": "Structures & Enums",
+   "section": "Structures & OOP",
+   "order": 10,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Structures & Enums</h1>\n<div class=\"card\">\n<h2>struct: Your Own Data Type</h2>\n<p>A <strong>structure</strong> groups variables of different types under one name. It is perfect for records, like a student with a name, age and GPA. Members are accessed with the dot operator (<code>.</code>).</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nstruct Student {\n    string name;\n    int age;\n    double gpa;\n};\n\nvoid printStudent(const Student &s) {\n    cout << s.name << \" (\" << s.age << \") GPA: \" << s.gpa << endl;\n}\n\nint main() {\n    Student a = {\"Ayesha\", 20, 3.8};\n    Student b;\n    b.name = \"Bilal\";\n    b.age = 21;\n    b.gpa = 3.4;\n\n    printStudent(a);\n    printStudent(b);\n\n    Student team[2] = {a, b};          // array of structs\n    double total = 0;\n    for (const Student &s : team) total += s.gpa;\n    cout << \"Average GPA: \" << total / 2 << endl;\n    return 0;\n}",
+     "output": "Ayesha (20) GPA: 3.8\nBilal (21) GPA: 3.4\nAverage GPA: 3.6"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>A <code>struct</code> is almost the same as a <code>class</code>: the only difference is that its members are <strong>public by default</strong> (in a class they are private).</li><li>Pass structs to functions by <strong>const reference</strong> (<code>const Student &amp;s</code>) to avoid copying.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>enum: Named Constants</h2>\n<p>An <strong>enumeration</strong> gives readable names to a small set of fixed values. Prefer <strong><code>enum class</code></strong>: its names stay inside the enum (<code>Level::Beginner</code>) and it does not silently convert to <code>int</code>.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nenum class Level { Beginner, Intermediate, Advanced };\nenum Weekday { MON = 1, TUE, WED };     // old-style enum: values 1, 2, 3\n\nstring describe(Level level) {\n    switch (level) {\n        case Level::Beginner:     return \"Start with the basics\";\n        case Level::Intermediate: return \"Build small projects\";\n        case Level::Advanced:     return \"Contribute to real systems\";\n    }\n    return \"\";\n}\n\nint main() {\n    Level mine = Level::Intermediate;\n    cout << describe(mine) << endl;\n    cout << \"WED has value \" << WED << endl;\n    cout << \"Advanced has number \" << static_cast<int>(Level::Advanced) << endl;\n    return 0;\n}",
+     "output": "Build small projects\nWED has value 3\nAdvanced has number 2"
+    },
+    {
+     "kind": "html",
+     "html": "<table><tr><th></th><th>enum</th><th>enum class</th></tr><tr><td>Access</td><td><code>MON</code></td><td><code>Level::Beginner</code></td></tr><tr><td>Converts to int automatically</td><td>Yes</td><td>No (use <code>static_cast&lt;int&gt;</code>)</td></tr><tr><td>Name clashes</td><td>Possible</td><td>Avoided</td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>When to Use What</h2>\n<table><tr><th>Need</th><th>Use</th></tr><tr><td>Just data, no behaviour</td><td><code>struct</code></td></tr><tr><td>Data + methods + hidden details</td><td><code>class</code></td></tr><tr><td>A fixed set of choices</td><td><code>enum class</code></td></tr></table>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "class-obj",
+   "title": "Class & Object",
+   "section": "Structures & OOP",
+   "order": 11,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<header>\n<div class=\"container\">\n<div class=\"card\">\n<h1>Object-Oriented Programming (OOP) in C++</h1>\n<p class=\"lead\">A complete guide to understanding OOP concepts, classes, objects, constructors, destructors, and more with examples.</p>\n<div class=\"text-center my-3\">\n<h3>OOP in one shot</h3>\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"325\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/mlIUKyZIUUU?si=D5THailY5b8V4c-u\" title=\"YouTube video player\" width=\"650\"></iframe> </div>\n</div></div>\n</header>\n<main class=\"container\">\n<div class=\"grid\">\n\n<section class=\"card\">\n<h2>What is OOP?</h2>\n<p>\n                Object-Oriented Programming (OOP) is a paradigm that models real-world entities using <strong>classes</strong> and <strong>objects</strong>.\n                It helps to build modular, reusable, and maintainable code.\n            </p>\n<h3>Four Pillars of OOP:</h3>\n<ul>\n<li><strong>Encapsulation:</strong> Binding data and functions into one unit (class).</li>\n<li><strong>Abstraction:</strong> Hiding unnecessary implementation details.</li>\n<li><strong>Inheritance:</strong> Reusing properties and behaviors from an existing class.</li>\n<li><strong>Polymorphism:</strong> Functions or methods behaving differently based on context.</li>\n</ul>\n<p>Example from real life: A <strong>Car</strong> has properties like <em>brand</em>, <em>speed</em>, and actions like <em>drive</em> and <em>brake</em>. This matches exactly how a class works in C++.</p>\n</section>\n<div class=\"text-center\">\n<img alt=\"oop principle\" class=\"content-image\" src=\"/images/oop-principle.png\"/>\n</div>\n\n<section class=\"card\">\n<h2>Classes and Objects</h2>\n<p>\n                A <strong>class</strong> is a blueprint that defines properties (data members) and actions (methods).\n                An <strong>object</strong> is a real instance of a class.\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Car {\npublic:\n    string brand;\n    int speed;\n\n    void showDetails() {\n        cout << \"Brand: \" << brand << endl;\n        cout << \"Speed: \" << speed << \" km/h\" << endl;\n    }\n};\n\nint main() {\n    Car car1;\n    car1.brand = \"BMW\";\n    car1.speed = 200;\n\n    Car car2;\n    car2.brand = \"Audi\";\n    car2.speed = 220;\n\n    car1.showDetails();\n    car2.showDetails();\n\n    return 0;\n}",
+     "output": "Brand: BMW\nSpeed: 200 km/h\nBrand: Audi\nSpeed: 220 km/h"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Access Specifiers</h2>\n<p>\n                Access specifiers define how class members are accessed from outside the class.\n            </p>\n<ul>\n<li><code>public</code>: Accessible from anywhere.</li>\n<li><code>private</code>: Accessible only inside the class.</li>\n<li><code>protected</code>: Accessible in the class and its derived classes.</li>\n</ul>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Student {\nprivate:\n    int age;\n\npublic:\n    string name;\n\n    void setAge(int a) {\n        age = a;\n    }\n\n    void display() {\n        cout << \"Name: \" << name << \", Age: \" << age << endl;\n    }\n};\n\nint main() {\n    Student s;\n    s.name = \"John\";\n    s.setAge(20);\n    s.display();\n    return 0;\n}",
+     "output": "Name: John, Age: 20"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n<div class=\"text-center\">\n<img alt=\"access specifiers\" class=\"content-image\" src=\"/images/specifiers.png\"/>\n</div>\n\n<section class=\"card\">\n<h2>Constructors</h2>\n<p>\n                A <strong>constructor</strong> is a special method that automatically runs when an object is created.\n                It is used to initialize data members.\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Student {\npublic:\n    string name;\n    int age;\n\n    // Constructor\n    Student(string n, int a) {\n        name = n;\n        age = a;\n    }\n\n    void display() {\n        cout << \"Name: \" << name << \", Age: \" << age << endl;\n    }\n};\n\nint main() {\n    Student s1(\"John\", 20);\n    s1.display();\n    return 0;\n}",
+     "output": "Name: John, Age: 20"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Destructors</h2>\n<p>\n                A <strong>destructor</strong> is automatically called when an object goes out of scope.\n                It is used for cleanup, like releasing memory or closing files.\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Test {\npublic:\n    Test() {\n        cout << \"Constructor called!\" << endl;\n    }\n    ~Test() {\n        cout << \"Destructor called!\" << endl;\n    }\n};\n\nint main() {\n    Test obj;\n    return 0;\n}",
+     "output": "Constructor called!\nDestructor called!"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Nested Classes</h2>\n<p>\n                C++ allows a class to be defined inside another class. This is useful for grouping related classes together.\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Outer {\npublic:\n    class Inner {\n    public:\n        void display() {\n            cout << \"Hello from Inner class!\" << endl;\n        }\n    };\n};\n\nint main() {\n    Outer::Inner obj;\n    obj.display();\n    return 0;\n}",
+     "output": "Hello from Inner class!"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Polymorphism (Method Overriding)</h2>\n<p>\n                Polymorphism allows methods to have the same name but behave differently in different contexts.\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Animal {\npublic:\n    virtual void sound() {\n        cout << \"Animal makes a sound\" << endl;\n    }\n};\n\nclass Dog : public Animal {\npublic:\n    void sound() override {\n        cout << \"Dog barks\" << endl;\n    }\n};\n\nint main() {\n    Animal* a;\n    Dog d;\n    a = &d\n    a->sound(); // Output will be \"Dog barks\"\n    return 0;\n}",
+     "output": "Dog barks"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n</div>\n</main>"
+    }
+   ],
+   "styles": "\n/* Layout Styling */\n\n.lesson .grid {\n    display: grid;\n    gap: 20px;\n}\n\n\n\n/* Code Block Styling */\n.lesson .code {\n    background: #1e293b;\n    padding: 15px;\n    border-radius: 6px;\n    overflow-x: auto;\n    font-family: \"Fira Code\", monospace;\n    color: #e2e8f0;\n    border: 1px solid #334155;\n    margin-bottom: 20px;\n}\n\n/* Output Box Styling */\n.lesson .out {\n    background: #0f172a;\n    color: #f8fafc;\n    padding: 10px;\n    border-radius: 6px;\n    margin-top: 10px;\n    font-family: \"Fira Code\", monospace;\n}\n\n/* Button Styling */\n.lesson .btn-row {\n    margin-top: 10px;\n}\n\n.lesson .btn.secondary {\n    background: #475569;\n}\n.lesson .btn.secondary:hover {\n    background: #334155;\n}\n"
+  },
+  {
+   "slug": "encap-abstract",
+   "title": "Encapsulation & Abstraction",
+   "section": "Structures & OOP",
+   "order": 12,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<header>\n<div class=\"container\">\n<h1>Encapsulation &amp; Abstraction in C++</h1>\n<p class=\"lead\">Understand the differences between Encapsulation and Abstraction with detailed examples and explanations.</p>\n<div class=\"container\" style=\"display: flex; justify-content: center; margin-bottom: 20px;\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/Ksi7hNouJdM?si=OhOrBs7dj0wNwWLT\" title=\"YouTube video player\" width=\"650\"></iframe>\n</div>\n</div>\n</header>\n<main class=\"container\">\n<div class=\"grid\">\n\n<section class=\"card\">\n<h2>Introduction</h2>\n<p>\n                Encapsulation and Abstraction are two fundamental pillars of Object-Oriented Programming (OOP).  \n                They both deal with **hiding data and complexity**, but they are not the same thing.\n            </p>\n<ul>\n<li><strong>Encapsulation:</strong> Bundling data and methods together in a class and controlling access using access specifiers like <code>private</code>, <code>public</code>, and <code>protected</code>.</li>\n<li><strong>Abstraction:</strong> Hiding implementation details and exposing only essential features to the user.</li>\n</ul>\n</section>\n\n<section class=\"card\">\n<h2>Encapsulation in C++</h2>\n<p>\n                **Encapsulation** is like a protective shield that prevents direct access to data members.\n                Instead of directly modifying the data, we use methods like <strong>getters</strong> and <strong>setters</strong>.\n            </p>\n<p><strong>Real-life example:</strong> A bank account system hides the balance from direct access and provides deposit/withdraw functions to interact with it.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass BankAccount {\nprivate:\n    float balance; // private data\n\npublic:\n    BankAccount(float initialBalance) {\n        balance = initialBalance;\n    }\n\n    void deposit(float amount) {\n        if (amount > 0) {\n            balance += amount;\n            cout << \"Deposited: \" << amount << endl;\n        } else {\n            cout << \"Invalid deposit amount!\" << endl;\n        }\n    }\n\n    void withdraw(float amount) {\n        if (amount > 0 && amount <= balance) {\n            balance -= amount;\n            cout << \"Withdrawn: \" << amount << endl;\n        } else {\n            cout << \"Insufficient funds!\" << endl;\n        }\n    }\n\n    float getBalance() {\n        return balance;\n    }\n};\n\nint main() {\n    BankAccount account(1000); // initial balance\n    account.deposit(500);\n    account.withdraw(300);\n    cout << \"Current Balance: \" << account.getBalance() << endl;\n    return 0;\n}",
+     "output": "Deposited: 500\nWithdrawn: 300\nCurrent Balance: 1200"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Abstraction in C++</h2>\n<p>\n                **Abstraction** focuses on hiding **implementation details** while only showing what is necessary to the user.\n            </p>\n<p><strong>Real-life example:</strong> When you use an ATM, you don't know how it internally processes your request. You only see options like \"Withdraw\", \"Deposit\", and \"Check Balance\".</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass ATM {\npublic:\n    virtual void performTransaction() = 0; // pure virtual function\n};\n\nclass Withdraw : public ATM {\npublic:\n    void performTransaction() override {\n        cout << \"Withdrawal Successful!\" << endl;\n    }\n};\n\nclass Deposit : public ATM {\npublic:\n    void performTransaction() override {\n        cout << \"Deposit Successful!\" << endl;\n    }\n};\n\nint main() {\n    ATM* transaction;\n    \n    Withdraw w;\n    Deposit d;\n\n    transaction = &w\n    transaction->performTransaction();\n\n    transaction = &d\n    transaction->performTransaction();\n\n    return 0;\n}",
+     "output": "Withdrawal Successful!\nDeposit Successful!"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Encapsulation vs Abstraction</h2>\n<table class=\"comparison\">\n<thead>\n<tr>\n<th>Encapsulation</th>\n<th>Abstraction</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Wraps data and functions into one unit.</td>\n<td>Shows only essential details to the user.</td>\n</tr>\n<tr>\n<td>Achieved using classes and access specifiers.</td>\n<td>Achieved using abstract classes and interfaces.</td>\n</tr>\n<tr>\n<td>Focuses on data hiding and protection.</td>\n<td>Focuses on hiding complexity.</td>\n</tr>\n<tr>\n<td>Example: Private bank balance with deposit/withdraw methods.</td>\n<td>Example: ATM operations shown without implementation details.</td>\n</tr>\n</tbody>\n</table>\n</section>\n</div>\n</main>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "inheritance",
+   "title": "Inheritance",
+   "section": "Structures & OOP",
+   "order": 13,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<header>\n<div class=\"container\">\n<h1>C++ Inheritance &amp; Types</h1>\n<p class=\"lead\">\n            Learn about inheritance in C++, why it is important, and explore different types with real-life examples and outputs.\n        </p>\n<div class=\"container\" style=\"display: flex; justify-content: center; margin-bottom: 20px;\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"325\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/7ZfEp71tIec?si=K_yXHDlxaj-r51rM\" title=\"YouTube video player\" width=\"650\"></iframe>\n</div>\n</div>\n</header>\n<main class=\"container\">\n<div class=\"grid\">\n\n<section class=\"card\">\n<h2>What is Inheritance?</h2>\n<p>\n<strong>Inheritance</strong> is an important feature of Object-Oriented Programming (OOP).  \n                It allows a <strong>derived class</strong> (child) to acquire properties and behaviors from a \n                <strong>base class</strong> (parent).\n            </p>\n<p>\n                It helps in:\n            </p>\n<ul>\n<li><strong>Code Reusability</strong> – Write common code once and reuse it.</li>\n<li><strong>Better Maintainability</strong> – Easy to maintain and update.</li>\n<li><strong>Logical Structure</strong> – Represents real-world relationships like <em>Car is a Vehicle</em>.</li>\n</ul>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Vehicle {\npublic:\n    void start() {\n        cout << \"Vehicle started\" << endl;\n    }\n};\n\nclass Car : public Vehicle {\npublic:\n    void drive() {\n        cout << \"Car is driving\" << endl;\n    }\n};\n\nint main() {\n    Car myCar;\n    myCar.start();  // Inherited from Vehicle\n    myCar.drive();  // Defined in Car\n    return 0;\n}",
+     "output": "Vehicle started\nCar is driving"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Types of Inheritance</h2>\n<p>\n                There are <strong>five main types of inheritance</strong> in C++:\n            </p>\n<ul>\n<li>Single Inheritance</li>\n<li>Multiple Inheritance</li>\n<li>Multilevel Inheritance</li>\n<li>Hierarchical Inheritance</li>\n<li>Hybrid Inheritance</li>\n</ul>\n</section>\n\n<section class=\"card\">\n<h2>1. Single Inheritance</h2>\n<p>\n                A derived class inherits from a <strong>single base class</strong>.  \n                <em>Example:</em> A <strong>Car</strong> inherits features from a <strong>Vehicle</strong>.\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Vehicle {\npublic:\n    void start() {\n        cout << \"Vehicle started\" << endl;\n    }\n};\n\nclass Car : public Vehicle {\npublic:\n    void drive() {\n        cout << \"Car is driving\" << endl;\n    }\n};\n\nint main() {\n    Car myCar;\n    myCar.start(); // Inherited method\n    myCar.drive(); // Derived class method\n    return 0;\n}",
+     "output": "Vehicle started\nCar is driving"
+    },
+    {
+     "kind": "html",
+     "html": "<div class=\"text-center\">\n<img alt=\"single\" class=\"content-image\" src=\"/images/single.png\"/>\n</div>\n</section>\n\n<section class=\"card\">\n<h2>2. Multiple Inheritance</h2>\n<p>\n                A derived class inherits from <strong>more than one base class</strong>.\n            </p>\n<p>\n<em>Example:</em> A <strong>FlyingCar</strong> inherits from both <strong>Car</strong> and <strong>Airplane</strong>.\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Car {\npublic:\n    void drive() {\n        cout << \"Driving on road\" << endl;\n    }\n};\n\nclass Airplane {\npublic:\n    void fly() {\n        cout << \"Flying in the air\" << endl;\n    }\n};\n\nclass FlyingCar : public Car, public Airplane {\npublic:\n    void transform() {\n        cout << \"Transforming between car and airplane mode\" << endl;\n    }\n};\n\nint main() {\n    FlyingCar myFlyingCar;\n    myFlyingCar.drive();\n    myFlyingCar.fly();\n    myFlyingCar.transform();\n    return 0;\n}",
+     "output": "Driving on road\nFlying in the air\nTransforming between car and airplane mode"
+    },
+    {
+     "kind": "html",
+     "html": "<div class=\"text-center\">\n<img alt=\"oop principle\" class=\"content-image\" src=\"/images/multi.png\"/>\n</div>\n</section>\n\n<section class=\"card\">\n<h2>3. Multilevel Inheritance</h2>\n<p>\n                A derived class inherits from another derived class, forming a <strong>chain-like hierarchy</strong>.  \n                <em>Example:</em> SportsCar → Car → Vehicle\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Vehicle {\npublic:\n    void start() {\n        cout << \"Vehicle started\" << endl;\n    }\n};\n\nclass Car : public Vehicle {\npublic:\n    void honk() {\n        cout << \"Car horn!\" << endl;\n    }\n};\n\nclass SportsCar : public Car {\npublic:\n    void turboBoost() {\n        cout << \"Turbo Boost Activated!\" << endl;\n    }\n};\n\nint main() {\n    SportsCar myCar;\n    myCar.start();\n    myCar.honk();\n    myCar.turboBoost();\n    return 0;\n}",
+     "output": "Vehicle started\nCar horn!\nTurbo Boost Activated!"
+    },
+    {
+     "kind": "html",
+     "html": "<div class=\"text-center\">\n<img alt=\"multilevel\" class=\"content-image\" src=\"/images/multilevel.png\"/>\n</div>\n</section>\n\n<section class=\"card\">\n<h2>4. Hierarchical Inheritance</h2>\n<p>\n                In this type, <strong>multiple derived classes inherit from the same base class</strong>.  \n                <em>Example:</em> Both Car and Bike inherit from Vehicle.\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Vehicle {\npublic:\n    void start() {\n        cout << \"Vehicle started\" << endl;\n    }\n};\n\nclass Car : public Vehicle {\npublic:\n    void drive() {\n        cout << \"Car is driving\" << endl;\n    }\n};\n\nclass Bike : public Vehicle {\npublic:\n    void ride() {\n        cout << \"Bike is riding\" << endl;\n    }\n};\n\nint main() {\n    Car myCar;\n    Bike myBike;\n    myCar.start();\n    myCar.drive();\n    myBike.start();\n    myBike.ride();\n    return 0;\n}",
+     "output": "Vehicle started\nCar is driving\nVehicle started\nBike is riding"
+    },
+    {
+     "kind": "html",
+     "html": "<div class=\"text-center\">\n<img alt=\"oop principle\" class=\"content-image\" src=\"/images/hier.png\"/>\n</div>\n</section>\n\n<section class=\"card\">\n<h2>5. Hybrid Inheritance</h2>\n<p>\n                A combination of two or more inheritance types.  \n                It may cause the <strong>Diamond Problem</strong>, which can be solved using <code>virtual</code> inheritance.\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass A {\npublic:\n    void display() {\n        cout << \"Class A\" << endl;\n    }\n};\n\nclass B : virtual public A {};\nclass C : virtual public A {};\n\nclass D : public B, public C {};\n\nint main() {\n    D obj;\n    obj.display(); // No ambiguity due to virtual inheritance\n    return 0;\n}",
+     "output": "Class A"
+    },
+    {
+     "kind": "html",
+     "html": "<div class=\"text-center\">\n<img alt=\"oop principle\" class=\"content-image\" src=\"/images/hybrid.png\"/>\n</div>\n</section>\n\n<section class=\"card\">\n<h2>Summary Table</h2>\n<table class=\"comparison\">\n<thead>\n<tr>\n<th>Type</th>\n<th>Description</th>\n<th>Example</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Single</td>\n<td>One derived class from one base class.</td>\n<td>Car → Vehicle</td>\n</tr>\n<tr>\n<td>Multiple</td>\n<td>One derived class from multiple base classes.</td>\n<td>FlyingCar → Car + Airplane</td>\n</tr>\n<tr>\n<td>Multilevel</td>\n<td>Chain-like inheritance relationship.</td>\n<td>SportsCar → Car → Vehicle</td>\n</tr>\n<tr>\n<td>Hierarchical</td>\n<td>Multiple derived classes from one base class.</td>\n<td>Car, Bike → Vehicle</td>\n</tr>\n<tr>\n<td>Hybrid</td>\n<td>Combination of two or more inheritance types.</td>\n<td>Diamond structure example</td>\n</tr>\n</tbody>\n</table>\n</section>\n</div>\n</main>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "poly",
+   "title": "Polymorphism",
+   "section": "Structures & OOP",
+   "order": 14,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<header>\n<div class=\"container\">\n<h1 class=\"page-title\">Polymorphism in Object-Oriented Programming (OOP)</h1>\n<p class=\"lead\">\n            Learn how polymorphism allows objects of different classes to be treated as a common type,\n            making your C++ programs more flexible and maintainable.\n        </p>\n</div>\n<div class=\"container\" style=\"display: flex; justify-content: center; margin-bottom: 20px;\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"325\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/F5PbnZkHqmg?si=-mVNVt_umvHEalMP\" title=\"YouTube video player\" width=\"650\"></iframe>\n</div>\n</header>\n<main class=\"container\">\n<div class=\"grid\">\n\n<section class=\"card\">\n<h2>Introduction to Polymorphism</h2>\n<p>\n<strong>Polymorphism</strong> is one of the fundamental concepts in Object-Oriented Programming (OOP).\n                The term <em>polymorphism</em> comes from Greek, meaning <em>\"many forms\"</em>. \n                It allows a single interface to represent different underlying data types or classes.\n            </p>\n<p>\n                For example, a function named <code>draw()</code> may draw different shapes like\n                <code>Circle</code> or <code>Rectangle</code> depending on which object calls it.\n            </p>\n</section>\n\n<section class=\"card\">\n<h2>Types of Polymorphism</h2>\n<p>Polymorphism is mainly classified into two types:</p>\n<ol>\n<li><strong>Compile-time Polymorphism (Static Polymorphism)</strong></li>\n<li><strong>Run-time Polymorphism (Dynamic Polymorphism)</strong></li>\n</ol>\n</section>\n\n<section class=\"card\">\n<h3>1. Compile-time Polymorphism</h3>\n<p>\n                Resolved during compilation. Achieved through:\n            </p>\n<ul>\n<li>Method Overloading</li>\n<li>Operator Overloading</li>\n</ul>\n<h4>Method Overloading</h4>\n<p>\n                Multiple methods with the same name but different parameters.\n                The compiler chooses which method to call based on arguments.\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass MathOperations {\npublic:\n    int add(int a, int b) {\n        return a + b;\n    }\n    double add(double a, double b) {\n        return a + b;\n    }\n    int add(int a, int b, int c) {\n        return a + b + c;\n    }\n};\n\nint main() {\n    MathOperations obj;\n    cout << obj.add(5, 10) << endl;\n    cout << obj.add(2.5, 3.5) << endl;\n    cout << obj.add(1, 2, 3) << endl;\n    return 0;\n}",
+     "output": "15\\n6\\n6"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h4>Operator Overloading</h4>\n<p>\n                Operator overloading allows redefining operators for custom behavior.\n                Example: Adding two complex numbers with the <code>+</code> operator.\n            </p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Complex {\npublic:\n    int real, imag;\n\n    Complex(int r = 0, int i = 0) : real(r), imag(i) {}\n\n    Complex operator + (const Complex &c) {\n        return Complex(real + c.real, imag + c.imag);\n    }\n};\n\nint main() {\n    Complex c1(2, 3), c2(4, 5);\n    Complex c3 = c1 + c2;\n    cout << c3.real << \" + \" << c3.imag << \"i\" << endl;\n    return 0;\n}",
+     "output": "6 + 8i"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h3>2. Run-time Polymorphism</h3>\n<p>\n                Resolved at runtime using virtual functions and function overriding.\n            </p>\n<h4>Example: Virtual Functions</h4>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Animal {\npublic:\n    virtual void sound() {\n        cout << \"Animal sound\" << endl;\n    }\n};\n\nclass Dog : public Animal {\npublic:\n    void sound() override {\n        cout << \"Dog barks\" << endl;\n    }\n};\n\nint main() {\n    Animal* a = new Dog();\n    a->sound(); // Runtime decision\n    delete a;\n    return 0;\n}",
+     "output": "Dog barks"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n<div class=\"text-center\">\n<img alt=\"polymorphism\" class=\"content-image\" src=\"/images/poly.png\"/>\n</div>\n\n<section class=\"card\">\n<h2>Summary Table</h2>\n<table class=\"summary-table\">\n<thead>\n<tr>\n<th>Type</th>\n<th>How Achieved</th>\n<th>When Resolved</th>\n<th>Example</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Compile-time Polymorphism</td>\n<td>Method Overloading, Operator Overloading</td>\n<td>Compile-time</td>\n<td><code>add(int a, int b)</code>, <code>add(double a, double b)</code></td>\n</tr>\n<tr>\n<td>Run-time Polymorphism</td>\n<td>Method Overriding, Virtual Functions</td>\n<td>Run-time</td>\n<td>Derived class overrides base class method</td>\n</tr>\n</tbody>\n</table>\n</section>\n\n<section class=\"card\">\n<h2>Conclusion</h2>\n<p>\n                Polymorphism is a cornerstone of OOP, allowing for flexible and scalable code design.\n                By leveraging polymorphism, developers can build systems that are easier to extend and maintain.\n            </p>\n</section>\n</div>\n</main>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "operator-overloading",
+   "title": "Operator Overloading",
+   "section": "Structures & OOP",
+   "order": 15,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Operator Overloading</h1>\n<div class=\"card\">\n<h2>Teach Operators About Your Classes</h2>\n<p>Operators like <code>+</code>, <code>==</code> and <code>&lt;&lt;</code> already work for numbers and strings. With <strong>operator overloading</strong> you tell C++ what they mean for <em>your own</em> classes, so <code>a + b</code> reads naturally. An overloaded operator is just a function named <code>operator+</code>, <code>operator==</code>, and so on.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Point {\n    int x, y;\npublic:\n    Point(int x = 0, int y = 0) : x(x), y(y) {}\n\n    Point operator+(const Point &other) const {      // p1 + p2\n        return Point(x + other.x, y + other.y);\n    }\n    bool operator==(const Point &other) const {      // p1 == p2\n        return x == other.x && y == other.y;\n    }\n    friend ostream &operator<<(ostream &out, const Point &p);\n};\n\nostream &operator<<(ostream &out, const Point &p) {  // cout << p\n    out << \"(\" << p.x << \", \" << p.y << \")\";\n    return out;\n}\n\nint main() {\n    Point a(1, 2), b(3, 4);\n    Point c = a + b;\n    cout << \"a = \" << a << \", b = \" << b << endl;\n    cout << \"a + b = \" << c << endl;\n    cout << \"a == b? \" << (a == b ? \"yes\" : \"no\") << endl;\n    cout << \"c == (4, 6)? \" << (c == Point(4, 6) ? \"yes\" : \"no\") << endl;\n    return 0;\n}",
+     "output": "a = (1, 2), b = (3, 4)\na + b = (4, 6)\na == b? no\nc == (4, 6)? yes"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>Operators that read or compare an object should be <code>const</code> (<code>... const</code>).</li><li><code>operator&lt;&lt;</code> must be a normal (often <code>friend</code>) function because the left side is <code>cout</code>, not your object.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Prefix and Postfix ++</h2>\n<p>Both <code>++c</code> and <code>c++</code> use the same operator name. C++ tells them apart with a dummy <code>int</code> parameter for the postfix version.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Counter {\n    int value;\npublic:\n    Counter(int v = 0) : value(v) {}\n\n    Counter &operator++() {            // prefix  ++c\n        ++value;\n        return *this;\n    }\n    Counter operator++(int) {          // postfix c++\n        Counter old = *this;\n        ++value;\n        return old;\n    }\n    int get() const { return value; }\n};\n\nint main() {\n    Counter c(5);\n    cout << \"Start: \" << c.get() << endl;\n    cout << \"++c gives \" << (++c).get() << endl;\n    cout << \"c++ gives \" << (c++).get() << endl;\n    cout << \"Now: \" << c.get() << endl;\n    return 0;\n}",
+     "output": "Start: 5\n++c gives 6\nc++ gives 6\nNow: 7"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Rules to Remember</h2>\n<ul><li>You <strong>cannot</strong> overload: <code>::</code>, <code>.</code>, <code>.*</code>, <code>?:</code>, <code>sizeof</code>.</li><li>You cannot invent new operators or change precedence.</li><li>At least one operand must be a user-defined type.</li><li>Keep the meaning natural: do not make <code>+</code> subtract!</li></ul>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "friend",
+   "title": "Friend Function & Class",
+   "section": "Structures & OOP",
+   "order": 16,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<header>\n<div class=\"container\">\n<h1>Friend Function &amp; Friend Class in C++</h1>\n<p class=\"lead\">\n            In C++, <strong>friend functions</strong> and <strong>friend classes</strong> allow selective access to private and protected members of a class, enabling controlled flexibility while maintaining encapsulation.\n        </p>\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"325\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/lcrZvDoYaj8?si=6eF6QqChXZXxE22E\" title=\"YouTube video player\" width=\"650\"></iframe>\n</div>\n</header>\n<main class=\"container\">\n<div class=\"grid\">\n\n<section class=\"card\">\n<h2>Friend Function</h2>\n<p>\n                A <strong>friend function</strong> is a non-member function that can access the private and protected members of a class. It is declared inside the class using the <code>friend</code> keyword.\n            </p>\n<h3>Key Points:</h3>\n<ul>\n<li>It is not a member of the class.</li>\n<li>It has access to private and protected members.</li>\n<li>Friendship is one-way: the function can access the class members, but the class cannot access the function’s private members.</li>\n<li>Overuse can break encapsulation, so use only when necessary.</li>\n</ul>\n<h3>Example:</h3>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Box {\nprivate:\n    int length;\npublic:\n    Box(int l) { length = l; }\n    friend void printLength(Box b); // Friend function declaration\n};\n\nvoid printLength(Box b) {\n    cout << \"Length of the box: \" << b.length << endl;\n}\n\nint main() {\n    Box b1(10);\n    printLength(b1); // Access private member via friend function\n    return 0;\n}",
+     "output": "Length of the box: 10"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Friend Class</h2>\n<p>\n                A <strong>friend class</strong> allows all member functions of another class to access its private and protected members.\n            </p>\n<h3>Key Points:</h3>\n<ul>\n<li>All methods of the friend class can access private/protected members of the original class.</li>\n<li>Friendship is one-way; the original class members are accessible to the friend class, but not vice versa.</li>\n<li>Used when two classes are closely related and need mutual access to private data.</li>\n</ul>\n<h3>Example:</h3>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\nusing namespace std;\n\nclass Box {\nprivate:\n    int width;\npublic:\n    Box(int w) { width = w; }\n    friend class Display; // Friend class declaration\n};\n\nclass Display {\npublic:\n    void show(Box b) {\n        cout << \"Width of the box: \" << b.width << endl;\n    }\n};\n\nint main() {\n    Box b1(15);\n    Display d;\n    d.show(b1); // Access private member via friend class\n    return 0;\n}",
+     "output": "Width of the box: 15"
+    },
+    {
+     "kind": "html",
+     "html": "</section>\n\n<section class=\"card\">\n<h2>Rules and Important Notes</h2>\n<ul>\n<li>Friendship is <strong>not inherited</strong>: if class B is a friend of class A, derived classes of B are not automatically friends of A.</li>\n<li>Friend functions can be <strong>standalone functions</strong> or <strong>member functions of another class</strong>.</li>\n<li>Friend classes and functions <strong>cannot be called with dot operator</strong> like normal member functions unless they are member functions of another class.</li>\n<li>Use friendship to enable controlled access between related classes, without breaking encapsulation everywhere.</li>\n</ul>\n</section>\n\n<section class=\"card\">\n<h2>When to Use</h2>\n<ul>\n<li>Two or more classes are tightly coupled and need access to each other’s private data.</li>\n<li>Helper functions that require access to class internals without being part of the class.</li>\n<li>Overloading operators that need access to private members.</li>\n<li>Implementing controlled access to internal members for performance or design purposes.</li>\n</ul>\n</section>\n</div>\n</main>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "templates",
+   "title": "Templates",
+   "section": "Advanced C++",
+   "order": 17,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Templates</h1>\n<div class=\"card\">\n<h2>Write Once, Use With Any Type</h2>\n<p>Without templates you would write <code>maxOfInt</code>, <code>maxOfDouble</code>, <code>maxOfString</code>... one copy per type. A <strong>template</strong> is a blueprint: the compiler creates the real function for each type you use. <code>T</code> is a placeholder for \"some type\".</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\n#include <string>\nusing namespace std;\n\ntemplate <typename T>\nT maxOf(T a, T b) {\n    return (a > b) ? a : b;\n}\n\ntemplate <typename T>\nvoid swapValues(T &a, T &b) {\n    T temp = a;\n    a = b;\n    b = temp;\n}\n\nint main() {\n    cout << maxOf(3, 9) << endl;               // T is int\n    cout << maxOf(2.5, 1.5) << endl;           // T is double\n    cout << maxOf<string>(\"apple\", \"mango\") << endl;\n\n    string x = \"first\", y = \"second\";\n    swapValues(x, y);\n    cout << x << \" \" << y << endl;\n    return 0;\n}",
+     "output": "9\n2.5\nmango\nsecond first"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>The compiler usually <strong>deduces</strong> <code>T</code> from the arguments (<code>maxOf(3, 9)</code>).</li><li>Or you can say it yourself: <code>maxOf&lt;string&gt;(...)</code>.</li><li>Both arguments must give the same <code>T</code>: <code>maxOf(3, 2.5)</code> will not compile.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Class Templates</h2>\n<p>Classes can be templates too. This is how <code>vector&lt;int&gt;</code> and <code>map&lt;string, int&gt;</code> are built. With classes you always write the type in angle brackets.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\n#include <string>\nusing namespace std;\n\ntemplate <typename T>\nclass Box {\n    T content;\npublic:\n    Box(T value) : content(value) {}\n    T get() const { return content; }\n    void set(T value) { content = value; }\n};\n\ntemplate <typename K, typename V>\nclass Pair {\n    K key;\n    V value;\npublic:\n    Pair(K k, V v) : key(k), value(v) {}\n    void print() const { cout << key << \" -> \" << value << endl; }\n};\n\nint main() {\n    Box<int> number(42);\n    Box<string> word(\"hello\");\n    number.set(number.get() + 1);\n    cout << number.get() << \" \" << word.get() << endl;\n\n    Pair<string, int> score(\"Ali\", 95);\n    Pair<int, double> point(1, 2.5);\n    score.print();\n    point.print();\n    return 0;\n}",
+     "output": "43 hello\nAli -> 95\n1 -> 2.5"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Remember</h2>\n<ul><li>Template code normally lives completely in <strong>header files</strong>.</li><li>The type must support the operations used inside (<code>maxOf</code> needs <code>&gt;</code>).</li><li>Use <code>typename</code> or <code>class</code> in the angle brackets, they mean the same.</li><li>Templates are the foundation of the STL, the next lesson.</li></ul>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "exceptions",
+   "title": "Exception Handling",
+   "section": "Advanced C++",
+   "order": 18,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Exception Handling</h1>\n<div class=\"card\">\n<h2>try, throw, catch</h2>\n<p>An <strong>exception</strong> is C++'s way of reporting that something went wrong without crashing the program. Put risky code in a <code>try</code> block, signal a problem with <code>throw</code>, and deal with it in a <code>catch</code> block. When an exception is thrown, C++ jumps straight to the matching <code>catch</code> and skips the rest of the <code>try</code> block.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\n#include <stdexcept>\nusing namespace std;\n\ndouble divide(double a, double b) {\n    if (b == 0) throw runtime_error(\"Cannot divide by zero\");\n    return a / b;\n}\n\nint main() {\n    try {\n        double first = divide(10, 2);\n        cout << \"10 / 2 = \" << first << endl;\n\n        cout << \"Now trying 10 / 0...\" << endl;\n        double second = divide(10, 0);                  // throws here\n        cout << \"This line never runs: \" << second << endl;\n    } catch (const exception &e) {\n        cout << \"Error: \" << e.what() << endl;\n    }\n    cout << \"Program continues normally\" << endl;\n    return 0;\n}",
+     "output": "10 / 2 = 5\nNow trying 10 / 0...\nError: Cannot divide by zero\nProgram continues normally"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>Catch by <strong>const reference</strong> (<code>const exception &amp;e</code>) to avoid copying.</li><li><code>e.what()</code> returns the message.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Your Own Exception Types</h2>\n<p>Inherit from a standard exception class (like <code>runtime_error</code>) to make errors that describe your program. You can have <strong>several catch blocks</strong>; the first one that matches is used, so put specific types before general ones.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\n#include <stdexcept>\n#include <string>\nusing namespace std;\n\nclass InsufficientFunds : public runtime_error {\npublic:\n    InsufficientFunds(double needed)\n        : runtime_error(\"Insufficient funds: need \" + to_string(needed) + \" more\") {}\n};\n\nclass Account {\n    double balance;\npublic:\n    Account(double b) : balance(b) {}\n    void withdraw(double amount) {\n        if (amount <= 0) throw invalid_argument(\"Amount must be positive\");\n        if (amount > balance) throw InsufficientFunds(amount - balance);\n        balance -= amount;\n    }\n    double get() const { return balance; }\n};\n\nint main() {\n    Account acc(100);\n    double attempts[] = {30, -5, 500};\n    for (double amount : attempts) {\n        try {\n            acc.withdraw(amount);\n            cout << \"Withdrew \" << amount << \", balance \" << acc.get() << endl;\n        } catch (const invalid_argument &e) {\n            cout << \"Bad input: \" << e.what() << endl;\n        } catch (const InsufficientFunds &e) {\n            cout << e.what() << endl;\n        }\n    }\n    return 0;\n}",
+     "output": "Withdrew 30, balance 70\nBad input: Amount must be positive\nInsufficient funds: need 430.000000 more"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Standard Exceptions</h2>\n<table><tr><th>Class (in <stdexcept>)</th><th>Typical meaning</th></tr><tr><td><code>invalid_argument</code></td><td>A function got a bad value</td></tr><tr><td><code>out_of_range</code></td><td>Index outside the valid range (e.g. <code>vector::at</code>)</td></tr><tr><td><code>runtime_error</code></td><td>Something failed while running</td></tr><tr><td><code>logic_error</code></td><td>A mistake in the program logic</td></tr><tr><td><code>bad_alloc</code></td><td><code>new</code> could not get memory</td></tr></table>\n<p>Use <code>catch (...)</code> as a last resort to catch anything.</p>\n</div>\n\n<div class=\"card\">\n<h2>Good Habits</h2>\n<ul><li>Use exceptions for <em>unexpected</em> problems, not for normal flow like \"user pressed no\".</li><li>Never throw from a destructor.</li><li>Clean up resources with smart pointers (RAII), so nothing leaks when an exception skips code.</li></ul>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "stl-basics",
+   "title": "STL: vector, map & Algorithms",
+   "section": "Advanced C++",
+   "order": 19,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>STL Basics: vector, map & Algorithms</h1>\n<div class=\"card\">\n<h2>What is the STL?</h2>\n<p>The <strong>Standard Template Library</strong> is a set of ready-made, well-tested tools built with templates: <strong>containers</strong> (store data), <strong>algorithms</strong> (work on data) and <strong>iterators</strong> (connect the two). Before writing your own array or sort, check the STL first.</p>\n<table><tr><th>Container</th><th>Header</th><th>Think of it as</th></tr><tr><td><code>vector&lt;T&gt;</code></td><td><code>&lt;vector&gt;</code></td><td>A resizable array</td></tr><tr><td><code>map&lt;K, V&gt;</code></td><td><code>&lt;map&gt;</code></td><td>A dictionary of key to value, sorted by key</td></tr><tr><td><code>set&lt;T&gt;</code></td><td><code>&lt;set&gt;</code></td><td>A sorted collection with no duplicates</td></tr><tr><td><code>queue&lt;T&gt;</code> / <code>stack&lt;T&gt;</code></td><td><code>&lt;queue&gt;</code> / <code>&lt;stack&gt;</code></td><td>First-in-first-out / last-in-first-out</td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>vector and Algorithms</h2>\n<p>A <code>vector</code> is the container you will use most. Algorithms from <code>&lt;algorithm&gt;</code> take a <strong>range</strong>: <code>v.begin()</code> to <code>v.end()</code>.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    vector<int> marks = {72, 95, 60, 88};\n\n    marks.push_back(79);                       // add to the end\n    cout << \"Size: \" << marks.size() << endl;\n    cout << \"First: \" << marks.front() << \", Last: \" << marks.back() << endl;\n\n    sort(marks.begin(), marks.end());          // ascending\n    cout << \"Sorted:\";\n    for (int m : marks) cout << \" \" << m;\n    cout << endl;\n\n    reverse(marks.begin(), marks.end());\n    cout << \"Highest: \" << marks[0] << endl;\n\n    auto it = find(marks.begin(), marks.end(), 60);\n    cout << \"60 is \" << (it != marks.end() ? \"present\" : \"missing\") << endl;\n    cout << \"Count of 88: \" << count(marks.begin(), marks.end(), 88) << endl;\n\n    marks.pop_back();                          // remove last\n    cout << \"After pop_back size: \" << marks.size() << endl;\n    return 0;\n}",
+     "output": "Size: 5\nFirst: 72, Last: 79\nSorted: 60 72 79 88 95\nHighest: 95\n60 is present\nCount of 88: 1\nAfter pop_back size: 4"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>Prefer <code>vector</code> over raw arrays: it knows its own size and cleans up after itself.</li><li><code>v.at(i)</code> checks the range and throws <code>out_of_range</code>; <code>v[i]</code> does not check.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>map and set</h2>\n<p><code>map</code> stores pairs and keeps them sorted by key. <code>set</code> stores unique values. Both find items quickly.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\n#include <map>\n#include <set>\n#include <string>\nusing namespace std;\n\nint main() {\n    map<string, int> scores;\n    scores[\"Zain\"] = 70;\n    scores[\"Ali\"] = 95;\n    scores[\"Hira\"] = 88;\n    scores[\"Ali\"] = 99;                        // update an existing key\n\n    for (const auto &pair : scores)            // map keeps keys sorted\n        cout << pair.first << \": \" << pair.second << endl;\n\n    cout << \"Hira exists? \" << (scores.count(\"Hira\") ? \"yes\" : \"no\") << endl;\n    cout << \"Sara exists? \" << (scores.count(\"Sara\") ? \"yes\" : \"no\") << endl;\n\n    set<int> unique = {5, 3, 5, 1, 3};         // no duplicates, sorted\n    cout << \"Unique:\";\n    for (int n : unique) cout << \" \" << n;\n    cout << endl;\n    return 0;\n}",
+     "output": "Ali: 99\nHira: 88\nZain: 70\nHira exists? yes\nSara exists? no\nUnique: 1 3 5"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li><code>map[key]</code> creates the key if it is missing. Use <code>count()</code> or <code>find()</code> to check first.</li></ul>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "file-handling",
+   "title": "File Handling",
+   "section": "Advanced C++",
+   "order": 20,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>File Handling</h1>\n<div class=\"card\">\n<h2>Files in C++</h2>\n<p>Programs lose their variables when they end. <strong>Files</strong> let you keep data permanently. Include <code>&lt;fstream&gt;</code> and use:</p>\n<table><tr><th>Class</th><th>Purpose</th></tr><tr><td><code>ofstream</code></td><td><strong>O</strong>utput file stream: write to a file</td></tr><tr><td><code>ifstream</code></td><td><strong>I</strong>nput file stream: read from a file</td></tr><tr><td><code>fstream</code></td><td>Both reading and writing</td></tr></table>\n<p>Streams work just like <code>cout</code> and <code>cin</code>: you use <code>&lt;&lt;</code> to write and <code>&gt;&gt;</code> or <code>getline</code> to read.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\n#include <fstream>\n#include <string>\nusing namespace std;\n\nint main() {\n    // 1. Write (creates or overwrites the file)\n    ofstream out(\"notes.txt\");\n    if (!out.is_open()) {\n        cout << \"Could not open file for writing\" << endl;\n        return 1;\n    }\n    out << \"Line one\" << endl;\n    out << \"Line two\" << endl;\n    out << 2024 << endl;\n    out.close();\n\n    // 2. Read it back line by line\n    ifstream in(\"notes.txt\");\n    string line;\n    int number = 0;\n    while (getline(in, line)) {\n        number++;\n        cout << number << \": \" << line << endl;\n    }\n    in.close();\n    return 0;\n}",
+     "output": "1: Line one\n2: Line two\n3: 2024"
+    },
+    {
+     "kind": "html",
+     "html": "<p>The file <code>notes.txt</code> appears in the same folder where the program runs.</p>\n</div>\n\n<div class=\"card\">\n<h2>Append Mode and Checking for Errors</h2>\n<p>Opening an <code>ofstream</code> normally <strong>erases</strong> the file. Add <code>ios::app</code> to add to the end instead. Always check that the file opened (<code>is_open()</code> or <code>if (!stream)</code>), because the file might not exist or you might not have permission.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "cpp",
+     "code": "#include <iostream>\n#include <fstream>\n#include <string>\nusing namespace std;\n\nint main() {\n    // Append mode adds to the end instead of erasing\n    {\n        ofstream log(\"log.txt\");                      // start fresh\n        log << \"start\" << endl;\n    }\n    {\n        ofstream log(\"log.txt\", ios::app);            // ios::app = append\n        log << \"second entry\" << endl;\n        log << \"third entry\" << endl;\n    }\n\n    ifstream in(\"log.txt\");\n    string word;\n    int words = 0;\n    while (in >> word) words++;                       // >> reads word by word\n    cout << \"Words in file: \" << words << endl;\n\n    ifstream missing(\"does_not_exist.txt\");\n    if (!missing) cout << \"Missing file detected\" << endl;\n    return 0;\n}",
+     "output": "Words in file: 5\nMissing file detected"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Open Modes</h2>\n<table><tr><th>Mode</th><th>Meaning</th></tr><tr><td><code>ios::in</code></td><td>Open for reading</td></tr><tr><td><code>ios::out</code></td><td>Open for writing (erases existing content)</td></tr><tr><td><code>ios::app</code></td><td>Append to the end</td></tr><tr><td><code>ios::binary</code></td><td>Binary file instead of text</td></tr></table>\n<p>Combine modes with <code>|</code>, for example <code>ios::out | ios::app</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>Good Habits</h2>\n<ul><li>Close files when done (<code>close()</code>), or let them close automatically when the stream goes out of scope.</li><li>Check every open: never assume the file exists.</li><li>Use <code>while (getline(in, line))</code> to read all lines. Do not loop on <code>eof()</code>.</li></ul>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  }
+ ]
+}

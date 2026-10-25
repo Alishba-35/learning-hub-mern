@@ -1,0 +1,279 @@
+{
+ "languageSlug": "java",
+ "quizzes": [
+  {
+   "slug": "getting-started",
+   "title": "Getting Started Checkpoint",
+   "section": "Getting Started",
+   "order": 1,
+   "description": "Covers: Introduction to Java, Variables & Data Types, Operators & Conditions.",
+   "questions": [
+    {
+     "id": "getting-started-1",
+     "type": "choice",
+     "prompt": "What is the entry point of a Java program?",
+     "options": [
+      "static int run()",
+      "Main.java::begin()",
+      "public static void main(String[] args)",
+      "public void start()"
+     ],
+     "correctIndex": 2,
+     "explanation": "The JVM starts running at the main method with exactly this signature."
+    },
+    {
+     "id": "getting-started-2",
+     "type": "choice",
+     "prompt": "What does this program print?",
+     "options": [
+      "4\n3.5",
+      "3\n3",
+      "3.5\n3.5",
+      "3\n3.5"
+     ],
+     "correctIndex": 3,
+     "explanation": "Two ints divide as integers (3). Casting one of them to double first gives 3.5.",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        int a = 7, b = 2;\n        System.out.println(a / b);\n        System.out.println((double) a / b);\n    }\n}",
+     "codeLanguage": "java"
+    },
+    {
+     "id": "getting-started-3",
+     "type": "choice",
+     "prompt": "How do you compare the contents of two Strings?",
+     "options": [
+      "a.compare(b)",
+      "a = b",
+      "a.equals(b)",
+      "a == b"
+     ],
+     "correctIndex": 2,
+     "explanation": "== compares references (whether they are the same object). equals() compares the text."
+    },
+    {
+     "id": "getting-started-4",
+     "type": "choice",
+     "prompt": "What does this program print?",
+     "options": [
+      "JAVA 4",
+      "JAVA4",
+      "JAVA5",
+      "java4"
+     ],
+     "correctIndex": 1,
+     "explanation": "toUpperCase() gives \"JAVA\" and length() is 4. The + joins them as text: JAVA4.",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        String s = \"java\";\n        System.out.println(s.toUpperCase() + s.length());\n    }\n}",
+     "codeLanguage": "java"
+    },
+    {
+     "id": "getting-started-5",
+     "type": "choice",
+     "prompt": "Which type fits the value 3.14?",
+     "options": [
+      "double",
+      "boolean",
+      "int",
+      "char"
+     ],
+     "correctIndex": 0,
+     "explanation": "double stores decimal numbers. int cannot hold a fraction."
+    },
+    {
+     "id": "getting-started-6",
+     "type": "fill",
+     "prompt": "Complete the ternary so it checks the variable marks.",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        int marks = 55;\n        String result = ____ >= 50 ? \"pass\" : \"fail\";\n        System.out.println(result);\n    }\n}",
+     "codeLanguage": "java",
+     "answers": [
+      "marks"
+     ],
+     "caseSensitive": true,
+     "explanation": "The condition marks >= 50 is true for 55, so the ternary gives \"pass\"."
+    }
+   ]
+  },
+  {
+   "slug": "control-methods",
+   "title": "Control & Methods Checkpoint",
+   "section": "Control & Methods",
+   "order": 2,
+   "description": "Covers: Loops, Arrays & Strings, Methods.",
+   "questions": [
+    {
+     "id": "control-methods-1",
+     "type": "choice",
+     "prompt": "What does this program print?",
+     "options": [
+      "4",
+      "10",
+      "6",
+      "24"
+     ],
+     "correctIndex": 1,
+     "explanation": "The loop adds 1 + 2 + 3 + 4 = 10.",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        int sum = 0;\n        for (int i = 1; i <= 4; i++) {\n            sum += i;\n        }\n        System.out.println(sum);\n    }\n}",
+     "codeLanguage": "java"
+    },
+    {
+     "id": "control-methods-2",
+     "type": "choice",
+     "prompt": "What does this program print?",
+     "options": [
+      "3 5",
+      "2 8",
+      "3 8",
+      "3 3"
+     ],
+     "correctIndex": 2,
+     "explanation": "length is 3 (no parentheses), and index 2 is the third element: 8.",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        int[] a = {5, 3, 8};\n        System.out.println(a.length + \" \" + a[2]);\n    }\n}",
+     "codeLanguage": "java"
+    },
+    {
+     "id": "control-methods-3",
+     "type": "choice",
+     "prompt": "What does this program print?",
+     "options": [
+      "8 ab",
+      "4 abab",
+      "44 abab",
+      "8 abab"
+     ],
+     "correctIndex": 3,
+     "explanation": "Java picks the overload by the argument type: f(int) doubles the number, f(String) repeats the text.",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(f(4) + \" \" + f(\"ab\"));\n    }\n\n    static int f(int x) { return x * 2; }\n\n    static String f(String s) { return s + s; }\n}",
+     "codeLanguage": "java"
+    },
+    {
+     "id": "control-methods-4",
+     "type": "choice",
+     "prompt": "What does \"pass-by-value\" mean in Java?",
+     "options": [
+      "A method receives a copy of the argument value",
+      "Only objects can be passed",
+      "A method receives the original variable itself",
+      "Arguments are always converted to String"
+     ],
+     "correctIndex": 0,
+     "explanation": "Changing a primitive parameter inside a method never changes the caller's variable."
+    },
+    {
+     "id": "control-methods-5",
+     "type": "choice",
+     "prompt": "What happens if you use an index outside an array?",
+     "options": [
+      "The array grows automatically",
+      "Java returns null",
+      "An ArrayIndexOutOfBoundsException is thrown",
+      "Java returns 0"
+     ],
+     "correctIndex": 2,
+     "explanation": "Arrays have a fixed size, and Java checks every index at run time."
+    },
+    {
+     "id": "control-methods-6",
+     "type": "fill",
+     "prompt": "Complete the keyword that sends the result back.",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(square(7));\n    }\n\n    static int square(int n) {\n        ____ n * n;\n    }\n}",
+     "codeLanguage": "java",
+     "answers": [
+      "return"
+     ],
+     "caseSensitive": true,
+     "explanation": "return sends the value back to the caller."
+    }
+   ]
+  },
+  {
+   "slug": "object-oriented-java",
+   "title": "Object-Oriented Java Checkpoint",
+   "section": "Object-Oriented Java",
+   "order": 3,
+   "description": "Covers: Classes & Objects, Inheritance & Interfaces, Exceptions & Collections.",
+   "questions": [
+    {
+     "id": "object-oriented-java-1",
+     "type": "choice",
+     "prompt": "What does this program print?",
+     "options": [
+      "0",
+      "3",
+      "2",
+      "1"
+     ],
+     "correctIndex": 2,
+     "explanation": "A static field is shared by all objects. The constructor ran twice, so created is 2.",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        new Counter();\n        new Counter();\n        System.out.println(Counter.created);\n    }\n}\n\nclass Counter {\n    static int created = 0;\n    Counter() { created++; }\n}",
+     "codeLanguage": "java"
+    },
+    {
+     "id": "object-oriented-java-2",
+     "type": "choice",
+     "prompt": "What does this program print?",
+     "options": [
+      "Woof",
+      "...",
+      "Compile error",
+      "Animal"
+     ],
+     "correctIndex": 0,
+     "explanation": "Polymorphism: the real object is a Dog, so the overridden sound() runs.",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        Animal a = new Dog();\n        System.out.println(a.sound());\n    }\n}\n\nclass Animal {\n    String sound() { return \"...\"; }\n}\n\nclass Dog extends Animal {\n    @Override\n    String sound() { return \"Woof\"; }\n}",
+     "codeLanguage": "java"
+    },
+    {
+     "id": "object-oriented-java-3",
+     "type": "choice",
+     "prompt": "Why make a field private?",
+     "options": [
+      "So it can only be changed through the class's own methods",
+      "To share it between all objects",
+      "To make it faster",
+      "To hide it from the compiler"
+     ],
+     "correctIndex": 0,
+     "explanation": "Encapsulation: the class controls how its data is read and changed, so it can protect its rules."
+    },
+    {
+     "id": "object-oriented-java-4",
+     "type": "choice",
+     "prompt": "What does this program print?",
+     "options": [
+      "[5, 3, 1] 5",
+      "[1, 3, 5] 5",
+      "[1, 3, 5] 1",
+      "[5, 1, 3] 5"
+     ],
+     "correctIndex": 2,
+     "explanation": "After sorting the list is [1, 3, 5], and get(0) is the first element: 1.",
+     "code": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        List<Integer> list = new ArrayList<>();\n        list.add(5);\n        list.add(1);\n        list.add(3);\n        Collections.sort(list);\n        System.out.println(list + \" \" + list.get(0));\n    }\n}",
+     "codeLanguage": "java"
+    },
+    {
+     "id": "object-oriented-java-5",
+     "type": "choice",
+     "prompt": "Which statement about interfaces is true?",
+     "options": [
+      "A class can implement many interfaces",
+      "A class can extend many classes",
+      "Interfaces cannot declare methods",
+      "An interface can contain constructors"
+     ],
+     "correctIndex": 0,
+     "explanation": "Java has single inheritance for classes, but a class may implement any number of interfaces."
+    },
+    {
+     "id": "object-oriented-java-6",
+     "type": "fill",
+     "prompt": "Complete the exception type for dividing by zero.",
+     "code": "public class Main {\n    public static void main(String[] args) {\n        try {\n            int x = 10 / 0;\n        } catch (____ e) {\n            System.out.println(\"Cannot divide by zero\");\n        }\n    }\n}",
+     "codeLanguage": "java",
+     "answers": [
+      "ArithmeticException"
+     ],
+     "caseSensitive": true,
+     "explanation": "Integer division by zero throws ArithmeticException."
+    }
+   ]
+  }
+ ]
+}

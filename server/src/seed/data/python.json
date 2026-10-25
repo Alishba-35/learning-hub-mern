@@ -1,0 +1,376 @@
+{
+ "slug": "python",
+ "name": "Python",
+ "description": "Python is a beginner-friendly language with clean syntax, used for web back-ends, automation, data science and AI.",
+ "color": "#3776ab",
+ "order": 5,
+ "topics": [
+  {
+   "slug": "intro",
+   "title": "Introduction to Python",
+   "section": "Getting Started",
+   "order": 1,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Introduction to Python</h1>\n<div class=\"card\">\n<h2>What is Python?</h2>\n<p><strong>Python</strong> is a popular, beginner-friendly programming language. Its code reads almost like English, which is why it is used for web back-ends, data science, automation, AI and teaching.</p>\n<ul><li><strong>Interpreted:</strong> you run code line by line, no separate compile step.</li><li><strong>Dynamically typed:</strong> you do not declare types.</li><li><strong>Batteries included:</strong> a huge standard library comes with it.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Your First Program</h2>\n<p>Save this as <code>hello.py</code> and run it with <code>python hello.py</code> (or try it in the interactive prompt by typing <code>python</code>).</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "# My first Python program\nprint(\"Hello, Learning Hub!\")\nprint(2 + 3)\nprint(\"Python\", \"is\", \"fun\")",
+     "output": "Hello, Learning Hub!\n5\nPython is fun"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li><code>print()</code> shows text on the screen.</li><li><code>#</code> starts a comment: Python ignores the rest of the line.</li><li>Text goes in quotes (single or double).</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Indentation Is Part of the Syntax</h2>\n<p>Other languages use <code>{ }</code> to group code. Python uses <strong>indentation</strong> (4 spaces is the standard). Code with the wrong indentation is an error.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "age = 20\nif age >= 18:\n    print(\"Adult\")      # indented: inside the if\n    print(\"Can vote\")\nprint(\"Done\")           # not indented: always runs",
+     "output": "Adult\nCan vote\nDone"
+    },
+    {
+     "kind": "html",
+     "html": "<p>The colon <code>:</code> at the end of a line opens a block, and the indented lines below it belong to that block.</p>\n</div>\n\n<div class=\"card\">\n<h2>Why Learn Python First?</h2>\n<table><tr><th>Strength</th><th>Example</th></tr><tr><td>Short code</td><td>A task that takes 10 lines in Java is often 3 in Python</td></tr><tr><td>Huge community</td><td>Libraries for web (Django, Flask), data (pandas) and AI (PyTorch)</td></tr><tr><td>Great for learning</td><td>You focus on ideas, not on syntax noise</td></tr></table>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "variables-types",
+   "title": "Variables, Types & Input",
+   "section": "Getting Started",
+   "order": 2,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Variables, Types & Input</h1>\n<div class=\"card\">\n<h2>Variables</h2>\n<p>A <strong>variable</strong> is a name for a value. You create it by assigning with <code>=</code>. There is no type to write: Python works it out.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "name = \"Ayesha\"\nage = 20\nheight = 1.62\nis_student = True\n\nprint(name, age, height, is_student)\n\nage = age + 1          # variables can change\nprint(age)",
+     "output": "Ayesha 20 1.62 True\n21"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>Names use letters, digits and underscores, and cannot start with a digit.</li><li>Python style is <code>snake_case</code> (<code>student_name</code>).</li><li>Names are case sensitive: <code>age</code> and <code>Age</code> are different.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Basic Types</h2>\n<table><tr><th>Type</th><th>Example</th><th>Meaning</th></tr><tr><td><code>int</code></td><td><code>42</code></td><td>Whole numbers (any size)</td></tr><tr><td><code>float</code></td><td><code>3.14</code></td><td>Decimal numbers</td></tr><tr><td><code>str</code></td><td><code>&quot;hello&quot;</code></td><td>Text</td></tr><tr><td><code>bool</code></td><td><code>True</code> / <code>False</code></td><td>Yes or no</td></tr><tr><td><code>NoneType</code></td><td><code>None</code></td><td>Means \"no value\"</td></tr></table>\n<p>Use <code>type(x)</code> to see the type, and <code>int()</code>, <code>float()</code>, <code>str()</code> to convert between types.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "x = 7\nprint(type(x))\nprint(type(7.0))\nprint(type(\"7\"))\nprint(type(True))\nprint(int(\"5\") + 3)      # text -> number\nprint(str(5) + \"3\")      # number -> text\nprint(float(2))",
+     "output": "<class 'int'>\n<class 'float'>\n<class 'str'>\n<class 'bool'>\n8\n53\n2.0"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>f-strings and Input</h2>\n<p>An <strong>f-string</strong> puts values inside text: write <code>f&quot;...&quot;</code> and put variables in <code>{ }</code>. To read from the keyboard use <code>input()</code>, which <em>always gives text</em>, so convert it when you need a number.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "name = \"Sara\"\nscore = 87.456\nprint(f\"{name} scored {score:.1f}%\")\nprint(f\"Double: {score * 2:.2f}\")\nprint(f\"{name.upper()} has {len(name)} letters\")",
+     "output": "Sara scored 87.5%\nDouble: 174.91\nSARA has 4 letters"
+    },
+    {
+     "kind": "html",
+     "html": "<pre><code>name = input(&quot;Your name: &quot;)\nage = int(input(&quot;Your age: &quot;))      # convert text to a number\nprint(f&quot;Hello {name}, next year you will be {age + 1}&quot;)</code></pre>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "operators-conditions",
+   "title": "Operators & Conditions",
+   "section": "Getting Started",
+   "order": 3,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Operators & Conditions</h1>\n<div class=\"card\">\n<h2>Operators</h2>\n<table><tr><th>Kind</th><th>Operators</th><th>Notes</th></tr><tr><td>Arithmetic</td><td><code>+ - * /</code></td><td><code>/</code> always gives a float</td></tr><tr><td>More arithmetic</td><td><code>//  %  **</code></td><td>floor division, remainder, power</td></tr><tr><td>Comparison</td><td><code>== != &lt; &gt; &lt;= &gt;=</code></td><td>give True or False</td></tr><tr><td>Logical</td><td><code>and  or  not</code></td><td>combine conditions</td></tr><tr><td>Membership</td><td><code>in  not in</code></td><td>is something inside a list or text?</td></tr></table>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "print(7 / 2, 7 // 2, 7 % 2, 2 ** 10)\nprint(5 > 3, 5 == 5.0, \"a\" < \"b\")\nprint(True and False, True or False, not True)\nprint(\"py\" in \"python\", 3 in [1, 2, 3])",
+     "output": "3.5 3 1 1024\nTrue True True\nFalse True False\nTrue True"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>if, elif, else</h2>\n<p>Conditions let your program choose. Python checks from top to bottom and runs only the <strong>first</strong> matching block.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "marks = 72\n\nif marks >= 90:\n    grade = \"A\"\nelif marks >= 75:\n    grade = \"B\"\nelif marks >= 60:\n    grade = \"C\"\nelse:\n    grade = \"F\"\n\nprint(f\"Marks {marks} -> grade {grade}\")",
+     "output": "Marks 72 -> grade C"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>Do not forget the colon and the indentation.</li><li>Use <code>==</code> to compare and <code>=</code> to assign.</li><li><code>elif</code> means \"else if\" (you can have many).</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Truthiness</h2>\n<p>Python treats some values as <strong>False</strong> in a condition: <code>0</code>, <code>0.0</code>, <code>&quot;&quot;</code>, <code>[]</code>, <code>{}</code> and <code>None</code>. Everything else is True.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "for value in [0, 1, \"\", \"hi\", [], [0], None]:\n    print(repr(value), \"->\", \"True\" if value else \"False\")",
+     "output": "0 -> False\n1 -> True\n'' -> False\n'hi' -> True\n[] -> False\n[0] -> True\nNone -> False"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "loops",
+   "title": "Loops",
+   "section": "Data & Control",
+   "order": 4,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Loops</h1>\n<div class=\"card\">\n<h2>for Loops and range()</h2>\n<p>A <code>for</code> loop repeats code for each item in a sequence. <code>range(n)</code> gives the numbers 0 to n-1.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "for i in range(3):\n    print(\"Round\", i)\n\nfor letter in \"Py\":\n    print(letter)\n\ntotal = 0\nfor n in range(1, 6):\n    total += n\nprint(\"Sum 1..5 =\", total)",
+     "output": "Round 0\nRound 1\nRound 2\nP\ny\nSum 1..5 = 15"
+    },
+    {
+     "kind": "html",
+     "html": "<table><tr><th>Call</th><th>Gives</th></tr><tr><td><code>range(5)</code></td><td>0, 1, 2, 3, 4</td></tr><tr><td><code>range(2, 6)</code></td><td>2, 3, 4, 5</td></tr><tr><td><code>range(0, 10, 3)</code></td><td>0, 3, 6, 9</td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>while Loops</h2>\n<p>A <code>while</code> loop keeps going as long as its condition is True. Make sure something inside changes the condition, or the loop never ends.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "count = 3\nwhile count > 0:\n    print(\"Countdown\", count)\n    count -= 1\nprint(\"Liftoff!\")",
+     "output": "Countdown 3\nCountdown 2\nCountdown 1\nLiftoff!"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>break, continue and enumerate</h2>\n<ul><li><code>break</code> leaves the loop immediately.</li><li><code>continue</code> skips to the next round.</li><li><code>enumerate(items)</code> gives the index and the item together.</li></ul>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "for n in range(1, 10):\n    if n % 2 == 0:\n        continue        # skip even numbers\n    if n > 7:\n        break           # stop the loop\n    print(n)\n\nfor index, fruit in enumerate([\"apple\", \"mango\", \"kiwi\"], start=1):\n    print(index, fruit)",
+     "output": "1\n3\n5\n7\n1 apple\n2 mango\n3 kiwi"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "lists-tuples",
+   "title": "Lists & Tuples",
+   "section": "Data & Control",
+   "order": 5,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Lists & Tuples</h1>\n<div class=\"card\">\n<h2>Lists</h2>\n<p>A <strong>list</strong> holds many values in order. It is <strong>mutable</strong>: you can add, remove and change items. Indexing starts at 0 and negative indexes count from the end.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "fruits = [\"apple\", \"mango\"]\nfruits.append(\"kiwi\")\nfruits.insert(0, \"banana\")\nprint(fruits)\nprint(fruits[0], fruits[-1], len(fruits))\nfruits.remove(\"mango\")\nlast = fruits.pop()\nprint(last, fruits)\nfruits[0] = \"grape\"\nprint(sorted(fruits))",
+     "output": "['banana', 'apple', 'mango', 'kiwi']\nbanana kiwi 4\nkiwi ['banana', 'apple']\n['apple', 'grape']"
+    },
+    {
+     "kind": "html",
+     "html": "<table><tr><th>Method</th><th>What it does</th></tr><tr><td><code>append(x)</code></td><td>Add to the end</td></tr><tr><td><code>insert(i, x)</code></td><td>Add at a position</td></tr><tr><td><code>remove(x)</code></td><td>Remove the first x</td></tr><tr><td><code>pop()</code></td><td>Remove and return the last item</td></tr><tr><td><code>sort()</code></td><td>Sort in place</td></tr><tr><td><code>len(list)</code></td><td>How many items</td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>Slicing and Comprehensions</h2>\n<p>A slice <code>items[start:stop]</code> takes part of a list (stop is not included). A <strong>list comprehension</strong> builds a new list in one line.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "nums = [10, 20, 30, 40, 50]\nprint(nums[1:4])      # index 1 to 3\nprint(nums[:2], nums[3:])\nprint(nums[::-1])     # reversed\n\nsquares = [n * n for n in range(1, 6)]\nbig = [n for n in nums if n > 25]\nprint(squares, big)",
+     "output": "[20, 30, 40]\n[10, 20] [40, 50]\n[50, 40, 30, 20, 10]\n[1, 4, 9, 16, 25] [30, 40, 50]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Tuples</h2>\n<p>A <strong>tuple</strong> is like a list that <em>cannot change</em> (immutable). Use it for fixed groups such as coordinates. You can unpack it into variables.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "point = (3, 4)\nx, y = point               # unpacking\nprint(x, y, point[0])\n\ntry:\n    point[0] = 9\nexcept TypeError as e:\n    print(\"Error:\", e)\n\nprint(len((1, 2, 3)), (1, 2) + (3,))",
+     "output": "3 4 3\nError: 'tuple' object does not support item assignment\n3 (1, 2, 3)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "dicts-sets",
+   "title": "Dictionaries & Sets",
+   "section": "Data & Control",
+   "order": 6,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Dictionaries & Sets</h1>\n<div class=\"card\">\n<h2>Dictionaries</h2>\n<p>A <strong>dictionary</strong> stores <em>key: value</em> pairs and finds a value quickly by its key. Keys must be unique.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "student = {\"name\": \"Ali\", \"age\": 20}\nstudent[\"city\"] = \"Lahore\"          # add\nstudent[\"age\"] = 21                 # change\nprint(student)\nprint(student[\"name\"], student.get(\"phone\", \"no phone\"))\n\nfor key, value in student.items():\n    print(key, \"=\", value)\n\ndel student[\"city\"]\nprint(\"city\" in student, len(student))",
+     "output": "{'name': 'Ali', 'age': 21, 'city': 'Lahore'}\nAli no phone\nname = Ali\nage = 21\ncity = Lahore\nFalse 2"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li><code>d[key]</code> raises an error if the key is missing; <code>d.get(key, default)</code> does not.</li><li><code>d.items()</code> gives (key, value) pairs for looping.</li><li><code>key in d</code> checks if a key exists.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Sets</h2>\n<p>A <strong>set</strong> holds unique values with no order. It is perfect for removing duplicates and for maths-style operations.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "tags = [\"web\", \"python\", \"web\", \"css\", \"python\"]\nunique = set(tags)\nprint(sorted(unique), len(unique))\n\na = {1, 2, 3, 4}\nb = {3, 4, 5}\nprint(sorted(a | b), sorted(a & b), sorted(a - b))\nprint(2 in a)",
+     "output": "['css', 'python', 'web'] 3\n[1, 2, 3, 4, 5] [3, 4] [1, 2]\nTrue"
+    },
+    {
+     "kind": "html",
+     "html": "<table><tr><th>Operation</th><th>Meaning</th></tr><tr><td><code>a | b</code></td><td>Union (everything)</td></tr><tr><td><code>a &amp; b</code></td><td>Intersection (in both)</td></tr><tr><td><code>a - b</code></td><td>In a but not in b</td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>Choosing the Right Container</h2>\n<table><tr><th>Need</th><th>Use</th></tr><tr><td>Ordered items you will change</td><td><code>list</code></td></tr><tr><td>Fixed group of items</td><td><code>tuple</code></td></tr><tr><td>Look up by a name or id</td><td><code>dict</code></td></tr><tr><td>Unique items, fast membership test</td><td><code>set</code></td></tr></table>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "functions",
+   "title": "Functions",
+   "section": "Data & Control",
+   "order": 7,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Functions</h1>\n<div class=\"card\">\n<h2>Defining and Calling</h2>\n<p>A <strong>function</strong> is a named block of code you can reuse. Define it with <code>def</code>, send values in as <em>parameters</em> and send a result back with <code>return</code>.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "def square(n):\n    \"\"\"Return n multiplied by itself.\"\"\"\n    return n * n\n\ndef greet(name):\n    print(\"Hello,\", name)\n\nprint(square(7))\nresult = greet(\"Sara\")\nprint(result)          # greet returns None",
+     "output": "49\nHello, Sara\nNone"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>A function without <code>return</code> gives back <code>None</code>.</li><li>Write a short text (docstring) under <code>def</code> to explain what it does.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Default, Keyword and Variable Arguments</h2>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "def power(base, exp=2):\n    return base ** exp\n\ndef total(*numbers):\n    return sum(numbers)\n\ndef profile(**info):\n    return \", \".join(f\"{k}={v}\" for k, v in info.items())\n\nprint(power(5), power(2, 8), power(exp=3, base=2))\nprint(total(1, 2, 3, 4))\nprint(profile(name=\"Ali\", age=20))",
+     "output": "25 256 8\n10\nname=Ali, age=20"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li><code>size=1</code> is a <strong>default</strong> value used when the caller does not pass one.</li><li>Call with names (<code>greet(name=&quot;Ali&quot;)</code>) for clarity.</li><li><code>*args</code> collects extra positional arguments into a tuple; <code>**kwargs</code> collects extra named ones into a dict.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Scope and lambda</h2>\n<p>Variables created inside a function are <strong>local</strong>: they disappear when it ends. A <strong>lambda</strong> is a tiny one-line function, often used with <code>sorted</code> or <code>map</code>.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "x = \"global\"\n\ndef show():\n    x = \"local\"        # a different variable\n    return x\n\nprint(show(), x)\n\nwords = [\"pear\", \"fig\", \"banana\"]\nprint(sorted(words, key=lambda w: len(w)))\nprint(list(map(lambda n: n * 2, [1, 2, 3])))",
+     "output": "local global\n['fig', 'pear', 'banana']\n[2, 4, 6]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "oop",
+   "title": "Classes & Objects",
+   "section": "Beyond the Basics",
+   "order": 8,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Classes & Objects</h1>\n<div class=\"card\">\n<h2>Classes and Objects</h2>\n<p>A <strong>class</strong> is a blueprint; an <strong>object</strong> is one thing made from it. <code>__init__</code> runs when an object is created, and <code>self</code> means \"this object\".</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "class Student:\n    def __init__(self, name, marks):\n        self.name = name\n        self.marks = marks\n\n    def passed(self):\n        return self.marks >= 50\n\na = Student(\"Ayesha\", 82)\nb = Student(\"Bilal\", 41)\nprint(a.name, a.passed())\nprint(b.name, b.passed())",
+     "output": "Ayesha True\nBilal False"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>Variables stored on <code>self</code> are the object's <strong>attributes</strong>.</li><li>Functions inside a class are <strong>methods</strong>. Their first parameter is always <code>self</code>.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Special Methods</h2>\n<p>Methods with double underscores let your class work with Python features. <code>__str__</code> controls what <code>print()</code> shows.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "class Point:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n\n    def __str__(self):\n        return f\"Point({self.x}, {self.y})\"\n\n    def __add__(self, other):\n        return Point(self.x + other.x, self.y + other.y)\n\np = Point(1, 2) + Point(3, 4)\nprint(p)",
+     "output": "Point(4, 6)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Inheritance</h2>\n<p>A class can <strong>inherit</strong> from another to reuse its code. The child can add methods or <em>override</em> existing ones. <code>super()</code> calls the parent's version.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "class Animal:\n    def __init__(self, name):\n        self.name = name\n    def speak(self):\n        return \"...\"\n\nclass Dog(Animal):\n    def __init__(self, name, breed):\n        super().__init__(name)\n        self.breed = breed\n    def speak(self):\n        return \"Woof\"\n\nclass Cat(Animal):\n    def speak(self):\n        return \"Meow\"\n\nfor pet in [Dog(\"Rex\", \"Husky\"), Cat(\"Tom\")]:\n    print(pet.name, \"says\", pet.speak())",
+     "output": "Rex says Woof\nTom says Meow"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "errors-files",
+   "title": "Errors & Files",
+   "section": "Beyond the Basics",
+   "order": 9,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Errors & Files</h1>\n<div class=\"card\">\n<h2>Handling Errors</h2>\n<p>When something goes wrong Python raises an <strong>exception</strong>. Catch it with <code>try</code> and <code>except</code> so your program does not crash.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "def to_number(text):\n    try:\n        return int(text)\n    except ValueError:\n        print(f\"{text!r} is not a number\")\n        return None\n    finally:\n        print(\"checked\", repr(text))\n\nprint(to_number(\"42\"))\nprint(to_number(\"abc\"))\n\ntry:\n    print(10 / 0)\nexcept ZeroDivisionError as e:\n    print(\"Error:\", e)",
+     "output": "checked '42'\n42\n'abc' is not a number\nchecked 'abc'\nNone\nError: division by zero"
+    },
+    {
+     "kind": "html",
+     "html": "<table><tr><th>Block</th><th>Runs</th></tr><tr><td><code>try</code></td><td>The risky code</td></tr><tr><td><code>except X</code></td><td>Only if error type X happened</td></tr><tr><td><code>else</code></td><td>Only if there was no error</td></tr><tr><td><code>finally</code></td><td>Always (cleanup)</td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>Raising Your Own Errors</h2>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "def set_age(age):\n    if not isinstance(age, int):\n        raise TypeError(\"age must be an integer\")\n    if age < 0:\n        raise ValueError(\"age cannot be negative\")\n    return age\n\nfor value in [25, -3, \"x\"]:\n    try:\n        print(\"OK:\", set_age(value))\n    except (TypeError, ValueError) as e:\n        print(type(e).__name__ + \":\", e)",
+     "output": "OK: 25\nValueError: age cannot be negative\nTypeError: age must be an integer"
+    },
+    {
+     "kind": "html",
+     "html": "<p>Use <code>raise</code> when your code finds a bad situation. Choose a fitting built-in type like <code>ValueError</code> or <code>TypeError</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>Reading and Writing Files</h2>\n<p>Use <code>with open(...)</code>. It closes the file for you, even if an error happens. Modes: <code>&quot;r&quot;</code> read, <code>&quot;w&quot;</code> write (erases), <code>&quot;a&quot;</code> append.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "import json, os, tempfile\n\npath = os.path.join(tempfile.mkdtemp(), \"notes.txt\")\n\nwith open(path, \"w\") as f:          # write\n    f.write(\"first line\\n\")\n    f.write(\"second line\\n\")\n\nwith open(path, \"a\") as f:          # append\n    f.write(\"third line\\n\")\n\nwith open(path) as f:               # read line by line\n    for number, line in enumerate(f, start=1):\n        print(number, line.strip())\n\nprint(json.dumps({\"name\": \"Ali\", \"scores\": [90, 85]}))\n\ntry:\n    open(\"missing.txt\")\nexcept FileNotFoundError:\n    print(\"missing.txt does not exist\")",
+     "output": "1 first line\n2 second line\n3 third line\n{\"name\": \"Ali\", \"scores\": [90, 85]}\nmissing.txt does not exist"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>Always handle <code>FileNotFoundError</code> when reading a file that may not exist.</li><li>Use <code>import</code> to use other modules, for example <code>import json</code> to save data as JSON.</li></ul>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  }
+ ]
+}

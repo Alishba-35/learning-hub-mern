@@ -1,0 +1,277 @@
+{
+ "languageSlug": "sql",
+ "quizzes": [
+  {
+   "slug": "sql-basics",
+   "title": "SQL Basics Checkpoint",
+   "section": "SQL Basics",
+   "order": 1,
+   "description": "Covers: Databases & SQL Basics, SELECT, WHERE & ORDER BY, INSERT, UPDATE & DELETE.",
+   "questions": [
+    {
+     "id": "sql-basics-1",
+     "type": "choice",
+     "prompt": "Which SQL command reads data from a table?",
+     "options": [
+      "UPDATE",
+      "SELECT",
+      "INSERT",
+      "READ"
+     ],
+     "correctIndex": 1,
+     "explanation": "SELECT reads data. INSERT adds rows and UPDATE changes them."
+    },
+    {
+     "id": "sql-basics-2",
+     "type": "choice",
+     "prompt": "Which names does this query return (in this order)?",
+     "options": [
+      "Omar, Sara",
+      "Hira, Omar, Sara",
+      "Sara, Omar, Hira",
+      "Ali, Hira"
+     ],
+     "correctIndex": 1,
+     "explanation": "Hira (60), Omar (80) and Sara (80) have more than 55 points. ORDER BY name sorts them alphabetically.",
+     "code": "-- scores (name, team, points)\n-- Ali  | A | 50\n-- Sara | B | 80\n-- Omar | A | 80\n-- Hira | B | 60\nSELECT name FROM scores WHERE points > 55 ORDER BY name;",
+     "codeLanguage": "sql"
+    },
+    {
+     "id": "sql-basics-3",
+     "type": "choice",
+     "prompt": "What does this query return?",
+     "options": [
+      "3",
+      "2",
+      "1",
+      "4"
+     ],
+     "correctIndex": 1,
+     "explanation": "Two rows (Ali and Omar) belong to team A.",
+     "code": "-- scores (name, team, points)\n-- Ali  | A | 50\n-- Sara | B | 80\n-- Omar | A | 80\n-- Hira | B | 60\nSELECT COUNT(*) FROM scores WHERE team = 'A';",
+     "codeLanguage": "sql"
+    },
+    {
+     "id": "sql-basics-4",
+     "type": "choice",
+     "prompt": "What happens if you run UPDATE without a WHERE clause?",
+     "options": [
+      "SQL refuses to run it",
+      "Only the first row is updated",
+      "Nothing changes",
+      "Every row in the table is updated"
+     ],
+     "correctIndex": 3,
+     "explanation": "Without WHERE the change applies to all rows. Always check the WHERE first."
+    },
+    {
+     "id": "sql-basics-5",
+     "type": "choice",
+     "prompt": "Which names does this query return?",
+     "options": [
+      "Ali, Omar",
+      "Hira, Omar, Sara",
+      "Sara",
+      "Hira, Sara"
+     ],
+     "correctIndex": 3,
+     "explanation": "LIKE '%a' matches names that end with a: Hira and Sara.",
+     "code": "-- scores (name, team, points)\n-- Ali  | A | 50\n-- Sara | B | 80\n-- Omar | A | 80\n-- Hira | B | 60\nSELECT name FROM scores WHERE name LIKE '%a' ORDER BY name;",
+     "codeLanguage": "sql"
+    },
+    {
+     "id": "sql-basics-6",
+     "type": "fill",
+     "prompt": "Complete the keyword that filters the rows.",
+     "code": "-- scores (name, team, points)\n-- Ali  | A | 50\n-- Sara | B | 80\n-- Omar | A | 80\n-- Hira | B | 60\nSELECT name FROM scores ____ points = 50;",
+     "codeLanguage": "sql",
+     "answers": [
+      "WHERE"
+     ],
+     "caseSensitive": false,
+     "explanation": "WHERE keeps only the rows that match the condition."
+    }
+   ]
+  },
+  {
+   "slug": "combining-data",
+   "title": "Combining Data Checkpoint",
+   "section": "Combining Data",
+   "order": 2,
+   "description": "Covers: Aggregates & GROUP BY, Joins, Subqueries.",
+   "questions": [
+    {
+     "id": "combining-data-1",
+     "type": "choice",
+     "prompt": "What does this query return?",
+     "options": [
+      "A 50, B 80",
+      "A 130, B 80",
+      "A 80, B 140",
+      "A 130, B 140"
+     ],
+     "correctIndex": 3,
+     "explanation": "GROUP BY makes one row per team: A = 50 + 80 = 130 and B = 80 + 60 = 140.",
+     "code": "-- scores (name, team, points)\n-- Ali  | A | 50\n-- Sara | B | 80\n-- Omar | A | 80\n-- Hira | B | 60\nSELECT team, SUM(points) FROM scores GROUP BY team ORDER BY team;",
+     "codeLanguage": "sql"
+    },
+    {
+     "id": "combining-data-2",
+     "type": "choice",
+     "prompt": "What does this query return?",
+     "options": [
+      "67.5",
+      "65",
+      "70",
+      "67"
+     ],
+     "correctIndex": 0,
+     "explanation": "(50 + 80 + 80 + 60) / 4 = 67.5.",
+     "code": "-- scores (name, team, points)\n-- Ali  | A | 50\n-- Sara | B | 80\n-- Omar | A | 80\n-- Hira | B | 60\nSELECT AVG(points) FROM scores;",
+     "codeLanguage": "sql"
+    },
+    {
+     "id": "combining-data-3",
+     "type": "choice",
+     "prompt": "What does this query return?",
+     "options": [
+      "A",
+      "No rows",
+      "B",
+      "A, B"
+     ],
+     "correctIndex": 2,
+     "explanation": "HAVING filters groups after they are formed. Team A totals 130 and team B totals 140, so only B passes.",
+     "code": "-- scores (name, team, points)\n-- Ali  | A | 50\n-- Sara | B | 80\n-- Omar | A | 80\n-- Hira | B | 60\nSELECT team FROM scores GROUP BY team HAVING SUM(points) > 135;",
+     "codeLanguage": "sql"
+    },
+    {
+     "id": "combining-data-4",
+     "type": "choice",
+     "prompt": "Which join keeps all rows from the left table even when there is no match?",
+     "options": [
+      "INNER JOIN",
+      "LEFT JOIN",
+      "RIGHT JOIN",
+      "CROSS JOIN"
+     ],
+     "correctIndex": 1,
+     "explanation": "LEFT JOIN keeps every left row and fills NULL for missing matches. INNER JOIN drops rows without a match."
+    },
+    {
+     "id": "combining-data-5",
+     "type": "choice",
+     "prompt": "What does this query return?",
+     "options": [
+      "Ali 1, Sara 2",
+      "Ali 3, Sara 3",
+      "Ali 2",
+      "Ali 2, Sara 1"
+     ],
+     "correctIndex": 3,
+     "explanation": "The join matches each book to its author. Ali has two books and Sara has one.",
+     "code": "-- authors (id, name): 1 Ali, 2 Sara\n-- books (author_id, title): 1 SQL, 1 Web, 2 Java\nSELECT a.name, COUNT(b.title)\nFROM authors a\nJOIN books b ON b.author_id = a.id\nGROUP BY a.name\nORDER BY a.name;",
+     "codeLanguage": "sql"
+    },
+    {
+     "id": "combining-data-6",
+     "type": "fill",
+     "prompt": "Complete the aggregate function so the query finds the top scorers.",
+     "code": "-- scores (name, team, points)\n-- Ali  | A | 50\n-- Sara | B | 80\n-- Omar | A | 80\n-- Hira | B | 60\nSELECT name FROM scores\nWHERE points = (SELECT ____(points) FROM scores)\nORDER BY name;",
+     "codeLanguage": "sql",
+     "answers": [
+      "MAX"
+     ],
+     "caseSensitive": false,
+     "explanation": "The subquery returns the highest points (80), and the outer query returns everyone with that score."
+    }
+   ]
+  },
+  {
+   "slug": "database-design",
+   "title": "Database Design Checkpoint",
+   "section": "Database Design",
+   "order": 3,
+   "description": "Covers: Keys, Constraints & Design, Indexes & Views.",
+   "questions": [
+    {
+     "id": "database-design-1",
+     "type": "choice",
+     "prompt": "What does a primary key guarantee?",
+     "options": [
+      "Each row has a unique, non-NULL identifier",
+      "The column is always a number",
+      "The values can repeat but are indexed",
+      "The column is the first column"
+     ],
+     "correctIndex": 0,
+     "explanation": "A primary key identifies one row and can neither repeat nor be NULL."
+    },
+    {
+     "id": "database-design-2",
+     "type": "choice",
+     "prompt": "What is a foreign key?",
+     "options": [
+      "A second primary key in the same table",
+      "A column with encrypted values",
+      "A column that points to the primary key of another table",
+      "A key that opens the database"
+     ],
+     "correctIndex": 2,
+     "explanation": "Foreign keys link tables and keep the relationship valid."
+    },
+    {
+     "id": "database-design-3",
+     "type": "choice",
+     "prompt": "Which constraint stops two users from registering the same email?",
+     "options": [
+      "NOT NULL",
+      "CHECK",
+      "DEFAULT",
+      "UNIQUE"
+     ],
+     "correctIndex": 3,
+     "explanation": "UNIQUE rejects duplicate values in a column."
+    },
+    {
+     "id": "database-design-4",
+     "type": "choice",
+     "prompt": "How do you model a many-to-many relationship, like students and courses?",
+     "options": [
+      "By repeating course names in the students table",
+      "With one column of comma-separated ids",
+      "It cannot be modelled in SQL",
+      "With a junction table holding both foreign keys"
+     ],
+     "correctIndex": 3,
+     "explanation": "A junction table (like enrollments) has one row for each student and course pair."
+    },
+    {
+     "id": "database-design-5",
+     "type": "choice",
+     "prompt": "What is the main trade-off of adding an index?",
+     "options": [
+      "There is no trade-off",
+      "Faster writes, slower reads",
+      "It removes duplicate rows",
+      "Faster reads, but slower writes and extra space"
+     ],
+     "correctIndex": 3,
+     "explanation": "The database must update the index on every INSERT, UPDATE and DELETE."
+    },
+    {
+     "id": "database-design-6",
+     "type": "fill",
+     "prompt": "Complete the name of the view to read from.",
+     "code": "-- scores (name, team, points)\n-- Ali  | A | 50\n-- Sara | B | 80\n-- Omar | A | 80\n-- Hira | B | 60\nCREATE VIEW high AS SELECT name FROM scores WHERE points >= 80;\nSELECT name FROM ____ ORDER BY name;",
+     "codeLanguage": "sql",
+     "answers": [
+      "high"
+     ],
+     "caseSensitive": false,
+     "explanation": "A view is used like a table: you select from it by name."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,373 @@
+{
+ "languageSlug": "cpp",
+ "quizzes": [
+  {
+   "slug": "basics",
+   "title": "Basics Checkpoint",
+   "section": "Basics",
+   "order": 1,
+   "description": "Covers: Introduction, Data Types & Variables, Operators & Conditional Statements, Loops, Array, Strings, Function.",
+   "questions": [
+    {
+     "id": "basics-1",
+     "type": "choice",
+     "prompt": "Which header do you include to use cout?",
+     "options": [
+      "<cmath>",
+      "<iostream>",
+      "<string>",
+      "<stdio.h>"
+     ],
+     "correctIndex": 1,
+     "explanation": "<iostream> provides cin and cout. <stdio.h> is the C library for printf."
+    },
+    {
+     "id": "basics-2",
+     "type": "choice",
+     "prompt": "What does this program print? (Assume the usual #include lines.)",
+     "options": [
+      "4 1 3.5",
+      "3 1 3",
+      "3 1 3.5",
+      "3.5 1 3.5"
+     ],
+     "correctIndex": 2,
+     "explanation": "Dividing two ints drops the decimals (3). % gives the remainder (1). Casting one side to double gives 3.5.",
+     "code": "int main() {\n    int a = 7, b = 2;\n    cout << a / b << \" \" << a % b << \" \" << (double)a / b << endl;\n}",
+     "codeLanguage": "cpp"
+    },
+    {
+     "id": "basics-3",
+     "type": "choice",
+     "prompt": "What does this program print? (Assume the usual #include lines.)",
+     "options": [
+      "1 4 9 16",
+      "1 4 9",
+      "1 2 3",
+      "0 1 4"
+     ],
+     "correctIndex": 1,
+     "explanation": "The loop runs for i = 1, 2, 3 and prints each square: 1 4 9.",
+     "code": "int main() {\n    for (int i = 1; i <= 3; i++) {\n        cout << i * i << \" \";\n    }\n    cout << endl;\n}",
+     "codeLanguage": "cpp"
+    },
+    {
+     "id": "basics-4",
+     "type": "choice",
+     "prompt": "What does this program print? (Assume the usual #include lines.)",
+     "options": [
+      "11 World",
+      "11 Hello",
+      "10 Hello",
+      "5 Hello"
+     ],
+     "correctIndex": 1,
+     "explanation": "The string is now \"Hello World\" (11 characters). substr(0, 5) takes the first five.",
+     "code": "int main() {\n    string s = \"Hello\";\n    s += \" World\";\n    cout << s.length() << \" \" << s.substr(0, 5) << endl;\n}",
+     "codeLanguage": "cpp"
+    },
+    {
+     "id": "basics-5",
+     "type": "choice",
+     "prompt": "What is the index of the first element of an array in C++?",
+     "options": [
+      "It depends on the type",
+      "0",
+      "-1",
+      "1"
+     ],
+     "correctIndex": 1,
+     "explanation": "Arrays start at index 0, so an array of size 3 has indexes 0, 1 and 2."
+    },
+    {
+     "id": "basics-6",
+     "type": "fill",
+     "prompt": "Complete the call so the program prints 5.",
+     "code": "int add(int a, int b) { return a + b; }\n\nint main() {\n    cout << ____(2, 3) << endl;\n}",
+     "codeLanguage": "cpp",
+     "answers": [
+      "add"
+     ],
+     "caseSensitive": true,
+     "explanation": "The function is named add, so add(2, 3) returns 5."
+    }
+   ]
+  },
+  {
+   "slug": "memory-pointers",
+   "title": "Memory & Pointers Checkpoint",
+   "section": "Memory & Pointers",
+   "order": 2,
+   "description": "Covers: Pointers & References, Static & Dynamic Memory.",
+   "questions": [
+    {
+     "id": "memory-pointers-1",
+     "type": "choice",
+     "prompt": "What does & do in int *p = &x; ?",
+     "options": [
+      "Gets the value of x",
+      "Multiplies p and x",
+      "Gets the address of x",
+      "Declares a reference"
+     ],
+     "correctIndex": 2,
+     "explanation": "The address-of operator & gives the memory address, which a pointer can store."
+    },
+    {
+     "id": "memory-pointers-2",
+     "type": "choice",
+     "prompt": "What does this program print? (Assume the usual #include lines.)",
+     "options": [
+      "25",
+      "The address of x",
+      "10",
+      "15"
+     ],
+     "correctIndex": 0,
+     "explanation": "*p = 25 writes through the pointer, so x itself becomes 25.",
+     "code": "int main() {\n    int x = 10;\n    int *p = &x;\n    *p = 25;\n    cout << x << endl;\n}",
+     "codeLanguage": "cpp"
+    },
+    {
+     "id": "memory-pointers-3",
+     "type": "choice",
+     "prompt": "What does this program print? (Assume the usual #include lines.)",
+     "options": [
+      "5",
+      "7",
+      "6",
+      "Compile error"
+     ],
+     "correctIndex": 2,
+     "explanation": "A reference parameter works on the original variable, so a changes from 5 to 6.",
+     "code": "void bump(int &n) { n++; }\n\nint main() {\n    int a = 5;\n    bump(a);\n    cout << a << endl;\n}",
+     "codeLanguage": "cpp"
+    },
+    {
+     "id": "memory-pointers-4",
+     "type": "choice",
+     "prompt": "What must you do with memory created with new?",
+     "options": [
+      "Nothing, it frees itself",
+      "Free it with delete (or use a smart pointer)",
+      "Free it with free()",
+      "Close it with close()"
+     ],
+     "correctIndex": 1,
+     "explanation": "Memory from new is not released automatically. Forgetting delete causes a memory leak."
+    },
+    {
+     "id": "memory-pointers-5",
+     "type": "choice",
+     "prompt": "What does this program print? (Assume the usual #include lines.)",
+     "options": [
+      "The address of arr",
+      "30",
+      "10",
+      "20"
+     ],
+     "correctIndex": 1,
+     "explanation": "p + 2 moves two elements forward, and * reads the value there: arr[2] is 30.",
+     "code": "int main() {\n    int arr[3] = {10, 20, 30};\n    int *p = arr;\n    cout << *(p + 2) << endl;\n}",
+     "codeLanguage": "cpp"
+    },
+    {
+     "id": "memory-pointers-6",
+     "type": "fill",
+     "prompt": "Complete the line that creates an int on the heap.",
+     "code": "int main() {\n    int *p = ____ int(42);\n    cout << *p << endl;\n    delete p;\n}",
+     "codeLanguage": "cpp",
+     "answers": [
+      "new"
+     ],
+     "caseSensitive": true,
+     "explanation": "new allocates memory on the heap and returns a pointer to it."
+    }
+   ]
+  },
+  {
+   "slug": "structures-oop",
+   "title": "Structures & OOP Checkpoint",
+   "section": "Structures & OOP",
+   "order": 3,
+   "description": "Covers: Structures & Enums, Class & Object, Encapsulation & Abstraction, Inheritance, Polymorphism, Operator Overloading, Friend Function & Class.",
+   "questions": [
+    {
+     "id": "structures-oop-1",
+     "type": "choice",
+     "prompt": "What is the default access level of members in a class?",
+     "options": [
+      "public",
+      "private",
+      "There is no default",
+      "protected"
+     ],
+     "correctIndex": 1,
+     "explanation": "Members of a class are private unless you say otherwise. In a struct they are public by default."
+    },
+    {
+     "id": "structures-oop-2",
+     "type": "choice",
+     "prompt": "What does this program print? (Assume the usual #include lines.)",
+     "options": [
+      "...",
+      "Compile error",
+      "Animal",
+      "Woof"
+     ],
+     "correctIndex": 3,
+     "explanation": "Because sound() is virtual, the version of the real object (Dog) runs, even through an Animal reference.",
+     "code": "class Animal {\npublic:\n    virtual string sound() { return \"...\"; }\n};\n\nclass Dog : public Animal {\npublic:\n    string sound() override { return \"Woof\"; }\n};\n\nint main() {\n    Dog d;\n    Animal &a = d;\n    cout << a.sound() << endl;\n}",
+     "codeLanguage": "cpp"
+    },
+    {
+     "id": "structures-oop-3",
+     "type": "choice",
+     "prompt": "What does this program print? (Assume the usual #include lines.)",
+     "options": [
+      "B A | ~B ~A",
+      "B A | ~A ~B",
+      "A B | ~A ~B",
+      "A B | ~B ~A"
+     ],
+     "correctIndex": 3,
+     "explanation": "Constructors run from base to derived (A then B). Destructors run in the opposite order (~B then ~A).",
+     "code": "struct A {\n    A() { cout << \"A \"; }\n    ~A() { cout << \"~A \"; }\n};\n\nstruct B : A {\n    B() { cout << \"B \"; }\n    ~B() { cout << \"~B \"; }\n};\n\nint main() {\n    B b;\n    cout << \"| \";\n}",
+     "codeLanguage": "cpp"
+    },
+    {
+     "id": "structures-oop-4",
+     "type": "choice",
+     "prompt": "What is operator overloading?",
+     "options": [
+      "Creating brand new operators like **",
+      "Using too many operators in one line",
+      "Replacing the compiler's operators for every type",
+      "Giving an operator a meaning for your own class"
+     ],
+     "correctIndex": 3,
+     "explanation": "You write a function such as operator+ so that a + b works for your own objects."
+    },
+    {
+     "id": "structures-oop-5",
+     "type": "choice",
+     "prompt": "What does this program print? (Assume the usual #include lines.)",
+     "options": [
+      "-430",
+      "0",
+      "70",
+      "100"
+     ],
+     "correctIndex": 2,
+     "explanation": "The first withdrawal works (100 - 30). The second is refused because 500 is more than the balance. Encapsulation protects the data.",
+     "code": "class Account {\n    double balance = 100;\npublic:\n    void withdraw(double x) { if (x <= balance) balance -= x; }\n    double get() const { return balance; }\n};\n\nint main() {\n    Account a;\n    a.withdraw(30);\n    a.withdraw(500);\n    cout << a.get() << endl;\n}",
+     "codeLanguage": "cpp"
+    },
+    {
+     "id": "structures-oop-6",
+     "type": "fill",
+     "prompt": "Complete the inheritance line so Dog can use name().",
+     "code": "class Animal {\npublic:\n    string name() { return \"animal\"; }\n};\n\nclass Dog : ____ Animal {};\n\nint main() {\n    Dog d;\n    cout << d.name() << endl;\n}",
+     "codeLanguage": "cpp",
+     "answers": [
+      "public"
+     ],
+     "caseSensitive": true,
+     "explanation": "public inheritance keeps the base class's public members public in the derived class."
+    }
+   ]
+  },
+  {
+   "slug": "advanced-cpp",
+   "title": "Advanced C++ Checkpoint",
+   "section": "Advanced C++",
+   "order": 4,
+   "description": "Covers: Templates, Exception Handling, STL: vector, map & Algorithms, File Handling.",
+   "questions": [
+    {
+     "id": "advanced-cpp-1",
+     "type": "choice",
+     "prompt": "What does template <typename T> let you do?",
+     "options": [
+      "Write one function or class that works with many types",
+      "Import a library",
+      "Declare a constant",
+      "Create a class with no members"
+     ],
+     "correctIndex": 0,
+     "explanation": "T is a placeholder type. The compiler creates a real version for each type you use."
+    },
+    {
+     "id": "advanced-cpp-2",
+     "type": "choice",
+     "prompt": "What does this program print? (Assume the usual #include lines.)",
+     "options": [
+      "9 2",
+      "9 2.5",
+      "9 1.5",
+      "3 1.5"
+     ],
+     "correctIndex": 1,
+     "explanation": "The same template works for int (9) and for double (2.5).",
+     "code": "template <typename T>\nT bigger(T a, T b) { return a > b ? a : b; }\n\nint main() {\n    cout << bigger(3, 9) << \" \" << bigger(2.5, 1.5) << endl;\n}",
+     "codeLanguage": "cpp"
+    },
+    {
+     "id": "advanced-cpp-3",
+     "type": "choice",
+     "prompt": "What does this program print? (Assume the usual #include lines.)",
+     "options": [
+      "done",
+      "caught bad\ndone",
+      "caught bad",
+      "bad\ndone"
+     ],
+     "correctIndex": 1,
+     "explanation": "The thrown error jumps to catch, then the program continues with the next line.",
+     "code": "int main() {\n    try {\n        throw runtime_error(\"bad\");\n    } catch (const exception &e) {\n        cout << \"caught \" << e.what() << endl;\n    }\n    cout << \"done\" << endl;\n}",
+     "codeLanguage": "cpp"
+    },
+    {
+     "id": "advanced-cpp-4",
+     "type": "choice",
+     "prompt": "What does this program print? (Assume the usual #include lines.)",
+     "options": [
+      "4 0 4",
+      "1 0 4",
+      "1 3 4",
+      "0 1 4"
+     ],
+     "correctIndex": 1,
+     "explanation": "After sorting v is {1, 3, 4}. Then 0 is added at the end: first is 1, last is 0, and the size is 4.",
+     "code": "int main() {\n    vector<int> v = {4, 1, 3};\n    sort(v.begin(), v.end());\n    v.push_back(0);\n    cout << v[0] << \" \" << v.back() << \" \" << v.size() << endl;\n}",
+     "codeLanguage": "cpp"
+    },
+    {
+     "id": "advanced-cpp-5",
+     "type": "choice",
+     "prompt": "Which open mode adds to the end of a file and keeps the old content?",
+     "options": [
+      "ios::binary",
+      "ios::in",
+      "ios::app",
+      "ios::trunc"
+     ],
+     "correctIndex": 2,
+     "explanation": "ios::app (append) writes at the end. Opening with ios::out alone erases the old content."
+    },
+    {
+     "id": "advanced-cpp-6",
+     "type": "fill",
+     "prompt": "Complete the method that tells how many times key \"b\" is in the map (0 or 1).",
+     "code": "int main() {\n    map<string, int> m;\n    m[\"a\"] = 1;\n    m[\"b\"] = 2;\n    cout << m.____(\"b\") << endl;\n}",
+     "codeLanguage": "cpp",
+     "answers": [
+      "count"
+     ],
+     "caseSensitive": true,
+     "explanation": "count(key) returns 1 if the key exists and 0 if it does not."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,303 @@
+{
+ "slug": "sql",
+ "name": "SQL",
+ "description": "SQL is the language of relational databases: query, combine, change and design data stored in tables.",
+ "color": "#336791",
+ "order": 7,
+ "topics": [
+  {
+   "slug": "intro",
+   "title": "Databases & SQL Basics",
+   "section": "SQL Basics",
+   "order": 1,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Databases & SQL Basics</h1>\n<div class=\"card\">\n<h2>What is a Database?</h2>\n<p>A <strong>database</strong> stores data in an organised way so it can be searched, updated and shared safely. A <strong>relational database</strong> keeps data in <strong>tables</strong>, like spreadsheets: each <strong>row</strong> is one record and each <strong>column</strong> is one property.</p>\n<table><tr><th>id</th><th>name</th><th>city</th><th>age</th></tr><tr><td>1</td><td>Ayesha</td><td>Lahore</td><td>20</td></tr><tr><td>2</td><td>Bilal</td><td>Karachi</td><td>22</td></tr></table>\n<p><strong>SQL</strong> (Structured Query Language) is the language you use to talk to a relational database.</p>\n</div>\n\n<div class=\"card\">\n<h2>Kinds of SQL Commands</h2>\n<table><tr><th>Group</th><th>Purpose</th><th>Examples</th></tr><tr><td>DDL (definition)</td><td>Create and change structure</td><td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code></td></tr><tr><td>DML (manipulation)</td><td>Change the data</td><td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td></tr><tr><td>DQL (query)</td><td>Read the data</td><td><code>SELECT</code></td></tr><tr><td>DCL / TCL</td><td>Permissions and transactions</td><td><code>GRANT</code>, <code>COMMIT</code>, <code>ROLLBACK</code></td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>The Practice Database</h2>\n<p>Every lesson uses the same small database: <strong>students</strong>, <strong>courses</strong> and <strong>enrollments</strong> (which student takes which course, with a grade). To follow along, paste this script into any SQL tool (for example SQLite, DB Browser, MySQL Workbench or an online SQL playground).</p>\n<pre><code>CREATE TABLE students (\n  id INTEGER PRIMARY KEY,\n  name TEXT NOT NULL,\n  city TEXT,\n  age INTEGER\n);\nCREATE TABLE courses (\n  id INTEGER PRIMARY KEY,\n  title TEXT NOT NULL,\n  credits INTEGER\n);\nCREATE TABLE enrollments (\n  student_id INTEGER,\n  course_id INTEGER,\n  grade INTEGER,\n  FOREIGN KEY (student_id) REFERENCES students(id),\n  FOREIGN KEY (course_id) REFERENCES courses(id)\n);\n\nINSERT INTO students VALUES\n  (1, &#x27;Ayesha&#x27;, &#x27;Lahore&#x27;, 20), (2, &#x27;Bilal&#x27;, &#x27;Karachi&#x27;, 22),\n  (3, &#x27;Hira&#x27;, &#x27;Lahore&#x27;, 19),   (4, &#x27;Zain&#x27;, &#x27;Islamabad&#x27;, 21),\n  (5, &#x27;Sara&#x27;, &#x27;Karachi&#x27;, 23),  (6, &#x27;Omar&#x27;, &#x27;Multan&#x27;, 24);\nINSERT INTO courses VALUES\n  (1, &#x27;Databases&#x27;, 3), (2, &#x27;Web Engineering&#x27;, 4), (3, &#x27;Algorithms&#x27;, 3);\nINSERT INTO enrollments VALUES\n  (1, 1, 88), (1, 2, 92), (2, 1, 75), (3, 2, 81),\n  (3, 3, 67), (4, 1, 59), (5, 2, 95), (5, 3, 84);</code></pre>\n<p>All outputs in this course come from a real run on SQLite. SQL is almost the same in MySQL, PostgreSQL and SQL Server; the few differences are mentioned where they matter.</p>\n</div>\n\n<div class=\"card\">\n<h2>Your First Query</h2>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT * FROM students;\n\nSELECT name, city FROM students;",
+     "output": "id | name   | city      | age\n---+--------+-----------+----\n1  | Ayesha | Lahore    | 20\n2  | Bilal  | Karachi   | 22\n3  | Hira   | Lahore    | 19\n4  | Zain   | Islamabad | 21\n5  | Sara   | Karachi   | 23\n6  | Omar   | Multan    | 24\n(6 rows)\n\nname   | city\n-------+----------\nAyesha | Lahore\nBilal  | Karachi\nHira   | Lahore\nZain   | Islamabad\nSara   | Karachi\nOmar   | Multan\n(6 rows)"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li><code>SELECT</code> chooses the columns, <code>*</code> means all columns.</li><li><code>FROM</code> says which table.</li><li>SQL keywords are not case sensitive, but writing them in UPPER CASE makes queries easier to read.</li><li>End a statement with a semicolon <code>;</code>.</li></ul>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "select-filter",
+   "title": "SELECT, WHERE & ORDER BY",
+   "section": "SQL Basics",
+   "order": 2,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>SELECT, WHERE & ORDER BY</h1>\n<div class=\"card\">\n<h2>Filtering with WHERE</h2>\n<p><code>WHERE</code> keeps only the rows that match a condition. Text values go in single quotes.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT name, age FROM students WHERE city = 'Lahore';\n\nSELECT name, city FROM students WHERE age > 20 AND city <> 'Karachi';",
+     "output": "name   | age\n-------+----\nAyesha | 20\nHira   | 19\n(2 rows)\n\nname | city\n-----+----------\nZain | Islamabad\nOmar | Multan\n(2 rows)"
+    },
+    {
+     "kind": "html",
+     "html": "<table><tr><th>Operator</th><th>Meaning</th></tr><tr><td><code>=  &lt;&gt;  &lt;  &gt;  &lt;=  &gt;=</code></td><td>Compare (<code>&lt;&gt;</code> means not equal)</td></tr><tr><td><code>AND  OR  NOT</code></td><td>Combine conditions</td></tr><tr><td><code>IN (a, b)</code></td><td>Matches any value in the list</td></tr><tr><td><code>BETWEEN a AND b</code></td><td>Inside a range (including both ends)</td></tr><tr><td><code>LIKE</code></td><td>Pattern: <code>%</code> = any text, <code>_</code> = one character</td></tr><tr><td><code>IS NULL</code></td><td>The value is missing</td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>IN, BETWEEN and LIKE</h2>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT name FROM students WHERE city IN ('Lahore', 'Multan');\n\nSELECT name, age FROM students WHERE age BETWEEN 20 AND 22;\n\nSELECT name FROM students WHERE name LIKE '%a';",
+     "output": "name\n------\nAyesha\nHira\nOmar\n(3 rows)\n\nname   | age\n-------+----\nAyesha | 20\nBilal  | 22\nZain   | 21\n(3 rows)\n\nname\n------\nAyesha\nHira\nSara\n(3 rows)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Sorting, Limiting and DISTINCT</h2>\n<ul><li><code>ORDER BY col</code> sorts (add <code>DESC</code> for high to low).</li><li><code>LIMIT n</code> returns only the first n rows (SQL Server uses <code>TOP n</code>).</li><li><code>DISTINCT</code> removes duplicate rows.</li></ul>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT name, age FROM students ORDER BY age DESC LIMIT 3;\n\nSELECT DISTINCT city FROM students ORDER BY city;",
+     "output": "name  | age\n------+----\nOmar  | 24\nSara  | 23\nBilal | 22\n(3 rows)\n\ncity\n---------\nIslamabad\nKarachi\nLahore\nMultan\n(4 rows)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Column Aliases</h2>\n<p>Rename a result column with <code>AS</code>. You can also calculate in a query.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT name AS student, age + 1 AS next_year_age FROM students WHERE id <= 2;",
+     "output": "student | next_year_age\n--------+--------------\nAyesha  | 21\nBilal   | 23\n(2 rows)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "modify-data",
+   "title": "INSERT, UPDATE & DELETE",
+   "section": "SQL Basics",
+   "order": 3,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>INSERT, UPDATE & DELETE</h1>\n<div class=\"card\">\n<h2>INSERT</h2>\n<p>Add a new row by naming the columns and giving the values in the same order.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "INSERT INTO students (id, name, city, age) VALUES (7, 'Noor', 'Quetta', 18);\n\nSELECT * FROM students WHERE id = 7;",
+     "output": "OK (1 row affected)\n\nid | name | city   | age\n---+------+--------+----\n7  | Noor | Quetta | 18\n(1 row)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>UPDATE</h2>\n<p><code>UPDATE</code> changes existing rows. <strong>Always use WHERE</strong>: without it, every row is changed!</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "UPDATE students SET city = 'Lahore', age = age + 1 WHERE id = 6;\n\nSELECT * FROM students WHERE id = 6;",
+     "output": "OK (1 row affected)\n\nid | name | city   | age\n---+------+--------+----\n6  | Omar | Lahore | 25\n(1 row)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>DELETE</h2>\n<p><code>DELETE</code> removes rows. Like <code>UPDATE</code>, it needs a <code>WHERE</code> or it removes everything.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "DELETE FROM enrollments WHERE grade < 60;\n\nSELECT COUNT(*) AS enrollments_left FROM enrollments;",
+     "output": "OK (1 row affected)\n\nenrollments_left\n----------------\n7\n(1 row)"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>Run a <code>SELECT</code> with the same <code>WHERE</code> first to see which rows will be affected.</li><li>Use <strong>transactions</strong> (<code>BEGIN</code> ... <code>COMMIT</code> / <code>ROLLBACK</code>) to be able to undo a mistake.</li></ul>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "aggregate-group",
+   "title": "Aggregates & GROUP BY",
+   "section": "Combining Data",
+   "order": 4,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Aggregates & GROUP BY</h1>\n<div class=\"card\">\n<h2>Aggregate Functions</h2>\n<p>An <strong>aggregate function</strong> turns many rows into one value.</p>\n<table><tr><th>Function</th><th>Result</th></tr><tr><td><code>COUNT(*)</code></td><td>Number of rows</td></tr><tr><td><code>SUM(col)</code></td><td>Total</td></tr><tr><td><code>AVG(col)</code></td><td>Average</td></tr><tr><td><code>MIN(col)</code> / <code>MAX(col)</code></td><td>Smallest / biggest</td></tr></table>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT COUNT(*) AS students, MIN(age) AS youngest, MAX(age) AS oldest, ROUND(AVG(age), 1) AS average_age FROM students;",
+     "output": "students | youngest | oldest | average_age\n---------+----------+--------+------------\n6        | 19       | 24     | 21.5\n(1 row)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>GROUP BY</h2>\n<p><code>GROUP BY</code> makes one group per value and applies the aggregate to each group.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT city, COUNT(*) AS students FROM students GROUP BY city ORDER BY students DESC, city;\n\nSELECT course_id, ROUND(AVG(grade), 1) AS average_grade FROM enrollments GROUP BY course_id;",
+     "output": "city      | students\n----------+---------\nKarachi   | 2\nLahore    | 2\nIslamabad | 1\nMultan    | 1\n(4 rows)\n\ncourse_id | average_grade\n----------+--------------\n1         | 74.0\n2         | 89.3\n3         | 75.5\n(3 rows)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>HAVING vs WHERE</h2>\n<p><code>WHERE</code> filters <em>rows before</em> grouping. <code>HAVING</code> filters <em>groups after</em> grouping (it can use aggregates).</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT course_id, COUNT(*) AS enrolled, MAX(grade) AS top_grade\nFROM enrollments\nWHERE grade >= 60\nGROUP BY course_id\nHAVING COUNT(*) >= 3;",
+     "output": "course_id | enrolled | top_grade\n----------+----------+----------\n2         | 3        | 95\n(1 row)"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>Every column in <code>SELECT</code> must be either in <code>GROUP BY</code> or inside an aggregate.</li><li><code>COUNT(col)</code> ignores NULLs; <code>COUNT(*)</code> counts every row.</li></ul>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "joins",
+   "title": "Joins",
+   "section": "Combining Data",
+   "order": 5,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Joins</h1>\n<div class=\"card\">\n<h2>Why Joins?</h2>\n<p>Good databases split data into several tables to avoid repeating it. A <strong>join</strong> puts the pieces back together by matching a <strong>foreign key</strong> in one table with the <strong>primary key</strong> of another. Here <code>enrollments.student_id</code> points to <code>students.id</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>INNER JOIN</h2>\n<p><code>INNER JOIN</code> keeps only rows that have a match in <em>both</em> tables.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT s.name, e.course_id, e.grade\nFROM students s\nINNER JOIN enrollments e ON e.student_id = s.id\nWHERE e.grade >= 90;",
+     "output": "name   | course_id | grade\n-------+-----------+------\nAyesha | 2         | 92\nSara   | 2         | 95\n(2 rows)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>LEFT JOIN</h2>\n<p><code>LEFT JOIN</code> keeps <em>all</em> rows of the left table, filling <code>NULL</code> where nothing matches. It is how you find rows <em>without</em> a match, like students who take no course.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT s.name, e.course_id, e.grade\nFROM students s\nLEFT JOIN enrollments e ON e.student_id = s.id\nWHERE s.id IN (4, 6)\nORDER BY s.id;\n\nSELECT s.name AS no_course\nFROM students s\nLEFT JOIN enrollments e ON e.student_id = s.id\nWHERE e.student_id IS NULL;",
+     "output": "name | course_id | grade\n-----+-----------+------\nZain | 1         | 59\nOmar | NULL      | NULL\n(2 rows)\n\nno_course\n---------\nOmar\n(1 row)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Joining Three Tables</h2>\n<p>Use table aliases (<code>s</code>, <code>c</code>, <code>e</code>) to keep queries short.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT s.name, c.title, e.grade\nFROM enrollments e\nJOIN students s ON s.id = e.student_id\nJOIN courses c ON c.id = e.course_id\nWHERE c.title = 'Databases'\nORDER BY e.grade DESC;",
+     "output": "name   | title     | grade\n-------+-----------+------\nAyesha | Databases | 88\nBilal  | Databases | 75\nZain   | Databases | 59\n(3 rows)"
+    },
+    {
+     "kind": "html",
+     "html": "<table><tr><th>Join</th><th>Rows returned</th></tr><tr><td><code>INNER</code></td><td>Only matches</td></tr><tr><td><code>LEFT</code></td><td>All left rows + matches</td></tr><tr><td><code>RIGHT</code></td><td>All right rows + matches (not in SQLite)</td></tr><tr><td><code>FULL</code></td><td>All rows from both (not in MySQL or SQLite)</td></tr></table>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "subqueries",
+   "title": "Subqueries",
+   "section": "Combining Data",
+   "order": 6,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Subqueries</h1>\n<div class=\"card\">\n<h2>A Query Inside a Query</h2>\n<p>A <strong>subquery</strong> is a <code>SELECT</code> inside another statement, written in parentheses. The inner query runs first and gives its result to the outer one.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT name, age FROM students\nWHERE age > (SELECT AVG(age) FROM students);",
+     "output": "name  | age\n------+----\nBilal | 22\nSara  | 23\nOmar  | 24\n(3 rows)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>IN and EXISTS</h2>\n<p><code>IN (subquery)</code> checks against a list of values. <code>EXISTS</code> checks whether the subquery returns any row at all.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT name FROM students\nWHERE id IN (SELECT student_id FROM enrollments WHERE grade >= 90);\n\nSELECT name FROM students s\nWHERE NOT EXISTS (SELECT 1 FROM enrollments e WHERE e.student_id = s.id);",
+     "output": "name\n------\nAyesha\nSara\n(2 rows)\n\nname\n----\nOmar\n(1 row)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Subquery in FROM and SELECT</h2>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "SELECT s.name, (SELECT COUNT(*) FROM enrollments e WHERE e.student_id = s.id) AS courses_taken\nFROM students s\nORDER BY courses_taken DESC, s.name\nLIMIT 3;\n\nSELECT ROUND(AVG(total), 1) AS average_total\nFROM (SELECT student_id, SUM(grade) AS total FROM enrollments GROUP BY student_id);",
+     "output": "name   | courses_taken\n-------+--------------\nAyesha | 2\nHira   | 2\nSara   | 2\n(3 rows)\n\naverage_total\n-------------\n128.2\n(1 row)"
+    },
+    {
+     "kind": "html",
+     "html": "<ul><li>Many subqueries can also be written as a join. Joins are often faster and easier to read.</li><li>A subquery used where one value is expected must return exactly one row and one column.</li></ul>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "keys-constraints",
+   "title": "Keys, Constraints & Design",
+   "section": "Database Design",
+   "order": 7,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Keys, Constraints & Design</h1>\n<div class=\"card\">\n<h2>Keys</h2>\n<table><tr><th>Key</th><th>Meaning</th></tr><tr><td>Primary key</td><td>Uniquely identifies each row. Never NULL, never repeated (<code>id INTEGER PRIMARY KEY</code>)</td></tr><tr><td>Foreign key</td><td>A column that points to the primary key of another table, keeping relationships valid</td></tr><tr><td>Unique key</td><td>A column whose values must not repeat, such as an email</td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>Constraints Protect Your Data</h2>\n<table><tr><th>Constraint</th><th>Rule</th></tr><tr><td><code>NOT NULL</code></td><td>A value is required</td></tr><tr><td><code>UNIQUE</code></td><td>No duplicates</td></tr><tr><td><code>CHECK (age &gt;= 0)</code></td><td>A custom rule</td></tr><tr><td><code>DEFAULT 0</code></td><td>Value used when none is given</td></tr><tr><td><code>FOREIGN KEY</code></td><td>Must match an existing parent row</td></tr></table>\n<pre><code>CREATE TABLE users (\n  id INTEGER PRIMARY KEY,\n  email TEXT NOT NULL UNIQUE,\n  age INTEGER CHECK (age &gt;= 0),\n  role TEXT DEFAULT &#x27;student&#x27;\n);</code></pre>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "INSERT INTO students VALUES (1, 'Duplicate', 'Lahore', 30);\n\nINSERT INTO enrollments VALUES (99, 1, 50);\n\nINSERT INTO students (id, city) VALUES (9, 'Lahore');",
+     "output": "Error: UNIQUE constraint failed: students.id\n\nError: FOREIGN KEY constraint failed\n\nError: NOT NULL constraint failed: students.name"
+    },
+    {
+     "kind": "html",
+     "html": "<p>The database refuses bad data by itself, whatever the application does. (Error text differs between database systems.)</p>\n</div>\n\n<div class=\"card\">\n<h2>Relationships</h2>\n<table><tr><th>Type</th><th>Example</th><th>How</th></tr><tr><td>One to one</td><td>user and profile</td><td>A unique foreign key</td></tr><tr><td>One to many</td><td>one course, many enrollments</td><td>Foreign key on the \"many\" side</td></tr><tr><td>Many to many</td><td>students and courses</td><td>A <strong>junction table</strong> (our <code>enrollments</code>)</td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>Normalization in Brief</h2>\n<p><strong>Normalization</strong> organises tables to avoid repeating data.</p>\n<ul><li><strong>1NF:</strong> each cell holds one value (no lists like \"HTML, CSS\" in one cell).</li><li><strong>2NF:</strong> every column depends on the <em>whole</em> key.</li><li><strong>3NF:</strong> columns depend only on the key, not on other non-key columns. A student's city belongs in the students table, not copied into every enrollment row.</li></ul>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  },
+  {
+   "slug": "indexes-views",
+   "title": "Indexes & Views",
+   "section": "Database Design",
+   "order": 8,
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Indexes & Views</h1>\n<div class=\"card\">\n<h2>Indexes</h2>\n<p>An <strong>index</strong> is like the index at the back of a book: it lets the database jump straight to matching rows instead of reading the whole table. Create indexes on columns you search or join on often.</p>\n<pre><code>CREATE INDEX idx_students_city ON students(city);</code></pre>\n<ul><li>Indexes make <code>SELECT</code> faster but <code>INSERT</code>, <code>UPDATE</code> and <code>DELETE</code> slower, and they use space.</li><li>Primary keys and unique columns are indexed automatically.</li><li>Do not index every column. Index what you filter, join or sort by.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Views</h2>\n<p>A <strong>view</strong> is a saved query that behaves like a table. It hides complexity and lets you give users limited access.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "sql",
+     "code": "CREATE VIEW top_grades AS\nSELECT s.name, c.title, e.grade\nFROM enrollments e\nJOIN students s ON s.id = e.student_id\nJOIN courses c ON c.id = e.course_id\nWHERE e.grade >= 85;\n\nSELECT * FROM top_grades ORDER BY grade DESC;\n\nSELECT COUNT(*) AS rows_in_view FROM top_grades;",
+     "output": "OK (-1 rows affected)\n\nname   | title           | grade\n-------+-----------------+------\nSara   | Web Engineering | 95\nAyesha | Web Engineering | 92\nAyesha | Databases       | 88\n(3 rows)\n\nrows_in_view\n------------\n3\n(1 row)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Transactions in One Minute</h2>\n<p>A <strong>transaction</strong> groups several statements so they all succeed or none do (think of moving money between two accounts).</p>\n<pre><code>BEGIN;\nUPDATE accounts SET balance = balance - 500 WHERE id = 1;\nUPDATE accounts SET balance = balance + 500 WHERE id = 2;\nCOMMIT;   -- or ROLLBACK; to undo both</code></pre>\n<p>This is the <strong>ACID</strong> idea: Atomic, Consistent, Isolated, Durable.</p>\n</div>\n</div>"
+    }
+   ],
+   "styles": ""
+  }
+ ]
+}

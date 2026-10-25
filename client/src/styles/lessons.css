@@ -1,0 +1,1123 @@
+/* Generated from the old Laravel basic.css/content.css/event.css/api.css, scoped to lesson pages. */
+
+/* ===========================
+   RESET & BASE STYLING
+=========================== */
+.lesson, .lesson * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.lesson {
+  background: #0f172a;
+  color: #e2e8f0;
+  font-family: "Fira Code", "Consolas", monospace;
+  line-height: 1.6;
+  padding-bottom: 50px;
+}
+
+.lesson .container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ===========================
+   HEADINGS
+=========================== */
+.lesson h1, .lesson h2, .lesson h3, .lesson h4 {
+  color: #38bdf8;
+  margin-bottom: 15px;
+}
+.lesson h5{
+  color: #2281a9;
+  margin-bottom: 15px;
+}
+
+.lesson h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.lesson .btn{
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(124, 156, 255, 0.35);
+}
+
+/* ===========================
+   NAVBAR
+=========================== */
+.lesson button.btn {
+    /* background: linear-gradient(180deg, var(--accent), #5b7cff); */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(124, 156, 255, 0.35);
+}
+.lesson .navbar {
+  background-color: #1e293b !important;
+}
+
+.lesson .navbar .nav-link {
+  color: #e2e8f0 !important;
+  transition: 0.3s;
+}
+
+.lesson .navbar .nav-link:hover {
+  color: #38bdf8 !important;
+}
+
+.lesson .offcanvas {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+.lesson .offcanvas a {
+  color: #e2e8f0;
+  display: block;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+.lesson .offcanvas a:hover {
+  color: #38bdf8;
+  padding-left: 5px;
+}
+
+/* ===========================
+   CARDS
+=========================== */
+.lesson .card {
+  background: #0f172a;
+  border: 1px solid #0a1f35;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 28px;
+  box-shadow: 0 8px 18px rgba(74, 68, 68, 0.25);
+  color: #e2e8f0;
+}
+
+.lesson .card p {
+  color: #cbd5e1;
+}
+
+/* ===========================
+   CODE BLOCKS
+=========================== */
+.lesson pre {
+  background: #424c5c;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: "Fira Code", monospace;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.lesson pre code {
+  color: #cfe1ff;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+.lesson .btn-custom {
+  background: linear-gradient(180deg, var(--accent), #5b7cff);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(124, 156, 255, 0.35);
+  transition: all 0.3s ease;
+}
+
+.lesson .btn-custom:hover {
+  transform: scale(1.05);
+}
+
+/* ===========================
+   TABLE STYLING
+=========================== */
+.lesson table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1e293b;
+  margin-bottom: 20px;
+  border: 1px solid #334155;
+}
+
+.lesson th, .lesson td {
+  padding: 10px;
+  text-align: left;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+}
+
+.lesson th {
+  background: #334155;
+  color: #cbd6ff;
+  font-weight: 700;
+}
+
+/* ===========================
+   IMAGES
+=========================== */
+.lesson .content-image {
+  max-width: 70%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.lesson .content-image:hover {
+  transform: scale(1.1);
+}
+
+
+    /* Code and Output Section */
+    .lesson .example {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 15px;
+      /* border: 1px solid #ddd; */
+      border-radius: 6px;
+      overflow: hidden;
+      background: #1e0f3a;
+    }
+
+    .lesson .code-block,
+    .lesson .output-block {
+      width: 100%;
+      padding: 15px;
+      box-sizing: border-box;
+       background: #2e2e2e;
+      color: #f8f8f8;
+    }
+
+    .lesson .code-block {
+      border: none;
+     background: #212c43;
+    color: #38bdf8;
+    /* padding: 10px; */
+    
+    /* border-radius: 6px; */
+    /* height: 150px; */
+    overflow-y: auto;
+    /* white-space: pre-wrap; */
+    font-family: "Fira Code", monospace;
+    border: 1px solid #283d5b;
+    }
+
+    .lesson .output-block {
+  background: #1a2847;
+    color: #38bdf8;
+    /* padding: 10px; */
+   
+
+    /* overflow-y: auto;
+    white-space: pre-wrap; */
+    font-family: "Fira Code", monospace;
+    /* border: 1px solid #334155; */
+    }
+
+    .lesson code {
+      color: #f8d866;
+    }
+
+   
+   
+
+    .lesson .note {
+      background: #eaf4ff;
+      border-left: 5px solid #0d6efd;
+      padding: 10px;
+      margin: 15px 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .lesson .code-block, .lesson .output-block {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid #ddd;
+      }
+    }
+  .lesson .content-image {
+  max-width: 70%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.lesson .content-image:hover {
+  transform: scale(1.1);
+}
+
+/* Code demos (C++ "Run demo" boxes) */
+.lesson .code { background:#1e293b; padding:15px; border-radius:6px; overflow-x:auto; font-family:"Fira Code",monospace; color:#e2e8f0; border:1px solid #334155; margin-bottom:20px; }
+.lesson .output-box, .lesson .out { background:#0f172a; padding:10px; border-radius:6px; color:#10b981; border:1px solid #334155; font-family:"Fira Code",monospace; margin-top:10px; white-space:pre-wrap; }
+.lesson .btn-row { margin-top:10px; display:flex; gap:10px; }
+.lesson .sub { margin-bottom:10px; color:#94a3b8; }
+.lesson .lesson-nav { display:flex; justify-content:space-between; gap:12px; margin:30px 0 10px; }
+.lesson .lesson iframe { max-width:100%; }
+
+/* JavaScript lessons used extra stylesheets */
+/* Reset */
+.lesson--javascript, .lesson--javascript * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+.lesson--javascript {
+    background: #0f172a; /* Deep navy blue */
+    color: #e2e8f0; /* Light gray text */
+    font-family: "Fira Code", "Consolas", monospace;
+    line-height: 1.6;
+    padding-bottom: 50px;
+}
+
+/* Container for page content */
+.lesson--javascript .container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Headings */
+.lesson--javascript h1,
+.lesson--javascript h2,
+.lesson--javascript h3 {
+    color: #38bdf8; /* Calming sky blue */
+    margin-bottom: 10px;
+}
+
+/* Links */
+.lesson--javascript a {
+    color: #fbbf24;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.lesson--javascript a:hover {
+    text-decoration: underline;
+}
+
+/* Navbar */
+.lesson--javascript .navbar {
+    background-color: #1e293b !important; /* Dark slate gray */
+}
+
+.lesson--javascript .navbar .nav-link {
+    color: #e2e8f0 !important;
+    transition: 0.3s;
+}
+
+.lesson--javascript .navbar .nav-link:hover {
+    transition: 0.3s;
+    color: #38bdf8 !important; /* Accent hover */
+}
+
+.lesson--javascript .offcanvas {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+.lesson--javascript .offcanvas:hover {
+    transition: 0.3s;
+}
+
+/* Textarea */
+.lesson--javascript textarea {
+    width: 100%;
+    height: 150px;
+    font-family: "Fira Code", "Consolas", monospace;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid #334155; /* Subtle border */
+    border-radius: 6px;
+    background: #1e293b; /* Dark code area */
+    color: #e2e8f0; /* Light text */
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.lesson--javascript textarea:focus {
+    outline: none;
+    border-color: #38bdf8; /* Sky blue focus */
+    box-shadow: 0 0 6px #38bdf8;
+}
+
+/* Run Button */
+.lesson--javascript button.run-btn {
+  background: linear-gradient(180deg, var(--accent), #5b7cff);
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(124, 156, 255, 0.35);
+}
+
+.lesson--javascript button.run-btn:hover {
+    background: linear-gradient(180deg, var(--accent), #4b67d8); /* Darker green on hover */
+    transform: scale(1.03);
+}
+
+/* Output Console */
+.lesson--javascript #output {
+    background: #0f172a; /* Match page background */
+    color: #38bdf8; /* Sky blue text */
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 6px;
+    height: 150px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    font-family: "Fira Code", monospace;
+    border: 1px solid #334155;
+}
+
+/* Error Text in Console */
+.lesson--javascript #output.error {
+    color: #f87171; /* Soft red */
+}
+
+/* Code Example Highlight */
+.lesson--javascript pre {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: "Fira Code", monospace;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+}
+
+/* Lists for sections */
+.lesson--javascript ul {
+    padding-left: 20px;
+}
+
+.lesson--javascript ul li {
+    margin-bottom: 8px;
+}
+
+/* Smooth transitions */
+.lesson--javascript textarea,
+.lesson--javascript button,
+.lesson--javascript .navbar,
+.lesson--javascript .offcanvas,
+.lesson--javascript #output {
+    transition: all 0.3s ease;
+}
+.lesson--javascript h1,
+.lesson--javascript h2,
+.lesson--javascript h3 {
+    color: #38bdf8;
+    margin-bottom: 10px;
+}
+
+.lesson--javascript h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Navbar */
+.lesson--javascript .navbar {
+    background-color: #1e293b !important;
+}
+
+.lesson--javascript .navbar .nav-link {
+    color: #e2e8f0 !important;
+    transition: 0.3s;
+}
+
+.lesson--javascript .navbar .nav-link:hover {
+    color: #38bdf8 !important;
+}
+
+/* Lists */
+.lesson--javascript ul {
+    padding-left: 20px;
+}
+
+.lesson--javascript ul li {
+    margin-bottom: 8px;
+}
+
+/* Code Blocks */
+.lesson--javascript pre {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: "Fira Code", monospace;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+    margin-bottom: 20px;
+}
+
+/* Interactive Editor */
+.lesson--javascript textarea {
+    width: 100%;
+    height: 150px;
+    font-family: "Fira Code", monospace;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    background: #1e293b;
+    color: #e2e8f0;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.lesson--javascript textarea:focus {
+    outline: none;
+    border-color: #38bdf8;
+    box-shadow: 0 0 6px #38bdf8;
+}
+
+/* Run Button */
+.lesson--javascript .run-btn {
+       background-color: #0f172a; 
+    /* background: linear-gradient(180deg, var(--accent), #5b7cff); */
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(124, 156, 255, 0.35);
+}
+
+.lesson--javascript .run-btn:hover {
+   background-color: #0f172a; 
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(124, 156, 255, 0.35);
+}
+
+/* Output Console */
+.lesson--javascript #output {
+    background: #0f172a;
+    color: #38bdf8;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 6px;
+    height: 150px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    font-family: "Fira Code", monospace;
+    border: 1px solid #334155;
+}
+
+.lesson--javascript #output.error {
+    color: #f87171;
+}
+
+/* Table */
+.lesson--javascript table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1e293b;
+    margin-bottom: 20px;
+}
+
+.lesson--javascript table,
+.lesson--javascript th,
+.lesson--javascript td {
+    border: 1px solid #334155;
+}
+
+.lesson--javascript th,
+.lesson--javascript td {
+    padding: 10px;
+    text-align: left;
+    color: #e2e8f0;
+}
+
+.lesson--javascript th {
+    background: #334155;
+}
+.lesson--javascript {
+    .lesson--javascript .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 16px;
+    }
+    .lesson--javascript section.card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+    .lesson--javascript section.card h2 {
+        font-size: 18px;
+        margin: 0 0 8px;
+    }
+    .lesson--javascript section.card .sub {
+        color: wheat;
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+
+    .lesson--javascript .btn-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 10px 0 12px;
+    }
+    .lesson--javascript button.btn {
+       /* background: linear-gradient(180deg, var(--accent), #5b7cff); */
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(124, 156, 255, 0.35);
+    }
+    .lesson--javascript button.btn.secondary {
+        background: #1a2447;
+        box-shadow: none;
+        color: #d7def1;
+        border: 1px solid var(--border);
+    }
+    .lesson--javascript button.btn:active {
+        transform: translateY(1px);
+    }
+
+    .lesson--javascript .code {
+        background: var(--code);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 10px 12px;
+        overflow: auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas,
+            "Liberation Mono", monospace;
+        font-size: 13px;
+        line-height: 1.55;
+        margin-bottom: 10px;
+        color: #cfe1ff;
+    }
+
+    .lesson--javascript .out {
+        min-height: 80px;
+        background: #0e1530;
+        border: 1px dashed var(--border);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas,
+            "Liberation Mono", monospace;
+        font-size: 13px;
+        white-space: pre-wrap;
+        color: #e9f2ff;
+    }
+    .lesson--javascript .tag {
+        display: inline-block;
+        background: #172049;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 12px;
+        color: #c5d1ff;
+        border: 1px solid var(--border);
+    }
+    .lesson--javascript .kicker {
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 11px;
+        color: #a0abd0;
+    }
+
+    .lesson--javascript footer {
+        color: var(--muted);
+        text-align: center;
+        padding: 30px 0 60px;
+    }
+
+    .lesson--javascript details summary {
+        cursor: pointer;
+        margin: 8px 0;
+        color: var(--accent-2);
+    }
+    .lesson--javascript table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+    }
+    .lesson--javascript th,
+    .lesson--javascript td {
+        border-bottom: 1px solid var(--border);
+        padding: 8px;
+        text-align: left;
+    }
+    .lesson--javascript th {
+        color: #cbd6ff;
+        font-weight: 700;
+    }
+    .lesson--javascript td code {
+        color: #d6e6ff;
+    }
+}
+ .lesson--javascript .content-image {
+      max-width: 50%;
+      height: auto;
+      
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease-in-out;
+      cursor: pointer;
+    }
+
+    .lesson--javascript .content-image:hover {
+      transform: scale(1.1);
+      /* Slight zoom effect */
+    }
+
+    /* ===========================
+       THEME BASE COLORS
+    ============================ */
+    .lesson--javascript {
+      --accent: #3b82f6; /* Main blue for gradients */
+    }
+
+    .lesson--javascript {
+  background: #0f172a;
+  color: #e2e8f0;
+  font-family: "Fira Code", "Consolas", monospace;
+  line-height: 1.6;
+  padding-bottom: 50px;
+}
+
+.lesson--javascript .container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+    .lesson--javascript h1, .lesson--javascript h2, .lesson--javascript h3 {
+      color: #38bdf8; /* Soft blue headings */
+    }
+
+    /* ===========================
+       NAVBAR STYLING
+    ============================ */
+    .lesson--javascript .navbar {
+      background-color: #1e293b !important;
+    }
+
+    .lesson--javascript .navbar .nav-link {
+      color: #e2e8f0 !important;
+      transition: 0.3s;
+    }
+
+    .lesson--javascript .navbar .nav-link:hover {
+      color: #38bdf8 !important;
+    }
+
+    /* ===========================
+       OFFCANVAS STYLING
+    ============================ */
+    .lesson--javascript .offcanvas {
+      background: #1e293b;
+      color: #e2e8f0;
+    }
+
+    .lesson--javascript .offcanvas a {
+      color: #e2e8f0;
+      display: block;
+      margin-bottom: 10px;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+
+    .lesson--javascript .offcanvas a:hover {
+      color: #38bdf8;
+      padding-left: 5px;
+    }
+
+    /* ===========================
+       BUTTON STYLING
+    ============================ */
+    .lesson--javascript button.btn, 
+    .lesson--javascript .btn-custom {
+      background:  #1e293b;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(124, 156, 255, 0.35);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .lesson--javascript button.btn:hover, 
+    .lesson--javascript .btn-custom:hover {
+      transform: scale(1.05);
+    }
+
+    /* ===========================
+       EXAMPLE BOXES
+    ============================ */
+    .lesson--javascript .example-box {
+      background: #1e293b;
+      padding: 15px;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 14px rgba(124, 156, 255, 0.25);
+    }
+
+    /* ===========================
+       CODE STYLING
+    ============================ */
+    .lesson--javascript pre {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 10px;
+      border-radius: 8px;
+      overflow-x: auto;
+      border: 1px solid #334155;
+    }
+
+    .lesson--javascript code {
+      color: #38bdf8;
+    }
+
+    /* ===========================
+       TABLE STYLING
+    ============================ */
+    .lesson--javascript table {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+    }
+
+    .lesson--javascript th, .lesson--javascript td {
+      border: 1px solid #334155;
+      padding: 10px;
+    }
+
+    .lesson--javascript th {
+      background: #334155;
+      color: #cbd5e1;
+    }
+
+    /* ===========================
+       INPUT FIELDS
+    ============================ */
+    .lesson--javascript input.form-control {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 8px;
+    }
+
+    .lesson--javascript input.form-control:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 6px #38bdf8;
+    }
+
+    /* ===========================
+       LINK STYLE
+    ============================ */
+    .lesson--javascript a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    .lesson--javascript a:hover {
+      text-decoration: underline;
+    }
+.lesson--javascript .content-image {
+  max-width: 70%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.lesson--javascript .content-image:hover {
+  transform: scale(1.1);
+}
+
+/* ==========================
+   Base Styling
+   ========================== */
+.lesson--javascript, .lesson--javascript * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.lesson--javascript {
+  background: #0f172a; /* Deep navy blue for dark mode */
+  color: #e2e8f0; /* Light text */
+  font-family: "Fira Code", "Consolas", monospace;
+  line-height: 1.6;
+  padding-bottom: 50px;
+}
+
+
+.lesson--javascript h1,
+.lesson--javascript h2,
+.lesson--javascript h3 {
+  color: #38bdf8; /* Calming sky blue for emphasis */
+  margin-bottom: 10px;
+}
+
+.lesson--javascript h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+
+/* ==========================
+   Main Content Centering
+   ========================== */
+.lesson--javascript .container {
+  max-width: 900px; /* Restrict content width */
+  margin: 0 auto; /* Center horizontally */
+  padding: 20px; /* Inner spacing */
+}
+
+.lesson--javascript section {
+  margin-bottom: 25px;
+}
+
+/* ==========================
+   Card Styling
+   ========================== */
+.lesson--javascript .card {
+  color:#e2e8f0;
+  background: #0a1f35;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 25px rgba(156, 155, 155, 0.2);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lesson--javascript .card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================
+   Pre & Code Blocks
+   ========================== */
+.lesson--javascript pre {
+  background: #1e293b;
+  color: #f5f8fc;
+  padding: 10px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.lesson--javascript code {
+  background: #1e293b;
+  color: #38bdf8;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+/* ==========================
+   Tables
+   ========================== */
+.lesson--javascript table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1e293b;
+  margin-top: 10px;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.lesson--javascript th, .lesson--javascript td {
+  padding: 8px 10px;
+  color: #d5dbf0;
+  border: 1px solid #334155;
+  text-align: left;
+}
+
+.lesson--javascript th {
+  background: #334155;
+  color: #cbd6ff;
+  font-weight: 500;
+}
+
+.lesson--javascript tbody tr:hover {
+  background: #1e3a8a;
+  transition: background 0.2s ease;
+}
+
+/* ==========================
+   Buttons
+   ========================== */
+.lesson--javascript button,
+.lesson--javascript .btn {
+/* background: linear-gradient(180deg, var(--accent), #5b7cff); */
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(124, 156, 255, 0.35);
+}
+
+.lesson--javascript button.run-btn:hover {
+    /* background: linear-gradient(180deg, var(--accent), #4b67d8); Darker green on hover */
+    transform: scale(1.03);}
+
+.lesson--javascript button:disabled,
+.lesson--javascript .btn:disabled {
+  background: #334155;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* ==========================
+   Navbar (Unchanged)
+   ========================== */
+/* ===========================
+   NAVBAR & OFFCANVAS
+=========================== */
+.lesson--javascript .navbar {
+  background-color: #1e293b !important; /* Dark slate gray */
+}
+
+.lesson--javascript .navbar .nav-link {
+  color: #e2e8f0 !important;
+  transition: 0.3s;
+}
+
+.lesson--javascript .navbar .nav-link:hover {
+  color: #38bdf8 !important;
+}
+
+.lesson--javascript .offcanvas {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+.lesson--javascript .offcanvas a {
+  color: #e2e8f0;
+  display: block;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+.lesson--javascript .offcanvas a:hover {
+  color: #38bdf8;
+  padding-left: 5px;
+}
+
+
+/* ==========================
+   Spacing Utilities
+   ========================== */
+.lesson--javascript .mb-1 { margin-bottom: 4px; }
+.lesson--javascript .mb-2 { margin-bottom: 8px; }
+.lesson--javascript .mb-3 { margin-bottom: 12px; }
+.lesson--javascript .mb-4 { margin-bottom: 16px; }
+.lesson--javascript .mb-5 { margin-bottom: 20px; }
+
+.lesson--javascript .mt-1 { margin-top: 4px; }
+.lesson--javascript .mt-2 { margin-top: 8px; }
+.lesson--javascript .mt-3 { margin-top: 12px; }
+.lesson--javascript .mt-4 { margin-top: 16px; }
+.lesson--javascript .mt-5 { margin-top: 20px; }
+
+.lesson--javascript .p-2 { padding: 8px; }
+.lesson--javascript .p-3 { padding: 12px; }
+.lesson--javascript .p-4 { padding: 16px; }
+
+/* ==========================
+   Lists
+   ========================== */
+.lesson--javascript ul {
+  list-style-type: disc;
+  margin-left: 18px;
+
+}
+
+.lesson--javascript ul li {
+  margin-bottom: 6px;
+}
+
+/* ==========================
+   Transition Defaults
+   ========================== */
+.lesson--javascript a,
+.lesson--javascript button,
+.lesson--javascript .offcanvas a {
+  transition: all 0.2s ease;
+}
+.lesson--javascript .content-image {
+  max-width: 70%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.lesson--javascript .content-image:hover {
+  transform: scale(1.1);
+}

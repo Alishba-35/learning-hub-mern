@@ -1,0 +1,283 @@
+{
+ "languageSlug": "python",
+ "quizzes": [
+  {
+   "slug": "getting-started",
+   "title": "Getting Started Checkpoint",
+   "section": "Getting Started",
+   "order": 1,
+   "description": "Covers: Introduction to Python, Variables, Types & Input, Operators & Conditions.",
+   "questions": [
+    {
+     "id": "getting-started-1",
+     "type": "choice",
+     "prompt": "How does Python group the lines inside an if statement?",
+     "options": [
+      "With begin and end keywords",
+      "With semicolons",
+      "By indentation",
+      "With curly braces { }"
+     ],
+     "correctIndex": 2,
+     "explanation": "Python uses indentation (usually 4 spaces) instead of braces. The wrong indentation is a syntax error."
+    },
+    {
+     "id": "getting-started-2",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "<class 'str'> <class 'float'> <class 'int'>",
+      "int float str",
+      "<class 'int'> <class 'int'> <class 'str'>",
+      "<class 'int'> <class 'float'> <class 'str'>"
+     ],
+     "correctIndex": 3,
+     "explanation": "5 is an int, 5.0 is a float and \"5\" in quotes is a str. print shows the full class names.",
+     "code": "print(type(5), type(5.0), type(\"5\"))",
+     "codeLanguage": "python"
+    },
+    {
+     "id": "getting-started-3",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "4 1 8",
+      "3 1 6",
+      "3 1 8",
+      "3.5 1 6"
+     ],
+     "correctIndex": 2,
+     "explanation": "// is floor division (3), % is the remainder (1) and ** is the power (8).",
+     "code": "print(7 // 2, 7 % 2, 2 ** 3)",
+     "codeLanguage": "python"
+    },
+    {
+     "id": "getting-started-4",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "SARA has 5 letters",
+      "SARA has 4 letters",
+      "{name.upper()} has {len(name)} letters",
+      "Sara has 4 letters"
+     ],
+     "correctIndex": 1,
+     "explanation": "An f-string evaluates whatever is inside { }: upper() gives SARA and len gives 4.",
+     "code": "name = \"Sara\"\nprint(f\"{name.upper()} has {len(name)} letters\")",
+     "codeLanguage": "python"
+    },
+    {
+     "id": "getting-started-5",
+     "type": "choice",
+     "prompt": "What type does input() always return?",
+     "options": [
+      "str (text)",
+      "float",
+      "int",
+      "It depends on what the user types"
+     ],
+     "correctIndex": 0,
+     "explanation": "input() always gives text. Convert it with int() or float() when you need a number."
+    },
+    {
+     "id": "getting-started-6",
+     "type": "fill",
+     "prompt": "Complete the condition so that a person who is exactly 18 counts as an adult.",
+     "code": "age = 18\nif age ____ 18:\n    print(\"Adult\")",
+     "codeLanguage": "python",
+     "answers": [
+      ">="
+     ],
+     "caseSensitive": true,
+     "explanation": ">= means \"greater than or equal to\", so 18 passes. A plain > would not."
+    }
+   ]
+  },
+  {
+   "slug": "data-control",
+   "title": "Data & Control Checkpoint",
+   "section": "Data & Control",
+   "order": 2,
+   "description": "Covers: Loops, Lists & Tuples, Dictionaries & Sets, Functions.",
+   "questions": [
+    {
+     "id": "data-control-1",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "2 3 4 5 6 7",
+      "0 2 4 6",
+      "2 4 6",
+      "2 4 6 8"
+     ],
+     "correctIndex": 2,
+     "explanation": "range(start, stop, step) stops before stop. 2, 4, 6 are printed and 8 is not reached.",
+     "code": "for i in range(2, 8, 2):\n    print(i, end=\" \")",
+     "codeLanguage": "python"
+    },
+    {
+     "id": "data-control-2",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "[20, 30] 30",
+      "[20, 30, 40] 40",
+      "[10, 20, 30] 40",
+      "[20, 30] 40"
+     ],
+     "correctIndex": 3,
+     "explanation": "A slice [1:3] takes indexes 1 and 2 (the end is excluded). Index -1 is the last item.",
+     "code": "nums = [10, 20, 30, 40]\nprint(nums[1:3], nums[-1])",
+     "codeLanguage": "python"
+    },
+    {
+     "id": "data-control-3",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "None 2",
+      "0 2",
+      "0 1",
+      "KeyError"
+     ],
+     "correctIndex": 1,
+     "explanation": "get() returns the default (0) for a missing key instead of an error. The dict has 2 keys by then.",
+     "code": "d = {\"a\": 1}\nd[\"b\"] = 2\nprint(d.get(\"c\", 0), len(d))",
+     "codeLanguage": "python"
+    },
+    {
+     "id": "data-control-4",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "10 6",
+      "15 6",
+      "5 1",
+      "15 15"
+     ],
+     "correctIndex": 1,
+     "explanation": "f(5) uses the default y=10, so 15. f(5, y=1) uses y=1, so 6.",
+     "code": "def f(x, y=10):\n    return x + y\n\nprint(f(5), f(5, y=1))",
+     "codeLanguage": "python"
+    },
+    {
+     "id": "data-control-5",
+     "type": "choice",
+     "prompt": "Which of these cannot be changed after it is created?",
+     "options": [
+      "set",
+      "list",
+      "dict",
+      "tuple"
+     ],
+     "correctIndex": 3,
+     "explanation": "Tuples are immutable. Lists, dictionaries and sets can be changed."
+    },
+    {
+     "id": "data-control-6",
+     "type": "fill",
+     "prompt": "Complete the code so it prints the squares of 1, 2 and 3.",
+     "code": "squares = [n * n for n in ____(1, 4)]\nprint(squares)",
+     "codeLanguage": "python",
+     "answers": [
+      "range"
+     ],
+     "caseSensitive": true,
+     "explanation": "range(1, 4) gives 1, 2, 3. The comprehension squares each number."
+    }
+   ]
+  },
+  {
+   "slug": "beyond-the-basics",
+   "title": "Beyond the Basics Checkpoint",
+   "section": "Beyond the Basics",
+   "order": 3,
+   "description": "Covers: Classes & Objects, Errors & Files.",
+   "questions": [
+    {
+     "id": "beyond-the-basics-1",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "Rex says Woof",
+      "name says Woof",
+      "Dog says Woof",
+      "Error"
+     ],
+     "correctIndex": 0,
+     "explanation": "__init__ stored \"Rex\" in self.name, and speak() uses it.",
+     "code": "class Dog:\n    def __init__(self, name):\n        self.name = name\n\n    def speak(self):\n        return self.name + \" says Woof\"\n\nprint(Dog(\"Rex\").speak())",
+     "codeLanguage": "python"
+    },
+    {
+     "id": "beyond-the-basics-2",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "bad number",
+      "abc\ndone",
+      "bad number\ndone",
+      "done"
+     ],
+     "correctIndex": 2,
+     "explanation": "int(\"abc\") raises ValueError, so the except block runs. finally always runs afterwards.",
+     "code": "try:\n    print(int(\"abc\"))\nexcept ValueError:\n    print(\"bad number\")\nfinally:\n    print(\"done\")",
+     "codeLanguage": "python"
+    },
+    {
+     "id": "beyond-the-basics-3",
+     "type": "choice",
+     "prompt": "What does \"with open(...) as f:\" do for you?",
+     "options": [
+      "Opens the file in a new window",
+      "Makes the file read-only",
+      "Closes the file automatically, even if an error happens",
+      "Creates a copy of the file"
+     ],
+     "correctIndex": 2,
+     "explanation": "The with statement guarantees the file is closed when the block ends."
+    },
+    {
+     "id": "beyond-the-basics-4",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "options": [
+      "B",
+      "BA",
+      "A",
+      "AB"
+     ],
+     "correctIndex": 1,
+     "explanation": "B overrides hi() but calls the parent's version with super(), so \"B\" + \"A\".",
+     "code": "class A:\n    def hi(self):\n        return \"A\"\n\nclass B(A):\n    def hi(self):\n        return \"B\" + super().hi()\n\nprint(B().hi())",
+     "codeLanguage": "python"
+    },
+    {
+     "id": "beyond-the-basics-5",
+     "type": "choice",
+     "prompt": "Which file mode erases the old content before writing?",
+     "options": [
+      "\"w\"",
+      "\"a\"",
+      "\"r\"",
+      "\"x\""
+     ],
+     "correctIndex": 0,
+     "explanation": "\"w\" opens for writing and truncates the file. \"a\" appends and \"r\" only reads."
+    },
+    {
+     "id": "beyond-the-basics-6",
+     "type": "fill",
+     "prompt": "Complete the keyword that signals an error.",
+     "code": "def check(age):\n    if age < 0:\n        ____ ValueError(\"age cannot be negative\")\n\ntry:\n    check(-1)\nexcept ValueError as e:\n    print(e)",
+     "codeLanguage": "python",
+     "answers": [
+      "raise"
+     ],
+     "caseSensitive": true,
+     "explanation": "raise throws an exception that the except block can catch."
+    }
+   ]
+  }
+ ]
+}
