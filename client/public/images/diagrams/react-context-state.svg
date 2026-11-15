@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 403" width="720" height="403" role="img" aria-labelledby="t d">
+  <title id="t">Context skips the middle components</title>
+  <desc id="d">ThemeProvider at the top, Layout and Sidebar in between, ThemeButton at the bottom; a dashed arrow carries the context value straight to ThemeButton.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#67e8f9"/></marker></defs>
+  <rect width="720" height="403" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#67e8f9" text-anchor="middle">Context skips the middle components</text>
+  <text x="360.0" y="58.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">No prop drilling through Layout and Sidebar</text>
+  <rect x="90.0" y="86.0" width="250.0" height="44.0" rx="10" fill="#0f172a" stroke="#4ade80" stroke-width="1.6"/>
+  <text x="215.0" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">&lt;ThemeProvider /&gt;</text>
+  <line x1="215.0" y1="132.0" x2="215.0" y2="157.0" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="90.0" y="160.0" width="250.0" height="44.0" rx="10" fill="#0f172a" stroke="#67e8f9" stroke-width="1.6"/>
+  <text x="215.0" y="187.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">&lt;Layout /&gt;</text>
+  <line x1="215.0" y1="206.0" x2="215.0" y2="231.0" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="90.0" y="234.0" width="250.0" height="44.0" rx="10" fill="#0f172a" stroke="#67e8f9" stroke-width="1.6"/>
+  <text x="215.0" y="261.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">&lt;Sidebar /&gt;</text>
+  <line x1="215.0" y1="280.0" x2="215.0" y2="305.0" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="90.0" y="308.0" width="250.0" height="44.0" rx="10" fill="#0f172a" stroke="#4ade80" stroke-width="1.6"/>
+  <text x="215.0" y="335.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">&lt;ThemeButton /&gt;</text>
+  <text x="354.0" y="113.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#4ade80" text-anchor="start">Provider</text>
+  <text x="354.0" y="335.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#4ade80" text-anchor="start">Consumer</text>
+  <line x1="440.0" y1="108.0" x2="560.0" y2="108.0" stroke="#4ade80" stroke-width="2" stroke-dasharray="6 5"/>
+  <line x1="560.0" y1="108.0" x2="560.0" y2="330.0" stroke="#4ade80" stroke-width="2" stroke-dasharray="6 5"/>
+  <line x1="560.0" y1="330.0" x2="440.0" y2="330.0" stroke="#4ade80" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <text x="572.0" y="200.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="700" fill="#4ade80" text-anchor="start">useContext</text>
+  <text x="572.0" y="218.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#94a3b8" text-anchor="start">gives theme</text>
+  <text x="215.0" y="226.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="1" font-weight="400" fill="#e2e8f0" text-anchor="middle"></text>
+  <text x="354.0" y="187.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="start">passes nothing on</text>
+  <text x="354.0" y="261.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="start">passes nothing on</text>
+  <text x="360.0" y="386.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Any component inside the Provider can read the value, however deep it sits.</text>
+</svg>

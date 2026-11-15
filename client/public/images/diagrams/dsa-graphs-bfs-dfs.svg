@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 429" width="720" height="429" role="img" aria-labelledby="t d">
+  <title id="t">BFS spreads out level by level</title>
+  <desc id="d">Graph with vertices A to F; A is level 0, B and C level 1, D, E and F level 2; BFS order is A B C D E F.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6ee7b7"/></marker></defs>
+  <rect width="720" height="429" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#6ee7b7" text-anchor="middle">BFS spreads out level by level</text>
+  <text x="360.0" y="58.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Start at A, visit closer vertices first</text>
+  <line x1="382.8" y1="131.7" x2="317.2" y2="184.3" stroke="#94a3b8" stroke-width="1.8"/>
+  <line x1="417.2" y1="131.7" x2="482.8" y2="184.3" stroke="#94a3b8" stroke-width="1.8"/>
+  <line x1="282.8" y1="211.7" x2="217.2" y2="264.3" stroke="#94a3b8" stroke-width="1.8"/>
+  <line x1="317.2" y1="211.7" x2="382.8" y2="264.3" stroke="#94a3b8" stroke-width="1.8"/>
+  <line x1="517.2" y1="211.7" x2="582.8" y2="264.3" stroke="#94a3b8" stroke-width="1.8"/>
+  <line x1="422.0" y1="278.0" x2="578.0" y2="278.0" stroke="#94a3b8" stroke-width="1.8"/>
+  <circle cx="400.0" cy="118.0" r="22" fill="#14532d" fill-opacity="1" stroke="#6ee7b7" stroke-width="2"/>
+  <text x="400.0" y="123.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="15" font-weight="700" fill="#e2e8f0" text-anchor="middle">A</text>
+  <circle cx="300.0" cy="198.0" r="22" fill="#0f766e" fill-opacity="1" stroke="#6ee7b7" stroke-width="2"/>
+  <text x="300.0" y="203.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="15" font-weight="700" fill="#e2e8f0" text-anchor="middle">B</text>
+  <circle cx="500.0" cy="198.0" r="22" fill="#0f766e" fill-opacity="1" stroke="#6ee7b7" stroke-width="2"/>
+  <text x="500.0" y="203.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="15" font-weight="700" fill="#e2e8f0" text-anchor="middle">C</text>
+  <circle cx="200.0" cy="278.0" r="22" fill="#1e3a5f" fill-opacity="1" stroke="#6ee7b7" stroke-width="2"/>
+  <text x="200.0" y="283.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="15" font-weight="700" fill="#e2e8f0" text-anchor="middle">D</text>
+  <circle cx="400.0" cy="278.0" r="22" fill="#1e3a5f" fill-opacity="1" stroke="#6ee7b7" stroke-width="2"/>
+  <text x="400.0" y="283.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="15" font-weight="700" fill="#e2e8f0" text-anchor="middle">E</text>
+  <circle cx="600.0" cy="278.0" r="22" fill="#1e3a5f" fill-opacity="1" stroke="#6ee7b7" stroke-width="2"/>
+  <text x="600.0" y="283.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="15" font-weight="700" fill="#e2e8f0" text-anchor="middle">F</text>
+  <line x1="30.0" y1="152.0" x2="690.0" y2="152.0" stroke="#334155" stroke-width="1" stroke-dasharray="6 5"/>
+  <text x="30.0" y="123.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#6ee7b7" text-anchor="start">level 0</text>
+  <line x1="30.0" y1="232.0" x2="690.0" y2="232.0" stroke="#334155" stroke-width="1" stroke-dasharray="6 5"/>
+  <text x="30.0" y="203.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#6ee7b7" text-anchor="start">level 1</text>
+  <text x="30.0" y="283.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#6ee7b7" text-anchor="start">level 2</text>
+  <text x="360.0" y="334.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Visit order (the queue gives first in, first out)</text>
+  <rect x="180.0" y="346.0" width="52.0" height="34.0" rx="5" fill="#0f172a" stroke="#6ee7b7" stroke-width="1.6"/>
+  <text x="206.0" y="369.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">A</text>
+  <line x1="233.0" y1="363.0" x2="240.0" y2="363.0" stroke="#6ee7b7" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="240.0" y="346.0" width="52.0" height="34.0" rx="5" fill="#0f172a" stroke="#6ee7b7" stroke-width="1.6"/>
+  <text x="266.0" y="369.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">B</text>
+  <line x1="293.0" y1="363.0" x2="300.0" y2="363.0" stroke="#6ee7b7" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="300.0" y="346.0" width="52.0" height="34.0" rx="5" fill="#0f172a" stroke="#6ee7b7" stroke-width="1.6"/>
+  <text x="326.0" y="369.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">C</text>
+  <line x1="353.0" y1="363.0" x2="360.0" y2="363.0" stroke="#6ee7b7" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="360.0" y="346.0" width="52.0" height="34.0" rx="5" fill="#0f172a" stroke="#6ee7b7" stroke-width="1.6"/>
+  <text x="386.0" y="369.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">D</text>
+  <line x1="413.0" y1="363.0" x2="420.0" y2="363.0" stroke="#6ee7b7" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="420.0" y="346.0" width="52.0" height="34.0" rx="5" fill="#0f172a" stroke="#6ee7b7" stroke-width="1.6"/>
+  <text x="446.0" y="369.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">E</text>
+  <line x1="473.0" y1="363.0" x2="480.0" y2="363.0" stroke="#6ee7b7" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="480.0" y="346.0" width="52.0" height="34.0" rx="5" fill="#0f172a" stroke="#6ee7b7" stroke-width="1.6"/>
+  <text x="506.0" y="369.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">F</text>
+  <text x="360.0" y="408.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">DFS from A would go A, B, D, E, F, C: it goes deep first. Both cost O(V + E).</text>
+</svg>

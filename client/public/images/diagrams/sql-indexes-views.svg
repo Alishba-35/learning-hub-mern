@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 245" width="720" height="245" role="img" aria-labelledby="t d">
+  <title id="t">Indexes and views</title>
+  <desc id="d">Without an index the database reads every row; an index jumps straight to the row; a view is a saved SELECT.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5eead4"/></marker></defs>
+  <rect width="720" height="245" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#5eead4" text-anchor="middle">Indexes and views</text>
+  <rect x="26.0" y="60.0" width="210.7" height="103.0" rx="10" fill="#0f172a" stroke="#5eead4" stroke-width="1.6"/>
+  <text x="131.3" y="87.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#5eead4" text-anchor="middle">Without an index</text>
+  <text x="131.3" y="112.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">Reads every row</text>
+  <text x="131.3" y="128.8" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">1,000,000 rows checked</text>
+  <text x="131.3" y="145.6" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">slow</text>
+  <rect x="254.7" y="60.0" width="210.7" height="103.0" rx="10" fill="#0f172a" stroke="#5eead4" stroke-width="1.6"/>
+  <text x="360.0" y="87.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#5eead4" text-anchor="middle">With an index</text>
+  <text x="360.0" y="112.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">Jumps to the row</text>
+  <text x="360.0" y="128.8" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">like a book&#x27;s index</text>
+  <text x="360.0" y="145.6" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">fast</text>
+  <rect x="483.3" y="60.0" width="210.7" height="103.0" rx="10" fill="#0f172a" stroke="#5eead4" stroke-width="1.6"/>
+  <text x="588.7" y="87.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#5eead4" text-anchor="middle">A view</text>
+  <text x="588.7" y="112.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">A saved SELECT</text>
+  <text x="588.7" y="128.8" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">looks like a table</text>
+  <text x="588.7" y="145.6" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">CREATE VIEW ... AS</text>
+  <text x="360.0" y="189.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Indexes speed up reads but make writes a little slower, so add them only where</text>
+  <text x="360.0" y="205.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">you search often.</text>
+</svg>

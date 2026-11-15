@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 262" width="720" height="262" role="img" aria-labelledby="t d">
+  <title id="t">Changing data</title>
+  <desc id="d">INSERT adds a row, UPDATE changes rows, DELETE removes rows.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5eead4"/></marker></defs>
+  <rect width="720" height="262" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#5eead4" text-anchor="middle">Changing data</text>
+  <rect x="26.0" y="60.0" width="210.7" height="120.0" rx="10" fill="#0f172a" stroke="#5eead4" stroke-width="1.6"/>
+  <text x="131.3" y="87.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#5eead4" text-anchor="middle">INSERT</text>
+  <text x="131.3" y="112.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">INSERT INTO students</text>
+  <text x="131.3" y="128.8" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">VALUES (4, &#x27;Hina&#x27;);</text>
+  <text x="131.3" y="145.6" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">adds a new row</text>
+  <rect x="254.7" y="60.0" width="210.7" height="120.0" rx="10" fill="#0f172a" stroke="#5eead4" stroke-width="1.6"/>
+  <text x="360.0" y="87.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#5eead4" text-anchor="middle">UPDATE</text>
+  <text x="360.0" y="112.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">UPDATE students</text>
+  <text x="360.0" y="128.8" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">SET marks = 90</text>
+  <text x="360.0" y="145.6" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">WHERE id = 1;</text>
+  <text x="360.0" y="162.4" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">changes existing rows</text>
+  <rect x="483.3" y="60.0" width="210.7" height="120.0" rx="10" fill="#0f172a" stroke="#5eead4" stroke-width="1.6"/>
+  <text x="588.7" y="87.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#5eead4" text-anchor="middle">DELETE</text>
+  <text x="588.7" y="112.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">DELETE FROM students</text>
+  <text x="588.7" y="128.8" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">WHERE id = 3;</text>
+  <text x="588.7" y="145.6" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">removes rows</text>
+  <text x="360.0" y="206.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Always add WHERE to UPDATE and DELETE. Without it, every row is changed or</text>
+  <text x="360.0" y="222.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">removed!</text>
+</svg>

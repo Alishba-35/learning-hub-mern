@@ -1,0 +1,473 @@
+{
+ "slug": "react",
+ "name": "React",
+ "description": "React is a JavaScript library for building user interfaces from small reusable components.",
+ "color": "#1f8aa6",
+ "order": 11,
+ "topics": [
+  {
+   "slug": "intro-jsx",
+   "title": "Introduction & JSX",
+   "section": "Getting Started",
+   "order": 1,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Introduction & JSX</h1>\n<div class=\"card\">\n<h2>What is React?</h2>\n<p>React is a JavaScript library for building user interfaces. Instead of writing one huge page, you build many small pieces called <strong>components</strong>, such as a button, a menu or a product card. You then put the pieces together like building blocks. When your data changes, React updates only the parts of the page that need to change.</p>\n<p>React is a library, not a full framework. It focuses on the user interface. For other things, such as routing or fetching data, you add other tools. Today React code is written with <strong>function components</strong> and <strong>hooks</strong>. (Older code used class components, but you do not need them for new projects.)</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"App.jsx with JSX is turned into plain JavaScript by the build tool, React runs it, and the browser shows the heading.\" class=\"content-image\" src=\"/images/diagrams/react-intro-jsx.svg\"/><figcaption>Your JSX is converted to JavaScript, which React uses to draw the page.</figcaption></figure>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Create a project with Vite</h2>\n<p>The fastest way to start is Vite, a build tool that gives you a quick dev server. You need Node.js installed first. Then run these commands in a terminal:</p>\n<pre><code>npm create vite@latest my-app -- --template react\ncd my-app\nnpm install\nnpm run dev</code></pre>\n<p>The last command starts a local server, usually at <code>http://localhost:5173</code>. Open it in the browser and you will see the starter page. Edit <code>src/App.jsx</code> and save: the page updates at once. The important files are:</p>\n<table>\n<tr><th>File</th><th>Purpose</th></tr>\n<tr><td><code>index.html</code></td><td>The single HTML page. It has an empty <code>div id=\"root\"</code>.</td></tr>\n<tr><td><code>src/main.jsx</code></td><td>Starts React and draws your App inside the root div.</td></tr>\n<tr><td><code>src/App.jsx</code></td><td>Your first component. You will edit this most.</td></tr>\n<tr><td><code>package.json</code></td><td>Lists your dependencies and scripts like <code>dev</code> and <code>build</code>.</td></tr>\n</table>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Your first component with JSX</h2>\n<p>A component is a JavaScript function that returns what should appear on screen. The tag-like code it returns is called <strong>JSX</strong>. JSX looks like HTML, but it is really JavaScript. Your build tool turns it into normal JavaScript calls before the browser runs it.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "function App() {\n  return <h1>Hello, React!</h1>;\n}\n\nexport default App;",
+     "output": "Browser shows: a large heading that says \"Hello, React!\""
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Expressions in curly braces</h2>\n<p>Inside JSX you can use any JavaScript <em>expression</em> by putting it in curly braces. An expression is anything that produces a value: a variable, a calculation, or a function call. Statements such as <code>if</code> or <code>for</code> do not work inside the braces.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "function App() {\n  const name = \"Ali\";\n  const year = 2026;\n  return (\n    <p>\n      Welcome, {name}. Next year is {year + 1}.\n    </p>\n  );\n}",
+     "output": "Browser shows: Welcome, Ali. Next year is 2027."
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>JSX rules</h2>\n<p>JSX is a little stricter than HTML. Learn these rules and most beginner errors disappear.</p>\n<ul>\n<li>A component must return <strong>one parent element</strong>. If you do not want an extra div, wrap the pieces in a fragment: <code>&lt;&gt;...&lt;/&gt;</code>.</li>\n<li><strong>Close every tag</strong>, even empty ones: write <code>&lt;br /&gt;</code> and <code>&lt;input /&gt;</code>.</li>\n<li>Use <code>className</code> instead of <code>class</code>, because <code>class</code> is a reserved word in JavaScript.</li>\n<li>Attribute names use camelCase, for example <code>onClick</code> and <code>tabIndex</code>.</li>\n<li>The <code>style</code> attribute takes an object, so you write two pairs of braces: one pair for JavaScript and one pair for the object.</li>\n<li>Component names start with a <strong>capital letter</strong>. Lowercase names like <code>div</code> are normal HTML tags.</li>\n</ul>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "function App() {\n  const title = \"Learning Hub\";\n  return (\n    <>\n      <h1 className=\"title\">{title}</h1>\n      <p style={{ color: \"teal\" }}>Styled text</p>\n    </>\n  );\n}",
+     "output": "Browser shows: a heading \"Learning Hub\" and, below it, a paragraph \"Styled text\" in teal colour."
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Writing <code>class=\"box\"</code> instead of <code>className=\"box\"</code>.</li>\n<li>Returning two sibling elements without a parent or fragment.</li>\n<li>Forgetting to close a tag such as <code>&lt;img&gt;</code> or <code>&lt;input&gt;</code>.</li>\n<li>Naming a component in lowercase, so React treats it as an HTML tag.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>React builds user interfaces from small reusable components.</li>\n<li>Use <code>npm create vite@latest</code> to start a project and <code>npm run dev</code> to run it.</li>\n<li>A function component returns JSX, which looks like HTML but is JavaScript.</li>\n<li>Put JavaScript expressions inside curly braces.</li>\n<li>Use <code>className</code>, close all tags, and return a single parent or a fragment.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "components-props",
+   "title": "Components & Props",
+   "section": "Getting Started",
+   "order": 2,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Components & Props</h1>\n<div class=\"card\">\n<h2>Function components</h2>\n<p>A React component is a plain JavaScript function whose name starts with a capital letter and which returns JSX. Once you have defined a component, you use it like an HTML tag. Components let you write a piece of the page once and reuse it many times. (Long ago React also had class components, but modern code uses function components only.)</p>\n<p>It is a good habit to put each component in its own file, for example <code>src/Greeting.jsx</code>, and export it with <code>export default</code>. Then you import it where you need it.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"App renders two Greeting components, passing name Sara and name Bilal as props, producing Hello Sara and Hello Bilal.\" class=\"content-image\" src=\"/images/diagrams/react-components-props.svg\"/><figcaption>A parent passes props down; each child renders its own copy.</figcaption></figure>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Props: giving data to a component</h2>\n<p><strong>Props</strong> (short for properties) are the inputs of a component. The parent writes them like HTML attributes, and the child receives them as one object. Most people use <strong>destructuring</strong> in the parameter list to pick out the props they need.</p>\n<p>Props flow in one direction: from parent down to child. A child must treat its props as read-only and never change them. If a value must change over time, you use state, which you will learn in the next lesson.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "function Greeting({ name }) {\n  return <p>Hello, {name}!</p>;\n}\n\nfunction App() {\n  return (\n    <>\n      <Greeting name=\"Sara\" />\n      <Greeting name=\"Bilal\" />\n    </>\n  );\n}",
+     "output": "Browser shows two paragraphs:\nHello, Sara!\nHello, Bilal!"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Default values and non-string props</h2>\n<p>A string prop can use quotes, like <code>name=\"Sara\"</code>. For numbers, booleans, arrays or variables, use curly braces: <code>amount={500}</code>. You can give a prop a default value in the destructuring, so it works even when the parent leaves it out.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "function Price({ amount, currency = \"PKR\" }) {\n  return <span>{currency} {amount}</span>;\n}\n\nfunction App() {\n  return (\n    <p>\n      <Price amount={500} /> and <Price amount={20} currency=\"USD\" />\n    </p>\n  );\n}",
+     "output": "Browser shows: PKR 500 and USD 20"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Children and composition</h2>\n<p>Whatever you put between the opening and closing tags of a component arrives as a special prop called <code>children</code>. This lets you build wrapper components, such as a card, a layout or a modal, that can hold anything. Building big components out of smaller ones is called <strong>composition</strong>, and it is the main way to reuse code in React.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "function Card({ title, children }) {\n  return (\n    <div className=\"card\">\n      <h2>{title}</h2>\n      {children}\n    </div>\n  );\n}\n\nfunction App() {\n  return (\n    <Card title=\"Course\">\n      <p>React Basics</p>\n    </Card>\n  );\n}",
+     "output": "Browser shows: a card box with the heading \"Course\" and below it the paragraph \"React Basics\"."
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Remember</h2>\n<table>\n<tr><th>Idea</th><th>Example</th></tr>\n<tr><td>String prop</td><td><code>&lt;Greeting name=\"Sara\" /&gt;</code></td></tr>\n<tr><td>Number or variable prop</td><td><code>&lt;Price amount={500} /&gt;</code></td></tr>\n<tr><td>Default value</td><td><code>function Price({ currency = \"PKR\" })</code></td></tr>\n<tr><td>Children</td><td><code>&lt;Card&gt;...&lt;/Card&gt;</code> and <code>{children}</code></td></tr>\n</table>\n<p><strong>Common mistakes:</strong> forgetting the curly braces around a number (you then pass the string \"500\"), writing a component name in lowercase, and trying to change a prop inside the child.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A component is a function with a capital first letter that returns JSX.</li>\n<li>Props are inputs. They flow from parent to child and are read-only.</li>\n<li>Destructure props in the parameter list and give defaults with <code>=</code>.</li>\n<li>Use <code>children</code> to build wrapper components.</li>\n<li>Build large screens by composing small components.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "state-events",
+   "title": "State & Events",
+   "section": "Getting Started",
+   "order": 3,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>State & Events</h1>\n<div class=\"card\">\n<h2>Why we need state</h2>\n<p>A normal variable inside a component is forgotten every time the component runs again, and changing it does not update the screen. <strong>State</strong> solves both problems. State is data that a component remembers between renders. When state changes, React runs the component again (a <strong>re-render</strong>) and shows the new result on the screen.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"User clicks, setCount is called, React re-renders the component, and the screen updates.\" class=\"content-image\" src=\"/images/diagrams/react-state-events.svg\"/><figcaption>Changing state with its setter makes React run the component again.</figcaption></figure>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>useState and onClick</h2>\n<p>You create state with the <code>useState</code> hook. It takes the starting value and gives back a pair: the current value and a function to change it. We use array destructuring to name them, like <code>const [count, setCount] = useState(0)</code>.</p>\n<p>To respond to the user, you add an event handler such as <code>onClick</code>. Pass a function, not the result of calling a function. Write <code>onClick={handleClick}</code> or <code>onClick={() =&gt; setCount(count + 1)}</code>. Do not write <code>onClick={handleClick()}</code>, because that runs the function while the page is drawing.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { useState } from \"react\";\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n\n  return (\n    <button onClick={() => setCount(count + 1)}>\n      Clicked {count} times\n    </button>\n  );\n}",
+     "output": "Button shows: Clicked 0 times\nAfter three clicks the button shows: Clicked 3 times"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Do not mutate state</h2>\n<p>Never change a state value directly, for example <code>count = count + 1</code> or <code>items.push(\"x\")</code>. React only notices a change when you call the setter with a <strong>new</strong> value. For numbers and strings this is easy. For arrays and objects, make a copy with the spread syntax and change the copy.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { useState } from \"react\";\n\nfunction Todos() {\n  const [items, setItems] = useState([\"Read\"]);\n\n  function add() {\n    setItems([...items, \"Write\"]);\n  }\n\n  return (\n    <>\n      <button onClick={add}>Add</button>\n      <p>{items.join(\", \")}</p>\n    </>\n  );\n}",
+     "output": "Paragraph shows: Read\nAfter one click on Add: Read, Write\nAfter two clicks: Read, Write, Write"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Updating from the previous value</h2>\n<p>The state value you see inside a render is a snapshot. If you call <code>setCount(count + 1)</code> three times in one handler, all three calls use the same old <code>count</code>, so the result is only +1. When the new value depends on the old one, pass an <strong>updater function</strong>: <code>setCount(c =&gt; c + 1)</code>. React applies the updates one after another.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { useState } from \"react\";\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n\n  function addThree() {\n    setCount(c => c + 1);\n    setCount(c => c + 1);\n    setCount(c => c + 1);\n  }\n\n  return <button onClick={addThree}>Count: {count}</button>;\n}",
+     "output": "Button shows: Count: 0\nAfter one click the button shows: Count: 3"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Calling the handler in JSX: <code>onClick={add()}</code> instead of <code>onClick={add}</code>.</li>\n<li>Changing an array or object in place instead of making a new copy.</li>\n<li>Expecting the variable to change right after calling the setter. The new value appears on the next render.</li>\n<li>Calling <code>useState</code> inside an if statement or a loop. Hooks must be called at the top level of the component.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>State is memory that a component keeps between renders.</li>\n<li><code>useState(initial)</code> returns <code>[value, setValue</code>].</li>\n<li>Changing state with the setter causes a re-render.</li>\n<li>Pass a function to <code>onClick</code>; do not call it.</li>\n<li>Never mutate state. Create a new array or object instead.</li>\n<li>Use <code>setX(x =&gt; ...)</code> when the new value depends on the old one.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "lists-keys",
+   "title": "Lists, Keys & Conditional Rendering",
+   "section": "Hooks & Data",
+   "order": 4,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Lists, Keys & Conditional Rendering</h1>\n<div class=\"card\">\n<h2>Rendering a list with map</h2>\n<p>Real apps show lists: courses, messages, products. In React you do not write a loop in the JSX. You use the array method <code>map</code> to turn each data item into a JSX element. The result is an array of elements, and React displays them all.</p>\n<p>Every item in a list needs a <strong>key</strong> prop. React uses keys to match each element with its data when the list changes, so it can add, remove or move items correctly and quickly.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Three course objects with ids 1, 2, 3 are mapped to li elements, each with key equal to its id.\" class=\"content-image\" src=\"/images/diagrams/react-lists-keys.svg\"/><figcaption>map() creates one element per item, and each element gets a key from its id.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "function App() {\n  const fruits = [\"Mango\", \"Apple\", \"Guava\"];\n  return (\n    <ul>\n      {fruits.map(f => (\n        <li key={f}>{f}</li>\n      ))}\n    </ul>\n  );\n}",
+     "output": "Browser shows a bulleted list:\n- Mango\n- Apple\n- Guava"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Choosing good keys</h2>\n<p>A key must be <strong>unique among siblings</strong> and <strong>stable</strong>, meaning the same item always has the same key. The best key is an id from your data, such as a database id. Avoid using the array index as the key when the list can be reordered, filtered or have items inserted, because the keys then point to different data and you can get strange bugs. The key is used by React only; it is not passed to your component as a prop.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "function App() {\n  const courses = [\n    { id: 1, title: \"HTML\", done: true },\n    { id: 2, title: \"CSS\", done: false },\n    { id: 3, title: \"React\", done: false },\n  ];\n  return (\n    <ul>\n      {courses.map(c => (\n        <li key={c.id}>\n          {c.title} {c.done ? \"(done)\" : \"(pending)\"}\n        </li>\n      ))}\n    </ul>\n  );\n}",
+     "output": "Browser shows a bulleted list:\n- HTML (done)\n- CSS (pending)\n- React (pending)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Conditional rendering</h2>\n<p>You often need to show something only in some cases. JSX has no special syntax for this. You use normal JavaScript:</p>\n<ul>\n<li><strong>Ternary:</strong> <code>cond ? &lt;A /&gt; : &lt;B /&gt;</code> chooses one of two options.</li>\n<li><strong>Logical AND:</strong> <code>cond &amp;&amp; &lt;A /&gt;</code> shows <code>A</code> only when <code>cond</code> is true.</li>\n<li><strong>Early return:</strong> <code>if (!user) return null;</code> stops the component and shows nothing.</li>\n</ul>\n<p>Be careful with <code>&amp;&amp;</code> and numbers. If <code>count</code> is 0, then <code>count &amp;&amp; &lt;p&gt;..&lt;/p&gt;</code> shows the number 0 on the page. Use a real comparison such as <code>count &gt; 0 &amp;&amp; ...</code>.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "function Inbox({ count }) {\n  return (\n    <div>\n      <h2>Inbox</h2>\n      {count > 0 && <p>You have {count} new messages.</p>}\n    </div>\n  );\n}\n\nfunction App() {\n  return <Inbox count={3} />;\n}",
+     "output": "Browser shows: the heading \"Inbox\" and the paragraph \"You have 3 new messages.\"\n(With count={0} only the heading would appear.)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<table>\n<tr><th>Mistake</th><th>Fix</th></tr>\n<tr><td>No <code>key</code> on list items (React warns in the console)</td><td>Add <code>key={item.id}</code> to the outer element inside <code>map</code>.</td></tr>\n<tr><td>Using the index as key in a list that changes order</td><td>Use a stable id from the data.</td></tr>\n<tr><td>Putting the key on an inner element</td><td>The key goes on the element returned directly by <code>map</code>.</td></tr>\n<tr><td><code>count &amp;&amp; ...</code> shows 0</td><td>Use <code>count &gt; 0 &amp;&amp; ...</code> or a ternary.</td></tr>\n</table>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Use <code>array.map()</code> to turn data into JSX elements.</li>\n<li>Give each list item a unique, stable <code>key</code>, preferably an id.</li>\n<li>Use a ternary for either/or, and <code>&amp;&amp;</code> for show-or-nothing.</li>\n<li>An early <code>return</code> can skip rendering completely.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "forms",
+   "title": "Forms & Controlled Inputs",
+   "section": "Hooks & Data",
+   "order": 5,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Forms & Controlled Inputs</h1>\n<div class=\"card\">\n<h2>Controlled inputs</h2>\n<p>In plain HTML, an input keeps its own text. In React, the usual way is a <strong>controlled input</strong>: the text lives in React state, and the input just displays it. You give the input a <code>value</code> from state and an <code>onChange</code> handler that updates the state with what the user typed. The state is then the single source of truth.</p>\n<p>The handler receives an event object. The text typed by the user is in <code>e.target.value</code>.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Typing triggers onChange, which sets state, which re-renders so the input shows the state value.\" class=\"content-image\" src=\"/images/diagrams/react-forms.svg\"/><figcaption>A controlled input and its state update each other in a loop.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { useState } from \"react\";\n\nfunction NameBox() {\n  const [name, setName] = useState(\"\");\n\n  return (\n    <>\n      <input\n        value={name}\n        onChange={e => setName(e.target.value)}\n        placeholder=\"Your name\"\n      />\n      <p>Hello, {name}</p>\n    </>\n  );\n}",
+     "output": "Browser shows: an empty input with the hint \"Your name\" and the paragraph \"Hello,\"\nAfter typing Sara in the input the paragraph shows: Hello, Sara"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Submitting a form</h2>\n<p>Use a <code>form</code> element with an <code>onSubmit</code> handler. By default the browser reloads the page when a form is submitted. Call <code>e.preventDefault()</code> at the start of your handler to stop that, then do your own work with the state values. A button with <code>type=\"submit\"</code> inside the form, or pressing Enter, triggers the submit event.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { useState } from \"react\";\n\nfunction Subscribe() {\n  const [email, setEmail] = useState(\"\");\n  const [message, setMessage] = useState(\"\");\n\n  function handleSubmit(e) {\n    e.preventDefault();\n    setMessage(\"Subscribed: \" + email);\n  }\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <input\n        type=\"email\"\n        value={email}\n        onChange={e => setEmail(e.target.value)}\n      />\n      <button type=\"submit\">Subscribe</button>\n      <p>{message}</p>\n    </form>\n  );\n}",
+     "output": "After typing sara@example.com and clicking Subscribe, the paragraph shows: Subscribed: sara@example.com\nThe page does not reload."
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Many fields, one state object</h2>\n<p>For bigger forms you do not need one state variable per field. Keep one object, give each input a <code>name</code> that matches a key, and use one shared handler. The syntax <code>[e.target.name]: e.target.value</code> uses a computed key, so the handler updates whichever field changed. Remember to copy the old object with <code>...form</code> so the other fields stay.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { useState } from \"react\";\n\nfunction Profile() {\n  const [form, setForm] = useState({ name: \"\", city: \"Lahore\" });\n\n  function handleChange(e) {\n    setForm({ ...form, [e.target.name]: e.target.value });\n  }\n\n  return (\n    <>\n      <input name=\"name\" value={form.name} onChange={handleChange} />\n      <select name=\"city\" value={form.city} onChange={handleChange}>\n        <option>Lahore</option>\n        <option>Karachi</option>\n      </select>\n      <p>{form.name} from {form.city}</p>\n    </>\n  );\n}",
+     "output": "At first the paragraph shows: from Lahore\nAfter typing Sara and choosing Karachi it shows: Sara from Karachi"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Setting <code>value</code> without <code>onChange</code>. The input becomes read-only and React warns you.</li>\n<li>Forgetting <code>e.preventDefault()</code>, so the page reloads and the state is lost.</li>\n<li>Forgetting <code>...form</code> when updating an object, which erases the other fields.</li>\n<li>Using <code>useState()</code> with no start value for a text input. Start with an empty string <code>\"\"</code>.</li>\n<li>Checkboxes use <code>checked</code> and <code>e.target.checked</code>, not <code>value</code>.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A controlled input gets <code>value</code> from state and updates it in <code>onChange</code>.</li>\n<li>Read the typed text with <code>e.target.value</code>.</li>\n<li>Use <code>onSubmit</code> on the form and call <code>e.preventDefault()</code>.</li>\n<li>For many fields, keep one object in state and use the input <code>name</code>.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "useeffect-fetch",
+   "title": "useEffect & Fetching Data",
+   "section": "Hooks & Data",
+   "order": 6,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>useEffect & Fetching Data</h1>\n<div class=\"card\">\n<h2>What is an effect?</h2>\n<p>Rendering a component should only calculate JSX. But apps also need to do work that reaches outside React: fetch data from a server, start a timer, or change the page title. This kind of work is called a <strong>side effect</strong>, and you put it inside the <code>useEffect</code> hook.</p>\n<p><strong>Timing:</strong> React first renders your component and updates the screen. After that, it runs your effect. So an effect never blocks the first paint.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Timeline of render, screen update, then effect, plus a table of three dependency array forms.\" class=\"content-image\" src=\"/images/diagrams/react-useeffect-fetch.svg\"/><figcaption>Effects run after the screen updates; the dependency array controls repeats.</figcaption></figure>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>The dependency array</h2>\n<p>The second argument of <code>useEffect</code> is the dependency array. It tells React when to run the effect again.</p>\n<table>\n<tr><th>Code</th><th>When the effect runs</th></tr>\n<tr><td><code>useEffect(fn)</code></td><td>After every render</td></tr>\n<tr><td><code>useEffect(fn, [])</code></td><td>Once, after the first render</td></tr>\n<tr><td><code>useEffect(fn, [count])</code></td><td>After the first render and whenever <code>count</code> changes</td></tr>\n</table>\n<p>Put every state or prop that the effect uses into the array. In development, React StrictMode runs effects an extra time on mount on purpose, to help you find bugs. This does not happen in the production build.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { useState, useEffect } from \"react\";\n\nfunction App() {\n  const [count, setCount] = useState(0);\n\n  useEffect(() => {\n    console.log(\"Effect ran, count is \" + count);\n  }, [count]);\n\n  return <button onClick={() => setCount(count + 1)}>+1</button>;\n}",
+     "output": "Console shows after the first render: Effect ran, count is 0\nAfter one click: Effect ran, count is 1\n(In development with StrictMode, the first line appears twice.)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Cleanup</h2>\n<p>An effect can return a <strong>cleanup function</strong>. React calls it before the effect runs again and when the component is removed from the page. Use it to undo what the effect started: stop a timer, close a connection, or remove an event listener. Without cleanup you can get memory leaks and strange repeated behaviour.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { useState, useEffect } from \"react\";\n\nfunction Clock() {\n  const [seconds, setSeconds] = useState(0);\n\n  useEffect(() => {\n    const id = setInterval(() => setSeconds(s => s + 1), 1000);\n    return () => clearInterval(id);\n  }, []);\n\n  return <p>Seconds: {seconds}</p>;\n}",
+     "output": "Browser shows: Seconds: 0\nAfter one second: Seconds: 1\nAfter two seconds: Seconds: 2 (and so on)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Fetching data with loading and error states</h2>\n<p>A request takes time and can fail, so a good component tracks three things: the data, a loading flag, and an error. Show a loading message first, then either the error or the data. The effect below runs once, calls the server with <code>fetch</code>, and updates the state when the answer arrives.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { useState, useEffect } from \"react\";\n\nfunction Users() {\n  const [users, setUsers] = useState([]);\n  const [loading, setLoading] = useState(true);\n  const [error, setError] = useState(null);\n\n  useEffect(() => {\n    fetch(\"https://jsonplaceholder.typicode.com/users?_limit=3\")\n      .then(res => {\n        if (!res.ok) throw new Error(\"Request failed\");\n        return res.json();\n      })\n      .then(data => setUsers(data))\n      .catch(err => setError(err.message))\n      .finally(() => setLoading(false));\n  }, []);\n\n  if (loading) return <p>Loading...</p>;\n  if (error) return <p>Error: {error}</p>;\n\n  return (\n    <ul>\n      {users.map(u => <li key={u.id}>{u.name}</li>)}\n    </ul>\n  );\n}",
+     "output": "Browser first shows: Loading...\nThen it shows a list of three names: Leanne Graham, Ervin Howell, Clementine Bauch\nIf the network fails it shows an Error message instead."
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Leaving out the dependency array, so the effect runs after every render. If it also sets state, this can make an endless loop.</li>\n<li>Forgetting a value in the array, so the effect uses old data.</li>\n<li>Making the effect function itself <code>async</code>. Call an async function inside it instead.</li>\n<li>Not checking <code>res.ok</code>. A 404 response is not an error for <code>fetch</code> by itself.</li>\n<li>Forgetting cleanup for timers and listeners.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Effects run after React has updated the screen.</li>\n<li>The dependency array controls when an effect runs again.</li>\n<li>Return a cleanup function to stop timers and listeners.</li>\n<li>For fetching, keep data, loading and error in state and show each case.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "context-state",
+   "title": "Sharing State",
+   "section": "Real Apps",
+   "order": 7,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Sharing State</h1>\n<div class=\"card\">\n<h2>Lifting state up</h2>\n<p>Sometimes two components need the same data. For example, an input and a text that shows its length. Props only go down, so siblings cannot talk to each other directly. The solution is to <strong>lift the state up</strong>: move it to the closest parent that contains both components. The parent passes the value down as a prop and passes a function down so the child can ask for a change.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"ThemeProvider at the top, Layout and Sidebar in between, ThemeButton at the bottom; a dashed arrow carries the context value straight to ThemeButton.\" class=\"content-image\" src=\"/images/diagrams/react-context-state.svg\"/><figcaption>A Provider makes a value available to deep children without passing props.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { useState } from \"react\";\n\nfunction TextInput({ value, onChange }) {\n  return <input value={value} onChange={e => onChange(e.target.value)} />;\n}\n\nfunction App() {\n  const [text, setText] = useState(\"\");\n\n  return (\n    <>\n      <TextInput value={text} onChange={setText} />\n      <p>Length: {text.length}</p>\n    </>\n  );\n}",
+     "output": "Browser shows: an empty input and the paragraph \"Length: 0\"\nAfter typing React the paragraph shows: Length: 5"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Context: avoiding prop drilling</h2>\n<p>If many levels of components sit between the owner of the data and the component that needs it, passing props through every level becomes tiring. This is called <strong>prop drilling</strong>. <strong>Context</strong> lets a parent make a value available to every component below it, however deep.</p>\n<p>There are three steps: create the context with <code>createContext</code>, wrap part of the tree with a Provider that gives a <code>value</code>, and read the value with <code>useContext</code> in any child. Context is good for data used by many components, such as the theme, the logged-in user or the language. (In React 19 you can write the context itself as the provider, <code>&lt;ThemeContext value=\"dark\"&gt;</code>, but <code>.Provider</code> still works everywhere.)</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { createContext, useContext } from \"react\";\n\nconst ThemeContext = createContext(\"light\");\n\nfunction Label() {\n  const theme = useContext(ThemeContext);\n  return <p>Theme is {theme}</p>;\n}\n\nfunction App() {\n  return (\n    <ThemeContext.Provider value=\"dark\">\n      <Label />\n    </ThemeContext.Provider>\n  );\n}",
+     "output": "Browser shows: Theme is dark"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>A custom hook for shared state</h2>\n<p>A <strong>custom hook</strong> is a normal function whose name starts with <code>use</code> and that calls other hooks. It lets you reuse logic. A common pattern is a provider component that owns the state, plus a small hook that reads the context. Components then simply call <code>useTheme()</code>.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { createContext, useContext, useState } from \"react\";\n\nconst ThemeContext = createContext(null);\n\nfunction ThemeProvider({ children }) {\n  const [theme, setTheme] = useState(\"light\");\n  return (\n    <ThemeContext.Provider value={{ theme, setTheme }}>\n      {children}\n    </ThemeContext.Provider>\n  );\n}\n\nfunction useTheme() {\n  return useContext(ThemeContext);\n}\n\nfunction ThemeButton() {\n  const { theme, setTheme } = useTheme();\n  return (\n    <button onClick={() => setTheme(theme === \"light\" ? \"dark\" : \"light\")}>\n      Theme: {theme}\n    </button>\n  );\n}\n\nfunction App() {\n  return (\n    <ThemeProvider>\n      <ThemeButton />\n    </ThemeProvider>\n  );\n}",
+     "output": "Button shows: Theme: light\nAfter one click the button shows: Theme: dark\nAfter a second click it shows: Theme: light"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Which tool to use?</h2>\n<table>\n<tr><th>Situation</th><th>Choose</th></tr>\n<tr><td>Only one component needs the data</td><td>Local <code>useState</code></td></tr>\n<tr><td>A parent and a few children need it</td><td>Lift the state up and pass props</td></tr>\n<tr><td>Many distant components need it</td><td>Context</td></tr>\n<tr><td>You repeat the same hook logic</td><td>A custom hook</td></tr>\n</table>\n<p><strong>Common mistakes:</strong> using context for everything (start with props), reading a context outside its Provider (you get the default value), and forgetting that all components using a context re-render when its value changes.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Lift state up to the closest common parent when components must share it.</li>\n<li>Context passes data to deep children without prop drilling.</li>\n<li>Use <code>createContext</code>, a Provider with <code>value</code>, and <code>useContext</code>.</li>\n<li>A custom hook is a function starting with <code>use</code> that reuses hook logic.</li>\n<li>Start simple with props, and add context only when you need it.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "routing-deploy",
+   "title": "Routing & Deployment",
+   "section": "Real Apps",
+   "order": 8,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Routing & Deployment</h1>\n<div class=\"card\">\n<h2>Routing with react-router</h2>\n<p>A React app is usually a single HTML page, but users expect different URLs such as <code>/about</code> or <code>/courses/7</code>. A router shows the right component for the current URL without reloading the page. The most popular choice is react-router. Install it with:</p>\n<pre><code>npm install react-router-dom</code></pre>\n<p>You wrap the app in <code>BrowserRouter</code>, list your pages inside <code>Routes</code>, and describe each page with a <code>Route</code> that has a <code>path</code> and an <code>element</code>. For links, use the <code>Link</code> component instead of the <code>a</code> tag, because <code>Link</code> changes the URL without a full page reload.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Table mapping the address bar URL to a Route path and the component shown.\" class=\"content-image\" src=\"/images/diagrams/react-routing-deploy.svg\"/><figcaption>The router matches the URL to a Route and shows its component.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { BrowserRouter, Routes, Route, Link } from \"react-router-dom\";\n\nfunction Home() {\n  return <h1>Home page</h1>;\n}\n\nfunction About() {\n  return <h1>About page</h1>;\n}\n\nfunction App() {\n  return (\n    <BrowserRouter>\n      <nav>\n        <Link to=\"/\">Home</Link> | <Link to=\"/about\">About</Link>\n      </nav>\n      <Routes>\n        <Route path=\"/\" element={<Home />} />\n        <Route path=\"/about\" element={<About />} />\n      </Routes>\n    </BrowserRouter>\n  );\n}",
+     "output": "At the address / the browser shows: Home | About and the heading \"Home page\"\nAfter clicking About the address becomes /about and the heading is \"About page\". The page does not reload."
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>URL parameters</h2>\n<p>A path can contain a part that changes, written with a colon, like <code>/courses/:id</code>. Inside the page component, the hook <code>useParams</code> gives you the value. This is how one component can show many different items.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "import { useParams } from \"react-router-dom\";\n\n// Inside <Routes>:\n// <Route path=\"/courses/:id\" element={<Course />} />\n\nfunction Course() {\n  const { id } = useParams();\n  return <h1>Course number {id}</h1>;\n}",
+     "output": "When the address is /courses/7 the browser shows: Course number 7"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Environment variables</h2>\n<p>Apps often need settings that differ between your computer and the live site, such as the address of the API. Vite reads them from a file named <code>.env</code> in the project root. Only names that start with <strong>VITE_</strong> are made available to your code, through <code>import.meta.env</code>. After you change the <code>.env</code> file, restart the dev server.</p>\n<p>Warning: these values are copied into the JavaScript that users download. Never put passwords or secret keys in a <code>VITE_</code> variable.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "jsx",
+     "code": "// .env file in the project root:\n// VITE_API_URL=https://api.example.com\n\nconst apiUrl = import.meta.env.VITE_API_URL;\n\nfunction App() {\n  return <p>API: {apiUrl}</p>;\n}",
+     "output": "Browser shows: API: https://api.example.com"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Build and deploy to Vercel</h2>\n<p>The dev server is only for development. For the real site, create an optimised build:</p>\n<pre><code>npm run build\nnpm run preview</code></pre>\n<p><code>npm run build</code> runs <code>vite build</code> and writes the final files into the <code>dist</code> folder. <code>npm run preview</code> lets you test that build locally. To publish it on Vercel:</p>\n<ol>\n<li>Push your project to a GitHub repository.</li>\n<li>Sign in to Vercel and import the repository.</li>\n<li>Vercel detects Vite. The build command is <code>npm run build</code> and the output folder is <code>dist</code>.</li>\n<li>Add your <code>VITE_</code> variables in the project settings, then deploy.</li>\n</ol>\n<p>Because the router handles URLs in the browser, a direct visit to <code>/about</code> must still load <code>index.html</code>. On Vercel, add a <code>vercel.json</code> file with a rewrite that sends all paths to <code>/</code>. Every new push to GitHub then deploys again automatically.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Using <code>&lt;a href&gt;</code> for internal pages, which reloads the whole app. Use <code>Link</code>.</li>\n<li>Naming a variable <code>API_URL</code> without the <code>VITE_</code> prefix, so it is <code>undefined</code> in your code.</li>\n<li>Putting secrets in <code>VITE_</code> variables.</li>\n<li>Getting a 404 on refresh after deploying, because the rewrite to <code>index.html</code> is missing.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>react-router shows a component per URL: <code>BrowserRouter</code>, <code>Routes</code>, <code>Route</code>, <code>Link</code>.</li>\n<li><code>useParams</code> reads parts of the URL such as <code>:id</code>.</li>\n<li>Environment variables must start with <code>VITE_</code> and are public.</li>\n<li><code>npm run build</code> creates the <code>dist</code> folder for deployment.</li>\n<li>Vercel builds from your GitHub repository and needs a rewrite for client-side routes.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,277 @@
+{
+ "languageSlug": "git",
+ "quizzes": [
+  {
+   "slug": "git-getting-started",
+   "title": "Getting Started Checkpoint",
+   "section": "Getting Started",
+   "order": 1,
+   "description": "Covers: What is Git? Install and Setup, Your First Commit, History and Undoing Things.",
+   "questions": [
+    {
+     "id": "git-getting-started-1",
+     "type": "choice",
+     "prompt": "What is the difference between Git and GitHub?",
+     "options": [
+      "Git is a website and GitHub is a program on your computer",
+      "Git is a program on your computer and GitHub is a website that hosts Git repositories",
+      "They are two names for the same tool",
+      "GitHub is an older version of Git"
+     ],
+     "correctIndex": 1,
+     "explanation": "Git is the version control tool you install. GitHub is an online service that stores Git repositories so people can share them."
+    },
+    {
+     "id": "git-getting-started-2",
+     "type": "choice",
+     "prompt": "After these commands, which hidden folder exists inside notes?",
+     "code": "mkdir notes\ncd notes\ngit init\nls -a",
+     "codeLanguage": "bash",
+     "options": [
+      ".git",
+      ".github",
+      ".notes",
+      ".repo"
+     ],
+     "correctIndex": 0,
+     "explanation": "git init creates a hidden .git folder. It holds the whole history of the project."
+    },
+    {
+     "id": "git-getting-started-3",
+     "type": "choice",
+     "prompt": "Which area holds changes that you marked with git add but have not committed yet?",
+     "options": [
+      "Working directory",
+      "Remote repository",
+      "Staging area",
+      "Stash"
+     ],
+     "correctIndex": 2,
+     "explanation": "git add moves changes into the staging area, the waiting room before a commit."
+    },
+    {
+     "id": "git-getting-started-4",
+     "type": "fill",
+     "prompt": "Complete the command to save the staged changes with a message.",
+     "code": "git ____ -m \"Add login page\"",
+     "codeLanguage": "bash",
+     "answers": [
+      "commit"
+     ],
+     "caseSensitive": true,
+     "explanation": "git commit saves everything in the staging area as a new commit."
+    },
+    {
+     "id": "git-getting-started-5",
+     "type": "choice",
+     "prompt": "Which commit message is the best?",
+     "options": [
+      "fix",
+      "changes",
+      "Fix crash when the todo list is empty",
+      "asdf"
+     ],
+     "correctIndex": 2,
+     "explanation": "A good message starts with a verb and says what the commit does, so you can understand it months later."
+    },
+    {
+     "id": "git-getting-started-6",
+     "type": "choice",
+     "prompt": "What happens to the new line after these commands?",
+     "code": "echo \"price = 999\" >> price.txt\ngit restore price.txt",
+     "codeLanguage": "bash",
+     "options": [
+      "It is saved in a new commit",
+      "It is thrown away and the file goes back to the last commit",
+      "It moves to the staging area",
+      "It moves to a new branch"
+     ],
+     "correctIndex": 1,
+     "explanation": "git restore discards uncommitted edits in the working directory. Git cannot bring them back because they were never committed."
+    }
+   ]
+  },
+  {
+   "slug": "git-branching",
+   "title": "Branching Checkpoint",
+   "section": "Branching",
+   "order": 2,
+   "description": "Covers: Branches and Merging, Merge Conflicts, .gitignore, Stash and Tags.",
+   "questions": [
+    {
+     "id": "git-branching-1",
+     "type": "choice",
+     "prompt": "Which command creates a new branch and moves to it?",
+     "options": [
+      "git branch -d feature",
+      "git switch -c feature",
+      "git merge feature",
+      "git log feature"
+     ],
+     "correctIndex": 1,
+     "explanation": "git switch -c creates the branch and switches to it in one step."
+    },
+    {
+     "id": "git-branching-2",
+     "type": "choice",
+     "prompt": "main has no new commits since feature-login was created. What kind of merge is this?",
+     "code": "git switch main\ngit merge feature-login",
+     "codeLanguage": "bash",
+     "options": [
+      "A merge commit",
+      "A merge conflict",
+      "A fast-forward",
+      "A revert"
+     ],
+     "correctIndex": 2,
+     "explanation": "When main has not moved, Git only slides the main pointer forward. This is a fast-forward and needs no new commit."
+    },
+    {
+     "id": "git-branching-3",
+     "type": "choice",
+     "prompt": "Which line comes from the branch being merged in (feature-lahore)?",
+     "code": "<<<<<<< HEAD\nHello Pakistan\n=======\nHello Lahore\n>>>>>>> feature-lahore",
+     "codeLanguage": "text",
+     "options": [
+      "Hello Pakistan",
+      "Hello Lahore",
+      "<<<<<<< HEAD",
+      "======="
+     ],
+     "correctIndex": 1,
+     "explanation": "The part between ======= and >>>>>>> is the incoming branch. The part after <<<<<<< HEAD is your current branch."
+    },
+    {
+     "id": "git-branching-4",
+     "type": "fill",
+     "prompt": "You fixed the conflict in hello.txt. Complete the command that marks it as resolved.",
+     "code": "git ____ hello.txt\ngit commit -m \"Merge feature-lahore\"",
+     "codeLanguage": "bash",
+     "answers": [
+      "add"
+     ],
+     "caseSensitive": true,
+     "explanation": "After editing the file and removing the markers, git add tells Git the conflict is solved. Then you commit."
+    },
+    {
+     "id": "git-branching-5",
+     "type": "choice",
+     "prompt": "Which of these files will Git ignore?",
+     "code": "node_modules/\n.env\n*.log",
+     "codeLanguage": "text",
+     "options": [
+      "package.json",
+      "app.js",
+      "server.log",
+      "README.md"
+     ],
+     "correctIndex": 2,
+     "explanation": "The pattern *.log matches every file that ends in .log, such as server.log."
+    },
+    {
+     "id": "git-branching-6",
+     "type": "choice",
+     "prompt": "What does git stash do?",
+     "options": [
+      "Deletes your uncommitted changes forever",
+      "Saves uncommitted changes aside and gives you a clean folder",
+      "Uploads your changes to GitHub",
+      "Creates a new branch called stash"
+     ],
+     "correctIndex": 1,
+     "explanation": "git stash puts unfinished work in a safe place. Use git stash pop to bring it back."
+    }
+   ]
+  },
+  {
+   "slug": "git-collaboration",
+   "title": "Collaboration Checkpoint",
+   "section": "Collaboration",
+   "order": 3,
+   "description": "Covers: GitHub and Remotes, Pull Requests and Team Workflow.",
+   "questions": [
+    {
+     "id": "git-collaboration-1",
+     "type": "choice",
+     "prompt": "Which command downloads new commits from GitHub but does not change your files?",
+     "options": [
+      "git pull",
+      "git push",
+      "git fetch",
+      "git clone"
+     ],
+     "correctIndex": 2,
+     "explanation": "git fetch only downloads. git pull is fetch plus a merge into your current branch."
+    },
+    {
+     "id": "git-collaboration-2",
+     "type": "choice",
+     "prompt": "In this command, what is origin?",
+     "code": "git remote add origin https://github.com/sara/notes.git\ngit push -u origin main",
+     "codeLanguage": "bash",
+     "options": [
+      "A branch name",
+      "A short name for the remote URL",
+      "Your GitHub username",
+      "A type of commit"
+     ],
+     "correctIndex": 1,
+     "explanation": "origin is the nickname Git stores for the remote repository URL. It is only a convention, but nearly everyone uses it."
+    },
+    {
+     "id": "git-collaboration-3",
+     "type": "choice",
+     "prompt": "What does git clone do?",
+     "options": [
+      "Copies a remote repository to your computer and sets up origin",
+      "Creates a new branch",
+      "Deletes the remote repository",
+      "Merges two branches"
+     ],
+     "correctIndex": 0,
+     "explanation": "git clone downloads the whole repository with its history and connects it to the original as origin."
+    },
+    {
+     "id": "git-collaboration-4",
+     "type": "fill",
+     "prompt": "Complete the command that uploads the new branch to GitHub.",
+     "code": "git ____ -u origin feature-search",
+     "codeLanguage": "bash",
+     "answers": [
+      "push"
+     ],
+     "caseSensitive": true,
+     "explanation": "git push sends your commits to the remote. The -u option remembers the link for next time."
+    },
+    {
+     "id": "git-collaboration-5",
+     "type": "choice",
+     "prompt": "You start a new feature in a team project. What is the best first step?",
+     "options": [
+      "Commit directly to main",
+      "Create a new branch for the feature",
+      "Delete the remote",
+      "Run git reset --hard"
+     ],
+     "correctIndex": 1,
+     "explanation": "Each feature gets its own branch. When it is ready you open a pull request so teammates can review it."
+    },
+    {
+     "id": "git-collaboration-6",
+     "type": "choice",
+     "prompt": "A teammate deleted .env in a later commit, but this still prints the password. Why?",
+     "code": "git rm .env\ngit commit -m \"Remove env file\"\ngit show HEAD~1:.env",
+     "codeLanguage": "bash",
+     "options": [
+      "Git is broken",
+      "The deleted file comes back after every push",
+      "History keeps the old commit, so the password is still readable",
+      "git show always prints the newest file"
+     ],
+     "correctIndex": 2,
+     "explanation": "Deleting a file only adds a new commit. The old commit still holds the content, so the password must be rotated."
+    }
+   ]
+  }
+ ]
+}

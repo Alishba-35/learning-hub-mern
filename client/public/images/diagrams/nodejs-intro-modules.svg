@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 229" width="720" height="229" role="img" aria-labelledby="t d">
+  <title id="t">How Node.js runs your code</title>
+  <desc id="d">app.js is run by the V8 engine; slow work such as files and network goes to Node APIs and the event loop, which later runs your callback.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#86efac"/></marker></defs>
+  <rect width="720" height="229" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#86efac" text-anchor="middle">How Node.js runs your code</text>
+  <rect x="26.0" y="60.0" width="106.4" height="87.0" rx="10" fill="#0f172a" stroke="#86efac" stroke-width="1.6"/>
+  <text x="79.2" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">app.js</text>
+  <text x="79.2" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Your</text>
+  <text x="79.2" y="123.1" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">JavaScript</text>
+  <line x1="135.4" y1="103.5" x2="163.4" y2="103.5" stroke="#86efac" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="166.4" y="60.0" width="106.4" height="87.0" rx="10" fill="#0f172a" stroke="#86efac" stroke-width="1.6"/>
+  <text x="219.6" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">V8 engine</text>
+  <text x="219.6" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Runs the JS</text>
+  <text x="219.6" y="123.1" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">code</text>
+  <line x1="275.8" y1="103.5" x2="303.8" y2="103.5" stroke="#86efac" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="306.8" y="60.0" width="106.4" height="87.0" rx="10" fill="#0f172a" stroke="#86efac" stroke-width="1.6"/>
+  <text x="360.0" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Node APIs</text>
+  <text x="360.0" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">fs, http, path</text>
+  <line x1="416.2" y1="103.5" x2="444.2" y2="103.5" stroke="#86efac" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="447.2" y="60.0" width="106.4" height="87.0" rx="10" fill="#0f172a" stroke="#86efac" stroke-width="1.6"/>
+  <text x="500.4" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Event loop</text>
+  <text x="500.4" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Waits for</text>
+  <text x="500.4" y="123.1" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">results</text>
+  <line x1="556.6" y1="103.5" x2="584.6" y2="103.5" stroke="#86efac" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="587.6" y="60.0" width="106.4" height="87.0" rx="10" fill="#0f172a" stroke="#86efac" stroke-width="1.6"/>
+  <text x="640.8" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Callback</text>
+  <text x="640.8" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Your code runs</text>
+  <text x="640.8" y="123.1" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">again</text>
+  <text x="360.0" y="173.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Node does one thing at a time, but it never sits idle: slow jobs are handed</text>
+  <text x="360.0" y="189.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">off and the event loop calls you back when they finish.</text>
+</svg>

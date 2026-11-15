@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 314" width="720" height="314" role="img" aria-labelledby="t d">
+  <title id="t">A class and its objects</title>
+  <desc id="d">A Student class with name and marks and two objects s1 and s2.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#60a5fa"/></marker></defs>
+  <rect width="720" height="314" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#60a5fa" text-anchor="middle">A class and its objects</text>
+  <rect x="30.0" y="60.0" width="250.0" height="142.0" rx="10" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="155.0" y="84.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="15" font-weight="700" fill="#60a5fa" text-anchor="middle">class Student</text>
+  <line x1="40.0" y1="94.0" x2="270.0" y2="94.0" stroke="#334155" stroke-width="1"/>
+  <text x="44.0" y="114.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="start">name</text>
+  <text x="44.0" y="134.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="start">marks</text>
+  <line x1="40.0" y1="146.0" x2="270.0" y2="146.0" stroke="#334155" stroke-width="1"/>
+  <text x="44.0" y="164.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="start">def show(self)</text>
+  <text x="44.0" y="184.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="start">def result(self)</text>
+  <rect x="360.0" y="62.0" width="330.0" height="62.0" rx="8" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="374.0" y="86.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#60a5fa" text-anchor="start">s1</text>
+  <text x="374.0" y="108.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="start">name = &quot;Ali&quot;   marks = 80</text>
+  <line x1="284.0" y1="131.0" x2="356.0" y2="93.0" stroke="#60a5fa" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <rect x="360.0" y="138.0" width="330.0" height="62.0" rx="8" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="374.0" y="162.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#60a5fa" text-anchor="start">s2</text>
+  <text x="374.0" y="184.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="start">name = &quot;Sara&quot;  marks = 92</text>
+  <line x1="284.0" y1="131.0" x2="356.0" y2="169.0" stroke="#60a5fa" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <text x="155.0" y="222.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Student(...)</text>
+  <text x="360.0" y="258.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">The class is the blueprint, an object is one real thing made from it. self</text>
+  <text x="360.0" y="274.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">means this object.</text>
+</svg>

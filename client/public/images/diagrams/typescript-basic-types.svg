@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 349" width="720" height="349" role="img" aria-labelledby="t d">
+  <title id="t">Basic types at a glance</title>
+  <desc id="d">Table of TypeScript types string, number, boolean, array, tuple, any and unknown with examples.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7dd3fc"/></marker></defs>
+  <rect width="720" height="349" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#7dd3fc" text-anchor="middle">Basic types at a glance</text>
+  <rect x="30.0" y="60.0" width="176.0" height="32.0" rx="0" fill="#7dd3fc" stroke="#7dd3fc" stroke-width="1"/>
+  <text x="118.0" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Type</text>
+  <rect x="206.0" y="60.0" width="176.0" height="32.0" rx="0" fill="#7dd3fc" stroke="#7dd3fc" stroke-width="1"/>
+  <text x="294.0" y="81.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Holds</text>
+  <rect x="382.0" y="60.0" width="308.0" height="32.0" rx="0" fill="#7dd3fc" stroke="#7dd3fc" stroke-width="1"/>
+  <text x="536.0" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Example</text>
+  <rect x="30.0" y="92.0" width="176.0" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="118.0" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">string</text>
+  <rect x="206.0" y="92.0" width="176.0" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="294.0" y="113.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">text</text>
+  <rect x="382.0" y="92.0" width="308.0" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="536.0" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">let s: string = &quot;Ali&quot;;</text>
+  <rect x="30.0" y="124.0" width="176.0" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="118.0" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">number</text>
+  <rect x="206.0" y="124.0" width="176.0" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="294.0" y="145.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">any number</text>
+  <rect x="382.0" y="124.0" width="308.0" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="536.0" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">let n: number = 19;</text>
+  <rect x="30.0" y="156.0" width="176.0" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="118.0" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">boolean</text>
+  <rect x="206.0" y="156.0" width="176.0" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="294.0" y="177.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">true or false</text>
+  <rect x="382.0" y="156.0" width="308.0" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="536.0" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">let ok: boolean = true;</text>
+  <rect x="30.0" y="188.0" width="176.0" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="118.0" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">number[]</text>
+  <rect x="206.0" y="188.0" width="176.0" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="294.0" y="209.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">list of numbers</text>
+  <rect x="382.0" y="188.0" width="308.0" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="536.0" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">let a: number[] = [1, 2];</text>
+  <rect x="30.0" y="220.0" width="176.0" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="118.0" y="241.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">[string, number]</text>
+  <rect x="206.0" y="220.0" width="176.0" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="294.0" y="241.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">fixed-size tuple</text>
+  <rect x="382.0" y="220.0" width="308.0" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="536.0" y="241.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">[&quot;Ali&quot;, 20]</text>
+  <rect x="30.0" y="252.0" width="176.0" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="118.0" y="273.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">unknown</text>
+  <rect x="206.0" y="252.0" width="176.0" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="294.0" y="273.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">any value, check first</text>
+  <rect x="382.0" y="252.0" width="308.0" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="536.0" y="273.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">let u: unknown;</text>
+  <text x="360.0" y="310.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Prefer unknown over any: unknown still makes you check the type before use.</text>
+</svg>

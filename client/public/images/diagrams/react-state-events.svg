@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 266" width="720" height="266" role="img" aria-labelledby="t d">
+  <title id="t">The state update cycle</title>
+  <desc id="d">User clicks, setCount is called, React re-renders the component, and the screen updates.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#67e8f9"/></marker></defs>
+  <rect width="720" height="266" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#67e8f9" text-anchor="middle">The state update cycle</text>
+  <rect x="24.0" y="66.0" width="145.5" height="82.0" rx="10" fill="#0f172a" stroke="#67e8f9" stroke-width="1.6"/>
+  <text x="96.8" y="92.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">1. Click</text>
+  <text x="96.8" y="112.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="11" font-weight="400" fill="#67e8f9" text-anchor="middle">onClick handler</text>
+  <text x="96.8" y="126.3" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="11" font-weight="400" fill="#67e8f9" text-anchor="middle">runs</text>
+  <line x1="172.5" y1="107.0" x2="196.5" y2="107.0" stroke="#67e8f9" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="199.5" y="66.0" width="145.5" height="82.0" rx="10" fill="#0f172a" stroke="#67e8f9" stroke-width="1.6"/>
+  <text x="272.2" y="92.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">2. Setter</text>
+  <text x="272.2" y="112.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="11" font-weight="400" fill="#67e8f9" text-anchor="middle">setCount(count +</text>
+  <text x="272.2" y="126.3" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="11" font-weight="400" fill="#67e8f9" text-anchor="middle">1)</text>
+  <line x1="348.0" y1="107.0" x2="372.0" y2="107.0" stroke="#67e8f9" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="375.0" y="66.0" width="145.5" height="82.0" rx="10" fill="#0f172a" stroke="#67e8f9" stroke-width="1.6"/>
+  <text x="447.8" y="92.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">3. Re-render</text>
+  <text x="447.8" y="112.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="11" font-weight="400" fill="#67e8f9" text-anchor="middle">Counter runs</text>
+  <text x="447.8" y="126.3" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="11" font-weight="400" fill="#67e8f9" text-anchor="middle">again, count = 1</text>
+  <line x1="523.5" y1="107.0" x2="547.5" y2="107.0" stroke="#67e8f9" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="550.5" y="66.0" width="145.5" height="82.0" rx="10" fill="#0f172a" stroke="#67e8f9" stroke-width="1.6"/>
+  <text x="623.2" y="92.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">4. Screen</text>
+  <text x="623.2" y="112.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="11" font-weight="400" fill="#67e8f9" text-anchor="middle">Clicked 1 times</text>
+  <line x1="623.2" y1="151.0" x2="623.2" y2="180.0" stroke="#67e8f9" stroke-width="2" stroke-dasharray="6 5"/>
+  <line x1="623.2" y1="180.0" x2="96.8" y2="180.0" stroke="#67e8f9" stroke-width="2" stroke-dasharray="6 5"/>
+  <line x1="96.8" y1="180.0" x2="96.8" y2="152.0" stroke="#67e8f9" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <text x="360.0" y="200.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#94a3b8" text-anchor="middle">ready for the next click</text>
+  <text x="360.0" y="232.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">State is remembered between renders. The new value shows up on the next</text>
+  <text x="360.0" y="248.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">render, not instantly.</text>
+</svg>

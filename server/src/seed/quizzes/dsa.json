@@ -1,0 +1,276 @@
+{
+ "languageSlug": "dsa",
+ "quizzes": [
+  {
+   "slug": "dsa-foundations",
+   "title": "Foundations Checkpoint",
+   "section": "Foundations",
+   "order": 1,
+   "description": "Covers: Algorithms & Big-O, Arrays & Dynamic Lists, Stacks & Queues.",
+   "questions": [
+    {
+     "id": "dsa-foundations-1",
+     "type": "choice",
+     "prompt": "Which running time grows the slowest as the input size n gets bigger (the best one)?",
+     "options": [
+      "O(n^2)",
+      "O(n)",
+      "O(1)",
+      "O(n log n)"
+     ],
+     "correctIndex": 2,
+     "explanation": "O(1) is constant: the work does not grow at all. The order from best to worst is O(1), O(log n), O(n), O(n^2)."
+    },
+    {
+     "id": "dsa-foundations-2",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "count = 0\nfor i in range(4):\n    for j in range(3):\n        count += 1\nprint(count)",
+     "codeLanguage": "python",
+     "options": [
+      "7",
+      "12",
+      "4",
+      "3"
+     ],
+     "correctIndex": 1,
+     "explanation": "The inner loop runs 3 times for each of the 4 outer rounds, so count is incremented 4 x 3 = 12 times."
+    },
+    {
+     "id": "dsa-foundations-3",
+     "type": "choice",
+     "prompt": "Why is my_list.insert(0, x) slow on a big list?",
+     "options": [
+      "Every existing item has to shift one place to the right",
+      "Python must sort the list first",
+      "It copies the list to the hard disk",
+      "Index 0 is not allowed in a list"
+     ],
+     "correctIndex": 0,
+     "explanation": "Items sit side by side in memory, so making room at the front moves all n items. That costs O(n)."
+    },
+    {
+     "id": "dsa-foundations-4",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "from collections import deque\nq = deque([1, 2, 3])\nq.append(4)\nprint(q.popleft(), q.pop())",
+     "codeLanguage": "python",
+     "options": [
+      "2 3",
+      "4 1",
+      "1 3",
+      "1 4"
+     ],
+     "correctIndex": 3,
+     "explanation": "popleft() removes from the front (1) and pop() removes from the back (4)."
+    },
+    {
+     "id": "dsa-foundations-5",
+     "type": "fill",
+     "prompt": "Fill in the method that pushes an item onto a list-based stack.",
+     "code": "stack = []\nstack.____(\"page1\")\nprint(stack)",
+     "codeLanguage": "python",
+     "answers": [
+      "append"
+     ],
+     "caseSensitive": true,
+     "explanation": "append adds an item at the end of the list, which is the top of the stack. pop() later removes it."
+    },
+    {
+     "id": "dsa-foundations-6",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "grid = [[1, 2], [3, 4]]\nprint(grid[1][0])",
+     "codeLanguage": "python",
+     "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "correctIndex": 2,
+     "explanation": "grid[1] is the second row [3, 4]. Index 0 of that row is 3."
+    }
+   ]
+  },
+  {
+   "slug": "dsa-linked-structures-trees",
+   "title": "Linked Structures & Trees Checkpoint",
+   "section": "Linked Structures & Trees",
+   "order": 2,
+   "description": "Covers: Linked Lists, Trees & Binary Search Trees, Hash Tables.",
+   "questions": [
+    {
+     "id": "dsa-linked-structures-trees-1",
+     "type": "choice",
+     "prompt": "In a singly linked list, what does the last node's next link hold?",
+     "options": [
+      "The head node",
+      "None",
+      "The previous node",
+      "The number 0"
+     ],
+     "correctIndex": 1,
+     "explanation": "None marks the end of the list. A loop like while current is not None stops there."
+    },
+    {
+     "id": "dsa-linked-structures-trees-2",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "class Node:\n    def __init__(self, v):\n        self.v = v\n        self.next = None\n\na = Node(1)\nb = Node(2)\nc = Node(3)\na.next = b\nb.next = c\nprint(a.next.next.v)",
+     "codeLanguage": "python",
+     "options": [
+      "1",
+      "2",
+      "3",
+      "None"
+     ],
+     "correctIndex": 2,
+     "explanation": "a.next is b and b.next is c, so a.next.next is c, whose v is 3."
+    },
+    {
+     "id": "dsa-linked-structures-trees-3",
+     "type": "choice",
+     "prompt": "In a binary search tree, where does a value smaller than the current node go?",
+     "options": [
+      "Into the left subtree",
+      "Into the right subtree",
+      "Above the node as its parent",
+      "It replaces the node"
+     ],
+     "correctIndex": 0,
+     "explanation": "BST rule: smaller values go left and bigger values go right."
+    },
+    {
+     "id": "dsa-linked-structures-trees-4",
+     "type": "choice",
+     "prompt": "You insert 5, 3, 8, 1 into an empty BST, in that order. What does an inorder traversal give?",
+     "options": [
+      "5 3 8 1",
+      "1 3 8 5",
+      "8 5 3 1",
+      "1 3 5 8"
+     ],
+     "correctIndex": 3,
+     "explanation": "Inorder (left, node, right) on a BST always gives the values in sorted order."
+    },
+    {
+     "id": "dsa-linked-structures-trees-5",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "def h(key, size):\n    return len(key) % size\n\nprint(h(\"pear\", 4), h(\"kiwi\", 4))",
+     "codeLanguage": "python",
+     "options": [
+      "1 1",
+      "0 3",
+      "0 0",
+      "4 4"
+     ],
+     "correctIndex": 2,
+     "explanation": "\"pear\" and \"kiwi\" both have length 4, and 4 % 4 is 0. Two keys in the same bucket is a collision."
+    },
+    {
+     "id": "dsa-linked-structures-trees-6",
+     "type": "fill",
+     "prompt": "Fill in the dict method that returns a default value when the key is missing.",
+     "code": "d = {\"a\": 1}\nprint(d.____(\"b\", 0))",
+     "codeLanguage": "python",
+     "answers": [
+      "get"
+     ],
+     "caseSensitive": true,
+     "explanation": "d.get(key, default) returns the default instead of raising KeyError. This prints 0."
+    }
+   ]
+  },
+  {
+   "slug": "dsa-algorithms",
+   "title": "Algorithms Checkpoint",
+   "section": "Algorithms",
+   "order": 3,
+   "description": "Covers: Sorting & Searching, Graphs, BFS & DFS.",
+   "questions": [
+    {
+     "id": "dsa-algorithms-1",
+     "type": "choice",
+     "prompt": "What must be true before you can use binary search on a list?",
+     "options": [
+      "It has no duplicate values",
+      "It contains only numbers",
+      "It has fewer than 100 items",
+      "It is sorted"
+     ],
+     "correctIndex": 3,
+     "explanation": "Binary search throws away half the list by comparing with the middle item. That only works if the list is in order."
+    },
+    {
+     "id": "dsa-algorithms-2",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "data = [2, 4, 6, 8, 10]\nlow, high = 0, 4\nmid = (low + high) // 2\nprint(data[mid])",
+     "codeLanguage": "python",
+     "options": [
+      "4",
+      "6",
+      "8",
+      "2"
+     ],
+     "correctIndex": 1,
+     "explanation": "mid = (0 + 4) // 2 = 2, and data[2] is 6."
+    },
+    {
+     "id": "dsa-algorithms-3",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "nums = [3, 1, 2]\nresult = sorted(nums)\nprint(nums, result)",
+     "codeLanguage": "python",
+     "options": [
+      "[1, 2, 3] [1, 2, 3]",
+      "[1, 2, 3] [3, 1, 2]",
+      "[3, 1, 2] [1, 2, 3]",
+      "None [1, 2, 3]"
+     ],
+     "correctIndex": 2,
+     "explanation": "sorted() returns a new sorted list and leaves the original list unchanged."
+    },
+    {
+     "id": "dsa-algorithms-4",
+     "type": "choice",
+     "prompt": "Which search goes as deep as possible along one path before it backtracks?",
+     "options": [
+      "DFS (depth-first search)",
+      "BFS (breadth-first search)",
+      "Linear search"
+     ],
+     "correctIndex": 0,
+     "explanation": "DFS follows one path to the end first, usually with recursion. BFS explores layer by layer."
+    },
+    {
+     "id": "dsa-algorithms-5",
+     "type": "choice",
+     "prompt": "What is the running time of merge sort?",
+     "options": [
+      "O(n)",
+      "O(n^2)",
+      "O(log n)",
+      "O(n log n)"
+     ],
+     "correctIndex": 3,
+     "explanation": "The list is halved about log n times, and each level of merging does about n work, giving O(n log n)."
+    },
+    {
+     "id": "dsa-algorithms-6",
+     "type": "fill",
+     "prompt": "Fill in the deque method that takes the next vertex from the front of a BFS queue.",
+     "code": "from collections import deque\nqueue = deque([\"A\", \"B\"])\nv = queue.____()\nprint(v)",
+     "codeLanguage": "python",
+     "answers": [
+      "popleft"
+     ],
+     "caseSensitive": true,
+     "explanation": "popleft() removes and returns the first item in O(1). This gives BFS its first-in, first-out order."
+    }
+   ]
+  }
+ ]
+}

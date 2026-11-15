@@ -1,0 +1,365 @@
+{
+ "slug": "dsa",
+ "name": "Data Structures",
+ "description": "Learn how to store and organise data (lists, stacks, trees, graphs) and the classic algorithms that work on it.",
+ "color": "#2e7d6b",
+ "order": 9,
+ "topics": [
+  {
+   "slug": "big-o",
+   "title": "Algorithms & Big-O",
+   "section": "Foundations",
+   "order": 1,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Algorithms &amp; Big-O</h1>\n<div class=\"card\">\n<h2>What is an Algorithm?</h2>\n<p>An <strong>algorithm</strong> is a list of clear steps that solves a problem, like a recipe. A <strong>data structure</strong> is a way of storing data so that the algorithm can use it easily. Good programmers choose both together: the right structure makes the algorithm short and fast.</p>\n<p>Two programs can give the same answer but one may take one second and the other one hour. To compare them we do not use a stopwatch, because every computer has a different speed. Instead we count <em>how many steps</em> the algorithm needs when the input gets bigger.</p>\n</div>\n\n<div class=\"card\">\n<h2>Big-O Notation</h2>\n<p><strong>Big-O</strong> describes how the number of steps grows when the input size <code>n</code> grows. We ignore small details and keep only the biggest part. For example, <code>3n + 5</code> steps is just <strong>O(n)</strong>, and <code>n*n + n</code> steps is <strong>O(n^2)</strong>.</p>\n<table>\n<tr><th>Big-O</th><th>Name</th><th>Example</th></tr>\n<tr><td>O(1)</td><td>Constant</td><td>Read <code>items[0]</code></td></tr>\n<tr><td>O(log n)</td><td>Logarithmic</td><td>Binary search in a sorted list</td></tr>\n<tr><td>O(n)</td><td>Linear</td><td>Add up every number in a list</td></tr>\n<tr><td>O(n^2)</td><td>Quadratic</td><td>Compare every pair of items</td></tr>\n</table>\n<p>From fastest to slowest growth: O(1), O(log n), O(n), O(n^2). A smaller growth rate is better when the data is large.</p>\n</div>\n\n<div class=\"card\">\n<h2>Counting Steps</h2>\n<p>Let us count steps with real code. The function <code>first_item</code> always does one thing. The function <code>total</code> visits each item once. The function <code>count_pairs</code> has a loop inside a loop, so it visits every pair.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Table with n = 10, 100 and 1000 showing steps for O(1), O(log n), O(n) and O(n squared).\" class=\"content-image\" src=\"/images/diagrams/dsa-big-o.svg\"/><figcaption>Constant, logarithmic, linear and quadratic work compared for growing n.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "def first_item(items):\n    return items[0]            # always 1 step\n\ndef total(items):\n    steps = 0\n    s = 0\n    for x in items:            # runs n times\n        s += x\n        steps += 1\n    return steps\n\ndef count_pairs(items):\n    steps = 0\n    for a in items:            # n times\n        for b in items:        # n times for each a\n            steps += 1\n    return steps\n\nfor n in (10, 100, 1000):\n    data = list(range(n))\n    print(f\"n={n}: O(1)=1 step, O(n)={total(data)} steps, O(n^2)={count_pairs(data)} steps\")",
+     "output": "n=10: O(1)=1 step, O(n)=10 steps, O(n^2)=100 steps\nn=100: O(1)=1 step, O(n)=100 steps, O(n^2)=10000 steps\nn=1000: O(1)=1 step, O(n)=1000 steps, O(n^2)=1000000 steps"
+    },
+    {
+     "kind": "html",
+     "html": "<p>When the input grows 10 times bigger, O(n) takes 10 times more steps, but O(n^2) takes 100 times more. That is why quadratic code becomes very slow on large data.</p>\n</div>\n\n<div class=\"card\">\n<h2>The O(log n) Idea</h2>\n<p>Some algorithms cut the problem in half again and again. If you have 1000 items and you throw away half each step, you need only about 10 steps. This is <strong>O(log n)</strong>. Binary search uses this idea (you will meet it in the Sorting &amp; Searching lesson).</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "def halvings(n):\n    steps = 0\n    while n > 1:\n        n = n // 2      # throw away half\n        steps += 1\n    return steps\n\nfor n in (8, 1024, 1000000):\n    print(\"n =\", n, \"-> halving steps:\", halvings(n))",
+     "output": "n = 8 -> halving steps: 3\nn = 1024 -> halving steps: 10\nn = 1000000 -> halving steps: 19"
+    },
+    {
+     "kind": "html",
+     "html": "<p>Even for one million items we need only 19 halvings. Logarithmic growth is very slow, which is excellent.</p>\n</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul>\n<li>Thinking Big-O is exact seconds. It only shows <em>how fast the work grows</em>.</li>\n<li>Keeping small parts: write O(n), not O(3n + 5).</li>\n<li>Forgetting hidden loops. A call like <code>x in my_list</code> is itself a loop of up to n steps.</li>\n<li>Believing a loop inside a loop is always O(n^2). It depends on what each loop counts.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>An algorithm is a list of steps; a data structure stores the data it works on.</li>\n<li>Big-O measures how the number of steps grows with input size n.</li>\n<li>Order from best to worst: O(1), O(log n), O(n), O(n^2).</li>\n<li>Drop constants and small terms: 3n + 5 becomes O(n).</li>\n<li>One loop over the data is O(n); a loop inside a loop is usually O(n^2); halving the data each step is O(log n).</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "arrays-lists",
+   "title": "Arrays & Dynamic Lists",
+   "section": "Foundations",
+   "order": 2,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Arrays &amp; Dynamic Lists</h1>\n<div class=\"card\">\n<h2>Arrays and Python Lists</h2>\n<p>An <strong>array</strong> stores items one after another in memory. Because the items sit side by side, the computer can jump straight to any position using its <strong>index</strong>. Indexes start at 0, so the first item is at index 0.</p>\n<p>Python's <code>list</code> is a <strong>dynamic array</strong>. Dynamic means it can grow and shrink. When the hidden space is full, Python quietly gets a bigger block and copies the items across, so <code>append</code> is still fast on average.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Array of five items with indexes 0 to 4, then the same items shifted right when inserting at the front.\" class=\"content-image\" src=\"/images/diagrams/dsa-arrays-lists.svg\"/><figcaption>Index reads are instant, but inserting at the front shifts every item.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "marks = [72, 85, 90, 64, 78]\n\nprint(\"first:\", marks[0])\nprint(\"last:\", marks[-1])\nprint(\"length:\", len(marks))\nprint(\"slice:\", marks[1:4])\n\nmarks[3] = 70          # change one item\nmarks.append(88)       # add at the end\nprint(marks)",
+     "output": "first: 72\nlast: 78\nlength: 5\nslice: [85, 90, 64]\n[72, 85, 90, 70, 78, 88]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Cost of Each Operation</h2>\n<p>The cost depends on <em>where</em> you work in the list. Operations at the end are cheap. Operations at the front or in the middle must <strong>shift</strong> all the items after that position.</p>\n<table>\n<tr><th>Operation</th><th>Code</th><th>Cost</th></tr>\n<tr><td>Read by index</td><td><code>a[i]</code></td><td>O(1)</td></tr>\n<tr><td>Add at the end</td><td><code>a.append(x)</code></td><td>O(1) on average</td></tr>\n<tr><td>Remove from the end</td><td><code>a.pop()</code></td><td>O(1)</td></tr>\n<tr><td>Insert at position i</td><td><code>a.insert(i, x)</code></td><td>O(n)</td></tr>\n<tr><td>Delete at position i</td><td><code>del a[i]</code></td><td>O(n)</td></tr>\n<tr><td>Search for a value</td><td><code>x in a</code></td><td>O(n)</td></tr>\n</table>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "def insert_at(items, index, value):\n    items.append(None)                    # make room\n    shifts = 0\n    for i in range(len(items) - 1, index, -1):\n        items[i] = items[i - 1]           # shift right\n        shifts += 1\n    items[index] = value\n    return shifts\n\nnums = [10, 20, 30, 40, 50]\nprint(\"shifts at front:\", insert_at(nums, 0, 5))\nprint(nums)\nprint(\"shifts at end:\", insert_at(nums, len(nums), 99))\nprint(nums)",
+     "output": "shifts at front: 5\n[5, 10, 20, 30, 40, 50]\nshifts at end: 0\n[5, 10, 20, 30, 40, 50, 99]"
+    },
+    {
+     "kind": "html",
+     "html": "<p>Inserting at the front moved all 5 items. Inserting at the end moved none. This is why we prefer adding at the end of a list.</p>\n</div>\n\n<div class=\"card\">\n<h2>2D Lists (Grids)</h2>\n<p>A list can hold other lists. A list of lists is a <strong>2D list</strong>, like a table with rows and columns. Use <code>grid[row][col]</code> to read one cell. Be careful when you create one: <code>[[0] * 3] * 2</code> repeats the <em>same</em> row twice, so changing one row changes both. Use a list comprehension to make separate rows.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "grid = [[1, 2, 3],\n        [4, 5, 6],\n        [7, 8, 9]]\nprint(\"row 1, col 2:\", grid[1][2])\nfor row in grid:\n    print(row, \"sum =\", sum(row))\n\nbad = [[0] * 3] * 2            # same row twice\nbad[0][0] = 1\nprint(\"bad: \", bad)\n\ngood = [[0] * 3 for _ in range(2)]   # separate rows\ngood[0][0] = 1\nprint(\"good:\", good)",
+     "output": "row 1, col 2: 6\n[1, 2, 3] sum = 6\n[4, 5, 6] sum = 15\n[7, 8, 9] sum = 24\nbad:  [[1, 0, 0], [1, 0, 0]]\ngood: [[1, 0, 0], [0, 0, 0]]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul>\n<li>Using an index that is too big. For a list of 5 items the last index is 4, and <code>a[5]</code> raises <code>IndexError</code>.</li>\n<li>Inserting or deleting at the front inside a big loop. Each one costs O(n), so the whole loop becomes O(n^2).</li>\n<li>Building a grid with <code>[[0] * 3] * 2</code>. Use a list comprehension instead.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A list stores items in order and each item has an index starting at 0.</li>\n<li>Reading by index is O(1); append and pop at the end are fast.</li>\n<li>Insert and delete in the front or middle are O(n) because items must shift.</li>\n<li>A 2D list is a list of lists; read a cell with <code>grid[row][col]</code>.</li>\n<li>Create grids with a list comprehension so the rows are separate.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "stacks-queues",
+   "title": "Stacks & Queues",
+   "section": "Foundations",
+   "order": 3,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Stacks &amp; Queues</h1>\n<div class=\"card\">\n<h2>Two Simple Rules</h2>\n<p>A <strong>stack</strong> and a <strong>queue</strong> are lists with strict rules about how items go in and come out. These rules make them simple and very useful.</p>\n<ul>\n<li><strong>Stack = LIFO</strong> (Last In, First Out). Think of a pile of plates: you add and remove from the top.</li>\n<li><strong>Queue = FIFO</strong> (First In, First Out). Think of a line at a ticket counter: the first person is served first.</li>\n</ul>\n<p>Stacks are used for the undo button, the browser back button and function calls. Queues are used for printer jobs, customer lines and task scheduling.</p>\n</div>\n\n<div class=\"card\">\n<h2>A Stack with a List</h2>\n<p>A Python list works well as a stack. Use <code>append</code> to push and <code>pop</code> to remove the top. Both are O(1) at the end of the list.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"A stack of three pages with push and pop at the top, and a queue of three names with append at the back and popleft at the front.\" class=\"content-image\" src=\"/images/diagrams/dsa-stacks-queues.svg\"/><figcaption>A stack works at one end; a queue adds at the back and serves from the front.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "stack = []\nstack.append(\"page1\")     # push\nstack.append(\"page2\")\nstack.append(\"page3\")\nprint(\"stack:\", stack)\nprint(\"top item:\", stack[-1])\nprint(\"popped:\", stack.pop())   # last in, first out\nprint(\"popped:\", stack.pop())\nprint(\"left:\", stack)",
+     "output": "stack: ['page1', 'page2', 'page3']\ntop item: page3\npopped: page3\npopped: page2\nleft: ['page1']"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>A Queue with deque</h2>\n<p>You can use a list as a queue, but <code>list.pop(0)</code> is O(n) because every item shifts left. Python gives us <code>collections.deque</code> (double-ended queue). Its <code>append</code> and <code>popleft</code> are both O(1).</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "from collections import deque\n\nqueue = deque()\nqueue.append(\"Ali\")        # enqueue\nqueue.append(\"Sara\")\nqueue.append(\"Omar\")\nprint(\"queue:\", list(queue))\nprint(\"served:\", queue.popleft())   # first in, first out\nprint(\"served:\", queue.popleft())\nprint(\"waiting:\", list(queue))\nprint(\"empty?\", len(queue) == 0)",
+     "output": "queue: ['Ali', 'Sara', 'Omar']\nserved: Ali\nserved: Sara\nwaiting: ['Omar']\nempty? False"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Example: Balanced Brackets</h2>\n<p>A compiler must check that every opening bracket has a matching closing bracket in the correct order. A stack solves this. Push each opening bracket. When you see a closing bracket, the top of the stack must be its partner. At the end the stack must be empty.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "def is_balanced(text):\n    pairs = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    stack = []\n    for ch in text:\n        if ch in \"([{\":\n            stack.append(ch)\n        elif ch in \")]}\":\n            if not stack or stack.pop() != pairs[ch]:\n                return False\n    return len(stack) == 0\n\nfor s in [\"(a + b) * [c]\", \"{[()]}\", \"(]\", \"((a)\"]:\n    print(repr(s), \"->\", is_balanced(s))",
+     "output": "'(a + b) * [c]' -> True\n'{[()]}' -> True\n'(]' -> False\n'((a)' -> False"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul>\n<li>Calling <code>pop()</code> on an empty list. It raises <code>IndexError</code>, so check <code>if stack:</code> first.</li>\n<li>Using <code>list.pop(0)</code> for a queue. It works but it is slow for big data; use <code>deque.popleft()</code>.</li>\n<li>Forgetting the final check in the bracket example. The text <code>\"((a)\"</code> leaves one bracket behind, so the stack is not empty.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Stack is LIFO: push and pop at the same end. Use a list with <code>append</code> and <code>pop</code>.</li>\n<li>Queue is FIFO: add at the back, remove from the front. Use <code>collections.deque</code>.</li>\n<li>Both main operations are O(1) when you use the right tool.</li>\n<li>A stack checks balanced brackets, and also powers undo and function calls.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "linked-lists",
+   "title": "Linked Lists",
+   "section": "Linked Structures & Trees",
+   "order": 4,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Linked Lists</h1>\n<div class=\"card\">\n<h2>Nodes Joined by Links</h2>\n<p>A <strong>linked list</strong> stores items in small objects called <strong>nodes</strong>. Each node holds a value and a link to the next node. The first node is the <strong>head</strong>, and the last node links to <code>None</code>. The nodes can be anywhere in memory, because the links connect them.</p>\n<p>A Python list keeps items side by side and uses indexes. A linked list has no indexes: to reach the third node you must start at the head and follow two links.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Three nodes 10, 20, 30 joined by next pointers with head at the first node, and a second row where node 10 now links straight to 30.\" class=\"content-image\" src=\"/images/diagrams/dsa-linked-lists.svg\"/><figcaption>Each node points to the next one, so deleting means making a link skip a node.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "class Node:\n    def __init__(self, value):\n        self.value = value\n        self.next = None      # link to the next node\n\na = Node(10)\nb = Node(20)\nc = Node(30)\na.next = b\nb.next = c\n\ncurrent = a                   # start at the head\nwhile current is not None:\n    print(current.value)\n    current = current.next",
+     "output": "10\n20\n30"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>A LinkedList Class</h2>\n<p>Now we wrap the nodes in a class. Adding at the head is O(1) because we only change two links. Adding at the tail needs a walk to the end, which is O(n). Deleting a value means we find the node before it and make that node skip over the unwanted node.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "class Node:\n    def __init__(self, value):\n        self.value = value\n        self.next = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n\n    def prepend(self, value):          # add at the front, O(1)\n        node = Node(value)\n        node.next = self.head\n        self.head = node\n\n    def append(self, value):           # add at the end, O(n)\n        node = Node(value)\n        if self.head is None:\n            self.head = node\n            return\n        cur = self.head\n        while cur.next is not None:\n            cur = cur.next\n        cur.next = node\n\n    def delete(self, value):           # remove first match, O(n)\n        if self.head is None:\n            return\n        if self.head.value == value:\n            self.head = self.head.next\n            return\n        cur = self.head\n        while cur.next is not None:\n            if cur.next.value == value:\n                cur.next = cur.next.next   # skip the node\n                return\n            cur = cur.next\n\n    def to_list(self):                 # walk and collect, O(n)\n        items = []\n        cur = self.head\n        while cur is not None:\n            items.append(cur.value)\n            cur = cur.next\n        return items\n\nll = LinkedList()\nll.append(20)\nll.append(30)\nll.prepend(10)\nprint(ll.to_list())\nll.delete(20)\nprint(ll.to_list())\nll.delete(10)\nprint(ll.to_list())",
+     "output": "[10, 20, 30]\n[10, 30]\n[30]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Linked List vs Array List</h2>\n<table>\n<tr><th>Task</th><th>Python list</th><th>Linked list</th></tr>\n<tr><td>Read item number i</td><td>O(1)</td><td>O(n)</td></tr>\n<tr><td>Insert at the front</td><td>O(n)</td><td>O(1)</td></tr>\n<tr><td>Insert at the end</td><td>O(1) on average</td><td>O(n) (O(1) if you keep a tail link)</td></tr>\n<tr><td>Delete a node you already hold</td><td>O(n)</td><td>O(1) after you have found the previous node</td></tr>\n<tr><td>Memory use</td><td>Only the values</td><td>Value plus a link for every node</td></tr>\n</table>\n<p>In everyday Python the built-in list is the best choice. Linked lists matter because they teach how links work, and the same idea builds trees and graphs.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "# Same task: build a list of 1..5 by always adding at the FRONT\narr = []\nfor x in range(1, 6):\n    arr.insert(0, x)          # shifts every item: O(n) each time\nprint(\"python list:\", arr)\n\nhead = None\nfor x in range(1, 6):\n    head = (x, head)          # a tiny linked list made of pairs: O(1) each time\nout = []\nwhile head is not None:\n    out.append(head[0])\n    head = head[1]\nprint(\"linked pairs:\", out)",
+     "output": "python list: [5, 4, 3, 2, 1]\nlinked pairs: [5, 4, 3, 2, 1]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul>\n<li>Losing the rest of the list. When you insert, set <code>node.next</code> first and then change the previous link.</li>\n<li>Forgetting the empty-list case, where <code>head</code> is <code>None</code>.</li>\n<li>Writing <code>cur.next.value</code> when <code>cur.next</code> is <code>None</code>. This raises <code>AttributeError</code>.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A linked list is a chain of nodes; each node has a value and a <code>next</code> link.</li>\n<li>The head is the first node; the last node points to <code>None</code>.</li>\n<li>Insert at the head is O(1); search, traverse and insert at the tail are O(n).</li>\n<li>Delete by making the previous node skip the unwanted node.</li>\n<li>No indexes: you must walk from the head to reach a position.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "trees-bst",
+   "title": "Trees & Binary Search Trees",
+   "section": "Linked Structures & Trees",
+   "order": 5,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Trees &amp; Binary Search Trees</h1>\n<div class=\"card\">\n<h2>What is a Tree?</h2>\n<p>A <strong>tree</strong> is a data structure shaped like an upside-down real tree. It is made of nodes joined by links, but unlike a linked list, a node can have more than one child. Folders on your computer are a good example: a folder contains files and other folders.</p>\n<table>\n<tr><th>Word</th><th>Meaning</th></tr>\n<tr><td>Root</td><td>The top node; it has no parent</td></tr>\n<tr><td>Parent / child</td><td>A node and the nodes directly below it</td></tr>\n<tr><td>Leaf</td><td>A node with no children</td></tr>\n<tr><td>Subtree</td><td>A node together with everything below it</td></tr>\n<tr><td>Height</td><td>The number of links on the longest path from the root down to a leaf</td></tr>\n</table>\n<p>In a <strong>binary tree</strong> every node has at most two children, called <code>left</code> and <code>right</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>Binary Search Tree Rule</h2>\n<p>A <strong>binary search tree (BST)</strong> keeps its values in order using one rule: for every node, all values in the left subtree are <em>smaller</em>, and all values in the right subtree are <em>bigger</em>. To insert or search, compare with the current node, then go left or right. If the tree is balanced, each step throws away about half the nodes, so insert and search are O(log n).</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"BST with root 50, children 30 and 70, leaves 20, 40, 60, 80, and below it the inorder sequence 20 to 80.\" class=\"content-image\" src=\"/images/diagrams/dsa-trees-bst.svg\"/><figcaption>Inorder traversal of a BST visits the values in sorted order.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "class Node:\n    def __init__(self, key):\n        self.key = key\n        self.left = None\n        self.right = None\n\ndef insert(root, key):\n    if root is None:\n        return Node(key)\n    if key < root.key:\n        root.left = insert(root.left, key)\n    elif key > root.key:\n        root.right = insert(root.right, key)\n    return root\n\ndef search(root, key):\n    if root is None:\n        return False\n    if key == root.key:\n        return True\n    if key < root.key:\n        return search(root.left, key)\n    return search(root.right, key)\n\nroot = None\nfor k in [50, 30, 70, 20, 40, 60, 80]:\n    root = insert(root, k)\n\nprint(\"root:\", root.key)\nprint(\"left child:\", root.left.key, \" right child:\", root.right.key)\nprint(\"search 60:\", search(root, 60))\nprint(\"search 65:\", search(root, 65))",
+     "output": "root: 50\nleft child: 30  right child: 70\nsearch 60: True\nsearch 65: False"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Inorder Traversal</h2>\n<p><strong>Traversal</strong> means visiting every node. In <strong>inorder</strong> traversal we visit the left subtree, then the node itself, then the right subtree. On a BST this gives the values in sorted order, which is a nice free bonus of the BST rule.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "class Node:\n    def __init__(self, key):\n        self.key = key\n        self.left = None\n        self.right = None\n\ndef insert(root, key):\n    if root is None:\n        return Node(key)\n    if key < root.key:\n        root.left = insert(root.left, key)\n    elif key > root.key:\n        root.right = insert(root.right, key)\n    return root\n\ndef inorder(root, out):\n    if root is not None:\n        inorder(root.left, out)     # 1. left\n        out.append(root.key)        # 2. node\n        inorder(root.right, out)    # 3. right\n    return out\n\ndef height(root):\n    if root is None:\n        return -1                   # empty tree\n    return 1 + max(height(root.left), height(root.right))\n\nroot = None\nfor k in [50, 30, 70, 20, 40, 60, 80]:\n    root = insert(root, k)\nprint(\"inorder:\", inorder(root, []))\nprint(\"height:\", height(root))\n\nlopsided = None\nfor k in [10, 20, 30, 40, 50]:      # already sorted input\n    lopsided = insert(lopsided, k)\nprint(\"lopsided height:\", height(lopsided))",
+     "output": "inorder: [20, 30, 40, 50, 60, 70, 80]\nheight: 2\nlopsided height: 4"
+    },
+    {
+     "kind": "html",
+     "html": "<p>The second tree has height 4 for only 5 values. It looks like a linked list, and searching it is O(n). Sorted input makes a BST lopsided. Real systems use self-balancing trees to avoid this problem.</p>\n</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul>\n<li>Forgetting the base case <code>if root is None</code> in a recursive function. It leads to an <code>AttributeError</code>.</li>\n<li>Forgetting to assign the result back: write <code>root.left = insert(root.left, key)</code>.</li>\n<li>Thinking every BST is fast. A BST built from sorted data is O(n) to search.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A tree has a root, parents, children and leaves; a binary tree allows at most two children.</li>\n<li>BST rule: left values are smaller, right values are bigger.</li>\n<li>Insert and search are O(log n) on a balanced tree and O(n) on a lopsided one.</li>\n<li>Inorder traversal (left, node, right) prints a BST in sorted order.</li>\n<li>Trees are naturally recursive: each child is a smaller tree.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "hashing",
+   "title": "Hash Tables",
+   "section": "Linked Structures & Trees",
+   "order": 6,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Hash Tables</h1>\n<div class=\"card\">\n<h2>Fast Lookup by Key</h2>\n<p>A <strong>hash table</strong> stores <em>key-value</em> pairs and finds a key in O(1) time on average. It does not search through all items. Instead it uses a <strong>hash function</strong> to turn the key into a number, and that number tells where to look.</p>\n<p>The table is an array of <strong>buckets</strong>. To store a key we compute <code>hash(key) % size</code>, which gives a bucket index between 0 and size - 1. To read the key later, we compute the same index and go straight to that bucket.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Keys cat, act, sun and dog are hashed to bucket numbers; cat, act and sun share bucket 2 as a chain and dog sits in bucket 4.\" class=\"content-image\" src=\"/images/diagrams/dsa-hashing.svg\"/><figcaption>A hash function picks the bucket; keys that collide share a chain.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "def simple_hash(key, size):\n    total = 0\n    for ch in key:\n        total += ord(ch)       # add the character codes\n    return total % size        # fit into 0..size-1\n\nfor word in [\"ali\", \"sara\", \"omar\", \"lahore\"]:\n    print(word, \"-> bucket\", simple_hash(word, 7))",
+     "output": "ali -> bucket 2\nsara -> bucket 3\nomar -> bucket 4\nlahore -> bucket 5"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Collisions</h2>\n<p>Different keys can land in the same bucket. This is called a <strong>collision</strong>. It is normal, because there are many more possible keys than buckets. One common fix is <strong>chaining</strong>: each bucket holds a small list, and all keys with the same index go into that list. Lookup then hashes the key and checks only the short list.</p>\n<p>Our simple hash adds letter codes, so <code>\"cat\"</code> and <code>\"act\"</code> always collide (same letters). Real hash functions mix the letters better.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "def simple_hash(key, size):\n    return sum(ord(ch) for ch in key) % size\n\nclass HashTable:\n    def __init__(self, size=5):\n        self.size = size\n        self.buckets = [[] for _ in range(size)]\n\n    def put(self, key, value):\n        bucket = self.buckets[simple_hash(key, self.size)]\n        for pair in bucket:\n            if pair[0] == key:\n                pair[1] = value        # update existing key\n                return\n        bucket.append([key, value])    # new key (chaining)\n\n    def get(self, key):\n        bucket = self.buckets[simple_hash(key, self.size)]\n        for k, v in bucket:\n            if k == key:\n                return v\n        return None\n\ntable = HashTable()\nfor name, marks in [(\"cat\", 1), (\"act\", 2), (\"dog\", 3), (\"sun\", 4)]:\n    table.put(name, marks)\n\nfor i, bucket in enumerate(table.buckets):\n    print(i, bucket)\nprint(\"get act:\", table.get(\"act\"))\nprint(\"get bird:\", table.get(\"bird\"))",
+     "output": "0 []\n1 []\n2 [['cat', 1], ['act', 2], ['sun', 4]]\n3 []\n4 [['dog', 3]]\nget act: 2\nget bird: None"
+    },
+    {
+     "kind": "html",
+     "html": "<p>You can see the collisions: <code>\"cat\"</code>, <code>\"act\"</code> and <code>\"sun\"</code> all share bucket 2, yet each key is still found correctly.</p>\n</div>\n\n<div class=\"card\">\n<h2>Python's dict</h2>\n<p>You already use a hash table: Python's <code>dict</code>. It resizes itself and uses a strong hash function, so lookups, inserts and deletes are O(1) on average. A <code>set</code> works the same way but stores only keys. Keys must be <strong>hashable</strong>, which means they cannot change: strings, numbers and tuples are fine, lists are not.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "text = \"to be or not to be\"\ncounts = {}\nfor word in text.split():\n    counts[word] = counts.get(word, 0) + 1\nprint(counts)\nprint(\"be\" in counts)          # O(1) lookup\nprint(counts[\"to\"])\n\nseen = set()\nfor x in [3, 1, 3, 2, 1]:\n    seen.add(x)\nprint(sorted(seen))\n\ntry:\n    bad = {[1, 2]: \"list key\"}\nexcept TypeError as err:\n    print(\"Error:\", err)",
+     "output": "{'to': 2, 'be': 2, 'or': 1, 'not': 1}\nTrue\n2\n[1, 2, 3]\nError: unhashable type: 'list'"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul>\n<li>Believing the lookup is always O(1). With many collisions it can fall to O(n); good hash functions keep that rare.</li>\n<li>Using a list as a dict key. Use a tuple instead.</li>\n<li>Expecting a certain order. Treat a hash table as unordered lookup, not as a sorted structure.</li>\n<li>Reading a missing key with <code>d[key]</code>. It raises <code>KeyError</code>; use <code>d.get(key)</code>.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A hash function turns a key into a number; <code>% size</code> picks the bucket.</li>\n<li>Average cost of put, get and delete is O(1).</li>\n<li>A collision is two keys in one bucket; chaining stores them together in a small list.</li>\n<li>Python's <code>dict</code> and <code>set</code> are hash tables.</li>\n<li>Keys must be hashable (unchangeable): strings, numbers, tuples.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "sorting-searching",
+   "title": "Sorting & Searching",
+   "section": "Algorithms",
+   "order": 7,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Sorting &amp; Searching</h1>\n<div class=\"card\">\n<h2>Searching a List</h2>\n<p><strong>Linear search</strong> checks the items one by one from the start. It works on any list and costs O(n). <strong>Binary search</strong> works only on a <em>sorted</em> list. It looks at the middle item and throws away the half that cannot contain the target, so it costs O(log n). For one million items that is about 20 checks instead of up to one million.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Seven sorted numbers; step 1 checks the middle 27 and discards the left half; step 2 checks 43 and finds it.\" class=\"content-image\" src=\"/images/diagrams/dsa-sorting-searching.svg\"/><figcaption>Binary search checks the middle and discards half the sorted list each step.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "def linear_search(items, target):\n    steps = 0\n    for i, x in enumerate(items):\n        steps += 1\n        if x == target:\n            return i, steps\n    return -1, steps\n\ndef binary_search(items, target):\n    low, high = 0, len(items) - 1\n    steps = 0\n    while low <= high:\n        steps += 1\n        mid = (low + high) // 2\n        if items[mid] == target:\n            return mid, steps\n        elif items[mid] < target:\n            low = mid + 1       # target is in the right half\n        else:\n            high = mid - 1      # target is in the left half\n    return -1, steps\n\ndata = list(range(1, 1001))      # 1..1000 already sorted\nprint(\"linear :\", linear_search(data, 900))\nprint(\"binary :\", binary_search(data, 900))\nprint(\"missing:\", binary_search(data, 5000))",
+     "output": "linear : (899, 900)\nbinary : (899, 9)\nmissing: (-1, 10)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Bubble Sort</h2>\n<p><strong>Bubble sort</strong> is the simplest sorting idea. Go through the list and swap neighbours that are in the wrong order. After each pass the biggest unsorted item has bubbled to the end. It uses two loops, so it costs O(n^2). It is easy to understand but too slow for large lists.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "def bubble_sort(items):\n    items = items[:]                 # work on a copy\n    n = len(items)\n    for p in range(n - 1):\n        swapped = False\n        for i in range(n - 1 - p):\n            if items[i] > items[i + 1]:\n                items[i], items[i + 1] = items[i + 1], items[i]\n                swapped = True\n        print(\"pass\", p + 1, \":\", items)\n        if not swapped:\n            break\n    return items\n\nprint(\"result:\", bubble_sort([5, 2, 9, 1, 6]))",
+     "output": "pass 1 : [2, 5, 1, 6, 9]\npass 2 : [2, 1, 5, 6, 9]\npass 3 : [1, 2, 5, 6, 9]\npass 4 : [1, 2, 5, 6, 9]\nresult: [1, 2, 5, 6, 9]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Merge Sort and sorted()</h2>\n<p><strong>Merge sort</strong> uses divide and conquer: split the list in half, sort each half by the same method, then <em>merge</em> the two sorted halves into one. The list is halved about log n times and each level does n work, so merge sort costs <strong>O(n log n)</strong>, much better than O(n^2).</p>\n<p>In real programs you simply call Python's built-in <code>sorted()</code> (or <code>list.sort()</code>). It is fast, well tested, and its worst case is O(n log n).</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "def merge_sort(items):\n    if len(items) <= 1:\n        return items\n    mid = len(items) // 2\n    left = merge_sort(items[:mid])\n    right = merge_sort(items[mid:])\n    merged = []\n    i = j = 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            merged.append(left[i])\n            i += 1\n        else:\n            merged.append(right[j])\n            j += 1\n    merged.extend(left[i:])\n    merged.extend(right[j:])\n    return merged\n\nnums = [38, 27, 43, 3, 9, 82, 10]\nprint(\"merge_sort:\", merge_sort(nums))\nprint(\"sorted()  :\", sorted(nums))\nprint(\"reverse   :\", sorted(nums, reverse=True))\nprint(\"by length :\", sorted([\"pear\", \"fig\", \"banana\", \"kiwi\"], key=len))\nprint(\"original  :\", nums)",
+     "output": "merge_sort: [3, 9, 10, 27, 38, 43, 82]\nsorted()  : [3, 9, 10, 27, 38, 43, 82]\nreverse   : [82, 43, 38, 27, 10, 9, 3]\nby length : ['fig', 'pear', 'kiwi', 'banana']\noriginal  : [38, 27, 43, 3, 9, 82, 10]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Comparing the Methods</h2>\n<table>\n<tr><th>Method</th><th>Needs sorted data?</th><th>Cost</th></tr>\n<tr><td>Linear search</td><td>No</td><td>O(n)</td></tr>\n<tr><td>Binary search</td><td>Yes</td><td>O(log n)</td></tr>\n<tr><td>Bubble sort</td><td>No</td><td>O(n^2)</td></tr>\n<tr><td>Merge sort</td><td>No</td><td>O(n log n)</td></tr>\n<tr><td><code>sorted()</code></td><td>No</td><td>O(n log n)</td></tr>\n</table>\n</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul>\n<li>Using binary search on an unsorted list. The answer will be wrong.</li>\n<li>Writing <code>mid = (low + high) / 2</code>. Use <code>//</code> so the index is a whole number.</li>\n<li>Using <code>low &lt; high</code> instead of <code>low &lt;= high</code>. You may skip the last item.</li>\n<li>Expecting <code>list.sort()</code> to return a list. It sorts in place and returns <code>None</code>; <code>sorted()</code> returns a new list.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Linear search is O(n) and works on any list.</li>\n<li>Binary search is O(log n) but needs a sorted list.</li>\n<li>Bubble sort swaps neighbours and is O(n^2).</li>\n<li>Merge sort splits, sorts and merges; it is O(n log n).</li>\n<li>In real code use <code>sorted()</code>.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "graphs-bfs-dfs",
+   "title": "Graphs, BFS & DFS",
+   "section": "Algorithms",
+   "order": 8,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Graphs, BFS &amp; DFS</h1>\n<div class=\"card\">\n<h2>What is a Graph?</h2>\n<p>A <strong>graph</strong> is a set of <strong>vertices</strong> (also called nodes) joined by <strong>edges</strong>. Graphs model things that are connected: cities and roads, people in a social network, web pages and links. Unlike a tree, a graph can have loops and there is no single root.</p>\n<p>The easiest way to store a graph in Python is an <strong>adjacency list</strong>: a dict where each key is a vertex and the value is the list of its neighbours. In an <em>undirected</em> graph, if A is connected to B then B is also connected to A, so we store both.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Graph with vertices A to F; A is level 0, B and C level 1, D, E and F level 2; BFS order is A B C D E F.\" class=\"content-image\" src=\"/images/diagrams/dsa-graphs-bfs-dfs.svg\"/><figcaption>BFS visits the graph in layers: A, then B and C, then D, E and F.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "graph = {\n    \"A\": [\"B\", \"C\"],\n    \"B\": [\"A\", \"D\", \"E\"],\n    \"C\": [\"A\", \"F\"],\n    \"D\": [\"B\"],\n    \"E\": [\"B\", \"F\"],\n    \"F\": [\"C\", \"E\"],\n}\n\nfor vertex, neighbours in graph.items():\n    print(vertex, \"->\", neighbours)\n\nedges = sum(len(n) for n in graph.values()) // 2\nprint(\"vertices:\", len(graph), \" edges:\", edges)",
+     "output": "A -> ['B', 'C']\nB -> ['A', 'D', 'E']\nC -> ['A', 'F']\nD -> ['B']\nE -> ['B', 'F']\nF -> ['C', 'E']\nvertices: 6  edges: 6"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Breadth-First Search (BFS)</h2>\n<p><strong>BFS</strong> visits the start vertex, then all its neighbours, then the neighbours of those, and so on, spreading out layer by layer like ripples in water. It uses a <strong>queue</strong>. Because it reaches closer vertices first, BFS finds the path with the fewest edges.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "from collections import deque\n\ngraph = {\n    \"A\": [\"B\", \"C\"], \"B\": [\"A\", \"D\", \"E\"], \"C\": [\"A\", \"F\"],\n    \"D\": [\"B\"], \"E\": [\"B\", \"F\"], \"F\": [\"C\", \"E\"],\n}\n\ndef bfs(graph, start):\n    visited = {start}\n    queue = deque([start])\n    order = []\n    while queue:\n        v = queue.popleft()          # take from the front\n        order.append(v)\n        for nb in graph[v]:\n            if nb not in visited:\n                visited.add(nb)      # mark when we add to the queue\n                queue.append(nb)\n    return order\n\nprint(\"BFS from A:\", bfs(graph, \"A\"))",
+     "output": "BFS from A: ['A', 'B', 'C', 'D', 'E', 'F']"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Depth-First Search (DFS)</h2>\n<p><strong>DFS</strong> goes as deep as possible along one path, and only when it is stuck does it go back (backtrack) and try another path. The easiest way to write it is with <strong>recursion</strong>, because the function-call stack remembers where to return. Both BFS and DFS cost O(V + E): each vertex and edge is handled once.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "python",
+     "code": "graph = {\n    \"A\": [\"B\", \"C\"], \"B\": [\"A\", \"D\", \"E\"], \"C\": [\"A\", \"F\"],\n    \"D\": [\"B\"], \"E\": [\"B\", \"F\"], \"F\": [\"C\", \"E\"],\n}\n\ndef dfs(graph, v, visited=None):\n    if visited is None:\n        visited = []\n    visited.append(v)\n    for nb in graph[v]:\n        if nb not in visited:\n            dfs(graph, nb, visited)  # go deeper first\n    return visited\n\nprint(\"DFS from A:\", dfs(graph, \"A\"))",
+     "output": "DFS from A: ['A', 'B', 'D', 'E', 'F', 'C']"
+    },
+    {
+     "kind": "html",
+     "html": "<p>Compare the two results: BFS visited <code>C</code> early (it is close to A), but DFS went down the B branch first and reached <code>C</code> last.</p>\n</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul>\n<li>Forgetting the <code>visited</code> check. In a graph with a loop, the search then runs forever.</li>\n<li>Using a list as the BFS queue. <code>pop(0)</code> is O(n); use <code>deque</code>.</li>\n<li>Storing an edge only one way in an undirected graph.</li>\n<li>Mixing up the two: BFS uses a queue (layers), DFS uses recursion or a stack (deep paths).</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A graph is vertices joined by edges; store it as a dict of neighbour lists.</li>\n<li>BFS uses a queue and explores layer by layer; it finds the fewest-edge path.</li>\n<li>DFS goes deep first, usually with recursion, then backtracks.</li>\n<li>Always remember visited vertices so loops do not repeat forever.</li>\n<li>Both BFS and DFS take O(V + E) time.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  }
+ ]
+}

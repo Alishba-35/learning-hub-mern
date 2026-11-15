@@ -8,6 +8,11 @@ for (const key of required) {
   }
 }
 
+if (process.env.JWT_ACCESS_SECRET.length < 32) {
+  console.error('JWT_ACCESS_SECRET must be at least 32 characters');
+  process.exit(1);
+}
+
 export const env = {
   isProd: process.env.NODE_ENV === 'production',
   port: Number(process.env.PORT) || 5000,

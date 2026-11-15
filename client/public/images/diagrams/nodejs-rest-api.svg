@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 334" width="720" height="334" role="img" aria-labelledby="t d">
+  <title id="t">CRUD as a REST API</title>
+  <desc id="d">Table mapping create, read, update and delete to HTTP methods, URLs and success status codes.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#86efac"/></marker></defs>
+  <rect width="720" height="334" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#86efac" text-anchor="middle">CRUD as a REST API</text>
+  <rect x="30.0" y="60.0" width="153.2" height="32.0" rx="0" fill="#86efac" stroke="#86efac" stroke-width="1"/>
+  <text x="106.6" y="81.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Action</text>
+  <rect x="183.2" y="60.0" width="129.6" height="32.0" rx="0" fill="#86efac" stroke="#86efac" stroke-width="1"/>
+  <text x="248.0" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Method</text>
+  <rect x="312.9" y="60.0" width="259.3" height="32.0" rx="0" fill="#86efac" stroke="#86efac" stroke-width="1"/>
+  <text x="442.5" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">URL</text>
+  <rect x="572.1" y="60.0" width="117.9" height="32.0" rx="0" fill="#86efac" stroke="#86efac" stroke-width="1"/>
+  <text x="631.1" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Success</text>
+  <rect x="30.0" y="92.0" width="153.2" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="106.6" y="113.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">List all</text>
+  <rect x="183.2" y="92.0" width="129.6" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="248.0" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">GET</text>
+  <rect x="312.9" y="92.0" width="259.3" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="442.5" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">/api/books</text>
+  <rect x="572.1" y="92.0" width="117.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="631.1" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">200</text>
+  <rect x="30.0" y="124.0" width="153.2" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="106.6" y="145.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Read one</text>
+  <rect x="183.2" y="124.0" width="129.6" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="248.0" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">GET</text>
+  <rect x="312.9" y="124.0" width="259.3" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="442.5" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">/api/books/:id</text>
+  <rect x="572.1" y="124.0" width="117.9" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="631.1" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">200</text>
+  <rect x="30.0" y="156.0" width="153.2" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="106.6" y="177.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Create</text>
+  <rect x="183.2" y="156.0" width="129.6" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="248.0" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">POST</text>
+  <rect x="312.9" y="156.0" width="259.3" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="442.5" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">/api/books</text>
+  <rect x="572.1" y="156.0" width="117.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="631.1" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">201</text>
+  <rect x="30.0" y="188.0" width="153.2" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="106.6" y="209.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Update</text>
+  <rect x="183.2" y="188.0" width="129.6" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="248.0" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">PUT</text>
+  <rect x="312.9" y="188.0" width="259.3" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="442.5" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">/api/books/:id</text>
+  <rect x="572.1" y="188.0" width="117.9" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="631.1" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">200</text>
+  <rect x="30.0" y="220.0" width="153.2" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="106.6" y="241.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Delete</text>
+  <rect x="183.2" y="220.0" width="129.6" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="248.0" y="241.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">DELETE</text>
+  <rect x="312.9" y="220.0" width="259.3" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="442.5" y="241.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">/api/books/:id</text>
+  <rect x="572.1" y="220.0" width="117.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="631.1" y="241.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">204</text>
+  <text x="360.0" y="278.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Errors: 400 for bad input, 404 when the item does not exist, 500 for server</text>
+  <text x="360.0" y="294.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">bugs.</text>
+</svg>

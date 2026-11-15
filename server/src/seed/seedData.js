@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import Language from '../models/Language.js';
 import Quiz from '../models/Quiz.js';
 import Topic from '../models/Topic.js';
+import { loadVideos, withVideos } from './videos.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(here, 'data');
@@ -11,9 +12,11 @@ const quizDir = path.join(here, 'quizzes');
 
 // Lessons ko database mein daalta hai. Dobara chalana safe hai (update hota hai, duplicate nahi banta).
 export async function seedAll(log = () => {}) {
+  const videos = loadVideos();
   for (const file of fs.readdirSync(dataDir).filter((f) => f.endsWith('.json')).sort()) {
-    const { topics, ...language } = JSON.parse(fs.readFileSync(path.join(dataDir, file), 'utf8'));
+    const { topics: rawTopics, ...language } = JSON.parse(fs.readFileSync(path.join(dataDir, file), 'utf8'));
 
+    const topics = rawTopics.map((t) => withVideos(t, language.slug, videos));
     await Language.updateOne({ slug: language.slug }, { $set: language }, { upsert: true });
     await Topic.bulkWrite(
       topics.map((t) => ({

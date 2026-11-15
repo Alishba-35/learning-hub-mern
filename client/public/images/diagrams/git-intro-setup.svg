@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 229" width="720" height="229" role="img" aria-labelledby="t d">
+  <title id="t">The three areas of Git</title>
+  <desc id="d">Files move from the working directory to the staging area with git add, then to the repository with git commit.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#fdba74"/></marker></defs>
+  <rect width="720" height="229" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#fdba74" text-anchor="middle">The three areas of Git</text>
+  <rect x="26.0" y="60.0" width="200.0" height="87.0" rx="10" fill="#0f172a" stroke="#fdba74" stroke-width="1.6"/>
+  <text x="126.0" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Working directory</text>
+  <text x="126.0" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Files you edit</text>
+  <line x1="229.0" y1="103.5" x2="257.0" y2="103.5" stroke="#fdba74" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="260.0" y="60.0" width="200.0" height="87.0" rx="10" fill="#0f172a" stroke="#fdba74" stroke-width="1.6"/>
+  <text x="360.0" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Staging area</text>
+  <text x="360.0" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Changes picked for the next</text>
+  <text x="360.0" y="123.1" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">commit</text>
+  <line x1="463.0" y1="103.5" x2="491.0" y2="103.5" stroke="#fdba74" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="494.0" y="60.0" width="200.0" height="87.0" rx="10" fill="#0f172a" stroke="#fdba74" stroke-width="1.6"/>
+  <text x="594.0" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Repository</text>
+  <text x="594.0" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Saved history (.git folder)</text>
+  <text x="360.0" y="173.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">git add moves changes into the staging area. git commit saves them into the</text>
+  <text x="360.0" y="189.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">repository.</text>
+</svg>

@@ -1,0 +1,385 @@
+{
+ "slug": "c",
+ "name": "C",
+ "description": "C is a fast, low-level language that teaches how memory and programs really work.",
+ "color": "#4a5d8f",
+ "order": 8,
+ "topics": [
+  {
+   "slug": "intro",
+   "title": "Introduction to C",
+   "section": "Getting Started",
+   "order": 1,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Introduction to C</h1>\n<div class=\"card\">\n<h2>What is C?</h2>\n<p>C is a small, fast programming language created by Dennis Ritchie in the early 1970s. Many things you use every day are written in C or built on it: operating systems, databases, and the software inside phones and cars. Other languages such as C++, Java and Python borrowed ideas from C, so learning C makes them easier later.</p>\n<p>C is a <strong>compiled</strong> language. You write source code in a text file, and a program called the <strong>compiler</strong> turns it into a machine-code file that your computer can run. C is also close to the hardware. It lets you see how memory really works, and that is why it is a great teaching language.</p>\n</div>\n\n<div class=\"card\">\n<h2>Compile and run with gcc</h2>\n<p>GCC is a free compiler that works on Linux, macOS and Windows. Save your code in a file called <code>hello.c</code>, then type these commands in a terminal:</p>\n<pre><code>gcc hello.c -o hello\n./hello</code></pre>\n<p>The first command compiles <code>hello.c</code> and writes a program named <code>hello</code> (the <code>-o</code> option sets the output name). The second command runs it. On Windows with MinGW the program is <code>hello.exe</code> and you run it with <code>hello</code>. If the compiler finds mistakes, it prints error messages with line numbers and does not create the program.</p>\n</div>\n\n<div class=\"card\">\n<h2>Your first program</h2>\n"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"hello.c is compiled by gcc into the program hello, which is run and prints its output.\" class=\"content-image\" src=\"/images/diagrams/c-intro.svg\"/><figcaption>The compiler turns your .c file into a program that the computer can run.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    printf(\"Hello, Learning Hub!\\n\");\n    return 0;\n}\n",
+     "output": "Hello, Learning Hub!"
+    },
+    {
+     "kind": "html",
+     "html": "<p>Let us read this program line by line.</p>\n<ul>\n<li><code>#include &lt;stdio.h&gt;</code> copies the standard input/output header into your file. It tells the compiler about <code>printf</code>.</li>\n<li><code>int main(void)</code> is the <strong>main function</strong>. Every C program starts running here.</li>\n<li><code>printf(\"...\")</code> prints text on the screen. The <code>\\n</code> inside the text means \"start a new line\".</li>\n<li><code>return 0;</code> tells the operating system the program finished without errors.</li>\n<li>Each statement ends with a semicolon <code>;</code> and a block of code is wrapped in curly braces <code>{ }</code>.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Escape sequences and comments</h2>\n<p>Inside a string, a backslash starts a special code called an <strong>escape sequence</strong>. Comments are notes for humans. The compiler ignores them. Use <code>/* ... */</code> for many lines and <code>// ...</code> for one line.</p>\n<table>\n<tr><th>Escape</th><th>Meaning</th></tr>\n<tr><td><code>\\n</code></td><td>new line</td></tr>\n<tr><td><code>\\t</code></td><td>tab</td></tr>\n<tr><td><code>\\\"</code></td><td>a double quote inside a string</td></tr>\n<tr><td><code>\\\\</code></td><td>one backslash</td></tr>\n</table>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\n/* This comment can\n   cover many lines. */\nint main(void) {\n    // A one-line comment\n    printf(\"Course: C Programming\\n\");\n    printf(\"She said \\\"hello\\\"\\n\");\n    printf(\"Folder: C:\\\\temp\\n\");\n    printf(\"Line one\\nLine two\\n\");\n    return 0;\n}\n",
+     "output": "Course: C Programming\nShe said \"hello\"\nFolder: C:\\temp\nLine one\nLine two"
+    },
+    {
+     "kind": "html",
+     "html": "<p>Now a program that does a small calculation. Notice that <code>%d</code> in the text is a placeholder that printf replaces with an integer value.</p>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    int a = 5;\n    int b = 7;\n    printf(\"%d + %d = %d\\n\", a, b, a + b);\n    return 0;\n}\n",
+     "output": "5 + 7 = 12"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Forgetting the semicolon at the end of a statement.</li>\n<li>Forgetting <code>#include &lt;stdio.h&gt;</code>, so printf is unknown.</li>\n<li>Writing <code>Printf</code> or <code>Main</code>. C is <strong>case sensitive</strong>, so the names must be exact.</li>\n<li>Forgetting <code>\\n</code>, so the next prompt appears on the same line.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>C is a compiled language: source code (.c) is turned into a program by a compiler such as gcc.</li>\n<li><code>gcc hello.c -o hello</code> compiles, and <code>./hello</code> runs the result.</li>\n<li>Every program starts in <code>main</code>.</li>\n<li><code>printf</code> from <code>stdio.h</code> prints text; <code>\\n</code> makes a new line.</li>\n<li>Statements end with <code>;</code> and C is case sensitive.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "variables-io",
+   "title": "Variables, Types & Input/Output",
+   "section": "Getting Started",
+   "order": 2,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Variables, Types &amp; Input/Output</h1>\n<div class=\"card\">\n<h2>Variables and basic types</h2>\n<p>A <strong>variable</strong> is a named box in memory that stores a value. In C you must tell the compiler the <strong>type</strong> of every variable before you use it. The type decides what kind of value fits in the box and how much memory it takes.</p>\n<table>\n<tr><th>Type</th><th>Stores</th><th>Example</th></tr>\n<tr><td><code>int</code></td><td>whole numbers</td><td><code>int age = 19;</code></td></tr>\n<tr><td><code>float</code></td><td>decimal numbers (about 6 digits of precision)</td><td><code>float gpa = 3.5f;</code></td></tr>\n<tr><td><code>double</code></td><td>decimal numbers (about 15 digits of precision)</td><td><code>double pi = 3.14159;</code></td></tr>\n<tr><td><code>char</code></td><td>one character, stored as a small number</td><td><code>char grade = 'A';</code></td></tr>\n</table>\n<p>Characters use single quotes (<code>'A'</code>). Strings use double quotes (<code>\"Hello\"</code>) and you will meet them later. A variable that is not given a value holds garbage, so always set a starting value.</p>\n</div>\n\n<div class=\"card\">\n<h2>Printing with format specifiers</h2>\n<p><code>printf</code> uses <strong>format specifiers</strong> that start with <code>%</code>. Each specifier is replaced by the next value in the list. The type of the value must match the specifier.</p>\n<table>\n<tr><th>Specifier</th><th>Used for</th></tr>\n<tr><td><code>%d</code></td><td>int</td></tr>\n<tr><td><code>%f</code></td><td>float or double (use <code>%.2f</code> for 2 decimals)</td></tr>\n<tr><td><code>%c</code></td><td>char shown as a character</td></tr>\n<tr><td><code>%s</code></td><td>string</td></tr>\n</table>\n"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Table of int, float, double and char with what they store and the printf format.\" class=\"content-image\" src=\"/images/diagrams/c-variables-io.svg\"/><figcaption>Each basic type has a matching printf format.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    int age = 19;\n    float gpa = 3.5f;\n    double pi = 3.14159;\n    char grade = 'A';\n\n    printf(\"Age: %d\\n\", age);\n    printf(\"GPA: %.1f\\n\", gpa);\n    printf(\"Pi: %.2f\\n\", pi);\n    printf(\"Grade: %c\\n\", grade);\n    printf(\"Grade as a number: %d\\n\", grade);\n    printf(\"Width: [%5d] [%-5d]\\n\", 42, 42);\n    return 0;\n}\n",
+     "output": "Age: 19\nGPA: 3.5\nPi: 3.14\nGrade: A\nGrade as a number: 65\nWidth: [   42] [42   ]"
+    },
+    {
+     "kind": "html",
+     "html": "<p>Notice that a <code>char</code> is really a small number. Printing it with <code>%c</code> shows the letter, and printing it with <code>%d</code> shows its code (65 for 'A' in ASCII). The number in <code>%5d</code> sets a minimum width, and <code>-</code> left-aligns the value.</p>\n</div>\n\n<div class=\"card\">\n<h2>Reading input with scanf</h2>\n<p><code>scanf</code> reads values from the keyboard. It uses the same specifiers, but you must give the <strong>address</strong> of the variable with the <code>&amp;</code> operator, so scanf knows where to store the value. For example:</p>\n<pre><code>int age;\nscanf(\"%d\", &amp;age);   /* user types 19 and presses Enter */</code></pre>\n<p>For a <code>double</code> variable, scanf needs <code>%lf</code> (with a letter l). The demo below cannot wait for a keyboard, so it uses <code>sscanf</code>. It works exactly like scanf, but it reads from a string that is already in the program. Imagine the user typed <code>19 3.5 B</code>.</p>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    const char *input = \"19 3.5 B\";   /* pretend the user typed this */\n    int age;\n    float gpa;\n    char grade;\n\n    int count = sscanf(input, \"%d %f %c\", &age, &gpa, &grade);\n\n    printf(\"Read %d values\\n\", count);\n    printf(\"Age=%d GPA=%.1f Grade=%c\\n\", age, gpa, grade);\n    return 0;\n}\n",
+     "output": "Read 3 values\nAge=19 GPA=3.5 Grade=B"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Constants</h2>\n<p>When a value must never change, make it a constant. Use <code>const</code> before the type, or <code>#define</code> to give a name to a value before compiling. Names written in capital letters are a common habit for constants.</p>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\n#define PASS_MARK 50\n\nint main(void) {\n    const double TAX = 0.15;\n    double price = 200.0;\n    double total = price + price * TAX;\n\n    printf(\"Pass mark: %d\\n\", PASS_MARK);\n    printf(\"Total with tax: %.2f\\n\", total);\n    return 0;\n}\n",
+     "output": "Pass mark: 50\nTotal with tax: 230.00"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Forgetting <code>&amp;</code> in scanf: <code>scanf(\"%d\", age)</code> is wrong, it must be <code>&amp;age</code>.</li>\n<li>Using <code>%d</code> to print a double. The output will be wrong. Use <code>%f</code>.</li>\n<li>Using a variable before giving it a value.</li>\n<li>Using double quotes for a single character: write <code>'A'</code>, not <code>\"A\"</code>.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Every variable has a type: <code>int</code>, <code>float</code>, <code>double</code> or <code>char</code>.</li>\n<li>printf uses <code>%d</code>, <code>%f</code>, <code>%c</code> and <code>%s</code> to show values.</li>\n<li>scanf needs the address of the variable (<code>&amp;x</code>) and <code>%lf</code> for double.</li>\n<li>A char is a small number, so it prints as a letter with <code>%c</code> and as a number with <code>%d</code>.</li>\n<li>Use <code>const</code> or <code>#define</code> for values that must not change.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "operators-conditions",
+   "title": "Operators & Conditions",
+   "section": "Getting Started",
+   "order": 3,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Operators &amp; Conditions</h1>\n<div class=\"card\">\n<h2>Arithmetic operators</h2>\n<p>Operators are symbols that work on values. The arithmetic operators are <code>+ - * / %</code>. The most surprising one for beginners is <code>/</code>. When both numbers are <code>int</code>, C throws away the decimal part, so <code>17 / 5</code> is <code>3</code>, not 3.4. The <code>%</code> operator gives the remainder, so <code>17 % 5</code> is <code>2</code>. To get a decimal answer, make at least one side a double, for example with a cast like <code>(double)a / b</code>.</p>\n<p>Shortcuts save typing: <code>x += 10</code> means <code>x = x + 10</code>, and <code>x++</code> adds one.</p>\n"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Table of C operators with examples where a is 17 and b is 5.\" class=\"content-image\" src=\"/images/diagrams/c-operators-conditions.svg\"/><figcaption>Integer division, remainder and comparisons give predictable results.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    int a = 17, b = 5;\n    printf(\"a + b = %d\\n\", a + b);\n    printf(\"a - b = %d\\n\", a - b);\n    printf(\"a * b = %d\\n\", a * b);\n    printf(\"a / b = %d\\n\", a / b);\n    printf(\"a %% b = %d\\n\", a % b);\n    printf(\"real division = %.2f\\n\", (double)a / b);\n\n    int x = 5;\n    x++;\n    x += 10;\n    printf(\"x = %d\\n\", x);\n    return 0;\n}\n",
+     "output": "a + b = 22\na - b = 12\na * b = 85\na / b = 3\na % b = 2\nreal division = 3.40\nx = 16"
+    },
+    {
+     "kind": "html",
+     "html": "<p>To print a percent sign with printf, write <code>%%</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>Comparison and logical operators</h2>\n<p>Comparison operators ask a question about two values: <code>==</code> (equal), <code>!=</code> (not equal), <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>. In C there is no separate true/false type in older code. A comparison gives <code>1</code> for true and <code>0</code> for false, and any non-zero value counts as true in a condition.</p>\n<p>Logical operators join conditions: <code>&amp;&amp;</code> (and), <code>||</code> (or) and <code>!</code> (not).</p>\n<table>\n<tr><th>Operator</th><th>Meaning</th><th>Example</th></tr>\n<tr><td><code>&amp;&amp;</code></td><td>both must be true</td><td><code>marks &gt;= 50 &amp;&amp; attendance &gt;= 75</code></td></tr>\n<tr><td><code>||</code></td><td>at least one is true</td><td><code>day == 6 || day == 7</code></td></tr>\n<tr><td><code>!</code></td><td>reverses true and false</td><td><code>!(x &gt; 3)</code></td></tr>\n</table>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    int marks = 62;\n    int attendance = 70;\n\n    printf(\"marks > 50: %d\\n\", marks > 50);\n    printf(\"marks == 62: %d\\n\", marks == 62);\n    printf(\"both conditions: %d\\n\", marks >= 50 && attendance >= 75);\n    printf(\"either condition: %d\\n\", marks >= 50 || attendance >= 75);\n    printf(\"not: %d\\n\", !(marks > 50));\n    return 0;\n}\n",
+     "output": "marks > 50: 1\nmarks == 62: 1\nboth conditions: 0\neither condition: 1\nnot: 0"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>if / else and switch</h2>\n<p>An <code>if</code> statement runs a block only when its condition is true. Add <code>else if</code> for more choices and <code>else</code> for everything else. A <code>switch</code> compares one value with several fixed cases. Each case should end with <code>break</code>. Without <code>break</code> the program keeps running into the next case, which is called fall-through.</p>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    int marks = 72;\n\n    if (marks >= 80) {\n        printf(\"Grade A\\n\");\n    } else if (marks >= 65) {\n        printf(\"Grade B\\n\");\n    } else if (marks >= 50) {\n        printf(\"Grade C\\n\");\n    } else {\n        printf(\"Fail\\n\");\n    }\n\n    int day = 3;\n    switch (day) {\n        case 1: printf(\"Monday\\n\"); break;\n        case 2: printf(\"Tuesday\\n\"); break;\n        case 3: printf(\"Wednesday\\n\"); break;\n        default: printf(\"Another day\\n\");\n    }\n    return 0;\n}\n",
+     "output": "Grade B\nWednesday"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Writing <code>if (x = 5)</code> instead of <code>if (x == 5)</code>. A single <code>=</code> assigns a value, it does not compare.</li>\n<li>Expecting <code>7 / 2</code> to be 3.5. It is 3 because both numbers are integers.</li>\n<li>Forgetting <code>break</code> in a switch case.</li>\n<li>Writing <code>0 &lt; x &lt; 10</code>. Write <code>x &gt; 0 &amp;&amp; x &lt; 10</code> instead.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Integer division drops the decimals; <code>%</code> gives the remainder.</li>\n<li>Comparisons give 1 (true) or 0 (false); any non-zero value is true.</li>\n<li><code>&amp;&amp;</code>, <code>||</code> and <code>!</code> combine conditions.</li>\n<li>Use <code>==</code> to compare and <code>=</code> to assign.</li>\n<li>Use <code>break</code> at the end of each switch case.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "loops",
+   "title": "Loops",
+   "section": "Control & Functions",
+   "order": 4,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Loops</h1>\n<div class=\"card\">\n<h2>Why loops?</h2>\n<p>A loop repeats a block of code. Without loops you would have to copy the same line again and again. C has three loops: <code>for</code>, <code>while</code> and <code>do-while</code>. All of them check a condition to decide whether to run the block one more time.</p>\n<table>\n<tr><th>Loop</th><th>Use it when</th><th>Condition checked</th></tr>\n<tr><td><code>for</code></td><td>you know how many times to repeat</td><td>before each round</td></tr>\n<tr><td><code>while</code></td><td>you repeat until something changes</td><td>before each round</td></tr>\n<tr><td><code>do-while</code></td><td>the block must run at least once</td><td>after each round</td></tr>\n</table>\n</div>\n\n<div class=\"card\">\n<h2>The for loop</h2>\n<p>A <code>for</code> loop has three parts in the brackets: a start, a condition, and an update. For example, <code>for (int i = 1; i &lt;= 5; i++)</code> starts with i = 1, continues while i is at most 5, and adds 1 after every round. Declaring <code>int i</code> inside the loop works in C99 and later.</p>\n"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Start once, check the condition, run the body, update, and repeat until the condition is false.\" class=\"content-image\" src=\"/images/diagrams/c-loops.svg\"/><figcaption>A for loop checks its condition, runs the body, then updates and repeats.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    int sum = 0;\n    for (int i = 1; i <= 5; i++) {\n        printf(\"i = %d\\n\", i);\n        sum += i;\n    }\n    printf(\"Sum = %d\\n\", sum);\n    return 0;\n}\n",
+     "output": "i = 1\ni = 2\ni = 3\ni = 4\ni = 5\nSum = 15"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>while and do-while</h2>\n<p>A <code>while</code> loop checks the condition first, so it may run zero times. A <code>do-while</code> loop runs the block first and checks afterwards, so it always runs at least once. Make sure something inside the loop changes the condition, or the loop will never stop.</p>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    int n = 100;\n    while (n > 1) {\n        printf(\"%d \", n);\n        n = n / 2;\n    }\n    printf(\"\\n\");\n\n    int k = 10;\n    do {\n        printf(\"do-while ran with k = %d\\n\", k);\n        k++;\n    } while (k < 5);\n    return 0;\n}\n",
+     "output": "100 50 25 12 6 3 \ndo-while ran with k = 10"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>break and continue</h2>\n<p><code>break</code> leaves the loop immediately. <code>continue</code> skips the rest of the current round and jumps to the next one. In a <code>for</code> loop, the update part still runs after continue.</p>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    for (int i = 1; i <= 10; i++) {\n        if (i % 2 == 0) {\n            continue;      /* skip even numbers */\n        }\n        if (i > 7) {\n            break;         /* stop the loop */\n        }\n        printf(\"%d \", i);\n    }\n    printf(\"\\n\");\n    return 0;\n}\n",
+     "output": "1 3 5 7 "
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>A semicolon right after the brackets, like <code>for (...);</code>, which makes the loop body empty.</li>\n<li>Forgetting to update the variable in a while loop, which creates an infinite loop.</li>\n<li>Off-by-one errors: <code>i &lt; 5</code> runs 5 times from 0, but <code>i &lt;= 5</code> runs 6 times.</li>\n<li>Using <code>=</code> instead of <code>==</code> in the loop condition.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li><code>for</code> is best when the number of rounds is known.</li>\n<li><code>while</code> checks first; <code>do-while</code> runs at least once.</li>\n<li><code>break</code> ends the loop; <code>continue</code> skips to the next round.</li>\n<li>Always make sure the loop condition can become false.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "functions",
+   "title": "Functions",
+   "section": "Control & Functions",
+   "order": 5,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Functions</h1>\n<div class=\"card\">\n<h2>What is a function?</h2>\n<p>A <strong>function</strong> is a named block of code that does one job. You write it once and call it many times. Functions make programs shorter, easier to read and easier to test. You have already used two: <code>main</code> and <code>printf</code>.</p>\n<p>A function definition has a return type, a name, a list of parameters, and a body:</p>\n<pre><code>int square(int n) {\n    return n * n;\n}</code></pre>\n<p>The word <code>int</code> before the name is the <strong>return type</strong>. Use <code>void</code> if the function returns nothing. The <code>return</code> statement sends a value back to the caller and ends the function.</p>\n</div>\n\n<div class=\"card\">\n<h2>Prototypes</h2>\n<p>C reads your file from top to bottom. If you call a function before the compiler has seen it, you get an error or a warning. A <strong>prototype</strong> is a one-line promise placed near the top, such as <code>int square(int n);</code>. It tells the compiler the name, parameters and return type. The full definition can then come later, usually after <code>main</code>.</p>\n"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"The call square(a) copies a into n, the body runs, and the return value goes back to the caller.\" class=\"content-image\" src=\"/images/diagrams/c-functions.svg\"/><figcaption>Arguments are copied into parameters, and return sends one value back.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint square(int n);              /* prototype */\nint max_of(int a, int b);       /* prototype */\nvoid print_line(void);          /* prototype */\n\nint main(void) {\n    print_line();\n    printf(\"square(7) = %d\\n\", square(7));\n    printf(\"max_of(12, 9) = %d\\n\", max_of(12, 9));\n    print_line();\n    return 0;\n}\n\nint square(int n) {\n    return n * n;\n}\n\nint max_of(int a, int b) {\n    if (a > b) {\n        return a;\n    }\n    return b;\n}\n\nvoid print_line(void) {\n    printf(\"--------\\n\");\n}\n",
+     "output": "--------\nsquare(7) = 49\nmax_of(12, 9) = 12\n--------"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Pass by value</h2>\n<p>When you call a function, C <strong>copies</strong> each argument into the parameter. This is called <strong>pass by value</strong>. The function works on its own copy, so changing the parameter does not change the variable in the caller.</p>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nvoid try_to_change(int x) {\n    x = 99;\n    printf(\"inside the function: x = %d\\n\", x);\n}\n\nint main(void) {\n    int a = 3;\n    try_to_change(a);\n    printf(\"back in main: a = %d\\n\", a);\n    return 0;\n}\n",
+     "output": "inside the function: x = 99\nback in main: a = 3"
+    },
+    {
+     "kind": "html",
+     "html": "<p>The variable <code>a</code> stays 3. If a function needs to change the caller's variable, you pass its address. You will learn how in the pointers lesson. A function can return only one value directly, so use the return value for the result.</p>\n</div>\n\n<div class=\"card\">\n<h2>A realistic example</h2>\n<p>This function calculates an average from three marks. Notice that it divides by <code>3.0</code> (a double), so the result keeps its decimals.</p>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\ndouble average(int a, int b, int c) {\n    return (a + b + c) / 3.0;\n}\n\nint main(void) {\n    double avg = average(70, 82, 91);\n    printf(\"Average = %.2f\\n\", avg);\n    return 0;\n}\n",
+     "output": "Average = 81.00"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Calling a function before its prototype or definition.</li>\n<li>Forgetting <code>return</code> in a function that must return a value.</li>\n<li>Expecting a function to change the caller's variable. Parameters are copies.</li>\n<li>Passing the wrong number of arguments or the wrong types.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A function has a return type, a name, parameters and a body.</li>\n<li>A prototype declares a function so it can be called before it is defined.</li>\n<li>C passes arguments by value, so the function gets copies.</li>\n<li><code>return</code> sends one value back; <code>void</code> means nothing is returned.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "arrays-strings",
+   "title": "Arrays & Strings",
+   "section": "Control & Functions",
+   "order": 6,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Arrays &amp; Strings</h1>\n<div class=\"card\">\n<h2>Arrays</h2>\n<p>An <strong>array</strong> stores many values of the same type in one row of memory. You write the size in square brackets: <code>int marks[5];</code>. Items are numbered from <strong>0</strong>, so the first item is <code>marks[0]</code> and the last one in a size-5 array is <code>marks[4]</code>. C does not check the index. If you use <code>marks[5]</code>, you read memory that does not belong to the array, and the program may crash or give garbage.</p>\n<p>You can give starting values with braces: <code>int marks[5] = {70, 85, 60, 92, 78};</code>. A loop is the natural way to visit every item.</p>\n"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Four boxes holding A, l, i and the null terminator, with indexes 0 to 3.\" class=\"content-image\" src=\"/images/diagrams/c-arrays-strings.svg\"/><figcaption>A C string is a char array that ends with the null character.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    int marks[5] = {70, 85, 60, 92, 78};\n    int sum = 0;\n\n    for (int i = 0; i < 5; i++) {\n        printf(\"marks[%d] = %d\\n\", i, marks[i]);\n        sum += marks[i];\n    }\n    printf(\"Sum = %d\\n\", sum);\n    printf(\"Average = %.1f\\n\", sum / 5.0);\n    return 0;\n}\n",
+     "output": "marks[0] = 70\nmarks[1] = 85\nmarks[2] = 60\nmarks[3] = 92\nmarks[4] = 78\nSum = 385\nAverage = 77.0"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Strings are char arrays</h2>\n<p>C has no separate string type. A <strong>string</strong> is an array of <code>char</code> that ends with a special character called the <strong>null terminator</strong>, written <code>'\\0'</code> (its value is 0). Functions such as printf use it to know where the text stops. So the string <code>\"Ali\"</code> needs 4 bytes: 'A', 'l', 'i' and '\\0'.</p>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n#include <string.h>\n\nint main(void) {\n    char name[] = \"Ali\";\n\n    printf(\"Text: %s\\n\", name);\n    printf(\"Array size: %zu\\n\", sizeof(name));\n    printf(\"Length: %zu\\n\", strlen(name));\n\n    for (int i = 0; i < 4; i++) {\n        printf(\"name[%d] = %d\\n\", i, name[i]);\n    }\n    return 0;\n}\n",
+     "output": "Text: Ali\nArray size: 4\nLength: 3\nname[0] = 65\nname[1] = 108\nname[2] = 105\nname[3] = 0"
+    },
+    {
+     "kind": "html",
+     "html": "<p>The array size is 4, but <code>strlen</code> counts only the visible characters, so it says 3. The last item, <code>name[3]</code>, is 0, the terminator.</p>\n</div>\n\n<div class=\"card\">\n<h2>Useful functions from string.h</h2>\n<p>Add <code>#include &lt;string.h&gt;</code> to use these helpers. You cannot copy or compare strings with <code>=</code> and <code>==</code>, because those would work on addresses, not on the letters.</p>\n<table>\n<tr><th>Function</th><th>What it does</th></tr>\n<tr><td><code>strlen(s)</code></td><td>number of characters before the '\\0'</td></tr>\n<tr><td><code>strcpy(dest, src)</code></td><td>copies src into dest</td></tr>\n<tr><td><code>strcat(dest, src)</code></td><td>adds src to the end of dest</td></tr>\n<tr><td><code>strcmp(a, b)</code></td><td>0 if equal, negative if a comes first, positive if b comes first</td></tr>\n</table>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n#include <string.h>\n\nint main(void) {\n    char first[20];\n    char full[40];\n\n    strcpy(first, \"Sara\");\n    strcpy(full, first);\n    strcat(full, \" Khan\");\n\n    printf(\"full = %s\\n\", full);\n    printf(\"length = %zu\\n\", strlen(full));\n    printf(\"same? %d\\n\", strcmp(first, \"Sara\") == 0);\n    printf(\"apple before banana? %d\\n\", strcmp(\"apple\", \"banana\") < 0);\n    return 0;\n}\n",
+     "output": "full = Sara Khan\nlength = 9\nsame? 1\napple before banana? 1"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Using index equal to the size, such as <code>a[5]</code> in a size-5 array.</li>\n<li>Making a char array too small. <code>char s[3] = \"Ali\";</code> leaves no room for '\\0'.</li>\n<li>Comparing strings with <code>==</code>. Use <code>strcmp</code>.</li>\n<li>Copying into a buffer that is too small with <code>strcpy</code> or <code>strcat</code>.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Array indexes start at 0 and C does not check bounds.</li>\n<li>A string is a char array that ends with '\\0', so it needs one extra byte.</li>\n<li><code>strlen</code> does not count the terminator; <code>sizeof</code> of the array does.</li>\n<li>Use <code>strcpy</code>, <code>strcat</code> and <code>strcmp</code> from string.h.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "pointers",
+   "title": "Pointers",
+   "section": "Memory & Data",
+   "order": 7,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Pointers</h1>\n<div class=\"card\">\n<h2>Memory has addresses</h2>\n<p>Every variable lives somewhere in memory, and every location has an <strong>address</strong>. A <strong>pointer</strong> is a variable that stores an address. Pointers look scary at first, but they are just a way to say \"the value lives over there\". They let functions change the caller's data, and they are the base of arrays, strings and dynamic memory in C.</p>\n<table>\n<tr><th>Syntax</th><th>Meaning</th></tr>\n<tr><td><code>int *p;</code></td><td>p is a pointer to an int</td></tr>\n<tr><td><code>&amp;x</code></td><td>address-of: the address of x</td></tr>\n<tr><td><code>*p</code></td><td>dereference: the value p points to</td></tr>\n</table>\n</div>\n\n<div class=\"card\">\n<h2>Address-of and dereference</h2>\n<p>Write <code>int *p = &amp;x;</code> to make p point to x. Then <code>*p</code> means \"the thing at that address\", so reading or writing <code>*p</code> is the same as reading or writing x.</p>\n"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Variable x holds 10 at an address; pointer p holds that address and points to x.\" class=\"content-image\" src=\"/images/diagrams/c-pointers.svg\"/><figcaption>A pointer stores the address of another variable.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    int x = 10;\n    int *p = &x;           /* p holds the address of x */\n\n    printf(\"x = %d, *p = %d\\n\", x, *p);\n\n    *p = 25;               /* changes x through the pointer */\n    printf(\"x = %d\\n\", x);\n    printf(\"p points to x? %d\\n\", p == &x);\n    return 0;\n}\n",
+     "output": "x = 10, *p = 10\nx = 25\np points to x? 1"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Pointers and arrays</h2>\n<p>The name of an array is converted to the address of its first item. So <code>int *p = a;</code> makes p point to <code>a[0]</code>. Adding 1 to a pointer moves it to the next item (not the next byte), so <code>*(p + 1)</code> is the same as <code>a[1]</code>. Also <code>p[2]</code> is allowed and means <code>*(p + 2)</code>.</p>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    int a[3] = {10, 20, 30};\n    int *p = a;\n\n    printf(\"*p = %d\\n\", *p);\n    printf(\"*(p + 1) = %d\\n\", *(p + 1));\n    printf(\"p[2] = %d\\n\", p[2]);\n\n    for (int *q = a; q < a + 3; q++) {\n        printf(\"%d \", *q);\n    }\n    printf(\"\\n\");\n    return 0;\n}\n",
+     "output": "*p = 10\n*(p + 1) = 20\np[2] = 30\n10 20 30 "
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Pass by pointer</h2>\n<p>Remember that C passes copies of arguments. If you pass the <strong>address</strong> of a variable, the function receives a copy of the address, and it can use <code>*</code> to reach the original variable. This is how <code>scanf</code> can fill your variables.</p>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nvoid swap_copy(int a, int b) {\n    int t = a; a = b; b = t;\n}\n\nvoid swap(int *a, int *b) {\n    int t = *a;\n    *a = *b;\n    *b = t;\n}\n\nint main(void) {\n    int x = 4, y = 9;\n\n    swap_copy(x, y);\n    printf(\"after swap_copy: x=%d y=%d\\n\", x, y);\n\n    swap(&x, &y);\n    printf(\"after swap: x=%d y=%d\\n\", x, y);\n    return 0;\n}\n",
+     "output": "after swap_copy: x=4 y=9\nafter swap: x=9 y=4"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Using a pointer that was never set. An uninitialised pointer points to a random place. Set it to an address or to <code>NULL</code>.</li>\n<li>Dereferencing <code>NULL</code>, which crashes the program.</li>\n<li>Mixing up <code>p</code> (the address) and <code>*p</code> (the value).</li>\n<li>Walking past the end of an array with a pointer.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A pointer stores the address of another variable.</li>\n<li><code>&amp;x</code> gets an address; <code>*p</code> reaches the value at an address.</li>\n<li>An array name works like a pointer to its first item; <code>p + 1</code> moves to the next item.</li>\n<li>Pass a pointer to let a function change the caller's variable.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "structs-files",
+   "title": "Structs, Memory & Files",
+   "section": "Memory & Data",
+   "order": 8,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Structs, Memory &amp; Files</h1>\n<div class=\"card\">\n<h2>Structs and typedef</h2>\n<p>An array holds many values of the same type. A <strong>struct</strong> groups values of different types under one name, such as a student with a name, a roll number and a GPA. Each part is called a <strong>member</strong>, and you reach it with a dot: <code>s.roll</code>. With <code>typedef</code> you give the struct a short type name so you do not need to write <code>struct</code> every time.</p>\n<p>If you have a pointer to a struct, use the arrow <code>-&gt;</code>: <code>sp-&gt;roll</code> is the same as <code>(*sp).roll</code>. Assigning one struct to another copies all its members.</p>\n"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Cards for struct, malloc and free, and file handling.\" class=\"content-image\" src=\"/images/diagrams/c-structs-files.svg\"/><figcaption>Structs group data, malloc gives memory at run time, and files store text.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n#include <string.h>\n\ntypedef struct {\n    char name[20];\n    int roll;\n    float gpa;\n} Student;\n\nvoid print_student(const Student *sp) {\n    printf(\"%s (roll %d) GPA %.1f\\n\", sp->name, sp->roll, sp->gpa);\n}\n\nint main(void) {\n    Student s = {\"Ayesha\", 12, 3.6f};\n    print_student(&s);\n\n    Student copy = s;          /* copies every member */\n    strcpy(copy.name, \"Bilal\");\n    copy.roll = 13;\n\n    print_student(&s);\n    print_student(&copy);\n    return 0;\n}\n",
+     "output": "Ayesha (roll 12) GPA 3.6\nAyesha (roll 12) GPA 3.6\nBilal (roll 13) GPA 3.6"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>malloc and free</h2>\n<p>Normal variables have a fixed size decided when you write the code. Sometimes you only know the size while the program runs. <code>malloc(bytes)</code> from <code>stdlib.h</code> asks the system for that much memory and returns a pointer to it, or <code>NULL</code> if it fails. When you are done, give the memory back with <code>free</code>. If you forget, the program has a <strong>memory leak</strong>.</p>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void) {\n    int n = 5;\n    int *nums = malloc(n * sizeof(int));\n    if (nums == NULL) {\n        printf(\"Out of memory\\n\");\n        return 1;\n    }\n\n    int sum = 0;\n    for (int i = 0; i < n; i++) {\n        nums[i] = (i + 1) * 10;\n        sum += nums[i];\n    }\n    printf(\"Sum = %d\\n\", sum);\n\n    free(nums);       /* give the memory back */\n    nums = NULL;\n    return 0;\n}\n",
+     "output": "Sum = 150"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Reading and writing text files</h2>\n<p>To use a file, call <code>fopen(name, mode)</code>. It returns a <code>FILE *</code>, or <code>NULL</code> if it fails. Common modes are <code>\"w\"</code> (write, creates or empties the file), <code>\"a\"</code> (append) and <code>\"r\"</code> (read). Then use <code>fprintf</code> to write text like printf, and <code>fgets</code> to read one line. Always finish with <code>fclose</code>.</p>\n<table>\n<tr><th>Function</th><th>Job</th></tr>\n<tr><td><code>fopen</code></td><td>open a file, check for NULL</td></tr>\n<tr><td><code>fprintf(f, ...)</code></td><td>write formatted text to the file</td></tr>\n<tr><td><code>fgets(buf, size, f)</code></td><td>read one line into buf, returns NULL at the end</td></tr>\n<tr><td><code>fclose(f)</code></td><td>close the file and save the data</td></tr>\n</table>\n"
+    },
+    {
+     "kind": "demo",
+     "language": "c",
+     "code": "#include <stdio.h>\n\nint main(void) {\n    FILE *f = fopen(\"scores.txt\", \"w\");\n    if (f == NULL) {\n        printf(\"Cannot open file\\n\");\n        return 1;\n    }\n    fprintf(f, \"Ali 75\\n\");\n    fprintf(f, \"Sara 88\\n\");\n    fclose(f);\n\n    f = fopen(\"scores.txt\", \"r\");\n    if (f == NULL) {\n        printf(\"Cannot read file\\n\");\n        return 1;\n    }\n    char line[50];\n    while (fgets(line, sizeof(line), f) != NULL) {\n        printf(\"Read: %s\", line);\n    }\n    fclose(f);\n\n    remove(\"scores.txt\");   /* clean up the demo file */\n    return 0;\n}\n",
+     "output": "Read: Ali 75\nRead: Sara 88"
+    },
+    {
+     "kind": "html",
+     "html": "<p>The line from <code>fgets</code> still contains the newline character, so the demo prints it without adding another <code>\\n</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Not checking if <code>malloc</code> or <code>fopen</code> returned <code>NULL</code>.</li>\n<li>Forgetting <code>free</code> (a leak) or using memory after it was freed.</li>\n<li>Calling <code>malloc(n)</code> for ints. Multiply by the type size: <code>n * sizeof(int)</code>.</li>\n<li>Forgetting <code>fclose</code>, so data may not be saved.</li>\n<li>Using <code>.</code> with a pointer to a struct. Use <code>-&gt;</code>.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A struct groups different types; <code>typedef</code> gives it a short name.</li>\n<li>Use <code>.</code> on a struct and <code>-&gt;</code> on a pointer to a struct.</li>\n<li><code>malloc</code> reserves memory at run time and <code>free</code> releases it.</li>\n<li><code>fopen</code>, <code>fprintf</code>, <code>fgets</code> and <code>fclose</code> handle text files.</li>\n<li>Always check for <code>NULL</code> after <code>malloc</code> and <code>fopen</code>.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  }
+ ]
+}

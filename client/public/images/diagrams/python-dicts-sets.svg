@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 262" width="720" height="262" role="img" aria-labelledby="t d">
+  <title id="t">dict and set at a glance</title>
+  <desc id="d">A dict stores key to value pairs; a set stores unique values only.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#60a5fa"/></marker></defs>
+  <rect width="720" height="262" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#60a5fa" text-anchor="middle">dict and set at a glance</text>
+  <rect x="26.0" y="60.0" width="325.0" height="120.0" rx="10" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="188.5" y="87.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#60a5fa" text-anchor="middle">dict</text>
+  <text x="188.5" y="112.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">{&quot;name&quot;: &quot;Ali&quot;,</text>
+  <text x="188.5" y="128.8" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">&quot;age&quot;: 20}</text>
+  <text x="188.5" y="145.6" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">student[&quot;name&quot;] gives &quot;Ali&quot;</text>
+  <text x="188.5" y="162.4" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">keys find values fast</text>
+  <rect x="369.0" y="60.0" width="325.0" height="120.0" rx="10" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="531.5" y="87.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#60a5fa" text-anchor="middle">set</text>
+  <text x="531.5" y="112.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">{1, 2, 2, 3, 3}</text>
+  <text x="531.5" y="128.8" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">becomes {1, 2, 3}</text>
+  <text x="531.5" y="145.6" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">2 in s gives True</text>
+  <text x="531.5" y="162.4" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">no duplicates, no order</text>
+  <text x="360.0" y="206.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Use a dict when you look things up by name, and a set when you only care about</text>
+  <text x="360.0" y="222.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">uniqueness.</text>
+</svg>

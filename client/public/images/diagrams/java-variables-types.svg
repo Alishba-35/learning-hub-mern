@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 366" width="720" height="366" role="img" aria-labelledby="t d">
+  <title id="t">Common Java data types</title>
+  <desc id="d">Table of the Java types byte, int, long, double, char and boolean with their size and an example.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#fb923c"/></marker></defs>
+  <rect width="720" height="366" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#fb923c" text-anchor="middle">Common Java data types</text>
+  <rect x="30.0" y="60.0" width="111.7" height="32.0" rx="0" fill="#fb923c" stroke="#fb923c" stroke-width="1"/>
+  <text x="85.8" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Type</text>
+  <rect x="141.7" y="60.0" width="121.8" height="32.0" rx="0" fill="#fb923c" stroke="#fb923c" stroke-width="1"/>
+  <text x="202.6" y="81.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Size</text>
+  <rect x="263.5" y="60.0" width="172.6" height="32.0" rx="0" fill="#fb923c" stroke="#fb923c" stroke-width="1"/>
+  <text x="349.8" y="81.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Holds</text>
+  <rect x="436.2" y="60.0" width="253.8" height="32.0" rx="0" fill="#fb923c" stroke="#fb923c" stroke-width="1"/>
+  <text x="563.1" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Example</text>
+  <rect x="30.0" y="92.0" width="111.7" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="85.8" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">byte</text>
+  <rect x="141.7" y="92.0" width="121.8" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="202.6" y="113.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">8 bit</text>
+  <rect x="263.5" y="92.0" width="172.6" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="349.8" y="113.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">tiny whole number</text>
+  <rect x="436.2" y="92.0" width="253.8" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="563.1" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">byte b = 100;</text>
+  <rect x="30.0" y="124.0" width="111.7" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="85.8" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">int</text>
+  <rect x="141.7" y="124.0" width="121.8" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="202.6" y="145.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">32 bit</text>
+  <rect x="263.5" y="124.0" width="172.6" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="349.8" y="145.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">whole number</text>
+  <rect x="436.2" y="124.0" width="253.8" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="563.1" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">int age = 20;</text>
+  <rect x="30.0" y="156.0" width="111.7" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="85.8" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">long</text>
+  <rect x="141.7" y="156.0" width="121.8" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="202.6" y="177.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">64 bit</text>
+  <rect x="263.5" y="156.0" width="172.6" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="349.8" y="177.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">big whole number</text>
+  <rect x="436.2" y="156.0" width="253.8" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="563.1" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">long n = 5000000000L;</text>
+  <rect x="30.0" y="188.0" width="111.7" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="85.8" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">double</text>
+  <rect x="141.7" y="188.0" width="121.8" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="202.6" y="209.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">64 bit</text>
+  <rect x="263.5" y="188.0" width="172.6" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="349.8" y="209.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">decimal number</text>
+  <rect x="436.2" y="188.0" width="253.8" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="563.1" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">double pi = 3.14;</text>
+  <rect x="30.0" y="220.0" width="111.7" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="85.8" y="241.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">char</text>
+  <rect x="141.7" y="220.0" width="121.8" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="202.6" y="241.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">16 bit</text>
+  <rect x="263.5" y="220.0" width="172.6" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="349.8" y="241.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">one character</text>
+  <rect x="436.2" y="220.0" width="253.8" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="563.1" y="241.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">char c = &#x27;A&#x27;;</text>
+  <rect x="30.0" y="252.0" width="111.7" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="85.8" y="273.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">boolean</text>
+  <rect x="141.7" y="252.0" width="121.8" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="202.6" y="273.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">true / false</text>
+  <rect x="263.5" y="252.0" width="172.6" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="349.8" y="273.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">yes or no</text>
+  <rect x="436.2" y="252.0" width="253.8" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="563.1" y="273.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">boolean ok = true;</text>
+  <text x="360.0" y="310.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Choose the smallest type that fits, but int and double are the everyday</text>
+  <text x="360.0" y="326.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">defaults.</text>
+</svg>

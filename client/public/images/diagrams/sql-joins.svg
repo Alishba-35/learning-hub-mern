@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 266" width="720" height="266" role="img" aria-labelledby="t d">
+  <title id="t">Which rows each JOIN returns</title>
+  <desc id="d">Four Venn diagrams for INNER, LEFT, RIGHT and FULL join showing which side is kept.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5eead4"/></marker></defs>
+  <rect width="720" height="266" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#5eead4" text-anchor="middle">Which rows each JOIN returns</text>
+  <clipPath id="c0"><circle cx="83.0" cy="122" r="40"/></clipPath>
+  <circle cx="127.0" cy="122" r="40" fill="#5eead4" fill-opacity="0.75" clip-path="url(#c0)"/>
+  <circle cx="83.0" cy="122.0" r="40" fill="none" fill-opacity="1" stroke="#5eead4" stroke-width="2"/>
+  <circle cx="127.0" cy="122.0" r="40" fill="none" fill-opacity="1" stroke="#5eead4" stroke-width="2"/>
+  <text x="65.0" y="127.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">A</text>
+  <text x="145.0" y="127.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">B</text>
+  <text x="105.0" y="188.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">INNER JOIN</text>
+  <clipPath id="c1"><circle cx="253.0" cy="122" r="40"/></clipPath>
+  <circle cx="253.0" cy="122.0" r="40" fill="#5eead4" fill-opacity="0.55" stroke="none" stroke-width="0"/>
+  <circle cx="253.0" cy="122.0" r="40" fill="none" fill-opacity="1" stroke="#5eead4" stroke-width="2"/>
+  <circle cx="297.0" cy="122.0" r="40" fill="none" fill-opacity="1" stroke="#5eead4" stroke-width="2"/>
+  <text x="235.0" y="127.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">A</text>
+  <text x="315.0" y="127.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">B</text>
+  <text x="275.0" y="188.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">LEFT JOIN</text>
+  <clipPath id="c2"><circle cx="423.0" cy="122" r="40"/></clipPath>
+  <circle cx="467.0" cy="122.0" r="40" fill="#5eead4" fill-opacity="0.55" stroke="none" stroke-width="0"/>
+  <circle cx="423.0" cy="122.0" r="40" fill="none" fill-opacity="1" stroke="#5eead4" stroke-width="2"/>
+  <circle cx="467.0" cy="122.0" r="40" fill="none" fill-opacity="1" stroke="#5eead4" stroke-width="2"/>
+  <text x="405.0" y="127.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">A</text>
+  <text x="485.0" y="127.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">B</text>
+  <text x="445.0" y="188.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">RIGHT JOIN</text>
+  <clipPath id="c3"><circle cx="593.0" cy="122" r="40"/></clipPath>
+  <circle cx="593.0" cy="122.0" r="40" fill="#5eead4" fill-opacity="0.55" stroke="none" stroke-width="0"/>
+  <circle cx="637.0" cy="122.0" r="40" fill="#5eead4" fill-opacity="0.55" stroke="none" stroke-width="0"/>
+  <circle cx="593.0" cy="122.0" r="40" fill="none" fill-opacity="1" stroke="#5eead4" stroke-width="2"/>
+  <circle cx="637.0" cy="122.0" r="40" fill="none" fill-opacity="1" stroke="#5eead4" stroke-width="2"/>
+  <text x="575.0" y="127.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">A</text>
+  <text x="655.0" y="127.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">B</text>
+  <text x="615.0" y="188.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">FULL JOIN</text>
+  <text x="360.0" y="210.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">A is the left table and B is the right table. The colored area is what you get</text>
+  <text x="360.0" y="226.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">back.</text>
+</svg>

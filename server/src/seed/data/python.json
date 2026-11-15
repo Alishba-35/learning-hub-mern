@@ -16,6 +16,10 @@
      "html": "<div class=\"container my-4\">\n<h1>Introduction to Python</h1>\n<div class=\"card\">\n<h2>What is Python?</h2>\n<p><strong>Python</strong> is a popular, beginner-friendly programming language. Its code reads almost like English, which is why it is used for web back-ends, data science, automation, AI and teaching.</p>\n<ul><li><strong>Interpreted:</strong> you run code line by line, no separate compile step.</li><li><strong>Dynamically typed:</strong> you do not declare types.</li><li><strong>Batteries included:</strong> a huge standard library comes with it.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Your First Program</h2>\n<p>Save this as <code>hello.py</code> and run it with <code>python hello.py</code> (or try it in the interactive prompt by typing <code>python</code>).</p>"
     },
     {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"hello.py is read by the Python interpreter which runs it and prints the output.\" class=\"content-image\" src=\"/images/diagrams/python-intro.svg\"/><figcaption>The interpreter reads your file and runs it straight away.</figcaption></figure>"
+    },
+    {
      "kind": "demo",
      "language": "python",
      "code": "# My first Python program\nprint(\"Hello, Learning Hub!\")\nprint(2 + 3)\nprint(\"Python\", \"is\", \"fun\")",
@@ -47,6 +51,10 @@
     {
      "kind": "html",
      "html": "<div class=\"container my-4\">\n<h1>Variables, Types & Input</h1>\n<div class=\"card\">\n<h2>Variables</h2>\n<p>A <strong>variable</strong> is a name for a value. You create it by assigning with <code>=</code>. There is no type to write: Python works it out.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Four names pointing to values: name to a string, age to an int, price to a float, is_open to a bool.\" class=\"content-image\" src=\"/images/diagrams/python-variables-types.svg\"/><figcaption>A variable is a name that points to a value, and the value has the type.</figcaption></figure>"
     },
     {
      "kind": "demo",
@@ -92,6 +100,10 @@
      "html": "<div class=\"container my-4\">\n<h1>Operators & Conditions</h1>\n<div class=\"card\">\n<h2>Operators</h2>\n<table><tr><th>Kind</th><th>Operators</th><th>Notes</th></tr><tr><td>Arithmetic</td><td><code>+ - * /</code></td><td><code>/</code> always gives a float</td></tr><tr><td>More arithmetic</td><td><code>//  %  **</code></td><td>floor division, remainder, power</td></tr><tr><td>Comparison</td><td><code>== != &lt; &gt; &lt;= &gt;=</code></td><td>give True or False</td></tr><tr><td>Logical</td><td><code>and  or  not</code></td><td>combine conditions</td></tr><tr><td>Membership</td><td><code>in  not in</code></td><td>is something inside a list or text?</td></tr></table>"
     },
     {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Table of Python operators plus, minus, times, divide, floor divide, remainder and power with examples.\" class=\"content-image\" src=\"/images/diagrams/python-operators-conditions.svg\"/><figcaption>The arithmetic operators with a worked example for each.</figcaption></figure>"
+    },
+    {
      "kind": "demo",
      "language": "python",
      "code": "print(7 / 2, 7 // 2, 7 % 2, 2 ** 10)\nprint(5 > 3, 5 == 5.0, \"a\" < \"b\")\nprint(True and False, True or False, not True)\nprint(\"py\" in \"python\", 3 in [1, 2, 3])",
@@ -133,6 +145,10 @@
     {
      "kind": "html",
      "html": "<div class=\"container my-4\">\n<h1>Loops</h1>\n<div class=\"card\">\n<h2>for Loops and range()</h2>\n<p>A <code>for</code> loop repeats code for each item in a sequence. <code>range(n)</code> gives the numbers 0 to n-1.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"For each item in the list, run the body; when there are no more items the loop ends.\" class=\"content-image\" src=\"/images/diagrams/python-loops.svg\"/><figcaption>A for loop takes one item at a time until the sequence is finished.</figcaption></figure>"
     },
     {
      "kind": "demo",
@@ -178,6 +194,10 @@
      "html": "<div class=\"container my-4\">\n<h1>Lists & Tuples</h1>\n<div class=\"card\">\n<h2>Lists</h2>\n<p>A <strong>list</strong> holds many values in order. It is <strong>mutable</strong>: you can add, remove and change items. Indexing starts at 0 and negative indexes count from the end.</p>"
     },
     {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"A list with 10, 20, 30, 40 at indexes 0 to 3 and also -4 to -1 counting from the end.\" class=\"content-image\" src=\"/images/diagrams/python-lists-tuples.svg\"/><figcaption>Every item has a positive index from the start and a negative index from the end.</figcaption></figure>"
+    },
+    {
      "kind": "demo",
      "language": "python",
      "code": "fruits = [\"apple\", \"mango\"]\nfruits.append(\"kiwi\")\nfruits.insert(0, \"banana\")\nprint(fruits)\nprint(fruits[0], fruits[-1], len(fruits))\nfruits.remove(\"mango\")\nlast = fruits.pop()\nprint(last, fruits)\nfruits[0] = \"grape\"\nprint(sorted(fruits))",
@@ -221,6 +241,10 @@
      "html": "<div class=\"container my-4\">\n<h1>Dictionaries & Sets</h1>\n<div class=\"card\">\n<h2>Dictionaries</h2>\n<p>A <strong>dictionary</strong> stores <em>key: value</em> pairs and finds a value quickly by its key. Keys must be unique.</p>"
     },
     {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"A dict stores key to value pairs; a set stores unique values only.\" class=\"content-image\" src=\"/images/diagrams/python-dicts-sets.svg\"/><figcaption>A dict maps keys to values; a set keeps each value only once.</figcaption></figure>"
+    },
+    {
      "kind": "demo",
      "language": "python",
      "code": "student = {\"name\": \"Ali\", \"age\": 20}\nstudent[\"city\"] = \"Lahore\"          # add\nstudent[\"age\"] = 21                 # change\nprint(student)\nprint(student[\"name\"], student.get(\"phone\", \"no phone\"))\n\nfor key, value in student.items():\n    print(key, \"=\", value)\n\ndel student[\"city\"]\nprint(\"city\" in student, len(student))",
@@ -252,6 +276,10 @@
     {
      "kind": "html",
      "html": "<div class=\"container my-4\">\n<h1>Functions</h1>\n<div class=\"card\">\n<h2>Defining and Calling</h2>\n<p>A <strong>function</strong> is a named block of code you can reuse. Define it with <code>def</code>, send values in as <em>parameters</em> and send a result back with <code>return</code>.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"greet(&#x27;Ali&#x27;) calls def greet(name) which returns &#x27;Hi Ali&#x27; to the caller.\" class=\"content-image\" src=\"/images/diagrams/python-functions.svg\"/><figcaption>Arguments go in, return sends a value back to where the function was called.</figcaption></figure>"
     },
     {
      "kind": "demo",
@@ -297,6 +325,10 @@
      "html": "<div class=\"container my-4\">\n<h1>Classes & Objects</h1>\n<div class=\"card\">\n<h2>Classes and Objects</h2>\n<p>A <strong>class</strong> is a blueprint; an <strong>object</strong> is one thing made from it. <code>__init__</code> runs when an object is created, and <code>self</code> means \"this object\".</p>"
     },
     {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"A Student class with name and marks and two objects s1 and s2.\" class=\"content-image\" src=\"/images/diagrams/python-oop.svg\"/><figcaption>A class is the blueprint and each object keeps its own data.</figcaption></figure>"
+    },
+    {
      "kind": "demo",
      "language": "python",
      "code": "class Student:\n    def __init__(self, name, marks):\n        self.name = name\n        self.marks = marks\n\n    def passed(self):\n        return self.marks >= 50\n\na = Student(\"Ayesha\", 82)\nb = Student(\"Bilal\", 41)\nprint(a.name, a.passed())\nprint(b.name, b.passed())",
@@ -338,6 +370,10 @@
     {
      "kind": "html",
      "html": "<div class=\"container my-4\">\n<h1>Errors & Files</h1>\n<div class=\"card\">\n<h2>Handling Errors</h2>\n<p>When something goes wrong Python raises an <strong>exception</strong>. Catch it with <code>try</code> and <code>except</code> so your program does not crash.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Open the file with a with block, read or write, and it closes automatically.\" class=\"content-image\" src=\"/images/diagrams/python-errors-files.svg\"/><figcaption>A with block opens the file, you use it, and Python closes it for you.</figcaption></figure>"
     },
     {
      "kind": "demo",

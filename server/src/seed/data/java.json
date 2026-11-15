@@ -16,6 +16,10 @@
      "html": "<div class=\"container my-4\">\n<h1>Introduction to Java</h1>\n<div class=\"card\">\n<h2>What is Java?</h2>\n<p><strong>Java</strong> is a powerful, object-oriented language used for Android apps, enterprise back-ends, banking systems and big universities' courses. It is <strong>strongly typed</strong>: every variable has a declared type, and the compiler catches many mistakes before the program runs.</p>\n<ul><li><strong>JDK</strong> (Java Development Kit): tools to write and compile code.</li><li><strong>JVM</strong> (Java Virtual Machine): runs the compiled code, so the same program works on Windows, Mac and Linux (\"write once, run anywhere\").</li><li>Source files end in <code>.java</code>; the compiler turns them into <code>.class</code> files (bytecode).</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Hello, World</h2>"
     },
     {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Main.java is compiled by javac into Main.class bytecode, which the JVM runs to produce output.\" class=\"content-image\" src=\"/images/diagrams/java-intro.svg\"/><figcaption>Source code is compiled to bytecode, then the JVM runs it.</figcaption></figure>"
+    },
+    {
      "kind": "demo",
      "language": "java",
      "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, Learning Hub!\");\n        System.out.println(2 + 3);\n        System.out.print(\"No new line, \");\n        System.out.println(\"then a new line\"); // comment\n    }\n}",
@@ -37,6 +41,10 @@
     {
      "kind": "html",
      "html": "<div class=\"container my-4\">\n<h1>Variables & Data Types</h1>\n<div class=\"card\">\n<h2>Declaring Variables</h2>\n<p>In Java you write the <strong>type</strong> first, then the name. Once declared, a variable can only hold that type.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Table of the Java types byte, int, long, double, char and boolean with their size and an example.\" class=\"content-image\" src=\"/images/diagrams/java-variables-types.svg\"/><figcaption>The everyday Java primitive types and what they hold.</figcaption></figure>"
     },
     {
      "kind": "demo",
@@ -72,6 +80,10 @@
      "html": "<div class=\"container my-4\">\n<h1>Operators & Conditions</h1>\n<div class=\"card\">\n<h2>Operators</h2>\n<table><tr><th>Kind</th><th>Operators</th></tr><tr><td>Arithmetic</td><td><code>+  -  *  /  %</code></td></tr><tr><td>Increment</td><td><code>i++  i--  +=  -=</code></td></tr><tr><td>Comparison</td><td><code>==  !=  &lt;  &gt;  &lt;=  &gt;=</code></td></tr><tr><td>Logical</td><td><code>&amp;&amp;  ||  !</code></td></tr></table>\n<p>Important: use <code>==</code> to compare numbers, but <strong><code>.equals()</code></strong> to compare String contents.</p>\n</div>\n\n<div class=\"card\">\n<h2>if / else if / else</h2>"
     },
     {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"A decision diamond: if marks &gt;= 50 is true print Pass, otherwise print Fail.\" class=\"content-image\" src=\"/images/diagrams/java-operators-conditions.svg\"/><figcaption>A condition is true or false, and only one branch runs.</figcaption></figure>"
+    },
+    {
      "kind": "demo",
      "language": "java",
      "code": "public class Main {\n    public static void main(String[] args) {\n        int marks = 72;\n        String grade;\n        if (marks >= 90) {\n            grade = \"A\";\n        } else if (marks >= 75) {\n            grade = \"B\";\n        } else if (marks >= 60) {\n            grade = \"C\";\n        } else {\n            grade = \"F\";\n        }\n        System.out.println(\"Marks \" + marks + \" -> \" + grade);\n\n        String a = \"java\";\n        String b = new String(\"java\");\n        System.out.println(a == b);        // compares references\n        System.out.println(a.equals(b));   // compares text\n    }\n}",
@@ -103,6 +115,10 @@
     {
      "kind": "html",
      "html": "<div class=\"container my-4\">\n<h1>Loops</h1>\n<div class=\"card\">\n<h2>for, while and do-while</h2>\n<table><tr><th>Loop</th><th>Use it when</th></tr><tr><td><code>for</code></td><td>You know how many times</td></tr><tr><td><code>while</code></td><td>You repeat until a condition changes</td></tr><tr><td><code>do-while</code></td><td>The body must run at least once</td></tr></table>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Loop flow: initialise i, check i &lt; 5, run the body, increase i, check again, exit when false.\" class=\"content-image\" src=\"/images/diagrams/java-loops.svg\"/><figcaption>Initialise once, then check, run the body and update until the condition is false.</figcaption></figure>"
     },
     {
      "kind": "demo",
@@ -148,6 +164,10 @@
      "html": "<div class=\"container my-4\">\n<h1>Arrays & Strings</h1>\n<div class=\"card\">\n<h2>Arrays</h2>\n<p>An <strong>array</strong> holds a fixed number of values of the same type. The size cannot change after creation, and indexes start at 0.</p>"
     },
     {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"An int array holding 10, 20, 30, 40, 50 at indexes 0 to 4.\" class=\"content-image\" src=\"/images/diagrams/java-arrays-strings.svg\"/><figcaption>Array items sit side by side and are found by their index, which starts at 0.</figcaption></figure>"
+    },
+    {
      "kind": "demo",
      "language": "java",
      "code": "import java.util.Arrays;\n\npublic class Main {\n    public static void main(String[] args) {\n        int[] marks = {72, 95, 60, 88};\n        System.out.println(marks.length + \" marks, first = \" + marks[0]);\n\n        marks[2] = 65;                       // change an element\n        Arrays.sort(marks);\n        System.out.println(Arrays.toString(marks));\n\n        int[] empty = new int[3];            // filled with 0\n        System.out.println(Arrays.toString(empty));\n\n        try {\n            System.out.println(marks[10]);\n        } catch (ArrayIndexOutOfBoundsException e) {\n            System.out.println(\"Index 10 is outside the array\");\n        }\n    }\n}",
@@ -189,6 +209,10 @@
     {
      "kind": "html",
      "html": "<div class=\"container my-4\">\n<h1>Methods</h1>\n<div class=\"card\">\n<h2>Writing Methods</h2>\n<p>A <strong>method</strong> is a named block of code. Its header says who can call it, whether it belongs to the class (<code>static</code>), what it returns and what it takes.</p>\n<pre><code>public static int add(int a, int b) {\n    return a + b;\n}</code></pre>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"main calls add(2, 3), add runs and returns 5, and main receives the value.\" class=\"content-image\" src=\"/images/diagrams/java-methods.svg\"/><figcaption>Arguments go into a method and a return value comes back to the caller.</figcaption></figure>"
     },
     {
      "kind": "demo",
@@ -234,6 +258,10 @@
      "html": "<div class=\"container my-4\">\n<h1>Classes & Objects</h1>\n<div class=\"card\">\n<h2>Classes, Objects and Constructors</h2>\n<p>A <strong>class</strong> is a blueprint with <em>fields</em> (data) and <em>methods</em> (actions). <code>new</code> creates an <strong>object</strong>, and the <strong>constructor</strong> sets it up. <code>this</code> means the current object.</p>"
     },
     {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"A Car class with color and speed fields and three car objects with different values.\" class=\"content-image\" src=\"/images/diagrams/java-classes-objects.svg\"/><figcaption>A class describes the shape; objects are the real things made from it.</figcaption></figure>"
+    },
+    {
      "kind": "demo",
      "language": "java",
      "code": "public class Main {\n    public static void main(String[] args) {\n        Student a = new Student(\"Ayesha\", 82);\n        Student b = new Student(\"Bilal\", 41);\n        System.out.println(a.name + \" passed? \" + a.passed());\n        System.out.println(b.name + \" passed? \" + b.passed());\n    }\n}\n\nclass Student {\n    String name;\n    int marks;\n\n    Student(String name, int marks) {\n        this.name = name;\n        this.marks = marks;\n    }\n\n    boolean passed() {\n        return marks >= 50;\n    }\n}",
@@ -277,6 +305,10 @@
      "html": "<div class=\"container my-4\">\n<h1>Inheritance & Interfaces</h1>\n<div class=\"card\">\n<h2>Inheritance</h2>\n<p>A class can <code>extend</code> another to reuse its fields and methods. The child may <strong>override</strong> a method (mark it with <code>@Override</code>) and calls the parent's constructor with <code>super(...)</code>. Java allows only <em>one</em> parent class.</p>"
     },
     {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Dog and Cat extend Animal; an interface Pet can be implemented by them.\" class=\"content-image\" src=\"/images/diagrams/java-inheritance-interfaces.svg\"/><figcaption>A subclass extends one parent and may implement many interfaces.</figcaption></figure>"
+    },
+    {
      "kind": "demo",
      "language": "java",
      "code": "public class Main {\n    public static void main(String[] args) {\n        Dog d = new Dog(\"Rex\");\n        System.out.println(d.name + \" says \" + d.speak());\n        System.out.println(d.describe());\n    }\n}\n\nclass Animal {\n    String name;\n    Animal(String name) { this.name = name; }\n    String speak() { return \"...\"; }\n    String describe() { return \"I am \" + name; }\n}\n\nclass Dog extends Animal {\n    Dog(String name) { super(name); }\n    @Override\n    String speak() { return \"Woof\"; }\n}",
@@ -318,6 +350,10 @@
     {
      "kind": "html",
      "html": "<div class=\"container my-4\">\n<h1>Exceptions & Collections</h1>\n<div class=\"card\">\n<h2>Exceptions</h2>\n<p>Errors in Java are <strong>exceptions</strong>. Handle them with <code>try</code>, <code>catch</code> and <code>finally</code>. <strong>Checked</strong> exceptions (like <code>IOException</code>) must be handled or declared with <code>throws</code>; <strong>unchecked</strong> ones (like <code>NullPointerException</code>) need not.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Code in try runs; if an exception is thrown catch handles it; finally always runs.\" class=\"content-image\" src=\"/images/diagrams/java-exceptions-collections.svg\"/><figcaption>Errors are caught in catch, and finally always runs.</figcaption></figure>"
     },
     {
      "kind": "demo",

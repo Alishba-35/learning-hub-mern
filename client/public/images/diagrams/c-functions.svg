@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 214" width="720" height="214" role="img" aria-labelledby="t d">
+  <title id="t">Calling a function: pass by value</title>
+  <desc id="d">The call square(a) copies a into n, the body runs, and the return value goes back to the caller.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#a5b4fc"/></marker></defs>
+  <rect width="720" height="214" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#a5b4fc" text-anchor="middle">Calling a function: pass by value</text>
+  <rect x="26.0" y="60.0" width="141.5" height="72.0" rx="10" fill="#0f172a" stroke="#a5b4fc" stroke-width="1.6"/>
+  <text x="96.8" y="88.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">square(a)</text>
+  <text x="96.8" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">call from main</text>
+  <line x1="170.5" y1="96.0" x2="198.5" y2="96.0" stroke="#a5b4fc" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="201.5" y="60.0" width="141.5" height="72.0" rx="10" fill="#0f172a" stroke="#a5b4fc" stroke-width="1.6"/>
+  <text x="272.2" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">n = copy</text>
+  <text x="272.2" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">argument is copied</text>
+  <line x1="346.0" y1="96.0" x2="374.0" y2="96.0" stroke="#a5b4fc" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="377.0" y="60.0" width="141.5" height="72.0" rx="10" fill="#0f172a" stroke="#a5b4fc" stroke-width="1.6"/>
+  <text x="447.8" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">n * n</text>
+  <text x="447.8" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">body runs</text>
+  <line x1="521.5" y1="96.0" x2="549.5" y2="96.0" stroke="#a5b4fc" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="552.5" y="60.0" width="141.5" height="72.0" rx="10" fill="#0f172a" stroke="#a5b4fc" stroke-width="1.6"/>
+  <text x="623.2" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">return</text>
+  <text x="623.2" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">value goes back</text>
+  <text x="360.0" y="158.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">The function works on a copy, so the original variable in main does not</text>
+  <text x="360.0" y="174.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">change.</text>
+</svg>

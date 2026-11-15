@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 306" width="720" height="306" role="img" aria-labelledby="t d">
+  <title id="t">A table: students</title>
+  <desc id="d">A students table with columns id, name, city and marks and three rows.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5eead4"/></marker></defs>
+  <rect width="720" height="306" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#5eead4" text-anchor="middle">A table: students</text>
+  <text x="360.0" y="58.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Each row is one record. Each column is one field.</text>
+  <text x="87.4" y="84.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5eead4" text-anchor="middle">column</text>
+  <text x="245.2" y="84.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5eead4" text-anchor="middle">column</text>
+  <text x="446.1" y="84.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5eead4" text-anchor="middle">column</text>
+  <text x="618.3" y="84.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#5eead4" text-anchor="middle">column</text>
+  <rect x="30.0" y="96.0" width="114.8" height="32.0" rx="0" fill="#5eead4" stroke="#5eead4" stroke-width="1"/>
+  <text x="87.4" y="117.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">id</text>
+  <rect x="144.8" y="96.0" width="200.9" height="32.0" rx="0" fill="#5eead4" stroke="#5eead4" stroke-width="1"/>
+  <text x="245.2" y="117.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">name</text>
+  <rect x="345.7" y="96.0" width="200.9" height="32.0" rx="0" fill="#5eead4" stroke="#5eead4" stroke-width="1"/>
+  <text x="446.1" y="117.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">city</text>
+  <rect x="546.5" y="96.0" width="143.5" height="32.0" rx="0" fill="#5eead4" stroke="#5eead4" stroke-width="1"/>
+  <text x="618.3" y="117.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">marks</text>
+  <rect x="30.0" y="128.0" width="114.8" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="87.4" y="149.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">1</text>
+  <rect x="144.8" y="128.0" width="200.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="245.2" y="149.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Ali</text>
+  <rect x="345.7" y="128.0" width="200.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="446.1" y="149.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Lahore</text>
+  <rect x="546.5" y="128.0" width="143.5" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="618.3" y="149.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">80</text>
+  <rect x="30.0" y="160.0" width="114.8" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="87.4" y="181.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">2</text>
+  <rect x="144.8" y="160.0" width="200.9" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="245.2" y="181.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Sara</text>
+  <rect x="345.7" y="160.0" width="200.9" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="446.1" y="181.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Karachi</text>
+  <rect x="546.5" y="160.0" width="143.5" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="618.3" y="181.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">92</text>
+  <rect x="30.0" y="192.0" width="114.8" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="87.4" y="213.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">3</text>
+  <rect x="144.8" y="192.0" width="200.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="245.2" y="213.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Omar</text>
+  <rect x="345.7" y="192.0" width="200.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="446.1" y="213.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Multan</text>
+  <rect x="546.5" y="192.0" width="143.5" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="618.3" y="213.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">67</text>
+  <text x="360.0" y="250.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">A database holds many tables. SQL is the language you use to ask them</text>
+  <text x="360.0" y="266.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">questions.</text>
+</svg>

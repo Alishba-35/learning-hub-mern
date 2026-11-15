@@ -1,0 +1,275 @@
+{
+ "languageSlug": "nodejs",
+ "quizzes": [
+  {
+   "slug": "nodejs-node-basics",
+   "title": "Node Basics Checkpoint",
+   "section": "Node Basics",
+   "order": 1,
+   "description": "Covers: Introduction & Modules, npm & the File System, HTTP & a First Server.",
+   "questions": [
+    {
+     "id": "nodejs-node-basics-1",
+     "type": "choice",
+     "prompt": "What does this program print, in order?",
+     "code": "console.log('A');\nsetTimeout(() => console.log('B'), 0);\nconsole.log('C');",
+     "codeLanguage": "javascript",
+     "options": [
+      "A, B, C",
+      "A, C, B",
+      "B, A, C",
+      "C, A, B"
+     ],
+     "correctIndex": 1,
+     "explanation": "The normal code (A and C) runs first. The timer callback runs later through the event loop, even with a delay of 0."
+    },
+    {
+     "id": "nodejs-node-basics-2",
+     "type": "choice",
+     "prompt": "Which line imports a default export called greet from ./greet.js?",
+     "options": [
+      "import { greet } from './greet.js';",
+      "import greet from './greet.js';",
+      "const greet = import('./greet');",
+      "import greet from './greet';"
+     ],
+     "correctIndex": 1,
+     "explanation": "A default export is imported without curly braces. For your own files you must also write the .js extension."
+    },
+    {
+     "id": "nodejs-node-basics-3",
+     "type": "choice",
+     "prompt": "Which file should you NOT commit to Git?",
+     "options": [
+      "package.json",
+      "package-lock.json",
+      "node_modules/",
+      "index.js"
+     ],
+     "correctIndex": 2,
+     "explanation": "node_modules can be rebuilt at any time with npm install, and it is very large. package.json and the lock file describe how to rebuild it."
+    },
+    {
+     "id": "nodejs-node-basics-4",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "import path from 'node:path';\n\nconsole.log(path.extname('data/notes.txt'));",
+     "codeLanguage": "javascript",
+     "options": [
+      "'.txt'",
+      "'notes.txt'",
+      "'notes'",
+      "'data'"
+     ],
+     "correctIndex": 0,
+     "explanation": "path.extname returns the extension of the file name, including the dot."
+    },
+    {
+     "id": "nodejs-node-basics-5",
+     "type": "fill",
+     "prompt": "Fill in the method that sends the body and finishes the response.",
+     "code": "import http from 'node:http';\n\nhttp.createServer((req, res) => {\n  res.____('Hello');\n}).listen(3000);",
+     "codeLanguage": "javascript",
+     "answers": [
+      "end"
+     ],
+     "caseSensitive": true,
+     "explanation": "res.end(body) sends the body and finishes the response. Without it the client keeps waiting."
+    },
+    {
+     "id": "nodejs-node-basics-6",
+     "type": "choice",
+     "prompt": "A client asks for a page that does not exist. Which status code should your server send?",
+     "options": [
+      "200",
+      "201",
+      "404",
+      "500"
+     ],
+     "correctIndex": 2,
+     "explanation": "404 means Not Found. 500 is for bugs on the server, 200 means OK and 201 means Created."
+    }
+   ]
+  },
+  {
+   "slug": "nodejs-express",
+   "title": "Express Checkpoint",
+   "section": "Express",
+   "order": 2,
+   "description": "Covers: Express Routing, Middleware, Building a REST API.",
+   "questions": [
+    {
+     "id": "nodejs-express-1",
+     "type": "choice",
+     "prompt": "A client sends GET /users/42. What does this route send back?",
+     "code": "app.get('/users/:id', (req, res) => {\n  res.json({ id: req.params.id });\n});",
+     "codeLanguage": "javascript",
+     "options": [
+      "{\"id\":42}",
+      "{\"id\":\"42\"}",
+      "{\"id\":\"id\"}",
+      "404 Not Found"
+     ],
+     "correctIndex": 1,
+     "explanation": "Route parameters are always strings, so req.params.id is the string \"42\" and JSON shows it in quotes."
+    },
+    {
+     "id": "nodejs-express-2",
+     "type": "choice",
+     "prompt": "Which request reads the value of page in req.query.page?",
+     "options": [
+      "GET /items/2",
+      "GET /items?page=2",
+      "POST /items with body page=2",
+      "GET /items#page"
+     ],
+     "correctIndex": 1,
+     "explanation": "The query string comes after a question mark in the URL: ?page=2."
+    },
+    {
+     "id": "nodejs-express-3",
+     "type": "choice",
+     "prompt": "This middleware never calls next() and never sends a response. What happens to the request?",
+     "code": "app.use((req, res, next) => {\n  console.log(req.url);\n});",
+     "codeLanguage": "javascript",
+     "options": [
+      "The next route runs anyway",
+      "Express sends 404",
+      "The request hangs and never finishes",
+      "The server crashes"
+     ],
+     "correctIndex": 2,
+     "explanation": "Middleware must either call next() or send a response. Doing neither leaves the client waiting."
+    },
+    {
+     "id": "nodejs-express-4",
+     "type": "fill",
+     "prompt": "Fill in the built-in middleware that parses JSON request bodies.",
+     "code": "import express from 'express';\n\nconst app = express();\napp.use(express.____());",
+     "codeLanguage": "javascript",
+     "answers": [
+      "json"
+     ],
+     "caseSensitive": true,
+     "explanation": "express.json() reads a JSON body and puts it in req.body."
+    },
+    {
+     "id": "nodejs-express-5",
+     "type": "choice",
+     "prompt": "Which status code is best after a POST request successfully creates a new book?",
+     "options": [
+      "200",
+      "201",
+      "204",
+      "404"
+     ],
+     "correctIndex": 1,
+     "explanation": "201 Created tells the client that a new resource was made. 204 is used for success with no body, such as delete."
+    },
+    {
+     "id": "nodejs-express-6",
+     "type": "choice",
+     "prompt": "How does Express know a function is an error-handling middleware?",
+     "options": [
+      "Its name contains \"error\"",
+      "It has four parameters (err, req, res, next)",
+      "It is registered with app.error()",
+      "It is placed first in the file"
+     ],
+     "correctIndex": 1,
+     "explanation": "Express counts the parameters. Four parameters mean error handler, and it should be registered after the routes."
+    }
+   ]
+  },
+  {
+   "slug": "nodejs-databases-security",
+   "title": "Databases & Security Checkpoint",
+   "section": "Databases & Security",
+   "order": 3,
+   "description": "Covers: MongoDB & Mongoose, Authentication: bcrypt, JWT, httpOnly cookies, protecting routes, .env.",
+   "questions": [
+    {
+     "id": "nodejs-databases-security-1",
+     "type": "choice",
+     "prompt": "In MongoDB, what is the equivalent of a row in an SQL table?",
+     "options": [
+      "A collection",
+      "A document",
+      "A schema",
+      "A database"
+     ],
+     "correctIndex": 1,
+     "explanation": "A document is one record, like a row. A collection (like a table) holds many documents."
+    },
+    {
+     "id": "nodejs-databases-security-2",
+     "type": "choice",
+     "prompt": "What is the value of student.name after this code?",
+     "code": "const schema = new mongoose.Schema({\n  name: { type: String, trim: true },\n});\nconst Student = mongoose.model('Student', schema);\nconst student = new Student({ name: '  Ali ' });",
+     "codeLanguage": "javascript",
+     "options": [
+      "'  Ali '",
+      "'Ali'",
+      "'ali'",
+      "undefined"
+     ],
+     "correctIndex": 1,
+     "explanation": "The trim option removes spaces at both ends when Mongoose casts the value."
+    },
+    {
+     "id": "nodejs-databases-security-3",
+     "type": "fill",
+     "prompt": "Fill in the keyword so the new value is saved before the next line runs.",
+     "code": "const students = ____ Student.find();\nconsole.log(students.length);",
+     "codeLanguage": "javascript",
+     "answers": [
+      "await"
+     ],
+     "caseSensitive": true,
+     "explanation": "Mongoose methods return promises. Without await you would get a query object, not the list of students."
+    },
+    {
+     "id": "nodejs-databases-security-4",
+     "type": "choice",
+     "prompt": "Why do we store a bcrypt hash instead of the password?",
+     "options": [
+      "Hashes take less space",
+      "A hash cannot be turned back into the password, so a database leak is less dangerous",
+      "Hashes are needed by MongoDB",
+      "It makes the login faster"
+     ],
+     "correctIndex": 1,
+     "explanation": "A hash is one-way. bcrypt is also deliberately slow and adds a salt, which makes guessing passwords hard."
+    },
+    {
+     "id": "nodejs-databases-security-5",
+     "type": "choice",
+     "prompt": "What does the httpOnly flag on a cookie do?",
+     "options": [
+      "Sends the cookie only over HTTPS",
+      "Stops JavaScript in the page from reading the cookie",
+      "Makes the cookie last forever",
+      "Stops the browser from sending the cookie"
+     ],
+     "correctIndex": 1,
+     "explanation": "httpOnly hides the cookie from document.cookie, so a script injected into the page cannot steal the token. The browser still sends it with requests."
+    },
+    {
+     "id": "nodejs-databases-security-6",
+     "type": "choice",
+     "prompt": "What does this middleware do when the cookie is missing?",
+     "code": "function protect(req, res, next) {\n  const token = req.cookies.token;\n  if (!token) return res.status(401).json({ error: 'Please log in' });\n  next();\n}",
+     "codeLanguage": "javascript",
+     "options": [
+      "Calls next() and shows the profile",
+      "Sends 401 and the route handler does not run",
+      "Throws an error and crashes",
+      "Sends 404"
+     ],
+     "correctIndex": 1,
+     "explanation": "It returns a 401 response and does not call next(), so the protected handler is never reached."
+    }
+   ]
+  }
+ ]
+}

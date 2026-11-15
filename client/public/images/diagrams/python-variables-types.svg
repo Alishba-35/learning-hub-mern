@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" width="720" height="340" role="img" aria-labelledby="t d">
+  <title id="t">Variables are labels for values</title>
+  <desc id="d">Four names pointing to values: name to a string, age to an int, price to a float, is_open to a bool.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#60a5fa"/></marker></defs>
+  <rect width="720" height="340" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#60a5fa" text-anchor="middle">Variables are labels for values</text>
+  <rect x="60.0" y="64.0" width="150.0" height="38.0" rx="19" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="135.0" y="88.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">name</text>
+  <line x1="214.0" y1="83.0" x2="400.0" y2="83.0" stroke="#60a5fa" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="404.0" y="64.0" width="170.0" height="38.0" rx="8" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="489.0" y="88.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">&quot;Ali&quot;</text>
+  <text x="590.0" y="88.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="700" fill="#60a5fa" text-anchor="start">str</text>
+  <rect x="60.0" y="116.0" width="150.0" height="38.0" rx="19" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="135.0" y="140.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">age</text>
+  <line x1="214.0" y1="135.0" x2="400.0" y2="135.0" stroke="#60a5fa" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="404.0" y="116.0" width="170.0" height="38.0" rx="8" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="489.0" y="140.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">20</text>
+  <text x="590.0" y="140.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="700" fill="#60a5fa" text-anchor="start">int</text>
+  <rect x="60.0" y="168.0" width="150.0" height="38.0" rx="19" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="135.0" y="192.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">price</text>
+  <line x1="214.0" y1="187.0" x2="400.0" y2="187.0" stroke="#60a5fa" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="404.0" y="168.0" width="170.0" height="38.0" rx="8" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="489.0" y="192.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">99.5</text>
+  <text x="590.0" y="192.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="700" fill="#60a5fa" text-anchor="start">float</text>
+  <rect x="60.0" y="220.0" width="150.0" height="38.0" rx="19" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="135.0" y="244.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">is_open</text>
+  <line x1="214.0" y1="239.0" x2="400.0" y2="239.0" stroke="#60a5fa" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="404.0" y="220.0" width="170.0" height="38.0" rx="8" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="489.0" y="244.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">True</text>
+  <text x="590.0" y="244.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="700" fill="#60a5fa" text-anchor="start">bool</text>
+  <text x="360.0" y="286.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">A variable is a name that points to a value. The type belongs to the value, so</text>
+  <text x="360.0" y="302.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">a name can point to another type later.</text>
+</svg>

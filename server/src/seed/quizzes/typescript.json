@@ -1,0 +1,275 @@
+{
+ "languageSlug": "typescript",
+ "quizzes": [
+  {
+   "slug": "typescript-type-basics",
+   "title": "Type Basics Checkpoint",
+   "section": "Type Basics",
+   "order": 1,
+   "description": "Covers: Introduction & Setup, Basic Types, Typing Functions.",
+   "questions": [
+    {
+     "id": "typescript-type-basics-1",
+     "type": "choice",
+     "prompt": "Which command installs TypeScript as a development tool in a project?",
+     "options": [
+      "npm start typescript",
+      "npm install -D typescript",
+      "node install typescript",
+      "tsc --install"
+     ],
+     "correctIndex": 1,
+     "explanation": "npm install -D adds a package to devDependencies. It gives you the tsc compiler for the project."
+    },
+    {
+     "id": "typescript-type-basics-2",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "const nums: number[] = [1, 2, 3];\nconst pair: [string, number] = [\"Ali\", 20];\nconsole.log(nums.length, pair[0]);",
+     "codeLanguage": "typescript",
+     "options": [
+      "3 20",
+      "2 Ali",
+      "3 Ali",
+      "It does not compile"
+     ],
+     "correctIndex": 2,
+     "explanation": "nums has 3 items, and pair[0] is the first tuple item, \"Ali\"."
+    },
+    {
+     "id": "typescript-type-basics-3",
+     "type": "choice",
+     "prompt": "What type does TypeScript infer for let count = 5;?",
+     "options": [
+      "number",
+      "any",
+      "string",
+      "unknown"
+     ],
+     "correctIndex": 0,
+     "explanation": "TypeScript looks at the starting value 5 and infers number. You do not need to write the type."
+    },
+    {
+     "id": "typescript-type-basics-4",
+     "type": "choice",
+     "prompt": "Why is unknown safer than any?",
+     "options": [
+      "It runs faster",
+      "You must check the type before using the value",
+      "It only accepts numbers",
+      "It turns off the compiler"
+     ],
+     "correctIndex": 1,
+     "explanation": "With unknown the compiler makes you narrow the type first. With any the compiler stops checking."
+    },
+    {
+     "id": "typescript-type-basics-5",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "function greet(name: string, greeting = \"Hello\"): string {\n  return greeting + \", \" + name;\n}\nconsole.log(greet(\"Sara\"));",
+     "codeLanguage": "typescript",
+     "options": [
+      "Hello, Sara",
+      "Sara, Hello",
+      "undefined, Sara",
+      "It does not compile"
+     ],
+     "correctIndex": 0,
+     "explanation": "The second parameter is omitted, so the default value \"Hello\" is used."
+    },
+    {
+     "id": "typescript-type-basics-6",
+     "type": "fill",
+     "prompt": "Fill in the return type.",
+     "code": "function add(a: number, b: number): ____ {\n  return a + b;\n}",
+     "codeLanguage": "typescript",
+     "answers": [
+      "number"
+     ],
+     "caseSensitive": true,
+     "explanation": "Adding two numbers gives a number, so the return type is number."
+    }
+   ]
+  },
+  {
+   "slug": "typescript-object-types",
+   "title": "Object Types Checkpoint",
+   "section": "Object Types",
+   "order": 2,
+   "description": "Covers: Interfaces & Type Aliases, Union Types & Narrowing, Classes & Access Modifiers.",
+   "questions": [
+    {
+     "id": "typescript-object-types-1",
+     "type": "choice",
+     "prompt": "Which of these can only be written with a type alias, not an interface?",
+     "options": [
+      "An object with two properties",
+      "A union such as string | number",
+      "An object with an optional property",
+      "An object with a readonly property"
+     ],
+     "correctIndex": 1,
+     "explanation": "Interfaces describe object shapes. A union of types needs a type alias."
+    },
+    {
+     "id": "typescript-object-types-2",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "type Shape =\n  | { kind: \"circle\"; r: number }\n  | { kind: \"square\"; side: number };\n\nfunction area(s: Shape): number {\n  if (s.kind === \"circle\") {\n    return 3 * s.r * s.r;\n  }\n  return s.side * s.side;\n}\nconsole.log(area({ kind: \"square\", side: 4 }));",
+     "codeLanguage": "typescript",
+     "options": [
+      "16",
+      "48",
+      "12",
+      "It does not compile"
+     ],
+     "correctIndex": 0,
+     "explanation": "The kind is \"square\", so the code returns side * side, which is 4 * 4 = 16."
+    },
+    {
+     "id": "typescript-object-types-3",
+     "type": "choice",
+     "prompt": "Where can a private class member be used?",
+     "options": [
+      "Anywhere in the program",
+      "Inside the class and its subclasses",
+      "Only inside the class itself",
+      "Only in the same file"
+     ],
+     "correctIndex": 2,
+     "explanation": "private limits access to the class itself. protected also allows subclasses."
+    },
+    {
+     "id": "typescript-object-types-4",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "class Account {\n  constructor(public owner: string, private balance: number) {}\n  show(): string {\n    return this.owner + \":\" + this.balance;\n  }\n}\nconsole.log(new Account(\"Ali\", 50).show());",
+     "codeLanguage": "typescript",
+     "options": [
+      "Ali:50",
+      "Ali:undefined",
+      "Ali",
+      "It does not compile"
+     ],
+     "correctIndex": 0,
+     "explanation": "Parameter properties declare and set owner and balance automatically. show() is inside the class, so it may read the private balance."
+    },
+    {
+     "id": "typescript-object-types-5",
+     "type": "choice",
+     "prompt": "Which check narrows a value of type string | number to string?",
+     "options": [
+      "value instanceof string",
+      "typeof value === \"string\"",
+      "value.isString()",
+      "value is string"
+     ],
+     "correctIndex": 1,
+     "explanation": "The typeof check is the usual way to narrow primitive types."
+    },
+    {
+     "id": "typescript-object-types-6",
+     "type": "fill",
+     "prompt": "Make nickname an optional property.",
+     "code": "interface User {\n  readonly id: number;\n  nickname____: string;\n}",
+     "codeLanguage": "typescript",
+     "answers": [
+      "?"
+     ],
+     "caseSensitive": true,
+     "explanation": "A question mark after the property name makes it optional."
+    }
+   ]
+  },
+  {
+   "slug": "typescript-advanced-types",
+   "title": "Advanced Types Checkpoint",
+   "section": "Advanced Types",
+   "order": 3,
+   "description": "Covers: Generics, Utility Types & Modules.",
+   "questions": [
+    {
+     "id": "typescript-advanced-types-1",
+     "type": "choice",
+     "prompt": "In function first<T>(arr: T[]): T, what is T when you call first([\"a\", \"b\"])?",
+     "options": [
+      "any",
+      "number",
+      "string[]",
+      "string"
+     ],
+     "correctIndex": 3,
+     "explanation": "T is inferred from the argument. An array of strings makes T equal to string."
+    },
+    {
+     "id": "typescript-advanced-types-2",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "function pick<T>(items: T[], i: number): T {\n  return items[i];\n}\nconsole.log(pick<number>([10, 20, 30], 1), pick([\"a\", \"b\"], 0));",
+     "codeLanguage": "typescript",
+     "options": [
+      "10 a",
+      "20 b",
+      "20 a",
+      "It does not compile"
+     ],
+     "correctIndex": 2,
+     "explanation": "Index 1 of [10, 20, 30] is 20, and index 0 of [\"a\", \"b\"] is \"a\"."
+    },
+    {
+     "id": "typescript-advanced-types-3",
+     "type": "choice",
+     "prompt": "What does Partial<User> do?",
+     "options": [
+      "Removes all properties",
+      "Makes every property optional",
+      "Makes every property readonly",
+      "Makes every property required"
+     ],
+     "correctIndex": 1,
+     "explanation": "Partial makes all properties optional. It is useful for update objects."
+    },
+    {
+     "id": "typescript-advanced-types-4",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "const marks: Record<string, number> = { math: 80, art: 90 };\nmarks.sci = 70;\nconsole.log(Object.keys(marks).length);",
+     "codeLanguage": "typescript",
+     "options": [
+      "2",
+      "3",
+      "1",
+      "It does not compile"
+     ],
+     "correctIndex": 1,
+     "explanation": "A Record<string, number> accepts any string key, so adding sci makes three keys."
+    },
+    {
+     "id": "typescript-advanced-types-5",
+     "type": "choice",
+     "prompt": "What is Omit<User, \"password\">?",
+     "options": [
+      "User with only password",
+      "User with password made optional",
+      "A new type that has every User property except password",
+      "A type with no properties"
+     ],
+     "correctIndex": 2,
+     "explanation": "Omit builds a new type by leaving out the listed keys."
+    },
+    {
+     "id": "typescript-advanced-types-6",
+     "type": "fill",
+     "prompt": "Fill in the utility type that makes all properties optional.",
+     "code": "interface User {\n  name: string;\n  age: number;\n}\nconst p: ____<User> = { name: \"Ali\" };",
+     "codeLanguage": "typescript",
+     "answers": [
+      "Partial"
+     ],
+     "caseSensitive": true,
+     "explanation": "Partial<User> makes name and age optional, so an object with only name is allowed."
+    }
+   ]
+  }
+ ]
+}

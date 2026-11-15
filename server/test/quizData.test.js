@@ -17,7 +17,7 @@ test('every language has one checkpoint quiz per lesson section, in the same ord
     assert.equal(new Set(quizzes.map((q) => q.slug)).size, quizzes.length, `${languageSlug}: duplicate quiz slug`);
     quizzes.forEach((q, i) => assert.equal(q.order, i + 1));
   }
-  assert.equal(quizFiles.reduce((n, f) => n + f.quizzes.length, 0), 24);
+  assert.ok(quizFiles.reduce((n, f) => n + f.quizzes.length, 0) >= 24);
 });
 
 test('every question is well formed and has an explanation', () => {
@@ -47,7 +47,7 @@ test('every question is well formed and has an explanation', () => {
       }
     }
   }
-  assert.equal(questions, 144);
+  assert.equal(questions, quizFiles.reduce((n, f) => n + f.quizzes.length, 0) * 6);
 });
 
 test('the quizzes include all three kinds: concept choice, code reading and fill-in-the-code', () => {

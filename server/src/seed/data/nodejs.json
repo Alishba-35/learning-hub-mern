@@ -1,0 +1,305 @@
+{
+ "slug": "nodejs",
+ "name": "Node.js & Express",
+ "description": "Build back-end servers and REST APIs with JavaScript using Node.js, Express and MongoDB.",
+ "color": "#4e8b3a",
+ "order": 12,
+ "topics": [
+  {
+   "slug": "intro-modules",
+   "title": "Introduction &amp; Modules",
+   "section": "Node Basics",
+   "order": 1,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Introduction &amp; Modules</h1>\n<div class=\"card\">\n<h2>What is Node.js?</h2>\n<p><strong>Node.js</strong> lets you run JavaScript outside the browser. It uses the V8 engine, the same engine that runs JavaScript in Chrome, and adds tools for things a browser is not allowed to do: reading files, opening network ports and talking to databases. This makes Node.js a popular choice for building <strong>back-end</strong> servers and APIs.</p>\n<p>The big advantage is that you use one language for the whole project. Your React or plain JavaScript front end and your Node.js back end can both be written in JavaScript.</p>\n<p>You run a file with the command <code>node app.js</code>. There is no browser, so there is no <code>document</code> or <code>window</code>. Instead you get Node tools such as <code>node:fs</code> for files and <code>node:http</code> for servers.</p>\n</div>\n\n<div class=\"card\">\n<h2>The event loop</h2>\n<p>Node runs your JavaScript on <strong>one thread</strong>, so it does one thing at a time. Yet a Node server can handle thousands of users. The trick is that slow work, such as reading a file or waiting for a database, is handed to the system. When the work is finished, the <strong>event loop</strong> picks up your callback and runs it. Node never sits idle waiting.</p>\n<p>The demo shows the order. Normal code runs first. Then promise callbacks run. Timers run after that, even when the delay is 0.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"app.js is run by the V8 engine; slow work such as files and network goes to Node APIs and the event loop, which later runs your callback.\" class=\"content-image\" src=\"/images/diagrams/nodejs-intro-modules.svg\"/><figcaption>V8 runs your code and the event loop calls back when slow work is done.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "javascript",
+     "code": "console.log('1. start');\n\nsetTimeout(() => console.log('4. timer callback'), 0);\n\nPromise.resolve().then(() => console.log('3. promise callback'));\n\nconsole.log('2. end of file');",
+     "output": "1. start\n2. end of file\n3. promise callback\n4. timer callback"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>ES modules: import and export</h2>\n<p>Real programs are split into many files. Each file is a <strong>module</strong>. In modern Node.js we use <strong>ES modules</strong>, the same <code>import</code> and <code>export</code> syntax you see in front-end code. Put <code>\"type\": \"module\"</code> in <code>package.json</code> to turn them on for <code>.js</code> files.</p>\n<ul>\n<li>A <strong>named export</strong> is imported with curly braces: <code>import { area } from './math.js'</code>.</li>\n<li>A <strong>default export</strong> is imported without braces, and you may choose any name.</li>\n<li>For your own files you must write the extension, for example <code>./math.js</code>.</li>\n</ul>"
+    },
+    {
+     "kind": "demo",
+     "language": "javascript",
+     "code": "// math.js\nexport const PI = 3.14159;\n\nexport function area(r) {\n  return PI * r * r;\n}\n\nexport default function greet(name) {\n  return `Hello, ${name}!`;\n}\n\n// app.js\nimport greet, { area } from './math.js';\n\nconsole.log(greet('Ali'));\nconsole.log('Area of a circle with r = 2:', area(2));\n\n// package.json\n{ \"type\": \"module\" }",
+     "output": "Hello, Ali!\nArea of a circle with r = 2: 12.56636"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>ES modules and CommonJS</h2>\n<p>Older Node code uses <strong>CommonJS</strong>: <code>require()</code> to load and <code>module.exports</code> to share. You will meet it in old tutorials. Files ending in <code>.cjs</code> are always CommonJS and files ending in <code>.mjs</code> are always ES modules. Built-in modules are best imported with the <code>node:</code> prefix, like <code>node:fs</code>, so it is clear they come from Node.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "javascript",
+     "code": "// old-style.cjs\nconsole.log(typeof require, typeof module.exports);\nconst os = require('node:os');\nconsole.log(typeof os.platform());\n\n// new-style.mjs\nimport os from 'node:os';\n\nconsole.log(typeof require, typeof import.meta.dirname);\nconsole.log(typeof os.platform());",
+     "output": "$ node old-style.cjs\nfunction object\nstring\n$ node new-style.mjs\nundefined string\nstring"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Using <code>import</code> in a project without <code>\"type\": \"module\"</code>. Node then says \"Cannot use import statement outside a module\".</li>\n<li>Forgetting the <code>.js</code> extension in <code>import ... from './math'</code>.</li>\n<li>Using <code>document</code> or <code>alert</code> in Node. They only exist in browsers.</li>\n<li>Mixing <code>require</code> and <code>import</code> in the same file.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Node.js runs JavaScript on the server using the V8 engine.</li>\n<li>One thread plus the event loop handles many requests without waiting.</li>\n<li>Use ES modules: <code>export</code>, <code>import</code> and <code>\"type\": \"module\"</code>.</li>\n<li>Import built-in modules with the <code>node:</code> prefix.</li>\n<li>CommonJS (<code>require</code>) is the older style.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "npm-fs",
+   "title": "npm &amp; the File System",
+   "section": "Node Basics",
+   "order": 2,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>npm &amp; the File System</h1>\n<div class=\"card\">\n<h2>npm and package.json</h2>\n<p><strong>npm</strong> is the package manager that comes with Node.js. It downloads code written by other developers, called <strong>packages</strong>, so you do not have to write everything yourself. Every Node project has a file called <code>package.json</code>. It holds the project name, the scripts you can run, and the list of packages the project needs.</p>\n<p>Start a new project with <code>npm init -y</code>. The <code>-y</code> flag accepts all the default answers. Then use <code>npm pkg set</code> to add the settings we need: ES modules and a <code>start</code> script.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Table of package.json, package-lock.json, node_modules, index.js and .gitignore with the purpose of each.\" class=\"content-image\" src=\"/images/diagrams/nodejs-npm-fs.svg\"/><figcaption>The key files of a Node project and which ones belong in Git.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "mkdir my-app\ncd my-app\nnpm init -y\nnpm pkg set type=module\nnpm pkg set scripts.start=\"node index.js\"\ncat package.json",
+     "output": "$ mkdir my-app\n$ cd my-app\n$ npm init -y\nWrote to /home/student/my-app/package.json:\n\n{\n  \"name\": \"my-app\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n$ npm pkg set type=module\n$ npm pkg set scripts.start=\"node index.js\"\n$ cat package.json\n{\n  \"name\": \"my-app\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n    \"start\": \"node index.js\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\",\n  \"type\": \"module\"\n}"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Installing packages</h2>\n<p>Run <code>npm install express</code> to add a package. npm downloads it into a folder called <code>node_modules</code>, adds it under <code>dependencies</code> in <code>package.json</code>, and records exact versions in <code>package-lock.json</code>. Packages that you only need while developing, like a test tool, are installed with <code>npm install -D name</code>.</p>\n<p>A script in <code>package.json</code> is run with <code>npm run name</code>. The special name <code>start</code> can be run as <code>npm start</code>. The exact numbers below can differ on your computer.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "npm install express\nnpm run start",
+     "output": "$ npm install express\nadded 65 packages, and audited 66 packages in 4s\n\n30 packages are looking for funding\n  run `npm fund` for details\n\nfound 0 vulnerabilities\n$ npm run start\n> my-app@1.0.0 start\n> node index.js\n\nHello from my-app!"
+    },
+    {
+     "kind": "html",
+     "html": "<p>After the install, <code>package.json</code> has a new section:</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "cat package.json",
+     "output": "{\n  \"name\": \"my-app\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n    \"start\": \"node index.js\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\",\n  \"type\": \"module\",\n  \"dependencies\": {\n    \"express\": \"^5.3.0\"\n  }\n}"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>What goes in Git?</h2>\n<table>\n<tr><th>Item</th><th>What it is</th><th>Commit to Git?</th></tr>\n<tr><td><code>package.json</code></td><td>name, scripts, dependencies</td><td>Yes</td></tr>\n<tr><td><code>package-lock.json</code></td><td>exact installed versions</td><td>Yes</td></tr>\n<tr><td><code>node_modules/</code></td><td>downloaded packages</td><td>No</td></tr>\n<tr><td><code>.env</code></td><td>secrets and settings</td><td>No</td></tr>\n</table>\n<p>Anyone can rebuild <code>node_modules</code> by running <code>npm install</code>, so put <code>node_modules</code> and <code>.env</code> in a <code>.gitignore</code> file.</p>\n</div>\n\n<div class=\"card\">\n<h2>Reading and writing files</h2>\n<p>Node can work with files through <code>node:fs/promises</code>. Its functions return promises, so we use <code>await</code>. The most useful ones are <code>readFile</code>, <code>writeFile</code> and <code>readdir</code>. Pass <code>'utf8'</code> to <code>readFile</code> to get text instead of raw bytes.</p>\n<p>The <code>node:path</code> module builds file paths safely on any operating system. Never join paths with plain string plus, because Windows uses <code>\\</code> and Linux uses <code>/</code>. In an ES module, <code>import.meta.dirname</code> is the folder of the current file. File operations can fail, for example when a file does not exist, so wrap them in <code>try/catch</code>. The error has a <code>code</code> such as <code>ENOENT</code> (no such file).</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "javascript",
+     "code": "import { readFile, writeFile, readdir } from 'node:fs/promises';\nimport path from 'node:path';\n\nconst folder = import.meta.dirname;\nconst file = path.join(folder, 'notes.txt');\n\nawait writeFile(file, 'Buy milk\\nLearn Express\\n');\nconst text = await readFile(file, 'utf8');\nconsole.log('Read from', path.basename(file));\nconsole.log(text);\n\nconsole.log('Extension:', path.extname(file));\nconsole.log('Name only:', path.basename(file, '.txt'));\nconsole.log('Joined:', path.join('data', 'users', 'ali.json'));\n\ntry {\n  await readFile(path.join(folder, 'missing.txt'), 'utf8');\n} catch (err) {\n  console.log('Error code:', err.code);\n}\nconst names = (await readdir(folder)).sort();\nconsole.log(names);",
+     "output": "Read from notes.txt\nBuy milk\nLearn Express\n\nExtension: .txt\nName only: notes\nJoined: data/users/ali.json\nError code: ENOENT\n[ 'fs-demo.js', 'notes.txt', 'package.json' ]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Committing <code>node_modules</code> or <code>.env</code> to Git.</li>\n<li>Forgetting <code>await</code>, which gives you a Promise instead of the file text.</li>\n<li>Using a relative path like <code>'notes.txt'</code>. It depends on where you ran <code>node</code> from. Build the path from <code>import.meta.dirname</code>.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li><code>npm init -y</code> creates <code>package.json</code>.</li>\n<li><code>npm install name</code> adds a package; <code>-D</code> is for development tools.</li>\n<li><code>npm run name</code> runs a script; <code>npm start</code> is a shortcut.</li>\n<li>Do not commit <code>node_modules</code> or <code>.env</code>.</li>\n<li>Use <code>node:fs/promises</code> with <code>await</code> and <code>node:path</code> for file work.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "http-basics",
+   "title": "HTTP &amp; a First Server",
+   "section": "Node Basics",
+   "order": 3,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>HTTP &amp; a First Server</h1>\n<div class=\"card\">\n<h2>How the web talks: HTTP</h2>\n<p>Browsers and servers talk using <strong>HTTP</strong>. The conversation is always the same: the <strong>client</strong> sends a <strong>request</strong>, and the <strong>server</strong> sends back a <strong>response</strong>. Nothing happens until a client asks.</p>\n<p>A request has a <strong>method</strong> (what to do), a <strong>URL</strong> (which thing), headers and sometimes a body. A response has a <strong>status code</strong>, headers and a body.</p>\n<table>\n<tr><th>Method</th><th>Meaning</th></tr>\n<tr><td><code>GET</code></td><td>read data</td></tr>\n<tr><td><code>POST</code></td><td>create new data</td></tr>\n<tr><td><code>PUT</code></td><td>update data</td></tr>\n<tr><td><code>DELETE</code></td><td>remove data</td></tr>\n</table>\n<table>\n<tr><th>Status</th><th>Meaning</th></tr>\n<tr><td><code>200</code></td><td>OK</td></tr>\n<tr><td><code>201</code></td><td>Created</td></tr>\n<tr><td><code>400</code></td><td>Bad request (client sent wrong data)</td></tr>\n<tr><td><code>404</code></td><td>Not found</td></tr>\n<tr><td><code>500</code></td><td>Server error (a bug on our side)</td></tr>\n</table>\n</div>\n\n<div class=\"card\">\n<h2>Your first server</h2>\n<p>Node has an HTTP server built in, in the <code>node:http</code> module. You call <code>http.createServer()</code> and give it a function. Node runs that function for <strong>every</strong> request and passes two objects: <code>req</code> (the request) and <code>res</code> (the response).</p>\n<ul>\n<li><code>req.method</code> and <code>req.url</code> tell you what the client asked for.</li>\n<li><code>res.writeHead(status, headers)</code> sets the status code and headers.</li>\n<li><code>res.end(body)</code> sends the body and finishes the response.</li>\n</ul>\n<p>Then <code>server.listen(3000)</code> makes the server wait for connections on port 3000. The program keeps running until you press Ctrl+C. The demo starts the server in one terminal and uses <code>curl</code>, a command line HTTP client, in a second terminal.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"A client sends GET /api/time to the Node server and gets back a status code, headers and a body.\" class=\"content-image\" src=\"/images/diagrams/nodejs-http-basics.svg\"/><figcaption>The client asks, the server answers with a status code and a body.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "import http from 'node:http';\n\nconst server = http.createServer((req, res) => {\n  console.log(req.method, req.url);\n\n  if (req.url === '/') {\n    res.writeHead(200, { 'Content-Type': 'text/plain' });\n    res.end('Welcome to my first server');\n  } else if (req.url === '/api/time') {\n    res.writeHead(200, { 'Content-Type': 'application/json' });\n    res.end(JSON.stringify({ ok: true, message: 'JSON from node:http' }));\n  } else {\n    res.writeHead(404, { 'Content-Type': 'text/plain' });\n    res.end('Page not found');\n  }\n});\n\nserver.listen(3000, () => {\n  console.log('Server running on http://localhost:3000');\n});",
+     "output": "# Terminal 1 (server)\n$ node server.js\nServer running on http://localhost:3000\nGET /\nGET /api/time\nGET /nothing\n\n# Terminal 2 (client)\n$ curl -s localhost:3000/\nWelcome to my first server\n$ echo\n$ curl -s localhost:3000/api/time\n{\"ok\":true,\"message\":\"JSON from node:http\"}\n$ echo\n$ curl -s -w \"status: %{http_code}\\n\" localhost:3000/nothing\nPage not foundstatus: 404"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Looking closer</h2>\n<p>Look at the server terminal. It printed one line for every request, and the 404 page was returned for a URL we did not handle. We chose to answer <code>/api/time</code> with <strong>JSON</strong>, the text format that front-end code and other servers understand. We set the <code>Content-Type</code> header to <code>application/json</code> so the client knows how to read the body.</p>\n<p>This works, but you can already see the problem. Every new page needs another <code>if</code>. Reading a JSON body, parsing query strings and handling many routes would become long and messy. That is why almost everyone uses a framework on top of <code>node:http</code>. In the next section we meet <strong>Express</strong>.</p>\n</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Forgetting <code>res.end()</code>. The browser keeps waiting and never finishes loading.</li>\n<li>Calling <code>res.end()</code> twice, or writing headers after the body has started.</li>\n<li>Starting the server twice on the same port. Node shows an <code>EADDRINUSE</code> error. Stop the old one first.</li>\n<li>Editing the code and expecting the running server to change. Stop it with Ctrl+C and start it again.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>HTTP is request and response: method, URL, headers, body, status code.</li>\n<li><code>http.createServer((req, res) =&gt; { ... })</code> runs once per request.</li>\n<li>Always finish with <code>res.end()</code>.</li>\n<li>Set <code>Content-Type</code> so the client understands the body.</li>\n<li>Plain <code>node:http</code> gets long, so we use Express.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "express-routing",
+   "title": "Express Routing",
+   "section": "Express",
+   "order": 4,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Express Routing</h1>\n<div class=\"card\">\n<h2>Why Express?</h2>\n<p><strong>Express</strong> is a small framework that sits on top of Node's HTTP server. It gives you a clean way to say: \"when a GET request arrives for this URL, run this function\". These lessons use Express 5. Install it with <code>npm install express</code>.</p>\n<p>A <strong>route</strong> has three parts: the HTTP method, a path, and a handler function. For example <code>app.get('/', (req, res) =&gt; { ... })</code>. There is one method per HTTP verb: <code>app.get</code>, <code>app.post</code>, <code>app.put</code>, <code>app.delete</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>Reading data from the request</h2>\n<p>Clients can send data in three common ways.</p>\n<table>\n<tr><th>Where</th><th>Example URL or request</th><th>Where you read it</th></tr>\n<tr><td>Route parameter</td><td><code>GET /users/42</code></td><td><code>req.params.id</code></td></tr>\n<tr><td>Query string</td><td><code>GET /search?q=node</code></td><td><code>req.query.q</code></td></tr>\n<tr><td>JSON body</td><td><code>POST /echo</code></td><td><code>req.body</code></td></tr>\n</table>\n<p>A path like <code>/users/:id</code> has a <strong>parameter</strong>. The part after the colon becomes a key in <code>req.params</code>. Values from the URL are always <strong>strings</strong>, so <code>'42'</code> not <code>42</code>. To read a JSON body, you must first add <code>app.use(express.json())</code>. We will see why in the next lesson.</p>\n<p>To reply, use <code>res.send()</code> for text, <code>res.json()</code> for JSON, and <code>res.status(201)</code> to set the status code. You can chain them: <code>res.status(201).json({ ... })</code>.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Table showing requests matched to Express routes and the values found in req.params and req.query.\" class=\"content-image\" src=\"/images/diagrams/nodejs-express-routing.svg\"/><figcaption>A request is matched top to bottom against the routes you wrote.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "import express from 'express';\n\nconst app = express();\napp.use(express.json());\n\napp.get('/', (req, res) => {\n  res.send('Hello from Express');\n});\n\napp.get('/users/:id', (req, res) => {\n  res.json({ id: req.params.id });\n});\n\napp.get('/search', (req, res) => {\n  res.json({ query: req.query });\n});\n\napp.post('/echo', (req, res) => {\n  res.status(201).json({ youSent: req.body });\n});\n\napp.get('/files/special', (req, res) => {\n  res.send('special route wins (it is first)');\n});\n\napp.get('/files/:name', (req, res) => {\n  res.send('file: ' + req.params.name);\n});\n\napp.listen(3000, () => console.log('Listening on 3000'));",
+     "output": "# Terminal 1 (server)\n$ node app.js\nListening on 3000\n\n# Terminal 2 (client)\n$ curl -s -w '  [%{http_code}]\\n' 'localhost:3000/'\nHello from Express  [200]\n$ curl -s -w '  [%{http_code}]\\n' 'localhost:3000/users/42'\n{\"id\":\"42\"}  [200]\n$ curl -s -w '  [%{http_code}]\\n' 'localhost:3000/search?q=node&page=2'\n{\"query\":{\"q\":\"node\",\"page\":\"2\"}}  [200]\n$ curl -s -X POST -H 'Content-Type: application/json' -d '{\"name\":\"Ali\"}' -w '  [%{http_code}]\\n' localhost:3000/echo\n{\"youSent\":{\"name\":\"Ali\"}}  [201]\n$ curl -s -w '  [%{http_code}]\\n' 'localhost:3000/files/special'\nspecial route wins (it is first)  [200]\n$ curl -s -w '  [%{http_code}]\\n' 'localhost:3000/files/report'\nfile: report  [200]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Order matters</h2>\n<p>Express checks routes <strong>from top to bottom</strong> and uses the first one that matches. In the demo, <code>/files/special</code> is written before <code>/files/:name</code>, so the special route wins. If we swapped them, <code>:name</code> would match <code>special</code> first. Always put specific routes before general ones.</p>\n<p>If no route matches, Express sends a <code>404</code> response by itself. You can also group routes in a <strong>Router</strong> (<code>express.Router()</code>) and mount it with <code>app.use('/api', router)</code>. This keeps big projects tidy.</p>\n</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Reading <code>req.body</code> without <code>express.json()</code>. It is <code>undefined</code> in Express 5.</li>\n<li>Forgetting that <code>req.params.id</code> is a string. Use <code>Number(req.params.id)</code> when comparing with numbers.</li>\n<li>Sending two responses in one handler. After <code>res.json()</code>, use <code>return</code> if more code follows.</li>\n<li>Putting a general route like <code>/:name</code> above specific ones.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A route is a method, a path and a handler: <code>app.get(path, handler)</code>.</li>\n<li><code>req.params</code> holds <code>:id</code> values, <code>req.query</code> holds <code>?key=value</code>, <code>req.body</code> holds JSON.</li>\n<li>Reply with <code>res.send</code>, <code>res.json</code> and <code>res.status</code>.</li>\n<li>Routes are tested top to bottom; the first match wins.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "middleware",
+   "title": "Middleware",
+   "section": "Express",
+   "order": 5,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Middleware</h1>\n<div class=\"card\">\n<h2>What is middleware?</h2>\n<p><strong>Middleware</strong> is a function that runs between the request arriving and the response leaving. It receives <code>(req, res, next)</code>. It can read or change <code>req</code> and <code>res</code>, and then it does one of two things: call <code>next()</code> to pass the request on, or send a response and stop.</p>\n<p>Think of a security gate at a university. Each guard checks something. If all guards are happy, you reach the classroom. If one guard says no, you are turned away at that gate.</p>\n</div>\n\n<div class=\"card\">\n<h2>Using middleware</h2>\n<ul>\n<li><code>app.use(fn)</code> runs <code>fn</code> for <strong>every</strong> request, in the order you wrote it.</li>\n<li><code>app.get('/private', fn, handler)</code> runs <code>fn</code> only for that one route.</li>\n<li>Built-in helpers are middleware too: <code>express.json()</code> reads a JSON body and fills <code>req.body</code>.</li>\n</ul>\n<p>The demo has a <code>logger</code> that prints every request, and <code>requireKey</code> that checks a header. Notice <code>return res.status(401)...</code>. When middleware sends a response, it does <strong>not</strong> call <code>next()</code>, so the route handler never runs.</p>\n<p>The last middleware has <strong>four</strong> parameters: <code>(err, req, res, next)</code>. That is how Express knows it is the <strong>error handler</strong>. When any handler throws an error, Express skips to the error handler. In Express 5, errors thrown inside <code>async</code> handlers, or rejected promises, are also sent there automatically.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"A request passes the logger, express.json and a route handler, then a response is sent; errors skip to the error handler.\" class=\"content-image\" src=\"/images/diagrams/nodejs-middleware.svg\"/><figcaption>Middleware runs in order and passes control on with next().</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "import express from 'express';\n\nconst app = express();\n\nfunction logger(req, res, next) {\n  console.log(`${req.method} ${req.url}`);\n  next();\n}\n\nfunction requireKey(req, res, next) {\n  if (req.get('x-api-key') !== 'secret123') {\n    return res.status(401).json({ error: 'Missing or wrong API key' });\n  }\n  next();\n}\n\napp.use(logger);\napp.use(express.json());\n\napp.get('/public', (req, res) => res.json({ message: 'anyone can see this' }));\napp.get('/private', requireKey, (req, res) => res.json({ message: 'welcome in' }));\n\napp.post('/boom', (req, res) => {\n  throw new Error('Something broke');\n});\n\n// error-handling middleware: 4 arguments\napp.use((err, req, res, next) => {\n  console.log('Error caught:', err.message);\n  res.status(500).json({ error: err.message });\n});\n\napp.listen(3000, () => console.log('Listening on 3000'));",
+     "output": "# Terminal 1 (server)\n$ node app.js\nListening on 3000\nGET /public\nGET /private\nGET /private\nPOST /boom\nError caught: Something broke\n\n# Terminal 2 (client)\n$ curl -s -w '  [%{http_code}]\\n' 'localhost:3000/public'\n{\"message\":\"anyone can see this\"}  [200]\n$ curl -s -w '  [%{http_code}]\\n' 'localhost:3000/private'\n{\"error\":\"Missing or wrong API key\"}  [401]\n$ curl -s -H 'x-api-key: secret123' -w '  [%{http_code}]\\n' 'localhost:3000/private'\n{\"message\":\"welcome in\"}  [200]\n$ curl -s -X POST -w '  [%{http_code}]\\n' localhost:3000/boom\n{\"error\":\"Something broke\"}  [500]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Order matters again</h2>\n<p>Middleware runs in the order you add it. This is the most common source of bugs. In the next demo, <code>express.json()</code> is added <strong>after</strong> the <code>/a</code> route. So <code>/a</code> does not get a parsed body, but <code>/b</code> does. Always register <code>express.json()</code> near the top.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "import express from 'express';\n\nconst app = express();\n\napp.post('/a', (req, res) => {\n  res.json({ body: req.body ?? 'undefined' });\n});\n\napp.use(express.json());\n\napp.post('/b', (req, res) => {\n  res.json({ body: req.body });\n});\n\napp.listen(3000, () => console.log('Listening on 3000'));",
+     "output": "# Terminal 1 (server)\n$ node app.js\nListening on 3000\n\n# Terminal 2 (client)\n$ curl -s -X POST -H 'Content-Type: application/json' -d '{\"x\":1}' -w '  [%{http_code}]\\n' 'localhost:3000/a'\n{\"body\":\"undefined\"}  [200]\n$ curl -s -X POST -H 'Content-Type: application/json' -d '{\"x\":1}' -w '  [%{http_code}]\\n' 'localhost:3000/b'\n{\"body\":{\"x\":1}}  [200]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Forgetting to call <code>next()</code>. The request hangs because nothing sends a response.</li>\n<li>Calling <code>next()</code> after already sending a response.</li>\n<li>Registering <code>express.json()</code> after the routes that need it.</li>\n<li>Writing an error handler with three parameters. It must have exactly four.</li>\n<li>Placing the error handler before the routes. It should come last.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Middleware has the shape <code>(req, res, next)</code>.</li>\n<li>Call <code>next()</code> to continue, or send a response to stop.</li>\n<li><code>app.use()</code> applies to all routes; add middleware before a handler for one route.</li>\n<li>Order of registration is the order of execution.</li>\n<li>An error handler has four parameters and goes last.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "rest-api",
+   "title": "Building a REST API",
+   "section": "Express",
+   "order": 6,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Building a REST API</h1>\n<div class=\"card\">\n<h2>What is REST?</h2>\n<p>A <strong>REST API</strong> is a set of URLs that a front end can call to work with data. The URLs name <strong>things</strong> (resources) like books or users, and the HTTP method says the <strong>action</strong>. This pattern is called <strong>CRUD</strong>: Create, Read, Update, Delete.</p>\n<table>\n<tr><th>Action</th><th>Method</th><th>URL</th><th>Success</th></tr>\n<tr><td>List all</td><td>GET</td><td><code>/api/books</code></td><td>200</td></tr>\n<tr><td>Read one</td><td>GET</td><td><code>/api/books/:id</code></td><td>200</td></tr>\n<tr><td>Create</td><td>POST</td><td><code>/api/books</code></td><td>201</td></tr>\n<tr><td>Update</td><td>PUT</td><td><code>/api/books/:id</code></td><td>200</td></tr>\n<tr><td>Delete</td><td>DELETE</td><td><code>/api/books/:id</code></td><td>204</td></tr>\n</table>\n<p>Use plural nouns in URLs (<code>/api/books</code>), never verbs like <code>/api/getBooks</code>. Always return JSON.</p>\n</div>\n\n<div class=\"card\">\n<h2>Good status codes and validation</h2>\n<p>A good API tells the client clearly what happened. Return <code>201</code> after creating something, <code>204</code> (no body) after deleting, <code>400</code> when the client sent bad data, and <code>404</code> when the item does not exist. Never trust incoming data. Check the required fields before you save.</p>\n<p>The demo below keeps books in a plain array. This is a good way to practise before adding a real database. The data is lost when the server restarts. Read the output step by step: create, read, update, delete, and what each status code says.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Table mapping create, read, update and delete to HTTP methods, URLs and success status codes.\" class=\"content-image\" src=\"/images/diagrams/nodejs-rest-api.svg\"/><figcaption>Each CRUD action has a method, a URL and a status code.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "import express from 'express';\n\nconst app = express();\napp.use(express.json());\n\nlet books = [\n  { id: 1, title: 'Clean Code', author: 'Robert Martin' },\n  { id: 2, title: 'Eloquent JavaScript', author: 'Marijn Haverbeke' },\n];\nlet nextId = 3;\n\napp.get('/api/books', (req, res) => {\n  res.json(books);\n});\n\napp.get('/api/books/:id', (req, res) => {\n  const book = books.find((b) => b.id === Number(req.params.id));\n  if (!book) return res.status(404).json({ error: 'Book not found' });\n  res.json(book);\n});\n\napp.post('/api/books', (req, res) => {\n  const { title, author } = req.body;\n  if (!title || !author) {\n    return res.status(400).json({ error: 'title and author are required' });\n  }\n  const book = { id: nextId++, title, author };\n  books.push(book);\n  res.status(201).json(book);\n});\n\napp.put('/api/books/:id', (req, res) => {\n  const book = books.find((b) => b.id === Number(req.params.id));\n  if (!book) return res.status(404).json({ error: 'Book not found' });\n  book.title = req.body.title ?? book.title;\n  book.author = req.body.author ?? book.author;\n  res.json(book);\n});\n\napp.delete('/api/books/:id', (req, res) => {\n  const before = books.length;\n  books = books.filter((b) => b.id !== Number(req.params.id));\n  if (books.length === before) return res.status(404).json({ error: 'Book not found' });\n  res.status(204).end();\n});\n\napp.listen(3000, () => console.log('Books API on port 3000'));",
+     "output": "# Terminal 1 (server)\n$ node app.js\nBooks API on port 3000\n\n# Terminal 2 (client)\n$ curl -s -w '  [%{http_code}]\\n' 'localhost:3000/api/books'\n[{\"id\":1,\"title\":\"Clean Code\",\"author\":\"Robert Martin\"},{\"id\":2,\"title\":\"Eloquent JavaScript\",\"author\":\"Marijn Haverbeke\"}]  [200]\n$ curl -s -w '  [%{http_code}]\\n' 'localhost:3000/api/books/2'\n{\"id\":2,\"title\":\"Eloquent JavaScript\",\"author\":\"Marijn Haverbeke\"}  [200]\n$ curl -s -X POST -H 'Content-Type: application/json' -d '{\"title\":\"Node in Action\",\"author\":\"Mike Cantelon\"}' -w '  [%{http_code}]\\n' localhost:3000/api/books\n{\"id\":3,\"title\":\"Node in Action\",\"author\":\"Mike Cantelon\"}  [201]\n$ curl -s -X POST -H 'Content-Type: application/json' -d '{\"title\":\"No author\"}' -w '  [%{http_code}]\\n' localhost:3000/api/books\n{\"error\":\"title and author are required\"}  [400]\n$ curl -s -X PUT -H 'Content-Type: application/json' -d '{\"title\":\"Clean Code, 2nd ed\"}' -w '  [%{http_code}]\\n' localhost:3000/api/books/1\n{\"id\":1,\"title\":\"Clean Code, 2nd ed\",\"author\":\"Robert Martin\"}  [200]\n$ curl -s -X DELETE -w '  [%{http_code}]\\n' localhost:3000/api/books/2\n  [204]\n$ curl -s -w '  [%{http_code}]\\n' 'localhost:3000/api/books/2'\n{\"error\":\"Book not found\"}  [404]\n$ curl -s -w '  [%{http_code}]\\n' 'localhost:3000/api/books'\n[{\"id\":1,\"title\":\"Clean Code, 2nd ed\",\"author\":\"Robert Martin\"},{\"id\":3,\"title\":\"Node in Action\",\"author\":\"Mike Cantelon\"}]  [200]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Understanding the code</h2>\n<ul>\n<li><code>Number(req.params.id)</code> turns the string from the URL into a number, so it matches the numeric <code>id</code>.</li>\n<li><code>return res.status(404)...</code> stops the handler early when the book is missing.</li>\n<li>PUT uses <code>??</code> so only the fields that were sent are changed.</li>\n<li>DELETE answers <code>204</code> with <code>res.status(204).end()</code>, because there is nothing to send back.</li>\n</ul>\n<p>You can test an API like this with <code>curl</code>, with a tool such as Postman, or with <code>fetch()</code> from front-end code. Later we will replace the array with MongoDB. The routes stay almost the same; only the lines that touch the data change.</p>\n</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Returning <code>200</code> for everything, even errors.</li>\n<li>Forgetting validation, so a missing title gets saved.</li>\n<li>Using the wrong type: <code>b.id === req.params.id</code> compares a number with a string and never matches.</li>\n<li>Using verbs in URLs instead of the HTTP method.</li>\n<li>Forgetting <code>express.json()</code>, so <code>req.body</code> is <code>undefined</code>.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>REST uses URLs for things and HTTP methods for actions.</li>\n<li>CRUD maps to POST, GET, PUT and DELETE.</li>\n<li>Use correct status codes: 200, 201, 204, 400, 404, 500.</li>\n<li>Validate input and return JSON error messages.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "mongodb-mongoose",
+   "title": "MongoDB &amp; Mongoose",
+   "section": "Databases & Security",
+   "order": 7,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>MongoDB &amp; Mongoose</h1>\n<div class=\"card\">\n<h2>What is MongoDB?</h2>\n<p><strong>MongoDB</strong> is a <strong>NoSQL</strong> database. Instead of tables with rows and columns, it stores <strong>documents</strong> that look like JSON objects, grouped into <strong>collections</strong>. Every document gets a unique <code>_id</code> automatically. If you know SQL, these words match like this:</p>\n<table>\n<tr><th>SQL</th><th>MongoDB</th><th>In Mongoose</th></tr>\n<tr><td>table</td><td>collection</td><td>Model</td></tr>\n<tr><td>row</td><td>document</td><td>model instance</td></tr>\n<tr><td>column</td><td>field</td><td>schema path</td></tr>\n<tr><td>primary key</td><td><code>_id</code></td><td>added automatically</td></tr>\n</table>\n</div>\n\n<div class=\"card\">\n<h2>Mongoose: schemas and models</h2>\n<p>MongoDB itself lets you save any shape of document. <strong>Mongoose</strong> is a package that adds structure. You describe your data with a <strong>schema</strong>: field names, types and rules such as <code>required</code>, <code>min</code>, <code>default</code>, <code>trim</code> and <code>lowercase</code>. Then <code>mongoose.model('Student', schema)</code> creates a <strong>model</strong>, which is the object you use to read and write data. Mongoose names the collection by making the model name lowercase and plural: <code>Student</code> becomes <code>students</code>.</p>\n<p>Install it with <code>npm install mongoose</code>. The demo below needs no database. It only checks the data against the schema, so you can try it anywhere. Notice how <code>trim</code> and <code>lowercase</code> clean the input, how <code>default</code> fills a missing value, and how validation reports every broken rule.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Comparison of SQL table, row, column and primary key with MongoDB collection, document, field and _id.\" class=\"content-image\" src=\"/images/diagrams/nodejs-mongodb-mongoose.svg\"/><figcaption>MongoDB uses collections and documents instead of tables and rows.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "javascript",
+     "code": "import mongoose from 'mongoose';\n\nconst studentSchema = new mongoose.Schema({\n  name: { type: String, required: true, trim: true },\n  email: { type: String, required: true, lowercase: true },\n  age: { type: Number, min: 16, default: 18 },\n});\n\nconst Student = mongoose.model('Student', studentSchema);\n\nconst ok = new Student({ name: '  Ayesha ', email: 'AYESHA@LGU.EDU.PK' });\nconsole.log(ok.name, ok.email, ok.age);\nawait ok.validate();\nconsole.log('valid?', true);\n\nconst bad = new Student({ email: 'x@y.com', age: 10 });\nconst err = await bad.validate().catch((e) => e);\nconsole.log(Object.keys(err.errors));\nconsole.log(err.errors.name.message);\nconsole.log(err.errors.age.message);\nconsole.log(Student.collection.name);",
+     "output": "Ayesha ayesha@lgu.edu.pk 18\nvalid? true\n[ 'name', 'age' ]\nPath `name` is required.\nPath `age` (10) is less than minimum allowed value (16).\nstudents"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Connecting and doing CRUD</h2>\n<p>To save data you connect with <code>mongoose.connect(url)</code>. The URL names the server and the database, for example <code>mongodb://127.0.0.1:27017/school</code>. A free hosted database from MongoDB Atlas gives you a similar URL that you keep in <code>.env</code>. Every model method returns a promise, so use <code>await</code>.</p>\n<table>\n<tr><th>Task</th><th>Mongoose method</th></tr>\n<tr><td>Create</td><td><code>Model.create(data)</code></td></tr>\n<tr><td>Read many</td><td><code>Model.find(filter)</code></td></tr>\n<tr><td>Read one</td><td><code>Model.findById(id)</code></td></tr>\n<tr><td>Update</td><td><code>Model.findByIdAndUpdate(id, data, { new: true })</code></td></tr>\n<tr><td>Delete</td><td><code>Model.findByIdAndDelete(id)</code></td></tr>\n</table>\n<p>The option <code>{ new: true }</code> makes update return the document after the change. This demo needs a MongoDB server running on your computer, so the output below is what you should see with a fresh, empty database.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "javascript",
+     "code": "import mongoose from 'mongoose';\n\nawait mongoose.connect('mongodb://127.0.0.1:27017/school');\n\nconst Student = mongoose.model('Student', new mongoose.Schema({\n  name: { type: String, required: true },\n  age: Number,\n}));\n\nawait Student.deleteMany({});\n\nconst ayesha = await Student.create({ name: 'Ayesha', age: 19 });\nawait Student.create({ name: 'Bilal', age: 21 });\nconsole.log('Created:', ayesha.name, ayesha.age);\nconsole.log('Has _id:', ayesha._id != null);\n\nconst older = await Student.find({ age: { $gte: 20 } });\nconsole.log('Age 20 or more:', older.map((s) => s.name));\n\nconst updated = await Student.findByIdAndUpdate(ayesha._id, { age: 20 }, { new: true });\nconsole.log('Updated age:', updated.age);\n\nawait Student.findByIdAndDelete(ayesha._id);\nconsole.log('Students left:', await Student.countDocuments());\n\nawait mongoose.disconnect();",
+     "output": "Created: Ayesha 19\nHas _id: true\nAge 20 or more: [ 'Bilal' ]\nUpdated age: 20\nStudents left: 1"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Forgetting <code>await</code> on <code>find</code> or <code>create</code>. You get a query or a Promise, not data.</li>\n<li>Starting the server before the database is connected.</li>\n<li>Writing the database password in the code. Keep the connection string in <code>.env</code>.</li>\n<li>Expecting a schema to reject extra fields. By default Mongoose silently ignores fields that are not in the schema.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>MongoDB stores documents in collections; each has a unique <code>_id</code>.</li>\n<li>A Mongoose schema defines fields and rules; a model gives you the database methods.</li>\n<li><code>create</code>, <code>find</code>, <code>findById</code>, <code>findByIdAndUpdate</code>, <code>findByIdAndDelete</code> cover CRUD.</li>\n<li>All database calls are asynchronous: use <code>await</code>.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "auth-jwt",
+   "title": "Authentication: bcrypt, JWT, httpOnly cookies, protecting routes, .env",
+   "section": "Databases & Security",
+   "order": 8,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Authentication: bcrypt, JWT, httpOnly cookies, protecting routes, .env</h1>\n<div class=\"card\">\n<h2>Never store plain passwords</h2>\n<p><strong>Authentication</strong> means proving who you are. The first rule: <strong>never save a real password</strong> in your database. If the database leaks, every user is in danger. Instead save a <strong>hash</strong>. A hash is a one-way scramble of the password. You cannot turn it back into the password, but you can check a new password against it.</p>\n<p>The <code>bcrypt</code> package does this well. <code>bcrypt.hash(password, 10)</code> creates a hash; the number 10 is the cost, which makes guessing slow. bcrypt adds a random <strong>salt</strong> for you, so two users with the same password get different hashes. <code>bcrypt.compare(password, hash)</code> returns <code>true</code> or <code>false</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>JSON Web Tokens (JWT)</h2>\n<p>After a correct login, the server gives the client a <strong>token</strong> so the user does not have to send the password again. A <strong>JWT</strong> has three parts separated by dots: a header, a <strong>payload</strong> (data such as the user id) and a <strong>signature</strong>. The server creates the signature with a secret key. Anyone can read the payload, so never put passwords in it. But nobody can change the payload without the signature breaking.</p>\n<p><code>jwt.sign(payload, secret, { expiresIn })</code> makes a token and <code>jwt.verify(token, secret)</code> checks it. Verify throws an error if the signature is wrong or the token has expired. In this demo we fix the time (<code>iat</code> and <code>clockTimestamp</code>) so the output is always the same. You normally do not need these.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"The user logs in, bcrypt compares the password, the server signs a JWT and sets it in an httpOnly cookie, and later requests are verified.\" class=\"content-image\" src=\"/images/diagrams/nodejs-auth-jwt.svg\"/><figcaption>Verify the password once, then prove identity with a signed token.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "javascript",
+     "code": "import bcrypt from 'bcrypt';\nimport jwt from 'jsonwebtoken';\n\nconst secret = 'demo-secret-do-not-use';\n\nconst hash = await bcrypt.hash('myPassword123', 10);\nconsole.log('Hash starts with:', hash.slice(0, 7));\nconsole.log('Hash length:', hash.length);\nconsole.log('Same password?', await bcrypt.compare('myPassword123', hash));\nconsole.log('Wrong password?', await bcrypt.compare('wrong', hash));\n\nconst token = jwt.sign({ id: 'u1', role: 'student', iat: 1700000000 }, secret, { expiresIn: '15m' });\nconsole.log('Parts in token:', token.split('.').length);\n\nconst payload = jwt.verify(token, secret, { clockTimestamp: 1700000100 });\nconsole.log(payload);\n\ntry {\n  jwt.verify(token, 'another-secret', { clockTimestamp: 1700000100 });\n} catch (err) {\n  console.log(err.name + ':', err.message);\n}\ntry {\n  jwt.verify(token, secret, { clockTimestamp: 1700009999 });\n} catch (err) {\n  console.log(err.name + ':', err.message);\n}",
+     "output": "Hash starts with: $2b$10$\nHash length: 60\nSame password? true\nWrong password? false\nParts in token: 3\n{ id: 'u1', role: 'student', iat: 1700000000, exp: 1700000900 }\nJsonWebTokenError: invalid signature\nTokenExpiredError: jwt expired"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>httpOnly cookies and protecting routes</h2>\n<p>Where should the client keep the token? If you put it in <code>localStorage</code>, any script on the page can read it. A safer choice is a <strong>cookie</strong> with the <code>httpOnly</code> flag. The browser sends it automatically with each request, but JavaScript on the page cannot read it. Add <code>sameSite: 'strict'</code> to reduce cross-site attacks, and <code>secure: true</code> in production so it is sent only over HTTPS. Install <code>cookie-parser</code> so Express fills <code>req.cookies</code>.</p>\n<p>To <strong>protect a route</strong>, write a middleware (like in the middleware lesson). It reads the token from the cookie, verifies it, saves the user in <code>req.user</code> and calls <code>next()</code>. If anything is wrong it answers <code>401</code> (not logged in). Then put it in front of any route: <code>app.get('/profile', protect, handler)</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>Keeping secrets in .env</h2>\n<p>The secret key must never be written inside your code or pushed to Git. Put it in a file called <code>.env</code>, with lines like <code>JWT_SECRET=some-long-random-text</code>, and add <code>.env</code> to <code>.gitignore</code>. Node 20.6 and newer can load it with <code>node --env-file=.env app.js</code>. Then read values with <code>process.env.JWT_SECRET</code>. The same place is good for your database URL.</p>\n<p>The demo uses a fixed user for simplicity. In a real app you would find the user in MongoDB and use <code>bcrypt.compare</code>. Watch the four requests: no cookie, wrong password, correct login, and then the cookie (saved by <code>curl</code> in <code>jar.txt</code>) opening the protected route.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "import express from 'express';\nimport cookieParser from 'cookie-parser';\nimport jwt from 'jsonwebtoken';\n\nconst app = express();\napp.use(express.json());\napp.use(cookieParser());\n\nconst JWT_SECRET = process.env.JWT_SECRET;\n\napp.post('/login', (req, res) => {\n  const { username, password } = req.body;\n  if (username !== 'ali' || password !== 'pass123') {\n    return res.status(401).json({ error: 'Invalid credentials' });\n  }\n  const token = jwt.sign({ id: 1, username }, JWT_SECRET, { expiresIn: '15m' });\n  res.cookie('token', token, { httpOnly: true, sameSite: 'strict' });\n  res.json({ message: 'Logged in' });\n});\n\nfunction protect(req, res, next) {\n  const token = req.cookies.token;\n  if (!token) return res.status(401).json({ error: 'Please log in' });\n  try {\n    req.user = jwt.verify(token, JWT_SECRET);\n    next();\n  } catch {\n    res.status(401).json({ error: 'Invalid or expired token' });\n  }\n}\n\napp.get('/profile', protect, (req, res) => {\n  res.json({ hello: req.user.username });\n});\n\napp.listen(3000, () => console.log('Auth server on 3000'));",
+     "output": "# Terminal 1 (server)\n$ node --env-file=.env app.js\nAuth server on 3000\n\n# Terminal 2 (client)\n$ curl -s -w '  [%{http_code}]\\n' 'localhost:3000/profile'\n{\"error\":\"Please log in\"}  [401]\n$ curl -s -X POST -H 'Content-Type: application/json' -d '{\"username\":\"ali\",\"password\":\"wrong\"}' -w '  [%{http_code}]\\n' localhost:3000/login\n{\"error\":\"Invalid credentials\"}  [401]\n$ curl -s -c jar.txt -X POST -H 'Content-Type: application/json' -d '{\"username\":\"ali\",\"password\":\"pass123\"}' -w '  [%{http_code}]\\n' localhost:3000/login\n{\"message\":\"Logged in\"}  [200]\n$ curl -s -b jar.txt -w '  [%{http_code}]\\n' 'localhost:3000/profile'\n{\"hello\":\"ali\"}  [200]"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Saving plain passwords, or hashing with a fast hash like plain SHA instead of bcrypt.</li>\n<li>Putting the JWT secret in the code or in Git.</li>\n<li>Telling the user whether the username or the password was wrong. Use one message: \"Invalid credentials\".</li>\n<li>Storing sensitive data in a JWT payload. It is readable by anyone.</li>\n<li>Forgetting <code>cookieParser()</code>, so <code>req.cookies</code> is empty.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Hash passwords with <code>bcrypt.hash</code> and check with <code>bcrypt.compare</code>.</li>\n<li>A JWT is signed, not secret: <code>jwt.sign</code> to create, <code>jwt.verify</code> to check.</li>\n<li>Store the token in an <code>httpOnly</code> cookie.</li>\n<li>A <code>protect</code> middleware returns 401 or calls <code>next()</code>.</li>\n<li>Keep secrets in <code>.env</code> and out of Git.</li>\n</ul>\n</div>\n</div>"
+    }
+   ]
+  }
+ ]
+}

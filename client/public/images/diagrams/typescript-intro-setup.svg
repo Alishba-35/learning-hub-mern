@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 212" width="720" height="212" role="img" aria-labelledby="t d">
+  <title id="t">From TypeScript to a running program</title>
+  <desc id="d">hello.ts is checked and compiled by tsc into hello.js, which Node.js runs to print the output.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7dd3fc"/></marker></defs>
+  <rect width="720" height="212" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#7dd3fc" text-anchor="middle">From TypeScript to a running program</text>
+  <rect x="26.0" y="60.0" width="106.4" height="87.0" rx="10" fill="#0f172a" stroke="#7dd3fc" stroke-width="1.6"/>
+  <text x="79.2" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">hello.ts</text>
+  <text x="79.2" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">You write</text>
+  <text x="79.2" y="123.1" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">types + code</text>
+  <line x1="135.4" y1="103.5" x2="163.4" y2="103.5" stroke="#7dd3fc" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="166.4" y="60.0" width="106.4" height="87.0" rx="10" fill="#0f172a" stroke="#7dd3fc" stroke-width="1.6"/>
+  <text x="219.6" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">tsc</text>
+  <text x="219.6" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Checks types,</text>
+  <text x="219.6" y="123.1" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">removes them</text>
+  <line x1="275.8" y1="103.5" x2="303.8" y2="103.5" stroke="#7dd3fc" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="306.8" y="60.0" width="106.4" height="87.0" rx="10" fill="#0f172a" stroke="#7dd3fc" stroke-width="1.6"/>
+  <text x="360.0" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">hello.js</text>
+  <text x="360.0" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Plain</text>
+  <text x="360.0" y="123.1" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">JavaScript</text>
+  <line x1="416.2" y1="103.5" x2="444.2" y2="103.5" stroke="#7dd3fc" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="447.2" y="60.0" width="106.4" height="87.0" rx="10" fill="#0f172a" stroke="#7dd3fc" stroke-width="1.6"/>
+  <text x="500.4" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Node.js</text>
+  <text x="500.4" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Runs the</text>
+  <text x="500.4" y="123.1" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">JavaScript</text>
+  <line x1="556.6" y1="103.5" x2="584.6" y2="103.5" stroke="#7dd3fc" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="587.6" y="60.0" width="106.4" height="87.0" rx="10" fill="#0f172a" stroke="#7dd3fc" stroke-width="1.6"/>
+  <text x="640.8" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Output</text>
+  <text x="640.8" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Program prints</text>
+  <text x="360.0" y="173.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">If tsc finds a type error, it reports it before the program ever runs.</text>
+</svg>

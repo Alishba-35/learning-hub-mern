@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 268" width="720" height="268" role="img" aria-labelledby="t d">
+  <title id="t">Local and remote repository</title>
+  <desc id="d">git push sends commits from the local repository to origin on GitHub, and git pull brings new commits back.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#fdba74"/></marker></defs>
+  <rect width="720" height="268" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#fdba74" text-anchor="middle">Local and remote repository</text>
+  <text x="360.0" y="58.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">origin is the usual name of the GitHub copy</text>
+  <rect x="40.0" y="88.0" width="220.0" height="130.0" rx="10" fill="#0f172a" stroke="#fdba74" stroke-width="1.6"/>
+  <text x="150.0" y="116.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#fdba74" text-anchor="middle">Your computer</text>
+  <text x="150.0" y="140.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#94a3b8" text-anchor="middle">local repository</text>
+  <text x="150.0" y="180.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">main</text>
+  <rect x="460.0" y="88.0" width="220.0" height="130.0" rx="10" fill="#0f172a" stroke="#fdba74" stroke-width="1.6"/>
+  <text x="570.0" y="116.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#fdba74" text-anchor="middle">GitHub</text>
+  <text x="570.0" y="140.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#94a3b8" text-anchor="middle">remote: origin</text>
+  <text x="570.0" y="180.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">origin/main</text>
+  <line x1="264.0" y1="136.0" x2="456.0" y2="136.0" stroke="#fdba74" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="360.0" y="128.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="700" fill="#e2e8f0" text-anchor="middle">git push origin main</text>
+  <line x1="456.0" y1="192.0" x2="264.0" y2="192.0" stroke="#fdba74" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="360.0" y="184.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="700" fill="#e2e8f0" text-anchor="middle">git pull</text>
+  <text x="360.0" y="210.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">git clone copies it the first time</text>
+  <text x="360.0" y="246.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Push sends your commits up. Pull brings new commits down.</text>
+</svg>

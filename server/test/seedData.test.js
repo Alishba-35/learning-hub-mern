@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(here, '../src/seed/data');
 const clientPublic = path.join(process.cwd(), '../client/public'); // npm test server folder se chalta hai
-const expected = { html: 8, css: 12, javascript: 16, cpp: 20, python: 9, java: 9, sql: 8 };
+const expected = { html: 8, css: 12, javascript: 16, cpp: 20, python: 9, java: 9, sql: 8, c: 8, dsa: 8, typescript: 8, react: 8, nodejs: 8, git: 8 };
 
 const languages = fs
   .readdirSync(dataDir)
@@ -87,7 +87,7 @@ test('the new lessons exist and have real content', () => {
     sql: ['intro', 'joins', 'subqueries', 'keys-constraints'],
   };
   for (const l of languages) {
-    for (const slug of must[l.slug]) {
+    for (const slug of must[l.slug] ?? []) {
       const t = l.topics.find((x) => x.slug === slug);
       assert.ok(t, `${l.slug}/${slug} missing`);
       const text = t.blocks.map((b) => b.html || b.code).join(' ');
@@ -104,5 +104,19 @@ test('the language cards in the client match the seeded languages (when the clie
     assert.equal(card.name, lang.name, `${card.slug}: name`);
     assert.equal(card.color, lang.color, `${card.slug}: colour`);
     assert.ok(fs.existsSync(path.join(process.cwd(), '../client/public', card.image)), `${card.slug}: image ${card.image} is missing`);
+  }
+});
+
+test('the newer languages have rich lessons: a demo, enough text and balanced html', () => {
+  for (const l of languages.filter((x) => ['c', 'dsa', 'typescript', 'react', 'nodejs', 'git'].includes(x.slug))) {
+    for (const t of l.topics) {
+      const html = t.blocks.filter((b) => b.kind === 'html').map((b) => b.html).join('');
+      const words = html.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+      assert.ok(words >= 200, `${l.slug}/${t.slug}: only ${words} words`);
+      assert.ok(t.blocks.some((b) => b.kind === 'demo'), `${l.slug}/${t.slug}: no demo block`);
+      const open = (html.match(/<div[\s>]/g) || []).length;
+      const close = (html.match(/<\/div>/g) || []).length;
+      assert.equal(open, close, `${l.slug}/${t.slug}: unbalanced <div>`);
+    }
   }
 });

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 311" width="720" height="311" role="img" aria-labelledby="t d">
+  <title id="t">How if / else decides</title>
+  <desc id="d">A decision diamond: if marks &gt;= 50 is true print Pass, otherwise print Fail.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#fb923c"/></marker></defs>
+  <rect width="720" height="311" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#fb923c" text-anchor="middle">How if / else decides</text>
+  <polygon points="360.0,60 490.0,108 360.0,156 230.0,108" fill="#0f172a" stroke="#fb923c" stroke-width="1.6"/>
+  <text x="360.0" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13.5" font-weight="700" fill="#e2e8f0" text-anchor="middle">marks &gt;= 50</text>
+  <line x1="228.0" y1="108.0" x2="140.0" y2="108.0" stroke="#fb923c" stroke-width="2"/>
+  <line x1="140.0" y1="108.0" x2="140.0" y2="182.0" stroke="#fb923c" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="184.0" y="100.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="700" fill="#4ade80" text-anchor="middle">true</text>
+  <line x1="492.0" y1="108.0" x2="580.0" y2="108.0" stroke="#fb923c" stroke-width="2"/>
+  <line x1="580.0" y1="108.0" x2="580.0" y2="182.0" stroke="#fb923c" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="536.0" y="100.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="700" fill="#f87171" text-anchor="middle">false</text>
+  <rect x="25.0" y="184.0" width="230.0" height="60.0" rx="10" fill="#0f172a" stroke="#4ade80" stroke-width="1.6"/>
+  <text x="140.0" y="208.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="700" fill="#e2e8f0" text-anchor="middle">System.out.println(&quot;Pass&quot;);</text>
+  <rect x="465.0" y="184.0" width="230.0" height="60.0" rx="10" fill="#0f172a" stroke="#f87171" stroke-width="1.6"/>
+  <text x="580.0" y="208.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="700" fill="#e2e8f0" text-anchor="middle">System.out.println(&quot;Fail&quot;);</text>
+  <text x="360.0" y="272.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Java evaluates the condition once and runs exactly one of the two branches.</text>
+</svg>

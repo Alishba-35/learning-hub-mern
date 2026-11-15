@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 326" width="720" height="326" role="img" aria-labelledby="t d">
+  <title id="t">Stack (LIFO) and queue (FIFO)</title>
+  <desc id="d">A stack of three pages with push and pop at the top, and a queue of three names with append at the back and popleft at the front.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6ee7b7"/></marker></defs>
+  <rect width="720" height="326" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#6ee7b7" text-anchor="middle">Stack (LIFO) and queue (FIFO)</text>
+  <text x="150.0" y="70.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#6ee7b7" text-anchor="middle">Stack: last in, first out</text>
+  <rect x="80.0" y="150.0" width="140.0" height="36.0" rx="4" fill="#14352b" stroke="#4ade80" stroke-width="1.6"/>
+  <text x="150.0" y="174.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">page3</text>
+  <rect x="80.0" y="190.0" width="140.0" height="36.0" rx="4" fill="#0f172a" stroke="#6ee7b7" stroke-width="1.6"/>
+  <text x="150.0" y="214.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">page2</text>
+  <rect x="80.0" y="230.0" width="140.0" height="36.0" rx="4" fill="#0f172a" stroke="#6ee7b7" stroke-width="1.6"/>
+  <text x="150.0" y="254.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">page1</text>
+  <text x="232.0" y="174.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#4ade80" text-anchor="start">top</text>
+  <line x1="110.0" y1="94.0" x2="110.0" y2="144.0" stroke="#6ee7b7" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="104.0" y="88.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="700" fill="#e2e8f0" text-anchor="end">push</text>
+  <line x1="190.0" y1="144.0" x2="190.0" y2="94.0" stroke="#f87171" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="196.0" y="88.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="700" fill="#e2e8f0" text-anchor="start">pop</text>
+  <line x1="72.0" y1="146.0" x2="72.0" y2="270.0" stroke="#334155" stroke-width="3"/>
+  <line x1="228.0" y1="146.0" x2="228.0" y2="270.0" stroke="#334155" stroke-width="3"/>
+  <text x="500.0" y="70.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#6ee7b7" text-anchor="middle">Queue: first in, first out</text>
+  <rect x="340.0" y="132.0" width="94.0" height="44.0" rx="4" fill="#14352b" stroke="#4ade80" stroke-width="1.6"/>
+  <text x="387.0" y="160.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">Ali</text>
+  <rect x="440.0" y="132.0" width="94.0" height="44.0" rx="4" fill="#0f172a" stroke="#6ee7b7" stroke-width="1.6"/>
+  <text x="487.0" y="160.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">Sara</text>
+  <rect x="540.0" y="132.0" width="94.0" height="44.0" rx="4" fill="#0f172a" stroke="#6ee7b7" stroke-width="1.6"/>
+  <text x="587.0" y="160.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="middle">Omar</text>
+  <text x="387.0" y="198.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#4ade80" text-anchor="middle">front</text>
+  <text x="587.0" y="198.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#94a3b8" text-anchor="middle">back</text>
+  <line x1="387.0" y1="126.0" x2="387.0" y2="90.0" stroke="#f87171" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="395.0" y="98.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="700" fill="#e2e8f0" text-anchor="start">popleft</text>
+  <line x1="587.0" y1="90.0" x2="587.0" y2="126.0" stroke="#6ee7b7" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="595.0" y="98.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="700" fill="#e2e8f0" text-anchor="start">append</text>
+  <text x="500.0" y="237.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Ali is served first, Omar waits longest</text>
+  <text x="360.0" y="296.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Stack: push and pop at the same end (the top). Queue: add at the back, remove</text>
+  <text x="360.0" y="312.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">from the front.</text>
+</svg>

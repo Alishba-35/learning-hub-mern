@@ -1121,3 +1121,37 @@
 .lesson--javascript .content-image:hover {
   transform: scale(1.1);
 }
+/* YouTube players added from server/src/seed/videos.json (responsive 16:9) */
+.lesson .video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 12px 0;
+}
+.lesson .video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 10px;
+}
+
+/* Diagrams (figure) and videos inside a lesson */
+.lesson .lesson-figure {
+  margin: 18px 0;
+  text-align: center;
+}
+.lesson .lesson-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+.lesson .lesson-figure figcaption {
+  margin-top: 8px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+.lesson .lesson-video h3 {
+  margin: 18px 0 8px;
+}

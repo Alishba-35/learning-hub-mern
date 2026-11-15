@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 317" width="720" height="317" role="img" aria-labelledby="t d">
+  <title id="t">Common utility types</title>
+  <desc id="d">Table of Partial, Pick, Omit, Readonly and Record with what each one builds from a type.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7dd3fc"/></marker></defs>
+  <rect width="720" height="317" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#7dd3fc" text-anchor="middle">Common utility types</text>
+  <rect x="30.0" y="60.0" width="175.3" height="32.0" rx="0" fill="#7dd3fc" stroke="#7dd3fc" stroke-width="1"/>
+  <text x="117.7" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Utility</text>
+  <rect x="205.3" y="60.0" width="216.6" height="32.0" rx="0" fill="#7dd3fc" stroke="#7dd3fc" stroke-width="1"/>
+  <text x="313.6" y="81.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Result</text>
+  <rect x="421.9" y="60.0" width="268.1" height="32.0" rx="0" fill="#7dd3fc" stroke="#7dd3fc" stroke-width="1"/>
+  <text x="555.9" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Example</text>
+  <rect x="30.0" y="92.0" width="175.3" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="117.7" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Partial&lt;T&gt;</text>
+  <rect x="205.3" y="92.0" width="216.6" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="313.6" y="113.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">all props optional</text>
+  <rect x="421.9" y="92.0" width="268.1" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="555.9" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Partial&lt;User&gt;</text>
+  <rect x="30.0" y="124.0" width="175.3" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="117.7" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Pick&lt;T, K&gt;</text>
+  <rect x="205.3" y="124.0" width="216.6" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="313.6" y="145.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">only listed props</text>
+  <rect x="421.9" y="124.0" width="268.1" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="555.9" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Pick&lt;User, &quot;id&quot;&gt;</text>
+  <rect x="30.0" y="156.0" width="175.3" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="117.7" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Omit&lt;T, K&gt;</text>
+  <rect x="205.3" y="156.0" width="216.6" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="313.6" y="177.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">all except listed</text>
+  <rect x="421.9" y="156.0" width="268.1" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="555.9" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Omit&lt;User, &quot;pw&quot;&gt;</text>
+  <rect x="30.0" y="188.0" width="175.3" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="117.7" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Readonly&lt;T&gt;</text>
+  <rect x="205.3" y="188.0" width="216.6" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="313.6" y="209.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">no re-assigning</text>
+  <rect x="421.9" y="188.0" width="268.1" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="555.9" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Readonly&lt;User&gt;</text>
+  <rect x="30.0" y="220.0" width="175.3" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="117.7" y="241.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Record&lt;K, V&gt;</text>
+  <rect x="205.3" y="220.0" width="216.6" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="313.6" y="241.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">object with key type K</text>
+  <rect x="421.9" y="220.0" width="268.1" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="555.9" y="241.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Record&lt;string, number&gt;</text>
+  <text x="360.0" y="278.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Share types between files with export and import.</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 212" width="720" height="212" role="img" aria-labelledby="t d">
+  <title id="t">How Python runs your code</title>
+  <desc id="d">hello.py is read by the Python interpreter which runs it and prints the output.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#60a5fa"/></marker></defs>
+  <rect width="720" height="212" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#60a5fa" text-anchor="middle">How Python runs your code</text>
+  <rect x="26.0" y="60.0" width="200.0" height="87.0" rx="10" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="126.0" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">hello.py</text>
+  <text x="126.0" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Your source code</text>
+  <line x1="229.0" y1="103.5" x2="257.0" y2="103.5" stroke="#60a5fa" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="260.0" y="60.0" width="200.0" height="87.0" rx="10" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="360.0" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Python</text>
+  <text x="360.0" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">The interpreter reads and</text>
+  <text x="360.0" y="123.1" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">runs it</text>
+  <line x1="463.0" y1="103.5" x2="491.0" y2="103.5" stroke="#60a5fa" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="494.0" y="60.0" width="200.0" height="87.0" rx="10" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="594.0" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Output</text>
+  <text x="594.0" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Hello, Learning Hub!</text>
+  <text x="360.0" y="173.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">No separate compile command is needed: python hello.py runs the file directly.</text>
+</svg>

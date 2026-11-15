@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 345" width="720" height="345" role="img" aria-labelledby="t d">
+  <title id="t">One interface, many objects</title>
+  <desc id="d">An interface Course with code, title and optional credits, and three objects that follow it.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7dd3fc"/></marker></defs>
+  <rect width="720" height="345" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#7dd3fc" text-anchor="middle">One interface, many objects</text>
+  <rect x="30.0" y="60.0" width="250.0" height="142.0" rx="10" fill="#0f172a" stroke="#7dd3fc" stroke-width="1.6"/>
+  <text x="155.0" y="84.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="15" font-weight="700" fill="#7dd3fc" text-anchor="middle">interface Course</text>
+  <line x1="40.0" y1="94.0" x2="270.0" y2="94.0" stroke="#334155" stroke-width="1"/>
+  <text x="44.0" y="114.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="start">readonly code: string;</text>
+  <text x="44.0" y="134.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="start">title: string;</text>
+  <text x="44.0" y="154.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="start">credits?: number;</text>
+  <line x1="40.0" y1="166.0" x2="270.0" y2="166.0" stroke="#334155" stroke-width="1"/>
+  <text x="44.0" y="184.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="start">(shape only, no code)</text>
+  <rect x="360.0" y="60.0" width="330.0" height="62.0" rx="8" fill="#0f172a" stroke="#7dd3fc" stroke-width="1.6"/>
+  <text x="374.0" y="84.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#7dd3fc" text-anchor="start">db</text>
+  <text x="374.0" y="106.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="start">{ code: &quot;CS-201&quot;, title: &quot;Databases&quot; }</text>
+  <line x1="284.0" y1="131.0" x2="356.0" y2="91.0" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <rect x="360.0" y="136.0" width="330.0" height="62.0" rx="8" fill="#0f172a" stroke="#7dd3fc" stroke-width="1.6"/>
+  <text x="374.0" y="160.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#7dd3fc" text-anchor="start">dm</text>
+  <text x="374.0" y="182.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="start">{ code: &quot;CS-105&quot;, title: &quot;DM&quot;, credits: 3 }</text>
+  <line x1="284.0" y1="131.0" x2="356.0" y2="167.0" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <rect x="360.0" y="212.0" width="330.0" height="62.0" rx="8" fill="#0f172a" stroke="#7dd3fc" stroke-width="1.6"/>
+  <text x="374.0" y="236.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#7dd3fc" text-anchor="start">se</text>
+  <text x="374.0" y="258.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="start">{ code: &quot;SE-310&quot;, title: &quot;Architecture&quot; }</text>
+  <line x1="284.0" y1="131.0" x2="356.0" y2="243.0" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <text x="155.0" y="222.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">must match</text>
+  <text x="360.0" y="306.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">The interface is a checked shape. It disappears when compiled to JavaScript.</text>
+</svg>

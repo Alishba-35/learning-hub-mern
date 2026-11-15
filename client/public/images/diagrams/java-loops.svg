@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 402" width="720" height="402" role="img" aria-labelledby="t d">
+  <title id="t">How a for loop repeats</title>
+  <desc id="d">Loop flow: initialise i, check i &lt; 5, run the body, increase i, check again, exit when false.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#fb923c"/></marker></defs>
+  <rect width="720" height="402" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#fb923c" text-anchor="middle">How a for loop repeats</text>
+  <rect x="160.0" y="60.0" width="240.0" height="38.0" rx="10" fill="#0f172a" stroke="#fb923c" stroke-width="1.6"/>
+  <text x="280.0" y="84.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">int i = 0</text>
+  <line x1="280.0" y1="100.0" x2="280.0" y2="124.0" stroke="#fb923c" stroke-width="2" marker-end="url(#arr)"/>
+  <polygon points="280.0,124 390.0,166 280.0,208 170.0,166" fill="#0f172a" stroke="#fb923c" stroke-width="1.6"/>
+  <text x="280.0" y="171.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">i &lt; 5</text>
+  <line x1="392.0" y1="166.0" x2="470.0" y2="166.0" stroke="#fb923c" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="430.0" y="158.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="700" fill="#4ade80" text-anchor="middle">true</text>
+  <rect x="472.0" y="142.0" width="170.0" height="48.0" rx="10" fill="#0f172a" stroke="#fb923c" stroke-width="1.6"/>
+  <text x="557.0" y="162.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="700" fill="#e2e8f0" text-anchor="middle">println(i);</text>
+  <line x1="557.0" y1="192.0" x2="557.0" y2="234.0" stroke="#fb923c" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="472.0" y="236.0" width="170.0" height="40.0" rx="10" fill="#0f172a" stroke="#fb923c" stroke-width="1.6"/>
+  <text x="557.0" y="261.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="700" fill="#e2e8f0" text-anchor="middle">i++</text>
+  <line x1="557.0" y1="278.0" x2="557.0" y2="314.0" stroke="#fb923c" stroke-width="2" stroke-dasharray="6 5"/>
+  <line x1="557.0" y1="314.0" x2="115.0" y2="314.0" stroke="#fb923c" stroke-width="2" stroke-dasharray="6 5"/>
+  <line x1="115.0" y1="314.0" x2="115.0" y2="166.0" stroke="#fb923c" stroke-width="2" stroke-dasharray="6 5"/>
+  <line x1="115.0" y1="166.0" x2="167.0" y2="166.0" stroke="#fb923c" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <text x="340.0" y="307.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">next round</text>
+  <line x1="280.0" y1="210.0" x2="280.0" y2="254.0" stroke="#fb923c" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="308.0" y="236.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="700" fill="#f87171" text-anchor="middle">false</text>
+  <rect x="200.0" y="256.0" width="160.0" height="36.0" rx="10" fill="#0f172a" stroke="#f87171" stroke-width="1.6"/>
+  <text x="280.0" y="279.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Exit loop</text>
+  <text x="360.0" y="346.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Java checks the condition before every round. When it becomes false, the loop</text>
+  <text x="360.0" y="362.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">ends.</text>
+</svg>

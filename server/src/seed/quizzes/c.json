@@ -1,0 +1,280 @@
+{
+ "languageSlug": "c",
+ "quizzes": [
+  {
+   "slug": "c-getting-started",
+   "title": "Getting Started Checkpoint",
+   "section": "Getting Started",
+   "order": 1,
+   "description": "Covers: Introduction to C; Variables, Types & Input/Output; Operators & Conditions.",
+   "questions": [
+    {
+     "id": "c-getting-started-1",
+     "type": "choice",
+     "prompt": "Which command compiles hello.c into a program called hello?",
+     "options": [
+      "./hello hello.c",
+      "gcc hello.c -o hello",
+      "compile hello.c hello",
+      "gcc hello -o hello.c"
+     ],
+     "correctIndex": 1,
+     "explanation": "gcc is the compiler. The -o option names the output file, so gcc hello.c -o hello creates the program hello."
+    },
+    {
+     "id": "c-getting-started-2",
+     "type": "choice",
+     "prompt": "What does this program print?",
+     "code": "int a = 7, b = 2;\nprintf(\"%d\\n\", a / b);",
+     "codeLanguage": "c",
+     "options": [
+      "3.5",
+      "4",
+      "3",
+      "2"
+     ],
+     "correctIndex": 2,
+     "explanation": "Both a and b are int, so C throws away the decimal part. 7 / 2 gives 3."
+    },
+    {
+     "id": "c-getting-started-3",
+     "type": "choice",
+     "prompt": "Which line correctly reads an int into the variable age?",
+     "options": [
+      "scanf(\"%d\", age);",
+      "scanf(\"%f\", &age);",
+      "scanf(\"%c\", age);",
+      "scanf(\"%d\", &age);"
+     ],
+     "correctIndex": 3,
+     "explanation": "scanf needs the address of the variable, so you write &age. %d is the specifier for int."
+    },
+    {
+     "id": "c-getting-started-4",
+     "type": "choice",
+     "prompt": "What does this code print?",
+     "code": "char c = 'A';\nprintf(\"%c %d\\n\", c, c);",
+     "codeLanguage": "c",
+     "options": [
+      "A A",
+      "65 65",
+      "A 65",
+      "65 A"
+     ],
+     "correctIndex": 2,
+     "explanation": "A char is a small number. %c shows the letter and %d shows its code, which is 65 for 'A' in ASCII."
+    },
+    {
+     "id": "c-getting-started-5",
+     "type": "fill",
+     "prompt": "Fill in the operator that tests whether x is equal to 5.",
+     "code": "if (x ____ 5) {\n    printf(\"five\\n\");\n}",
+     "codeLanguage": "c",
+     "answers": [
+      "=="
+     ],
+     "caseSensitive": true,
+     "explanation": "Use == to compare. A single = assigns a value instead of comparing."
+    },
+    {
+     "id": "c-getting-started-6",
+     "type": "choice",
+     "prompt": "What happens if you forget break at the end of a switch case?",
+     "options": [
+      "The program does not compile",
+      "The program keeps running into the next case",
+      "The switch ends anyway",
+      "Only the first case ever runs"
+     ],
+     "correctIndex": 1,
+     "explanation": "Without break C falls through and runs the code of the next case too. This is called fall-through."
+    }
+   ]
+  },
+  {
+   "slug": "c-control-functions",
+   "title": "Control & Functions Checkpoint",
+   "section": "Control & Functions",
+   "order": 2,
+   "description": "Covers: Loops; Functions; Arrays & Strings.",
+   "questions": [
+    {
+     "id": "c-control-functions-1",
+     "type": "choice",
+     "prompt": "What does this loop print?",
+     "code": "for (int i = 0; i < 3; i++) {\n    printf(\"%d \", i);\n}",
+     "codeLanguage": "c",
+     "options": [
+      "1 2 3 ",
+      "0 1 2 3 ",
+      "0 1 2 ",
+      "0 1 "
+     ],
+     "correctIndex": 2,
+     "explanation": "i starts at 0 and the loop continues while i < 3, so it prints 0, 1 and 2."
+    },
+    {
+     "id": "c-control-functions-2",
+     "type": "choice",
+     "prompt": "How many times does the body of this loop run?",
+     "code": "int k = 10;\ndo {\n    printf(\"hi\\n\");\n    k++;\n} while (k < 5);",
+     "codeLanguage": "c",
+     "options": [
+      "0 times",
+      "1 time",
+      "5 times",
+      "It never stops"
+     ],
+     "correctIndex": 1,
+     "explanation": "A do-while loop runs the body first and checks the condition afterwards, so it always runs at least once."
+    },
+    {
+     "id": "c-control-functions-3",
+     "type": "choice",
+     "prompt": "What does this program print?",
+     "code": "void add_one(int n) {\n    n = n + 1;\n}\n\nint main(void) {\n    int a = 5;\n    add_one(a);\n    printf(\"%d\\n\", a);\n    return 0;\n}",
+     "codeLanguage": "c",
+     "options": [
+      "6",
+      "5",
+      "0",
+      "It does not compile"
+     ],
+     "correctIndex": 1,
+     "explanation": "C passes arguments by value. The function changes its own copy, so a in main is still 5."
+    },
+    {
+     "id": "c-control-functions-4",
+     "type": "choice",
+     "prompt": "What is the value of sizeof(s) here?",
+     "code": "char s[] = \"Hi\";",
+     "codeLanguage": "c",
+     "options": [
+      "2",
+      "3",
+      "4",
+      "It depends on the compiler"
+     ],
+     "correctIndex": 1,
+     "explanation": "The string \"Hi\" has 2 letters plus the null terminator '\\0', so the array has 3 bytes."
+    },
+    {
+     "id": "c-control-functions-5",
+     "type": "fill",
+     "prompt": "Fill in the return type of a function that returns nothing.",
+     "code": "____ greet(void) {\n    printf(\"Hello\\n\");\n}",
+     "codeLanguage": "c",
+     "answers": [
+      "void"
+     ],
+     "caseSensitive": true,
+     "explanation": "void means the function does not return a value."
+    },
+    {
+     "id": "c-control-functions-6",
+     "type": "choice",
+     "prompt": "Which is the correct way to check that two strings have the same letters?",
+     "options": [
+      "a == b",
+      "strcmp(a, b) == 0",
+      "strlen(a) = strlen(b)",
+      "strcpy(a, b) == 0"
+     ],
+     "correctIndex": 1,
+     "explanation": "The == operator compares addresses, not letters. strcmp returns 0 when the two strings are equal."
+    }
+   ]
+  },
+  {
+   "slug": "c-memory-data",
+   "title": "Memory & Data Checkpoint",
+   "section": "Memory & Data",
+   "order": 3,
+   "description": "Covers: Pointers; Structs, Memory & Files.",
+   "questions": [
+    {
+     "id": "c-memory-data-1",
+     "type": "choice",
+     "prompt": "What does this program print?",
+     "code": "int x = 5;\nint *p = &x;\n*p = 8;\nprintf(\"%d\\n\", x);",
+     "codeLanguage": "c",
+     "options": [
+      "5",
+      "8",
+      "The address of x",
+      "It does not compile"
+     ],
+     "correctIndex": 1,
+     "explanation": "p points to x, so *p = 8 changes x itself. x is now 8."
+    },
+    {
+     "id": "c-memory-data-2",
+     "type": "choice",
+     "prompt": "What does this program print?",
+     "code": "int a[3] = {10, 20, 30};\nint *p = a;\nprintf(\"%d\\n\", *(p + 2));",
+     "codeLanguage": "c",
+     "options": [
+      "10",
+      "20",
+      "30",
+      "40"
+     ],
+     "correctIndex": 2,
+     "explanation": "Adding 2 to p moves it two items forward, so *(p + 2) is a[2], which is 30."
+    },
+    {
+     "id": "c-memory-data-3",
+     "type": "choice",
+     "prompt": "sp is a pointer to a struct Student. How do you read its roll member?",
+     "options": [
+      "sp.roll",
+      "sp->roll",
+      "*sp->roll",
+      "sp::roll"
+     ],
+     "correctIndex": 1,
+     "explanation": "Use the arrow -> with a pointer to a struct. sp->roll means the same as (*sp).roll."
+    },
+    {
+     "id": "c-memory-data-4",
+     "type": "choice",
+     "prompt": "You called int *nums = malloc(5 * sizeof(int)); What should you do when you no longer need the memory?",
+     "options": [
+      "free(nums);",
+      "delete nums;",
+      "nums = 0;",
+      "fclose(nums);"
+     ],
+     "correctIndex": 0,
+     "explanation": "Memory from malloc must be given back with free. Otherwise the program has a memory leak."
+    },
+    {
+     "id": "c-memory-data-5",
+     "type": "fill",
+     "prompt": "Fill in the file mode that adds text to the end of a file without erasing it.",
+     "code": "FILE *f = fopen(\"log.txt\", \"____\");",
+     "codeLanguage": "c",
+     "answers": [
+      "a",
+      "\"a\""
+     ],
+     "caseSensitive": true,
+     "explanation": "Mode \"a\" means append. Mode \"w\" would empty the file first."
+    },
+    {
+     "id": "c-memory-data-6",
+     "type": "choice",
+     "prompt": "What does fopen return when it cannot open the file?",
+     "options": [
+      "0 bytes",
+      "-1",
+      "NULL",
+      "An empty string"
+     ],
+     "correctIndex": 2,
+     "explanation": "fopen returns NULL on failure, so always check the result before you use the FILE pointer."
+    }
+   ]
+  }
+ ]
+}

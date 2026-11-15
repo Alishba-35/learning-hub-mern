@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Git & GitHub">
+  <rect width="400" height="300" fill="#0f172a"/>
+  <rect x="20" y="20" width="360" height="260" rx="24" fill="#c0482d"/>
+  <text x="200" y="178" text-anchor="middle" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="80" font-weight="700" fill="#ffffff">git</text>
+  <text x="200" y="262" text-anchor="middle" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="22" fill="#ffffff" fill-opacity="0.85">Git &amp; GitHub</text>
+</svg>

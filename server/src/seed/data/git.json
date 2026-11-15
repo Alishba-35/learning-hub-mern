@@ -1,0 +1,499 @@
+{
+ "slug": "git",
+ "name": "Git & GitHub",
+ "description": "Git tracks every change to your code, and GitHub lets you share it and work together with a team.",
+ "color": "#c0482d",
+ "order": 13,
+ "topics": [
+  {
+   "slug": "intro-setup",
+   "title": "What is Git? Install and Setup",
+   "section": "Getting Started",
+   "order": 1,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>What is Git? Install and Setup</h1>\n<div class=\"card\">\n<h2>What is Git?</h2>\n<p><strong>Git</strong> is a <strong>version control system</strong>. It watches the files in a project folder and remembers every change you save, like an unlimited \"undo\" history for your whole project. Each saved moment is called a <strong>commit</strong>. If you break something on Tuesday, you can go back to how the project looked on Monday.</p>\n<p>Git also helps teams. Five students can work on the same project at the same time, and Git combines their work. Without it, people end up with folders named <code>final</code>, <code>final2</code> and <code>final-REAL</code>.</p>\n<p>Git and GitHub are <em>not</em> the same thing. <strong>Git</strong> is a free program that runs on your own computer. <strong>GitHub</strong> is a website that stores Git projects online so you can share them. You can use Git without GitHub, but not GitHub without Git.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Files move from the working directory to the staging area with git add, then to the repository with git commit.\" class=\"content-image\" src=\"/images/diagrams/git-intro-setup.svg\"/><figcaption>Edit, stage with git add, then save with git commit.</figcaption></figure>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Install and Configure Git</h2>\n<p>Download Git from <a href=\"https://git-scm.com\">git-scm.com</a> and install it with the default options. Then open a terminal (on Windows, use Git Bash) and check that it works with <code>git --version</code>.</p>\n<p>Before your first commit, tell Git who you are. Your name and email are stored in every commit you make. You only do this once per computer, using <code>git config --global</code>. We also set <code>main</code> as the default branch name for new projects.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "git --version\ngit config --global user.name \"Sara Ahmed\"\ngit config --global user.email \"sara@example.com\"\ngit config --global init.defaultBranch main\ngit config --global --list",
+     "output": "git version 2.43.0\nuser.name=Sara Ahmed\nuser.email=sara@example.com\ninit.defaultbranch=main"
+    },
+    {
+     "kind": "html",
+     "html": "<p>Your version number will be different, and that is fine. Notice that Git prints the setting name <code>init.defaultbranch</code> in lowercase when it lists them.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Your First Repository</h2>\n<p>A <strong>repository</strong> (or \"repo\") is a project folder that Git is tracking. Go inside a folder and run <code>git init</code>. Git creates a hidden folder called <code>.git</code>. This is where Git keeps the whole history. Never edit or delete it by hand: if you delete <code>.git</code>, the history is gone and the folder is just a normal folder again.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "mkdir notes\ncd notes\ngit init\nls -a",
+     "output": "Initialized empty Git repository in /home/student/notes/.git/\n.\n..\n.git"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>The Three Areas</h2>\n<p>The most important idea in Git is that your files live in <strong>three areas</strong>. A change moves from left to right in two small steps.</p>\n<table><tr><th>Area</th><th>What it is</th><th>Command to move on</th></tr><tr><td>Working directory</td><td>The real files you edit</td><td><code>git add</code></td></tr><tr><td>Staging area</td><td>A waiting room: changes you chose for the next commit</td><td><code>git commit</code></td></tr><tr><td>Repository</td><td>The saved history inside <code>.git</code></td><td>(done)</td></tr></table>\n<p>Why a staging area? It lets you choose exactly which changes go into a commit. You can edit five files and commit only two of them. In the demo below, <code>git status --short</code> shows <code>??</code> for a new file Git does not know yet, and <code>A</code> for a file that is staged. Real hashes such as <code>a1b2c3d</code> will be different on your computer, because each commit gets its own unique ID.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "echo \"Git keeps my history\" > hello.txt\ngit status --short\ngit add hello.txt\ngit status --short\ngit commit -m \"Add hello.txt\"\ngit status --short",
+     "output": "?? hello.txt\nA  hello.txt\n[main (root-commit) a1b2c3d] Add hello.txt\n 1 file changed, 1 insertion(+)\n create mode 100644 hello.txt"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul>\n<li>Running <code>git init</code> in the wrong place, such as your whole Documents or Desktop folder. Always <code>cd</code> into the project folder first.</li>\n<li>Forgetting to set <code>user.name</code> and <code>user.email</code>. Git will complain or guess a wrong name.</li>\n<li>Thinking that saving a file in your editor is the same as committing. Saving only changes the working directory.</li>\n<li>Mixing up Git and GitHub.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Git is a version control system that runs on your computer; GitHub is a website for sharing Git projects.</li>\n<li>Set your name and email once with <code>git config --global</code>.</li>\n<li><code>git init</code> turns a folder into a repository by creating the hidden <code>.git</code> folder.</li>\n<li>Files move from working directory to staging area (<code>git add</code>) to repository (<code>git commit</code>).</li>\n<li>Commit IDs (hashes) are unique, so yours will not match the ones in these demos.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "first-commit",
+   "title": "Your First Commit",
+   "section": "Getting Started",
+   "order": 2,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Your First Commit</h1>\n<div class=\"card\">\n<h2>The Everyday Loop</h2>\n<p>Almost all daily Git work is a small loop: <strong>change files, check status, add, commit</strong>. Learn this loop well and you already know most of Git.</p>\n<ol>\n<li>Edit or create files in your project.</li>\n<li><code>git status</code> shows what changed.</li>\n<li><code>git add</code> moves chosen changes to the staging area.</li>\n<li><code>git commit -m \"message\"</code> saves them to the history.</li>\n</ol>\n<p><code>git status</code> is the command you will run most. Use it all the time. It never changes anything, and it always tells you what to do next. Start with a new, empty repository.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Edit files, check git status, git add, git commit, then repeat.\" class=\"content-image\" src=\"/images/diagrams/git-first-commit.svg\"/><figcaption>Edit, check status, stage and commit, then repeat.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "mkdir todo-app\ncd todo-app\ngit init\ngit status",
+     "output": "Initialized empty Git repository in /home/student/todo-app/.git/\nOn branch main\n\nNo commits yet\n\nnothing to commit (create/copy files and use \"git add\" to track)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Add and Status</h2>\n<p>Now create two files. Git sees them but does not track them yet, so they are listed as <strong>untracked</strong>. Then stage only <code>README.md</code> with <code>git add README.md</code>. Look at how <code>git status</code> now shows two groups: \"Changes to be committed\" (staged) and \"Untracked files\" (not staged).</p>\n<p>You can stage everything with <code>git add .</code>. The dot means \"this folder and everything inside it\". It is quick, but check <code>git status</code> first so you do not add files by accident.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "echo \"# Todo App\" > README.md\necho \"console.log('todo');\" > app.js\ngit status\ngit add README.md\ngit status",
+     "output": "On branch main\n\nNo commits yet\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tREADME.md\n\tapp.js\n\nnothing added to commit but untracked files present (use \"git add\" to track)\nOn branch main\n\nNo commits yet\n\nChanges to be committed:\n  (use \"git rm --cached <file>...\" to unstage)\n\tnew file:   README.md\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tapp.js"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Committing</h2>\n<p>A commit is a snapshot of everything in the staging area, together with your name, the date and a <strong>message</strong>. Use <code>-m</code> to write the message on the command line. Git prints the branch name, a short hash, and a summary of the changes. Finally <code>git log --oneline</code> shows the history, newest commit first.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "git commit -m \"Add README with project title\"\ngit add app.js\ngit commit -m \"Add app.js entry file\"\ngit log --oneline",
+     "output": "[main (root-commit) a1b2c3d] Add README with project title\n 1 file changed, 1 insertion(+)\n create mode 100644 README.md\n[main b2c3d4e] Add app.js entry file\n 1 file changed, 1 insertion(+)\n create mode 100644 app.js\nb2c3d4e Add app.js entry file\na1b2c3d Add README with project title"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Writing Good Commit Messages</h2>\n<p>Months later, the message is the only thing that tells you why a commit exists. Make it useful.</p>\n<table><tr><th>Weak message</th><th>Better message</th></tr><tr><td><code>fix</code></td><td><code>Fix crash when the todo list is empty</code></td></tr><tr><td><code>changes</code></td><td><code>Add delete button to todo items</code></td></tr><tr><td><code>asdf</code></td><td><code>Update README with install steps</code></td></tr></table>\n<ul>\n<li>Keep the first line short, about 50 characters.</li>\n<li>Start with a verb: Add, Fix, Update, Remove.</li>\n<li>Describe <em>what</em> the commit does. One commit should do one job.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul>\n<li>Committing without <code>git add</code>. Git says \"nothing added to commit\" because the staging area is empty.</li>\n<li>Editing a file after <code>git add</code> and forgetting that the new edit is not staged. Run <code>git add</code> again.</li>\n<li>Making one huge commit at the end of the week. Commit small and often.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>The loop is: edit, <code>git status</code>, <code>git add</code>, <code>git commit -m</code>.</li>\n<li>New files are untracked until you add them.</li>\n<li>A commit saves only what is staged.</li>\n<li><code>git log --oneline</code> shows a short history.</li>\n<li>Write short messages that start with a verb and say what changed.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "history-undo",
+   "title": "History and Undoing Things",
+   "section": "Getting Started",
+   "order": 3,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>History and Undoing Things</h1>\n<div class=\"card\">\n<h2>Looking at History</h2>\n<p>Git remembers everything, so you can look back at any time. <code>git log</code> shows full details, and <code>git log --oneline</code> shows one short line per commit. Let us build a small project with two commits.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Restore discards working edits, restore --staged unstages, and revert adds a new commit that undoes an old one.\" class=\"content-image\" src=\"/images/diagrams/git-history-undo.svg\"/><figcaption>Choose the undo command by where the change currently lives.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "mkdir shop\ncd shop\ngit init\necho \"price = 100\" > price.txt\ngit add price.txt\ngit commit -m \"Add price\"\necho \"price = 120\" >> price.txt\ngit commit -am \"Add second price\"\ngit log --oneline",
+     "output": "Initialized empty Git repository in /home/student/shop/.git/\n[main (root-commit) a1b2c3d] Add price\n 1 file changed, 1 insertion(+)\n create mode 100644 price.txt\n[main b2c3d4e] Add second price\n 1 file changed, 1 insertion(+)\nb2c3d4e Add second price\na1b2c3d Add price"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Seeing Changes with git diff</h2>\n<p><code>git diff</code> shows what you changed but have <em>not</em> staged yet. Lines starting with <code>+</code> were added and lines starting with <code>-</code> were removed. (<code>git diff --staged</code> shows the staged changes.)</p>\n<p>To throw away a mistake, use <code>git restore</code>. There are two kinds:</p>\n<ul>\n<li><code>git restore file</code> discards your edits in the working directory and brings back the last committed version.</li>\n<li><code>git restore --staged file</code> only removes the file from the staging area. Your edits stay in the file.</li>\n</ul>\n<p>Be careful: <code>git restore file</code> deletes your uncommitted edits for good. Git cannot bring them back, because they were never saved in a commit.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "echo \"price = 999\" >> price.txt\ngit diff\ngit restore price.txt\ncat price.txt\necho \"oops\" >> price.txt\ngit add price.txt\ngit status --short\ngit restore --staged price.txt\ngit status --short\ngit restore price.txt",
+     "output": "diff --git a/price.txt b/price.txt\nindex c3d4e5f..d4e5f6a 100644\n--- a/price.txt\n+++ b/price.txt\n@@ -1,2 +1,3 @@\n price = 100\n price = 120\n+price = 999\nprice = 100\nprice = 120\nM  price.txt\n M price.txt"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Undoing a Commit: revert</h2>\n<p>What if the bad change is already committed? The safest tool is <code>git revert</code>. It creates a <em>new</em> commit that does the opposite of an old one. The old commit stays in the history, so nothing is lost. This is the right choice for work you have already shared with other people.</p>\n<p>In this demo the revert prints a <code>Date:</code> line. Yours will show your own date and time.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "git revert --no-edit HEAD\ngit log --oneline\ncat price.txt",
+     "output": "[main e5f6a7b] Revert \"Add second price\"\n Date: Mon Jan 5 10:30:00 2026 +0500\n 1 file changed, 1 deletion(-)\ne5f6a7b Revert \"Add second price\"\nb2c3d4e Add second price\na1b2c3d Add price\nprice = 100"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Undoing a Commit: reset</h2>\n<p><code>git reset</code> moves the branch back to an older commit, as if the newer commits never happened. <code>HEAD</code> means \"the commit I am on now\", and <code>HEAD~1</code> means \"one commit before that\".</p>\n<table><tr><th>Command</th><th>What happens to your files</th></tr><tr><td><code>git reset --soft HEAD~1</code></td><td>Commit removed; changes stay staged</td></tr><tr><td><code>git reset HEAD~1</code></td><td>Commit removed; changes stay in files, not staged (the default, called mixed)</td></tr><tr><td><code>git reset --hard HEAD~1</code></td><td>Commit removed and changes deleted</td></tr></table>\n<p>The demo uses <code>--hard</code> to remove a wrong commit completely.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "echo \"price = 500\" >> price.txt\ngit commit -am \"Wrong price\"\ngit reset --hard HEAD~1\ngit log --oneline",
+     "output": "[main f6a7b8c] Wrong price\n 1 file changed, 1 insertion(+)\nHEAD is now at e5f6a7b Revert \"Add second price\"\ne5f6a7b Revert \"Add second price\"\nb2c3d4e Add second price\na1b2c3d Add price"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Which Undo Should I Use?</h2>\n<ul>\n<li>Edit not committed yet: <code>git restore</code>.</li>\n<li>Commit already shared with others: <code>git revert</code>.</li>\n<li>Commit only on your computer and you want it gone: <code>git reset</code>.</li>\n</ul>\n<p><strong>Warning:</strong> <code>git reset --hard</code> destroys uncommitted work. Do not use it on commits you have already pushed to a shared repository.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li><code>git log --oneline</code> lists the history in short form.</li>\n<li><code>git diff</code> shows unstaged changes: <code>+</code> for added lines, <code>-</code> for removed lines.</li>\n<li><code>git restore file</code> discards edits; <code>git restore --staged file</code> unstages.</li>\n<li><code>git revert</code> adds a new commit that cancels an old one; it is safe for shared work.</li>\n<li><code>git reset --hard</code> rewrites history and deletes changes; use it with care.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "branches-merge",
+   "title": "Branches and Merging",
+   "section": "Branching",
+   "order": 4,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Branches and Merging</h1>\n<div class=\"card\">\n<h2>What is a Branch?</h2>\n<p>A <strong>branch</strong> is a separate line of work. Imagine you want to build a login page, but the main project must keep working. You create a branch, build the login page there, and only when it is ready do you bring it back into the main line. If your experiment fails, you delete the branch and nothing is harmed.</p>\n<p>The default branch is called <code>main</code>. A branch in Git is very cheap: it is only a small pointer to a commit, so you can make as many as you like.</p>\n<table><tr><th>Command</th><th>Meaning</th></tr><tr><td><code>git branch</code></td><td>List branches (the star marks the current one)</td></tr><tr><td><code>git branch name</code></td><td>Create a branch</td></tr><tr><td><code>git switch name</code></td><td>Move to a branch</td></tr><tr><td><code>git switch -c name</code></td><td>Create a branch and move to it</td></tr><tr><td><code>git merge name</code></td><td>Bring that branch into the current one</td></tr><tr><td><code>git branch -d name</code></td><td>Delete a merged branch</td></tr></table>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"main has commits; a login branch splits off, gets commits, and is merged back into main with a merge commit.\" class=\"content-image\" src=\"/images/diagrams/git-branches-merge.svg\"/><figcaption>A branch lets you work apart from main and merge back later.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "mkdir site\ncd site\ngit init\necho \"Home page\" > index.txt\ngit add index.txt\ngit commit -m \"Add home page\"\ngit branch\ngit switch -c feature-login\ngit branch",
+     "output": "Initialized empty Git repository in /home/student/site/.git/\n[main (root-commit) a1b2c3d] Add home page\n 1 file changed, 1 insertion(+)\n create mode 100644 index.txt\n* main\nSwitched to a new branch 'feature-login'\n* feature-login\n  main"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Fast-Forward Merge</h2>\n<p>Now make a commit on <code>feature-login</code>, go back to <code>main</code> and merge. Look at <code>ls</code> before and after. When you switch branches, Git changes the files in your folder to match that branch, so <code>login.txt</code> is missing on <code>main</code> until you merge.</p>\n<p>Because <code>main</code> had no new commits of its own, Git only has to move the <code>main</code> pointer forward. This is called a <strong>fast-forward</strong> merge. No new commit is needed.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "echo \"Login page\" > login.txt\ngit add login.txt\ngit commit -m \"Add login page\"\ngit switch main\nls\ngit merge feature-login\nls",
+     "output": "[feature-login b2c3d4e] Add login page\n 1 file changed, 1 insertion(+)\n create mode 100644 login.txt\nSwitched to branch 'main'\nindex.txt\nUpdating a1b2c3d..b2c3d4e\nFast-forward\n login.txt | 1 +\n 1 file changed, 1 insertion(+)\n create mode 100644 login.txt\nindex.txt\nlogin.txt"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Merge Commit</h2>\n<p>Sometimes both branches have new commits. Then Git cannot just move a pointer. It combines the two lines and creates a special <strong>merge commit</strong> that has two parents. In the demo, <code>feature-footer</code> and <code>main</code> each get a new commit, and the merge joins them. The graph from <code>git log --oneline --graph</code> shows the two lines splitting and joining again.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "git switch -c feature-footer\necho \"Footer\" > footer.txt\ngit add footer.txt\ngit commit -m \"Add footer\"\ngit switch main\necho \"About page\" > about.txt\ngit add about.txt\ngit commit -m \"Add about page\"\ngit merge feature-footer -m \"Merge feature-footer\"\ngit log --oneline --graph",
+     "output": "Switched to a new branch 'feature-footer'\n[feature-footer c3d4e5f] Add footer\n 1 file changed, 1 insertion(+)\n create mode 100644 footer.txt\nSwitched to branch 'main'\n[main d4e5f6a] Add about page\n 1 file changed, 1 insertion(+)\n create mode 100644 about.txt\nMerge made by the 'ort' strategy.\n footer.txt | 1 +\n 1 file changed, 1 insertion(+)\n create mode 100644 footer.txt\n*   e5f6a7b Merge feature-footer\n|\\  \n| * c3d4e5f Add footer\n* | d4e5f6a Add about page\n|/  \n* b2c3d4e Add login page\n* a1b2c3d Add home page"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Cleaning Up</h2>\n<p>After a merge, the branch has done its job. Delete it with <code>git branch -d</code>. The commits are not lost, because they are now part of <code>main</code>. Git refuses to delete a branch that is not merged yet, which protects you from mistakes.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "git branch -d feature-login feature-footer\ngit branch",
+     "output": "Deleted branch feature-login (was b2c3d4e).\nDeleted branch feature-footer (was c3d4e5f).\n* main"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul>\n<li>Merging in the wrong direction. First switch to the branch that should <em>receive</em> the changes (usually <code>main</code>), then run <code>git merge other-branch</code>.</li>\n<li>Making commits on <code>main</code> when you meant to be on a feature branch. Check with <code>git branch</code> or <code>git status</code>.</li>\n<li>Switching branches with uncommitted changes. Commit or stash them first.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A branch is a separate line of work; <code>main</code> is the default.</li>\n<li><code>git switch -c name</code> creates a branch and moves to it.</li>\n<li>Merge from the receiving branch: <code>git merge feature</code>.</li>\n<li>Fast-forward: only a pointer moves. Merge commit: both branches had new work.</li>\n<li>Delete finished branches with <code>git branch -d</code>.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "merge-conflicts",
+   "title": "Merge Conflicts",
+   "section": "Branching",
+   "order": 5,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Merge Conflicts</h1>\n<div class=\"card\">\n<h2>Why Conflicts Happen</h2>\n<p>Git can merge two branches automatically when they change <em>different</em> files or different lines. A <strong>merge conflict</strong> happens when both branches changed the <em>same lines</em> of the same file in different ways. Git does not know which version is right, so it stops and asks you.</p>\n<p>Conflicts are normal in team work. They are not an error and nothing is broken. Let us create one on purpose: one branch changes the greeting to \"Hello Lahore\", while <code>main</code> changes the same line to \"Hello Pakistan\".</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"A conflicted file shows HEAD version, a divider, and the other branch version between marker lines; edit, remove markers, add and commit.\" class=\"content-image\" src=\"/images/diagrams/git-merge-conflicts.svg\"/><figcaption>Keep the text you want, delete the marker lines, then add and commit.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "mkdir greeting\ncd greeting\ngit init\necho \"Hello World\" > hello.txt\ngit add hello.txt\ngit commit -m \"Add greeting\"\ngit switch -c feature-lahore\necho \"Hello Lahore\" > hello.txt\ngit commit -am \"Greet Lahore\"\ngit switch main\necho \"Hello Pakistan\" > hello.txt\ngit commit -am \"Greet Pakistan\"",
+     "output": "Initialized empty Git repository in /home/student/greeting/.git/\n[main (root-commit) a1b2c3d] Add greeting\n 1 file changed, 1 insertion(+)\n create mode 100644 hello.txt\nSwitched to a new branch 'feature-lahore'\n[feature-lahore b2c3d4e] Greet Lahore\n 1 file changed, 1 insertion(+), 1 deletion(-)\nSwitched to branch 'main'\n[main c3d4e5f] Greet Pakistan\n 1 file changed, 1 insertion(+), 1 deletion(-)"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Conflict Markers</h2>\n<p>Now merge. Git reports the conflict, and <code>git status --short</code> shows <code>UU</code>, which means \"both sides modified\". Git writes both versions into the file between special markers:</p>\n<table><tr><th>Marker</th><th>Meaning</th></tr><tr><td><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code></td><td>Start: your current branch version follows</td></tr><tr><td><code>=======</code></td><td>Divider between the two versions</td></tr><tr><td><code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-lahore</code></td><td>End: the incoming branch version came before this line</td></tr></table>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "git merge feature-lahore\ngit status --short\ncat hello.txt",
+     "output": "Auto-merging hello.txt\nCONFLICT (content): Merge conflict in hello.txt\nAutomatic merge failed; fix conflicts and then commit the result.\nUU hello.txt\n<<<<<<< HEAD\nHello Pakistan\n=======\nHello Lahore\n>>>>>>> feature-lahore"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Resolving and Finishing the Merge</h2>\n<p>To resolve a conflict, follow these steps:</p>\n<ol>\n<li>Open the file and decide what the final text should be: keep one side, keep the other, or combine them.</li>\n<li><strong>Delete all the marker lines</strong> (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>).</li>\n<li>Save the file, then run <code>git add</code> on it to say \"this one is solved\".</li>\n<li>Run <code>git commit</code> to finish the merge.</li>\n</ol>\n<p>In the demo we combine both ideas into \"Hello Lahore, Pakistan\". The editor in VS Code also shows buttons such as \"Accept Current Change\" and \"Accept Both Changes\", which do the same edit for you.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "echo \"Hello Lahore, Pakistan\" > hello.txt\ngit add hello.txt\ngit commit -m \"Merge feature-lahore\"\ngit status\ngit log --oneline --graph",
+     "output": "[main d4e5f6a] Merge feature-lahore\nOn branch main\nnothing to commit, working tree clean\n*   d4e5f6a Merge feature-lahore\n|\\  \n| * b2c3d4e Greet Lahore\n* | c3d4e5f Greet Pakistan\n|/  \n* a1b2c3d Add greeting"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul>\n<li>Committing the file while the markers are still inside it. The markers are plain text, so Git will happily save them and your code will break.</li>\n<li>Forgetting <code>git add</code> after fixing the file. The merge is not finished until you add and commit.</li>\n<li>Panicking. If it goes wrong, <code>git merge --abort</code> cancels the merge and takes you back to before it started.</li>\n<li>Keeping branches alive for weeks. Merge often, so conflicts stay small.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A conflict means both branches changed the same lines.</li>\n<li>Git marks the file with <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>.</li>\n<li>Edit the file to the final text and remove every marker.</li>\n<li>Finish with <code>git add</code> then <code>git commit</code>.</li>\n<li><code>git merge --abort</code> is your escape button.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "gitignore-stash",
+   "title": ".gitignore, Stash and Tags",
+   "section": "Branching",
+   "order": 6,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>.gitignore, Stash and Tags</h1>\n<div class=\"card\">\n<h2>Files Git Should Not Track</h2>\n<p>Some files should never go into your repository:</p>\n<ul>\n<li><code>node_modules/</code>: thousands of downloaded packages. Anyone can recreate them with <code>npm install</code>.</li>\n<li><code>.env</code>: your private settings, such as database passwords and API keys.</li>\n<li>Build output, log files and editor settings.</li>\n</ul>\n<p>Create a text file called <code>.gitignore</code> in the project folder and list one pattern per line. Git then pretends those files do not exist. A trailing slash (<code>node_modules/</code>) means a folder, and <code>*.log</code> matches every file ending in <code>.log</code>. You should commit the <code>.gitignore</code> file itself.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"A .gitignore file hides files from Git, git stash shelves unfinished work, and git tag names a commit.\" class=\"content-image\" src=\"/images/diagrams/git-gitignore-stash.svg\"/><figcaption>Ignore files you should not track, stash unfinished work, tag releases.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "mkdir webapp\ncd webapp\ngit init\nmkdir node_modules\necho \"module code\" > node_modules/pkg.js\necho \"DB_PASSWORD=hunter2\" > .env\necho \"console.log('hi');\" > app.js\ngit status --short\nprintf 'node_modules/\\n.env\\n' > .gitignore\ngit status --short\ngit check-ignore -v .env",
+     "output": "Initialized empty Git repository in /home/student/webapp/.git/\n?? .env\n?? app.js\n?? node_modules/\n?? .gitignore\n?? app.js\n.gitignore:2:.env\t.env"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Never Commit Secrets</h2>\n<p>Passwords, tokens and API keys must never be committed. Once a secret is in the history, anyone with access to the repository can read it, and on a public GitHub repository that means the whole world. Bots scan GitHub all day looking for leaked keys. Put secrets in a <code>.env</code> file, add <code>.env</code> to <code>.gitignore</code> <em>before</em> your first commit, and share a safe example file such as <code>.env.example</code> with fake values instead.</p>\n<p>Also note that <code>.gitignore</code> only affects files Git is not tracking yet. If you already committed a file, ignoring it later does not remove it.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Stash: Save Work for Later</h2>\n<p>Imagine you are halfway through a feature when your teammate asks for a quick fix on <code>main</code>. Your work is not ready to commit. <code>git stash</code> puts your uncommitted changes in a safe drawer and gives you a clean folder. Later, <code>git stash pop</code> takes the changes out again.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "git add .\ngit commit -m \"Add app and gitignore\"\necho \"console.log('half done');\" >> app.js\ngit stash\ngit status --short\ncat app.js\ngit stash list",
+     "output": "[main (root-commit) a1b2c3d] Add app and gitignore\n 2 files changed, 3 insertions(+)\n create mode 100644 .gitignore\n create mode 100644 app.js\nSaved working directory and index state WIP on main: a1b2c3d Add app and gitignore\nconsole.log('hi');\nstash@{0}: WIP on main: a1b2c3d Add app and gitignore"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "git stash pop\ncat app.js\ngit stash list",
+     "output": "On branch main\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   app.js\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\nDropped refs/stash@{0} (b2c3d4e9f8e7d6c5b4a39281706f5e4d3c2b1a09)\nconsole.log('hi');\nconsole.log('half done');"
+    },
+    {
+     "kind": "html",
+     "html": "<table><tr><th>Command</th><th>Meaning</th></tr><tr><td><code>git stash</code></td><td>Save uncommitted changes and clean the folder</td></tr><tr><td><code>git stash list</code></td><td>Show what is in the drawer</td></tr><tr><td><code>git stash pop</code></td><td>Bring back the latest stash and remove it from the list</td></tr></table>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Tags: Name a Moment</h2>\n<p>A <strong>tag</strong> is a permanent name for one commit. People use tags for releases, such as <code>v1.0</code>. A plain tag is just a name. An annotated tag (with <code>-a</code>) also stores a message, the author and a date. In <code>git log --oneline --decorate</code> you can see the tags next to the commit they point to. To share tags with GitHub you push them with <code>git push --tags</code>.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "git commit -am \"Finish feature\"\ngit tag v1.0\ngit tag -a v1.1 -m \"Second release\"\ngit tag\ngit log --oneline --decorate",
+     "output": "[main c3d4e5f] Finish feature\n 1 file changed, 1 insertion(+)\nv1.0\nv1.1\nc3d4e5f (HEAD -> main, tag: v1.1, tag: v1.0) Finish feature\na1b2c3d Add app and gitignore"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li><code>.gitignore</code> lists files and folders Git should leave alone, such as <code>node_modules/</code> and <code>.env</code>.</li>\n<li>Never commit passwords or keys. Ignore the file before the first commit.</li>\n<li>Ignoring a file does not remove it if it is already tracked.</li>\n<li><code>git stash</code> hides unfinished work; <code>git stash pop</code> restores it.</li>\n<li><code>git tag v1.0</code> marks a commit, for example a release.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "github-remote",
+   "title": "GitHub and Remotes",
+   "section": "Collaboration",
+   "order": 7,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>GitHub and Remotes</h1>\n<div class=\"card\">\n<h2>What is a Remote?</h2>\n<p>So far everything lived on your computer. A <strong>remote</strong> is a copy of your repository stored somewhere else, usually on <strong>GitHub</strong>. It gives you a backup, and it lets teammates get your work. By tradition, the main remote is named <code>origin</code>.</p>\n<p>To start: create an account on GitHub, click <strong>New repository</strong>, choose a name, and copy the repository URL. Then connect your local project to it. These are the main commands:</p>\n<table><tr><th>Command</th><th>What it does</th></tr><tr><td><code>git remote add origin URL</code></td><td>Give the remote the name origin</td></tr><tr><td><code>git push</code></td><td>Upload your commits</td></tr><tr><td><code>git pull</code></td><td>Download new commits and merge them into your branch</td></tr><tr><td><code>git fetch</code></td><td>Download new commits but do not change your files</td></tr><tr><td><code>git clone URL</code></td><td>Copy a whole remote repository to your computer</td></tr></table>\n<p>The demos below use a plain folder as the \"remote\" so they run without internet. A GitHub URL such as <code>https://github.com/you/notes.git</code> works in exactly the same way.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"git push sends commits from the local repository to origin on GitHub, and git pull brings new commits back.\" class=\"content-image\" src=\"/images/diagrams/git-github-remote.svg\"/><figcaption>Push uploads your commits to GitHub and pull downloads new ones.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "git init --bare notes-remote.git\nmkdir notes\ncd notes\ngit init\necho \"First note\" > notes.txt\ngit add notes.txt\ngit commit -m \"Add first note\"\ngit remote add origin ../notes-remote.git\ngit remote -v\ngit push -u origin main",
+     "output": "Initialized empty Git repository in /home/student/notes-remote.git/\nInitialized empty Git repository in /home/student/notes/.git/\n[main (root-commit) a1b2c3d] Add first note\n 1 file changed, 1 insertion(+)\n create mode 100644 notes.txt\norigin\t../notes-remote.git (fetch)\norigin\t../notes-remote.git (push)\nTo ../notes-remote.git\n * [new branch]      main -> main\nbranch 'main' set up to track 'origin/main'."
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Push, Clone and Pull</h2>\n<p>The <code>-u</code> in <code>git push -u origin main</code> links your local <code>main</code> to <code>origin/main</code>, so later you can type just <code>git push</code> or <code>git pull</code>. Now imagine a teammate. They <code>clone</code> the repository, add a note, and push it.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "cd ..\ngit clone notes-remote.git notes-copy\ncd notes-copy\necho \"Second note\" >> notes.txt\ngit commit -am \"Add second note\"\ngit push\ncd ../notes",
+     "output": "Cloning into 'notes-copy'...\ndone.\n[main b2c3d4e] Add second note\n 1 file changed, 1 insertion(+)\nTo /home/student/notes-remote.git\n   a1b2c3d..b2c3d4e  main -> main"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Fetch and Pull</h2>\n<p>Back in your own copy, <code>git fetch</code> downloads what is new but leaves your files alone. <code>git status</code> then says your branch is behind <code>origin/main</code>. <code>git pull</code> is a fetch followed by a merge, and it brings the new commit into your branch.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "git fetch\ngit status\ngit pull\ncat notes.txt",
+     "output": "From ../notes-remote\n   a1b2c3d..b2c3d4e  main       -> origin/main\nOn branch main\nYour branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.\n  (use \"git pull\" to update your local branch)\n\nnothing to commit, working tree clean\nUpdating a1b2c3d..b2c3d4e\nFast-forward\n notes.txt | 1 +\n 1 file changed, 1 insertion(+)\nFirst note\nSecond note"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>SSH or HTTPS?</h2>\n<p>GitHub gives you two kinds of URL. <strong>HTTPS</strong> URLs (<code>https://github.com/...</code>) are the easiest to start with, but GitHub no longer accepts your account password for Git operations: you must use a <strong>personal access token</strong> (a long password you create in your GitHub settings) or a credential helper that logs you in through the browser. <strong>SSH</strong> URLs (<code>git@github.com:...</code>) use a key pair: you create a key on your computer, upload the public half to GitHub once, and never type a password again. Either way is fine for a student.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Common Mistakes</h2>\n<ul>\n<li>Pushing before pulling. If a teammate pushed first, Git rejects your push. Run <code>git pull</code>, fix any conflicts, then push again.</li>\n<li>Pasting your token or password into a file in the repository.</li>\n<li>Thinking GitHub updates by itself. Your commits stay on your computer until you run <code>git push</code>.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A remote is a copy of the repository on another machine; <code>origin</code> is the usual name.</li>\n<li><code>git push</code> uploads, <code>git fetch</code> downloads without merging, <code>git pull</code> downloads and merges.</li>\n<li><code>git clone</code> copies a repository and sets up <code>origin</code> for you.</li>\n<li>Use <code>git push -u origin main</code> the first time.</li>\n<li>HTTPS needs a token, not your password; SSH uses keys.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  },
+  {
+   "slug": "pull-requests-workflow",
+   "title": "Pull Requests and Team Workflow",
+   "section": "Collaboration",
+   "order": 8,
+   "styles": "",
+   "blocks": [
+    {
+     "kind": "html",
+     "html": "<div class=\"container my-4\">\n<h1>Pull Requests and Team Workflow</h1>\n<div class=\"card\">\n<h2>The Team Workflow</h2>\n<p>In a team, nobody commits straight to <code>main</code>. Instead, everyone follows the same steps, so the main branch always stays working.</p>\n<ol>\n<li><strong>Fork or clone.</strong> On a project you do not own (open source), click <strong>Fork</strong> on GitHub to make your own copy, then clone it. In a team project you can usually clone the shared repository directly.</li>\n<li><strong>Make a branch for each feature</strong>, with a clear name like <code>feature-search</code>.</li>\n<li><strong>Commit and push</strong> your branch to GitHub.</li>\n<li><strong>Open a pull request</strong> (PR) on GitHub.</li>\n<li><strong>Review.</strong> Teammates read your changes, leave comments, and ask for fixes.</li>\n<li><strong>Merge</strong> the PR into <code>main</code> once it is approved.</li>\n</ol>\n<p>A <strong>pull request</strong> is a request that says: \"I finished some work on this branch. Please review it and merge it into <code>main</code>.\" It is a GitHub feature, not a Git command. Here is the first part: a branch pushed to the shared repository.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "<figure class=\"lesson-figure\"><img alt=\"Create a branch, commit, push, open a pull request, get a review, and merge into main.\" class=\"content-image\" src=\"/images/diagrams/git-pull-requests-workflow.svg\"/><figcaption>Work on a branch, open a pull request, get a review, then merge.</figcaption></figure>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "git init --bare team-repo.git\ngit clone team-repo.git me\ncd me\necho \"v1\" > app.txt\ngit add app.txt\ngit commit -m \"Start app\"\ngit push -u origin main\ngit switch -c feature-search\necho \"search\" > search.txt\ngit add search.txt\ngit commit -m \"Add search\"\ngit push -u origin feature-search",
+     "output": "Initialized empty Git repository in /home/student/team-repo.git/\nCloning into 'me'...\nwarning: You appear to have cloned an empty repository.\ndone.\n[main (root-commit) a1b2c3d] Start app\n 1 file changed, 1 insertion(+)\n create mode 100644 app.txt\nTo /home/student/team-repo.git\n * [new branch]      main -> main\nbranch 'main' set up to track 'origin/main'.\nSwitched to a new branch 'feature-search'\n[feature-search b2c3d4e] Add search\n 1 file changed, 1 insertion(+)\n create mode 100644 search.txt\nTo /home/student/team-repo.git\n * [new branch]      feature-search -> feature-search\nbranch 'feature-search' set up to track 'origin/feature-search'."
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Keeping Your Branch Up to Date</h2>\n<p>While you work, teammates keep merging their features into <code>main</code>. Your branch slowly becomes old. Update it regularly with <code>git fetch origin</code> and then <code>git merge origin/main</code>, while you are on your feature branch. Any conflicts are solved the same way as before. This is much easier when you do it often. In this demo a teammate pushes a change to <code>main</code> and then we bring it into <code>feature-search</code>.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "cd ..\ngit clone team-repo.git mate\ncd mate\necho \"v2\" > app.txt\ngit commit -am \"Update app text\"\ngit push\ncd ../me\ngit fetch origin\ngit merge origin/main\ngit log --oneline --graph",
+     "output": "Cloning into 'mate'...\ndone.\n[main c3d4e5f] Update app text\n 1 file changed, 1 insertion(+), 1 deletion(-)\nTo /home/student/team-repo.git\n   a1b2c3d..c3d4e5f  main -> main\nFrom /home/student/team-repo\n   a1b2c3d..c3d4e5f  main       -> origin/main\nMerge made by the 'ort' strategy.\n app.txt | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n*   d4e5f6a Merge remote-tracking branch 'origin/main' into feature-search\n|\\  \n| * c3d4e5f Update app text\n* | b2c3d4e Add search\n|/  \n* a1b2c3d Start app"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Warning: Secrets in History</h2>\n<p>Suppose someone commits a password by mistake and then removes the file in the next commit. Is the password safe now? <strong>No.</strong> The old commit still exists. The demo shows that <code>git show</code> can print the deleted content straight from the history. If it was pushed to GitHub, other people (and bots) may already have copied it.</p>"
+    },
+    {
+     "kind": "demo",
+     "language": "bash",
+     "code": "git switch main\necho \"DB_PASSWORD=hunter2\" > .env\ngit add .env\ngit commit -m \"Add env file\"\ngit rm .env\ngit commit -m \"Remove env file\"\nls -a\ngit log --oneline -- .env\ngit show HEAD~1:.env",
+     "output": "Switched to branch 'main'\nYour branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.\n  (use \"git pull\" to update your local branch)\n[main e5f6a7b] Add env file\n 1 file changed, 1 insertion(+)\n create mode 100644 .env\nrm '.env'\n[main f6a7b8c] Remove env file\n 1 file changed, 1 deletion(-)\n delete mode 100644 .env\n.\n..\n.git\napp.txt\nf6a7b8c Remove env file\ne5f6a7b Add env file\nDB_PASSWORD=hunter2"
+    },
+    {
+     "kind": "html",
+     "html": "<p><strong>If a password or key is ever committed, rotate it.</strong> This means: log in to the service, make the old password or key invalid, and create a new one. Deleting the file is not enough. Removing a secret from the history is possible with special tools, but you must still treat the old secret as stolen.</p>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Good PR Habits</h2>\n<ul>\n<li>Keep PRs small, with one purpose each.</li>\n<li>Write a clear title and say what you changed and why.</li>\n<li>Read your own changes on GitHub before asking others to review.</li>\n<li>Be kind in reviews: comment on the code, not the person.</li>\n<li>After the merge, delete the branch and update your local <code>main</code> with <code>git pull</code>.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>One branch per feature; never work directly on <code>main</code> in a team.</li>\n<li>A pull request asks teammates to review a branch and merge it.</li>\n<li>Fork when you do not own the repository.</li>\n<li>Keep your branch current with <code>git fetch</code> and <code>git merge origin/main</code>.</li>\n<li>A committed secret stays in history: rotate it, because deleting the file is not enough.</li>\n</ul>"
+    },
+    {
+     "kind": "html",
+     "html": "</div>\n</div>"
+    }
+   ]
+  }
+ ]
+}

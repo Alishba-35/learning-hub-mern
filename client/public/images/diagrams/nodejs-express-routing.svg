@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 285" width="720" height="285" role="img" aria-labelledby="t d">
+  <title id="t">How a URL matches a route</title>
+  <desc id="d">Table showing requests matched to Express routes and the values found in req.params and req.query.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#86efac"/></marker></defs>
+  <rect width="720" height="285" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#86efac" text-anchor="middle">How a URL matches a route</text>
+  <rect x="30.0" y="60.0" width="194.1" height="32.0" rx="0" fill="#86efac" stroke="#86efac" stroke-width="1"/>
+  <text x="127.1" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Request</text>
+  <rect x="224.1" y="60.0" width="194.1" height="32.0" rx="0" fill="#86efac" stroke="#86efac" stroke-width="1"/>
+  <text x="321.2" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Route</text>
+  <rect x="418.2" y="60.0" width="271.8" height="32.0" rx="0" fill="#86efac" stroke="#86efac" stroke-width="1"/>
+  <text x="554.1" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">You get</text>
+  <rect x="30.0" y="92.0" width="194.1" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="127.1" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">GET /users/42</text>
+  <rect x="224.1" y="92.0" width="194.1" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="321.2" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">/users/:id</text>
+  <rect x="418.2" y="92.0" width="271.8" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="554.1" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">req.params.id = &#x27;42&#x27;</text>
+  <rect x="30.0" y="124.0" width="194.1" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="127.1" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">GET /search?q=node</text>
+  <rect x="224.1" y="124.0" width="194.1" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="321.2" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">/search</text>
+  <rect x="418.2" y="124.0" width="271.8" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="554.1" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">req.query.q = &#x27;node&#x27;</text>
+  <rect x="30.0" y="156.0" width="194.1" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="127.1" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">POST /echo</text>
+  <rect x="224.1" y="156.0" width="194.1" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="321.2" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">app.post(&#x27;/echo&#x27;)</text>
+  <rect x="418.2" y="156.0" width="271.8" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="554.1" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">req.body (needs json)</text>
+  <rect x="30.0" y="188.0" width="194.1" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="127.1" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">GET /nope</text>
+  <rect x="224.1" y="188.0" width="194.1" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="321.2" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">no route</text>
+  <rect x="418.2" y="188.0" width="271.8" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="554.1" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">404 Cannot GET</text>
+  <text x="360.0" y="246.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Express checks routes from top to bottom and uses the first one that matches.</text>
+</svg>

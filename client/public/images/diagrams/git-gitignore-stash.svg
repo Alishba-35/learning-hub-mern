@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 279" width="720" height="279" role="img" aria-labelledby="t d">
+  <title id="t">Three handy tools</title>
+  <desc id="d">A .gitignore file hides files from Git, git stash shelves unfinished work, and git tag names a commit.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#fdba74"/></marker></defs>
+  <rect width="720" height="279" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#fdba74" text-anchor="middle">Three handy tools</text>
+  <rect x="26.0" y="60.0" width="210.7" height="137.0" rx="10" fill="#0f172a" stroke="#fdba74" stroke-width="1.6"/>
+  <text x="131.3" y="87.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#fdba74" text-anchor="middle">.gitignore</text>
+  <text x="131.3" y="112.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">A list of files Git</text>
+  <text x="131.3" y="128.8" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">skips:</text>
+  <text x="131.3" y="145.6" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">node_modules/</text>
+  <text x="131.3" y="162.4" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">.env</text>
+  <text x="131.3" y="179.2" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">*.log</text>
+  <rect x="254.7" y="60.0" width="210.7" height="137.0" rx="10" fill="#0f172a" stroke="#fdba74" stroke-width="1.6"/>
+  <text x="360.0" y="87.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#fdba74" text-anchor="middle">git stash</text>
+  <text x="360.0" y="112.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">Shelve unfinished edits</text>
+  <text x="360.0" y="128.8" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">stash: save</text>
+  <text x="360.0" y="145.6" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">stash pop: bring back</text>
+  <rect x="483.3" y="60.0" width="210.7" height="137.0" rx="10" fill="#0f172a" stroke="#fdba74" stroke-width="1.6"/>
+  <text x="588.7" y="87.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#fdba74" text-anchor="middle">git tag</text>
+  <text x="588.7" y="112.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">Name one commit</text>
+  <text x="588.7" y="128.8" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">git tag v1.0</text>
+  <text x="588.7" y="145.6" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">good for releases</text>
+  <text x="360.0" y="223.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Ignore secrets and generated files, stash to switch tasks quickly, tag to mark</text>
+  <text x="360.0" y="239.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">a version.</text>
+</svg>

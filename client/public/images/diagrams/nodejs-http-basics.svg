@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 284" width="720" height="284" role="img" aria-labelledby="t d">
+  <title id="t">One request, one response</title>
+  <desc id="d">A client sends GET /api/time to the Node server and gets back a status code, headers and a body.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#86efac"/></marker></defs>
+  <rect width="720" height="284" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#86efac" text-anchor="middle">One request, one response</text>
+  <rect x="30.0" y="66.0" width="190.0" height="150.0" rx="10" fill="#0f172a" stroke="#86efac" stroke-width="1.6"/>
+  <text x="125.0" y="94.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#86efac" text-anchor="middle">Client</text>
+  <text x="125.0" y="118.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#94a3b8" text-anchor="middle">browser or curl</text>
+  <text x="125.0" y="162.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">GET /api/time</text>
+  <rect x="500.0" y="66.0" width="190.0" height="150.0" rx="10" fill="#0f172a" stroke="#86efac" stroke-width="1.6"/>
+  <text x="595.0" y="94.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#86efac" text-anchor="middle">Node server</text>
+  <text x="595.0" y="118.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">createServer(req, res)</text>
+  <text x="595.0" y="162.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="700" fill="#e2e8f0" text-anchor="middle">checks req.url</text>
+  <line x1="224.0" y1="116.0" x2="496.0" y2="116.0" stroke="#86efac" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="360.0" y="108.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">request: method + url + headers</text>
+  <line x1="496.0" y1="178.0" x2="224.0" y2="178.0" stroke="#86efac" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="360.0" y="170.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="middle">response: status + headers + body</text>
+  <text x="360.0" y="198.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#94a3b8" text-anchor="middle">200 OK  |  404 Not Found  |  500 Error</text>
+  <text x="360.0" y="244.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">The server must always end the response with res.end(), or the client waits</text>
+  <text x="360.0" y="260.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">forever.</text>
+</svg>

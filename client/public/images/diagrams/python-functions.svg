@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 212" width="720" height="212" role="img" aria-labelledby="t d">
+  <title id="t">Defining and calling a function</title>
+  <desc id="d">greet(&#x27;Ali&#x27;) calls def greet(name) which returns &#x27;Hi Ali&#x27; to the caller.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#60a5fa"/></marker></defs>
+  <rect width="720" height="212" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#60a5fa" text-anchor="middle">Defining and calling a function</text>
+  <rect x="26.0" y="60.0" width="141.5" height="87.0" rx="10" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="96.8" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">greet(&#x27;Ali&#x27;)</text>
+  <text x="96.8" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">call with an</text>
+  <text x="96.8" y="123.1" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">argument</text>
+  <line x1="170.5" y1="103.5" x2="198.5" y2="103.5" stroke="#60a5fa" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="201.5" y="60.0" width="141.5" height="87.0" rx="10" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="272.2" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">def greet(name)</text>
+  <text x="272.2" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">the function body</text>
+  <text x="272.2" y="123.1" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">runs</text>
+  <line x1="346.0" y1="103.5" x2="374.0" y2="103.5" stroke="#60a5fa" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="377.0" y="60.0" width="141.5" height="87.0" rx="10" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="447.8" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">return</text>
+  <text x="447.8" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">&#x27;Hi &#x27; + name goes</text>
+  <text x="447.8" y="123.1" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">back to the caller</text>
+  <line x1="521.5" y1="103.5" x2="549.5" y2="103.5" stroke="#60a5fa" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="552.5" y="60.0" width="141.5" height="87.0" rx="10" fill="#0f172a" stroke="#60a5fa" stroke-width="1.6"/>
+  <text x="623.2" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">result</text>
+  <text x="623.2" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">&#x27;Hi Ali&#x27;</text>
+  <text x="360.0" y="173.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">No return statement means the function gives back None.</text>
+</svg>

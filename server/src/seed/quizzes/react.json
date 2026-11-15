@@ -1,0 +1,279 @@
+{
+ "languageSlug": "react",
+ "quizzes": [
+  {
+   "slug": "react-getting-started",
+   "title": "Getting Started Checkpoint",
+   "section": "Getting Started",
+   "order": 1,
+   "description": "Covers: Introduction & JSX, Components & Props, State & Events.",
+   "questions": [
+    {
+     "id": "react-getting-started-1",
+     "type": "choice",
+     "prompt": "What is React?",
+     "options": [
+      "A programming language that replaces JavaScript",
+      "A JavaScript library for building user interfaces",
+      "A database for storing data",
+      "A CSS framework"
+     ],
+     "correctIndex": 1,
+     "explanation": "React is a JavaScript library that builds user interfaces from components. It is written in JavaScript, not a replacement for it."
+    },
+    {
+     "id": "react-getting-started-2",
+     "type": "choice",
+     "prompt": "What does this component show in the browser?",
+     "code": "function App() {\n  return <p>Total: {3 + 4}</p>;\n}",
+     "codeLanguage": "jsx",
+     "options": [
+      "Total: {3 + 4}",
+      "Nothing, it gives an error",
+      "Total: 7",
+      "Total: 3 + 4"
+     ],
+     "correctIndex": 2,
+     "explanation": "Curly braces run a JavaScript expression, so 3 + 4 is calculated and 7 is shown."
+    },
+    {
+     "id": "react-getting-started-3",
+     "type": "choice",
+     "prompt": "What does this code show inside the page?",
+     "code": "function Card({ title, children }) {\n  return <div><b>{title}:</b> {children}</div>;\n}\n\nfunction App() {\n  return <Card title=\"Course\">React Basics</Card>;\n}",
+     "codeLanguage": "jsx",
+     "options": [
+      "Course: React Basics",
+      "Course: title",
+      "Course:",
+      "An error, because children is not allowed"
+     ],
+     "correctIndex": 0,
+     "explanation": "Text between the tags is passed as children. The Card prints the title prop and then the children."
+    },
+    {
+     "id": "react-getting-started-4",
+     "type": "choice",
+     "prompt": "A button has onClick. Which version is correct?",
+     "options": [
+      "onClick={setCount(count + 1)}",
+      "onclick=\"setCount(count + 1)\"",
+      "onClick=setCount(count + 1)",
+      "onClick={() => setCount(count + 1)}"
+     ],
+     "correctIndex": 3,
+     "explanation": "onClick needs a function. The correct line passes an arrow function. Calling setCount directly would run during rendering."
+    },
+    {
+     "id": "react-getting-started-5",
+     "type": "fill",
+     "prompt": "Complete the hook call that creates state with the starting value 0.",
+     "code": "const [count, setCount] = ____(0);",
+     "codeLanguage": "jsx",
+     "answers": [
+      "useState"
+     ],
+     "caseSensitive": true,
+     "explanation": "useState(0) creates a state variable with the first value 0 and returns the value and its setter."
+    },
+    {
+     "id": "react-getting-started-6",
+     "type": "choice",
+     "prompt": "Why should you not write items.push(\"x\") on a state array?",
+     "options": [
+      "It makes the array faster",
+      "React only sees a change when you set a new array, so push may not update the screen",
+      "push is not allowed in JavaScript",
+      "State arrays must have only one item"
+     ],
+     "correctIndex": 1,
+     "explanation": "Mutating state in place does not tell React to re-render. Create a new array, such as [...items, \"x\"], and pass it to the setter."
+    }
+   ]
+  },
+  {
+   "slug": "react-hooks-data",
+   "title": "Hooks & Data Checkpoint",
+   "section": "Hooks & Data",
+   "order": 2,
+   "description": "Covers: Lists, Keys & Conditional Rendering, Forms & Controlled Inputs, useEffect & Fetching Data.",
+   "questions": [
+    {
+     "id": "react-hooks-data-1",
+     "type": "choice",
+     "prompt": "What does this component render?",
+     "code": "function App() {\n  const letters = [\"A\", \"B\", \"C\"];\n  return (\n    <ul>\n      {letters.map(l => <li key={l}>{l}</li>)}\n    </ul>\n  );\n}",
+     "codeLanguage": "jsx",
+     "options": [
+      "Nothing",
+      "Three items, all labelled item",
+      "Three list items: A, B, C",
+      "One list item: A,B,C"
+     ],
+     "correctIndex": 2,
+     "explanation": "map turns each letter into an li element, so three items are shown. Each has its own key."
+    },
+    {
+     "id": "react-hooks-data-2",
+     "type": "choice",
+     "prompt": "What is the best key for items in a list loaded from a database?",
+     "options": [
+      "The unique id of each record",
+      "Math.random() on every render",
+      "The same number for all items",
+      "The word key"
+     ],
+     "correctIndex": 0,
+     "explanation": "Keys must be unique and stable. A database id stays the same for the same record. Random keys change on every render."
+    },
+    {
+     "id": "react-hooks-data-3",
+     "type": "choice",
+     "prompt": "What is shown when count is 0?",
+     "code": "function Inbox({ count }) {\n  return <div>{count && <p>You have messages</p>}</div>;\n}\n// used as <Inbox count={0} />",
+     "codeLanguage": "jsx",
+     "options": [
+      "An error",
+      "0",
+      "Nothing",
+      "You have messages"
+     ],
+     "correctIndex": 1,
+     "explanation": "With && a falsy left side is returned as it is. The number 0 is displayed by React, so use count > 0 && ..."
+    },
+    {
+     "id": "react-hooks-data-4",
+     "type": "fill",
+     "prompt": "Complete the handler so the page does not reload when the form is submitted.",
+     "code": "function handleSubmit(e) {\n  e.____();\n  console.log(\"saved\");\n}",
+     "codeLanguage": "jsx",
+     "answers": [
+      "preventDefault",
+      "preventDefault()"
+     ],
+     "caseSensitive": true,
+     "explanation": "e.preventDefault() stops the browser default of reloading the page on submit."
+    },
+    {
+     "id": "react-hooks-data-5",
+     "type": "choice",
+     "prompt": "An input has value={name} but no onChange. What happens?",
+     "options": [
+      "The input works normally",
+      "The page reloads",
+      "The state is deleted",
+      "The input becomes read-only and React warns you"
+     ],
+     "correctIndex": 3,
+     "explanation": "A controlled input shows the state value. Without onChange nothing updates the state, so typing does nothing."
+    },
+    {
+     "id": "react-hooks-data-6",
+     "type": "choice",
+     "prompt": "When does this effect run?",
+     "code": "useEffect(() => {\n  console.log(\"hello\");\n}, []);",
+     "codeLanguage": "jsx",
+     "options": [
+      "Never",
+      "Once, after the first render",
+      "After every render",
+      "Only when the component is removed"
+     ],
+     "correctIndex": 1,
+     "explanation": "An empty dependency array means the effect has no dependencies, so it runs once after the first render."
+    }
+   ]
+  },
+  {
+   "slug": "react-real-apps",
+   "title": "Real Apps Checkpoint",
+   "section": "Real Apps",
+   "order": 3,
+   "description": "Covers: Sharing State, Routing & Deployment.",
+   "questions": [
+    {
+     "id": "react-real-apps-1",
+     "type": "choice",
+     "prompt": "What problem does Context solve?",
+     "options": [
+      "Passing data through many levels of components (prop drilling)",
+      "Making a page load faster",
+      "Styling components",
+      "Storing data in a database"
+     ],
+     "correctIndex": 0,
+     "explanation": "Context makes a value available to all components below a Provider, so you do not pass props through every level."
+    },
+    {
+     "id": "react-real-apps-2",
+     "type": "choice",
+     "prompt": "What does this component show?",
+     "code": "const ThemeContext = createContext(\"light\");\n\nfunction Label() {\n  const theme = useContext(ThemeContext);\n  return <p>Theme: {theme}</p>;\n}\n\nfunction App() {\n  return (\n    <ThemeContext.Provider value=\"dark\">\n      <Label />\n    </ThemeContext.Provider>\n  );\n}",
+     "codeLanguage": "jsx",
+     "options": [
+      "Theme: null",
+      "An error",
+      "Theme: dark",
+      "Theme: light"
+     ],
+     "correctIndex": 2,
+     "explanation": "The closest Provider above the component gives the value dark, so useContext returns dark."
+    },
+    {
+     "id": "react-real-apps-3",
+     "type": "fill",
+     "prompt": "Complete the name so this function is a valid custom hook.",
+     "code": "function ____() {\n  const [on, setOn] = useState(false);\n  return [on, () => setOn(!on)];\n}",
+     "codeLanguage": "jsx",
+     "answers": [
+      "useToggle",
+      "useSwitch",
+      "useBoolean",
+      "useFlag"
+     ],
+     "caseSensitive": true,
+     "explanation": "A custom hook must have a name that starts with use. Any name like useToggle is accepted."
+    },
+    {
+     "id": "react-real-apps-4",
+     "type": "choice",
+     "prompt": "Which environment variable can your Vite React code read?",
+     "options": [
+      "REACT_API_URL",
+      "VITE_API_URL",
+      "API_URL",
+      "SECRET_KEY"
+     ],
+     "correctIndex": 1,
+     "explanation": "Vite only exposes variables that start with VITE_. They are read with import.meta.env.VITE_API_URL."
+    },
+    {
+     "id": "react-real-apps-5",
+     "type": "choice",
+     "prompt": "Which component should you use for an internal link so the page does not reload?",
+     "options": [
+      "The a tag with href",
+      "The button tag",
+      "Route",
+      "Link from react-router-dom"
+     ],
+     "correctIndex": 3,
+     "explanation": "Link changes the URL and lets the router show the new page without a full reload. Route only describes a page."
+    },
+    {
+     "id": "react-real-apps-6",
+     "type": "choice",
+     "prompt": "What does the route path /courses/:id do when the address is /courses/7?",
+     "options": [
+      "useParams gives id with the value \"7\"",
+      "It shows a 404 page",
+      "It reloads the app",
+      "id becomes the number 7 automatically"
+     ],
+     "correctIndex": 0,
+     "explanation": "The part starting with a colon is a parameter. useParams returns it, and URL parameters are always strings."
+    }
+   ]
+  }
+ ]
+}

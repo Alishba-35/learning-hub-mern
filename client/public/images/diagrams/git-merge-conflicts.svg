@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 376" width="720" height="376" role="img" aria-labelledby="t d">
+  <title id="t">Reading conflict markers</title>
+  <desc id="d">A conflicted file shows HEAD version, a divider, and the other branch version between marker lines; edit, remove markers, add and commit.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#fdba74"/></marker></defs>
+  <rect width="720" height="376" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#fdba74" text-anchor="middle">Reading conflict markers</text>
+  <text x="360.0" y="58.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Git cannot choose, so it marks both versions in the file</text>
+  <rect x="90.0" y="86.0" width="540.0" height="182.0" rx="8" fill="#0f172a" stroke="#fdba74" stroke-width="1.6"/>
+  <text x="108.0" y="116.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#f87171" text-anchor="start">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</text>
+  <text x="108.0" y="150.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="start">&lt;h1&gt;Welcome&lt;/h1&gt;</text>
+  <text x="108.0" y="184.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#fbbf24" text-anchor="start">=======</text>
+  <text x="108.0" y="218.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#e2e8f0" text-anchor="start">&lt;h1&gt;Hello&lt;/h1&gt;</text>
+  <text x="108.0" y="252.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="14" font-weight="700" fill="#4ade80" text-anchor="start">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature</text>
+  <text x="616.0" y="150.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="700" fill="#f87171" text-anchor="end">your branch</text>
+  <text x="616.0" y="218.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12" font-weight="700" fill="#4ade80" text-anchor="end">incoming branch</text>
+  <rect x="30.0" y="298.0" width="190.0" height="56.0" rx="10" fill="#0f172a" stroke="#fdba74" stroke-width="1.6"/>
+  <text x="125.0" y="322.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">1. Edit</text>
+  <text x="125.0" y="341.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">keep the right text</text>
+  <line x1="223.0" y1="326.0" x2="247.0" y2="326.0" stroke="#fdba74" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="250.0" y="298.0" width="190.0" height="56.0" rx="10" fill="#0f172a" stroke="#fdba74" stroke-width="1.6"/>
+  <text x="345.0" y="322.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">2. Delete</text>
+  <text x="345.0" y="341.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">remove all 3 marker lines</text>
+  <line x1="443.0" y1="326.0" x2="467.0" y2="326.0" stroke="#fdba74" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="470.0" y="298.0" width="190.0" height="56.0" rx="10" fill="#0f172a" stroke="#fdba74" stroke-width="1.6"/>
+  <text x="565.0" y="322.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">3. Finish</text>
+  <text x="565.0" y="341.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">git add, then git commit</text>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 214" width="720" height="214" role="img" aria-labelledby="t d">
+  <title id="t">A request travels through middleware</title>
+  <desc id="d">A request passes the logger, express.json and a route handler, then a response is sent; errors skip to the error handler.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#86efac"/></marker></defs>
+  <rect width="720" height="214" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#86efac" text-anchor="middle">A request travels through middleware</text>
+  <rect x="26.0" y="60.0" width="106.4" height="72.0" rx="10" fill="#0f172a" stroke="#86efac" stroke-width="1.6"/>
+  <text x="79.2" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Request</text>
+  <text x="79.2" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">arrives</text>
+  <line x1="135.4" y1="96.0" x2="163.4" y2="96.0" stroke="#86efac" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="166.4" y="60.0" width="106.4" height="72.0" rx="10" fill="#0f172a" stroke="#86efac" stroke-width="1.6"/>
+  <text x="219.6" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">logger</text>
+  <text x="219.6" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">calls next()</text>
+  <line x1="275.8" y1="96.0" x2="303.8" y2="96.0" stroke="#86efac" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="306.8" y="60.0" width="106.4" height="72.0" rx="10" fill="#0f172a" stroke="#86efac" stroke-width="1.6"/>
+  <text x="360.0" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">express.json()</text>
+  <text x="360.0" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">fills req.body</text>
+  <line x1="416.2" y1="96.0" x2="444.2" y2="96.0" stroke="#86efac" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="447.2" y="60.0" width="106.4" height="72.0" rx="10" fill="#0f172a" stroke="#86efac" stroke-width="1.6"/>
+  <text x="500.4" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">route handler</text>
+  <text x="500.4" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">res.json(...)</text>
+  <line x1="556.6" y1="96.0" x2="584.6" y2="96.0" stroke="#86efac" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="587.6" y="60.0" width="106.4" height="72.0" rx="10" fill="#0f172a" stroke="#86efac" stroke-width="1.6"/>
+  <text x="640.8" y="88.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0" text-anchor="middle">Response</text>
+  <text x="640.8" y="107.5" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">sent back</text>
+  <text x="360.0" y="158.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Each middleware either calls next() or sends a response. If something throws,</text>
+  <text x="360.0" y="174.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Express jumps to the error handler (err, req, res, next).</text>
+</svg>

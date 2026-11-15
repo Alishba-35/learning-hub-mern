@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 334" width="720" height="334" role="img" aria-labelledby="t d">
+  <title id="t">SQL words and MongoDB words</title>
+  <desc id="d">Comparison of SQL table, row, column and primary key with MongoDB collection, document, field and _id.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#86efac"/></marker></defs>
+  <rect width="720" height="334" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#86efac" text-anchor="middle">SQL words and MongoDB words</text>
+  <rect x="30.0" y="60.0" width="200.9" height="32.0" rx="0" fill="#86efac" stroke="#86efac" stroke-width="1"/>
+  <text x="130.4" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">SQL</text>
+  <rect x="230.9" y="60.0" width="200.9" height="32.0" rx="0" fill="#86efac" stroke="#86efac" stroke-width="1"/>
+  <text x="331.3" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">MongoDB</text>
+  <rect x="431.7" y="60.0" width="258.3" height="32.0" rx="0" fill="#86efac" stroke="#86efac" stroke-width="1"/>
+  <text x="560.9" y="81.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">In Mongoose</text>
+  <rect x="30.0" y="92.0" width="200.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="130.4" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">table</text>
+  <rect x="230.9" y="92.0" width="200.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="331.3" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">collection</text>
+  <rect x="431.7" y="92.0" width="258.3" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="560.9" y="113.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Model</text>
+  <rect x="30.0" y="124.0" width="200.9" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="130.4" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">row</text>
+  <rect x="230.9" y="124.0" width="200.9" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="331.3" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">document</text>
+  <rect x="431.7" y="124.0" width="258.3" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="560.9" y="145.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">model instance</text>
+  <rect x="30.0" y="156.0" width="200.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="130.4" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">column</text>
+  <rect x="230.9" y="156.0" width="200.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="331.3" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">field</text>
+  <rect x="431.7" y="156.0" width="258.3" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="560.9" y="177.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">schema path</text>
+  <rect x="30.0" y="188.0" width="200.9" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="130.4" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">primary key</text>
+  <rect x="230.9" y="188.0" width="200.9" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="331.3" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">_id</text>
+  <rect x="431.7" y="188.0" width="258.3" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="560.9" y="209.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">added automatically</text>
+  <rect x="30.0" y="220.0" width="200.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="130.4" y="241.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">fixed columns</text>
+  <rect x="230.9" y="220.0" width="200.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="331.3" y="241.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">flexible shape</text>
+  <rect x="431.7" y="220.0" width="258.3" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="560.9" y="241.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">Schema adds rules</text>
+  <text x="360.0" y="278.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">A document looks like JSON: { _id, name: &#x27;Ayesha&#x27;, age: 19 }. The schema keeps</text>
+  <text x="360.0" y="294.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">it tidy.</text>
+</svg>

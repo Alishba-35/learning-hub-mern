@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 334" width="720" height="334" role="img" aria-labelledby="t d">
+  <title id="t">What lives in a Node project</title>
+  <desc id="d">Table of package.json, package-lock.json, node_modules, index.js and .gitignore with the purpose of each.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#86efac"/></marker></defs>
+  <rect width="720" height="334" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#86efac" text-anchor="middle">What lives in a Node project</text>
+  <rect x="30.0" y="60.0" width="199.2" height="32.0" rx="0" fill="#86efac" stroke="#86efac" stroke-width="1"/>
+  <text x="129.6" y="81.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Item</text>
+  <rect x="229.2" y="60.0" width="298.9" height="32.0" rx="0" fill="#86efac" stroke="#86efac" stroke-width="1"/>
+  <text x="378.7" y="81.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">What it is</text>
+  <rect x="528.1" y="60.0" width="161.9" height="32.0" rx="0" fill="#86efac" stroke="#86efac" stroke-width="1"/>
+  <text x="609.1" y="81.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Commit to Git?</text>
+  <rect x="30.0" y="92.0" width="199.2" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="129.6" y="113.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">package.json</text>
+  <rect x="229.2" y="92.0" width="298.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="378.7" y="113.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">name, scripts, dependencies</text>
+  <rect x="528.1" y="92.0" width="161.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="609.1" y="113.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">yes</text>
+  <rect x="30.0" y="124.0" width="199.2" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="129.6" y="145.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">package-lock.json</text>
+  <rect x="229.2" y="124.0" width="298.9" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="378.7" y="145.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">exact installed versions</text>
+  <rect x="528.1" y="124.0" width="161.9" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="609.1" y="145.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">yes</text>
+  <rect x="30.0" y="156.0" width="199.2" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="129.6" y="177.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">node_modules/</text>
+  <rect x="229.2" y="156.0" width="298.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="378.7" y="177.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">downloaded packages</text>
+  <rect x="528.1" y="156.0" width="161.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="609.1" y="177.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">no</text>
+  <rect x="30.0" y="188.0" width="199.2" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="129.6" y="209.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">index.js</text>
+  <rect x="229.2" y="188.0" width="298.9" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="378.7" y="209.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">your entry file</text>
+  <rect x="528.1" y="188.0" width="161.9" height="32.0" rx="0" fill="#162033" stroke="#334155" stroke-width="1"/>
+  <text x="609.1" y="209.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">yes</text>
+  <rect x="30.0" y="220.0" width="199.2" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="129.6" y="241.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">.env</text>
+  <rect x="229.2" y="220.0" width="298.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="378.7" y="241.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">secrets and settings</text>
+  <rect x="528.1" y="220.0" width="161.9" height="32.0" rx="0" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="609.1" y="241.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="middle">no</text>
+  <text x="360.0" y="278.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Anyone can rebuild node_modules by running npm install, so it never goes into</text>
+  <text x="360.0" y="294.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">Git.</text>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 362" width="720" height="362" role="img" aria-labelledby="t d">
+  <title id="t">One class, many objects</title>
+  <desc id="d">A Car class with color and speed fields and three car objects with different values.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#fb923c"/></marker></defs>
+  <rect width="720" height="362" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="360.0" y="36.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="19" font-weight="700" fill="#fb923c" text-anchor="middle">One class, many objects</text>
+  <rect x="30.0" y="60.0" width="250.0" height="142.0" rx="10" fill="#0f172a" stroke="#fb923c" stroke-width="1.6"/>
+  <text x="155.0" y="84.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="15" font-weight="700" fill="#fb923c" text-anchor="middle">class Car</text>
+  <line x1="40.0" y1="94.0" x2="270.0" y2="94.0" stroke="#334155" stroke-width="1"/>
+  <text x="44.0" y="114.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="start">String color;</text>
+  <text x="44.0" y="134.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#e2e8f0" text-anchor="start">int speed;</text>
+  <line x1="40.0" y1="146.0" x2="270.0" y2="146.0" stroke="#334155" stroke-width="1"/>
+  <text x="44.0" y="164.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="start">void drive()</text>
+  <text x="44.0" y="184.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="start">void brake()</text>
+  <rect x="360.0" y="60.0" width="330.0" height="62.0" rx="8" fill="#0f172a" stroke="#fb923c" stroke-width="1.6"/>
+  <text x="374.0" y="84.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#fb923c" text-anchor="start">car1</text>
+  <text x="374.0" y="106.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="start">color = &quot;red&quot;   speed = 80</text>
+  <line x1="284.0" y1="131.0" x2="356.0" y2="91.0" stroke="#fb923c" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <rect x="360.0" y="136.0" width="330.0" height="62.0" rx="8" fill="#0f172a" stroke="#fb923c" stroke-width="1.6"/>
+  <text x="374.0" y="160.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#fb923c" text-anchor="start">car2</text>
+  <text x="374.0" y="182.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="start">color = &quot;blue&quot;  speed = 120</text>
+  <line x1="284.0" y1="131.0" x2="356.0" y2="167.0" stroke="#fb923c" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <rect x="360.0" y="212.0" width="330.0" height="62.0" rx="8" fill="#0f172a" stroke="#fb923c" stroke-width="1.6"/>
+  <text x="374.0" y="236.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="13" font-weight="700" fill="#fb923c" text-anchor="start">car3</text>
+  <text x="374.0" y="258.0" font-family="Consolas, 'Fira Code', 'DejaVu Sans Mono', monospace" font-size="12" font-weight="400" fill="#e2e8f0" text-anchor="start">color = &quot;black&quot; speed = 60</text>
+  <line x1="284.0" y1="131.0" x2="356.0" y2="243.0" stroke="#fb923c" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <text x="155.0" y="222.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#94a3b8" text-anchor="middle">new Car()</text>
+  <text x="360.0" y="306.0" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">The class is the blueprint. Each object made with new Car() keeps its own</text>
+  <text x="360.0" y="322.9" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#94a3b8" text-anchor="middle">values.</text>
+</svg>
