@@ -1,0 +1,125 @@
+/* Short Study: purane reels page jaisa layout (ek column, 9:16 card), sirf zaroori styling */
+.shorts-page h1 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.shorts-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.shorts-head h1 {
+  margin-bottom: 0;
+}
+.shorts-head-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.shorts-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+.shorts-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 8px 0;
+}
+.short-card {
+  width: 100%;
+  max-width: 360px;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+.short-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+}
+.short-frame iframe,
+.short-frame video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: contain;
+  background: #000;
+}
+.short-play {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: #000;
+  cursor: pointer;
+}
+.short-play img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+.short-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+}
+.short-play:hover .short-play-icon,
+.short-play:focus-visible .short-play-icon {
+  background: #dc2626;
+}
+.short-meta {
+  padding-top: 10px;
+  text-align: center;
+}
+.short-title {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+}
+.short-desc {
+  margin: 0 0 4px;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+.short-by {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+.short-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+.card-panel {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 24px;
+  border-radius: 12px;
+  background: var(--card-bg);
+}

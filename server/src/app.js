@@ -8,6 +8,7 @@ import lessonRoutes from './routes/lessonRoutes.js';
 import progressRoutes from './routes/progressRoutes.js';
 import quizRoutes from './routes/quizRoutes.js';
 import searchRoutes from './routes/searchRoutes.js';
+import videoRoutes from './routes/videoRoutes.js';
 import { notFound, errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
@@ -24,6 +25,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/languages', lessonRoutes);
 app.use('/api/quizzes', quizRoutes);
 app.use('/api/search', searchRoutes);
+app.use('/api/videos', videoRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

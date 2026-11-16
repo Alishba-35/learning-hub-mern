@@ -13,7 +13,15 @@ if (process.env.JWT_ACCESS_SECRET.length < 32) {
   process.exit(1);
 }
 
+// Video upload (Cloudinary) optional hai: teeno values na hon to sirf YouTube link wala option chalta hai
+const cloud = {
+  cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+  apiKey: process.env.CLOUDINARY_API_KEY,
+  apiSecret: process.env.CLOUDINARY_API_SECRET,
+};
+
 export const env = {
+  cloudinary: cloud.cloudName && cloud.apiKey && cloud.apiSecret ? cloud : null,
   isProd: process.env.NODE_ENV === 'production',
   port: Number(process.env.PORT) || 5000,
   mongoUri: process.env.MONGO_URI,

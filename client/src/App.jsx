@@ -3,11 +3,13 @@ import AppLayout from './components/AppLayout.jsx';
 import GuestOnly from './components/GuestOnly.jsx';
 import LearnLayout, { FirstTopic } from './components/LearnLayout.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
+import AddShort from './pages/AddShort.jsx';
 import AuthPage from './pages/AuthPage.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Landing from './pages/Landing.jsx';
 import Languages from './pages/Languages.jsx';
 import LessonPage from './pages/LessonPage.jsx';
+import ManageShorts from './pages/ManageShorts.jsx';
 import NotFound from './pages/NotFound.jsx';
 import QuizPage from './pages/QuizPage.jsx';
 import ShortsStudy from './pages/ShortsStudy.jsx';
@@ -37,6 +39,8 @@ export default function App() {
         </Route>
         <Route element={<AppLayout />}>
           <Route path="/shorts" element={<ShortsStudy />} />
+          <Route path="/shorts/add" element={<AddShort />} />
+          <Route path="/shorts/manage" element={<ManageShorts />} />
         </Route>
       </Route>
 

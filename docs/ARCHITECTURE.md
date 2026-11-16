@@ -9,7 +9,7 @@ Laravel app (`learning_hub`) ka MERN port pehle se kaafi aage hai. Server tests 
 1. **Security:** `server/.env.example` mein asli Atlas password aur JWT secret tha. Dono rotate karein (docs/DEPLOY.md).
 2. `learning_hub_old` ek broken git submodule entry thi (Vercel build tod sakti hai). Hata di.
 3. Deploy config nahi tha (`vercel.json`, backend hosting). Add kiya.
-4. `/shorts` abhi "Coming soon" hai (videos wala page).
+4. ~~`/shorts` Coming soon~~: ab bana hai (Phase 1, docs/SHORTS.md).
 5. Java/Python/SQL/C++ mein code sirf pehle se likha output dikhata hai, run nahi hota.
 6. Teacher role model mein hai par teacher ke liye koi page/API nahi.
 7. Password reset / email verify nahi. Quiz sirf lesson-level (language-level test nahi).
@@ -21,7 +21,7 @@ Browser (React SPA, Vercel)  --/api/* rewrite-->  Express API (Render)  -->  Mon
   AuthProvider: refresh cookie se auto-login        routes > validate(zod) > controllers > models
   access token sirf memory mein                     requireAuth / requireRole(teacher|admin)
 ```
-Collections: User, RefreshToken(TTL), Language, Topic(blocks), Quiz, QuizResult, Progress(drafts), UserStats, Activity(TTL 90d).
+Collections: Video (shorts),User, RefreshToken(TTL), Language, Topic(blocks), Quiz, QuizResult, Progress(drafts), UserStats, Activity(TTL 90d).
 Lesson = blocks: `html` | `demo` | `playground`. Naye lessons sirf JSON (`server/src/seed/data`) + `npm run seed`.
 
 ## 3. Roadmap (step by step)

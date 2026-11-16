@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import Language from '../models/Language.js';
 import Quiz from '../models/Quiz.js';
 import Topic from '../models/Topic.js';
+import Video from '../models/Video.js';
 import { loadVideos, withVideos } from './videos.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -45,4 +46,25 @@ export async function seedAll(log = () => {}) {
     await Quiz.deleteMany({ languageSlug, slug: { $nin: quizzes.map((x) => x.slug) } });
     log(`${languageSlug}: ${quizzes.length} quizzes saved`);
   }
+
+  await seedShorts(log);
+}
+
+// Starter YouTube videos (shorts.json). Sirf wohi add hote hain jo pehle se nahi hain; users ke videos ko kuch nahi hota.
+export async function seedShorts(log = () => {}) {
+  const file = path.join(here, 'shorts.json');
+  const items = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : [];
+  if (!items.length) return;
+  const result = await Video.bulkWrite(
+    items.map((v) => ({
+      updateOne: {
+        filter: { youtubeId: v.youtubeId },
+        update: {
+          $setOnInsert: { title: v.title, languageSlug: v.languageSlug ?? '', source: 'youtube', status: 'approved', uploadedBy: null, uploaderName: 'Admin' },
+        },
+        upsert: true,
+      },
+    }))
+  );
+  log(`Shorts: ${result.upsertedCount} new starter videos added (${items.length} in shorts.json)`);
 }
