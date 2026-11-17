@@ -17,6 +17,7 @@ import {
   currentStreak,
   levelInfo,
   nextIncomplete,
+  quizScore,
   resolveDay,
   weekSummary,
 } from '../utils/progress.js';
@@ -70,6 +71,7 @@ export async function getOverview(req, res) {
     const progress = progressBySlug.get(l.slug);
     const total = topics.length;
     const completed = Math.min(progress?.completed.length || 0, total);
+    const score = quizScore(taken.filter((r) => r.languageSlug === l.slug));
     return {
       slug: l.slug,
       name: l.name,
@@ -85,6 +87,7 @@ export async function getOverview(req, res) {
         total: quizRows.filter((q) => q.languageSlug === l.slug).length,
         taken: taken.filter((r) => r.languageSlug === l.slug).length,
       },
+      score, // is language ke quizzes mein sab se behtar natije
     };
   });
 

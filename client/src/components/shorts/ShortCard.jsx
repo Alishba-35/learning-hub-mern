@@ -1,15 +1,15 @@
-import { uploadThumb, youtubeEmbed, youtubeThumb } from '../../services/shorts.js';
+import { youtubeEmbed, youtubeThumb } from '../../services/shorts.js';
 
 // Ek video. Pehle sirf thumbnail + Play button; player tab load hota hai jab user Play dabaye.
 // Page par ek waqt mein ek hi video chalta hai (active), is liye page tez rehta hai.
 export default function ShortCard({ video, active, onPlay, onDelete, onApprove }) {
-  const thumb = video.source === 'youtube' ? youtubeThumb(video.youtubeId) : uploadThumb(video.fileUrl);
+  const isYoutube = video.source === 'youtube';
 
   return (
     <article className="short-card">
       <div className="short-frame">
         {active ? (
-          video.source === 'youtube' ? (
+          isYoutube ? (
             <iframe
               src={youtubeEmbed(video.youtubeId)}
               title={video.title}
@@ -18,11 +18,11 @@ export default function ShortCard({ video, active, onPlay, onDelete, onApprove }
               referrerPolicy="strict-origin-when-cross-origin"
             />
           ) : (
-            <video src={video.fileUrl} controls autoPlay playsInline preload="metadata" poster={thumb} />
+            <video src={video.streamUrl} controls autoPlay playsInline preload="metadata" />
           )
         ) : (
           <button type="button" className="short-play" onClick={() => onPlay(video.id)} aria-label={`Play ${video.title}`}>
-            <img src={thumb} alt="" loading="lazy" />
+            {isYoutube ? <img src={youtubeThumb(video.youtubeId)} alt="" loading="lazy" /> : <span className="short-upload-bg" aria-hidden="true" />}
             <span className="short-play-icon" aria-hidden="true">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M8 5v14l11-7z" />

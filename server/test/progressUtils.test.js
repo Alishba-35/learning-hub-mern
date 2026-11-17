@@ -6,6 +6,7 @@ import {
   badgesFor,
   buildSeries,
   currentStreak,
+  quizScore,
   dayDiff,
   levelInfo,
   nextIncomplete,
@@ -133,4 +134,15 @@ test('nextIncomplete returns the first lesson that is not finished yet', () => {
   assert.deepEqual(nextIncomplete(topics, ['a', 'c']), { slug: 'b', title: 'B' }); // skipped lesson comes first
   assert.equal(nextIncomplete(topics, ['a', 'b', 'c']), null);
   assert.equal(nextIncomplete([], []), null);
+});
+
+test('quizScore: correct answers over total questions of the quizzes taken, plus passed count', () => {
+  assert.deepEqual(quizScore([]), { earned: 0, possible: 0, percent: null, passed: 0 });
+  const r = quizScore([
+    { bestScore: 5, total: 5 },
+    { bestScore: 2, total: 5 },
+    { bestScore: 4, total: 8 },
+  ]);
+  assert.deepEqual(r, { earned: 11, possible: 18, percent: 61, passed: 1 });
+  assert.equal(quizScore([{ bestScore: 0, total: 5 }]).percent, 0, 'taken but all wrong is 0, not null');
 });

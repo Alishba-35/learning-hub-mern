@@ -32,6 +32,8 @@ function StatCard({ icon, label, value, note, children, tone }) {
   );
 }
 
+const scoreTone = (percent) => (percent === null ? '' : percent >= 60 ? 'pass' : 'low');
+
 function LanguageCard({ lang }) {
   const { askBuddy } = useDashboard();
   const card = languageCards.find((c) => c.slug === lang.slug);
@@ -50,6 +52,15 @@ function LanguageCard({ lang }) {
         <Donut percent={lang.percent} size={46} stroke={5} color="var(--lang)" label={`${lang.name} progress ${lang.percent}%`}>
           <small>{lang.percent}%</small>
         </Donut>
+      </div>
+      <div className="lang-score">
+        <div className="lang-score-head">
+          <span>Quiz score</span>
+          <strong>{lang.score.percent === null ? 'Not taken' : `${lang.score.percent}%`}</strong>
+        </div>
+        <div className={`score-bar ${scoreTone(lang.score.percent)}`} role="img" aria-label={`${lang.name} quiz score ${lang.score.percent ?? 0}%`}>
+          <span style={{ width: `${lang.score.percent ?? 0}%` }} />
+        </div>
       </div>
       <dl className="lang-stats">
         <div>
@@ -232,6 +243,34 @@ function DashboardBody({ data, user }) {
           </a>
         </section>
       </div>
+
+      <h2 className="section-title" id="scores">
+        Score by language
+      </h2>
+      <section className="card" aria-labelledby="scores">
+        <ul className="score-table">
+          {languages.map((l) => (
+            <li key={l.slug} className="score-row" style={{ '--lang': l.color }}>
+              <span className="name">
+                <span className="dot" aria-hidden="true" />
+                {l.name}
+              </span>
+              <div className={`score-bar ${scoreTone(l.score.percent)}`} role="img" aria-label={`${l.name} score ${l.score.percent ?? 0}%`}>
+                <span style={{ width: `${l.score.percent ?? 0}%` }} />
+              </div>
+              <span className="num">
+                {l.score.percent === null ? (
+                  'No quiz taken yet'
+                ) : (
+                  <>
+                    <strong>{l.score.percent}%</strong> · {l.score.earned}/{l.score.possible} correct · {l.score.passed}/{l.quizzes.total} passed
+                  </>
+                )}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <h2 className="section-title">Your languages</h2>
       <div className="lang-grid-dash">

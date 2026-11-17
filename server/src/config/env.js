@@ -13,15 +13,16 @@ if (process.env.JWT_ACCESS_SECRET.length < 32) {
   process.exit(1);
 }
 
-// Video upload (Cloudinary) optional hai: teeno values na hon to sirf YouTube link wala option chalta hai
-const cloud = {
-  cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-  apiKey: process.env.CLOUDINARY_API_KEY,
-  apiSecret: process.env.CLOUDINARY_API_SECRET,
+// Video upload ki hadein (MB). Free Atlas mein sirf 512 MB jagah hoti hai, is liye total par bhi hadd hai.
+const clamp = (value, fallback, min, max) => {
+  const n = Number(value);
+  return Number.isFinite(n) ? Math.min(Math.max(n, min), max) : fallback;
 };
 
 export const env = {
-  cloudinary: cloud.cloudName && cloud.apiKey && cloud.apiSecret ? cloud : null,
+  autoSeed: process.env.AUTO_SEED !== 'false',
+  maxUploadMb: clamp(process.env.UPLOAD_MAX_MB, 25, 1, 100),
+  maxTotalUploadMb: clamp(process.env.UPLOAD_TOTAL_MAX_MB, 300, 10, 100000),
   isProd: process.env.NODE_ENV === 'production',
   port: Number(process.env.PORT) || 5000,
   mongoUri: process.env.MONGO_URI,

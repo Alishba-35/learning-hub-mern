@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { languages } from '../data/languages.js';
 import { request } from '../services/api.js';
-import { MAX_TITLE, checkVideoFile, uploadToCloudinary } from '../services/shorts.js';
+import { MAX_TITLE, checkVideoFile, uploadVideoFile } from '../services/shorts.js';
 import '../styles/shorts.css';
 
 // Video add karne ka form: YouTube link ya apni file. Student ka video teacher ke approve karne ke baad dikhta hai.
@@ -23,7 +23,7 @@ export default function AddShort() {
     let cancelled = false;
     request('/videos/config')
       .then((c) => !cancelled && setConfig(c))
-      .catch(() => !cancelled && setConfig({ uploadEnabled: false, maxMb: 50, canReview: false }));
+      .catch(() => !cancelled && setConfig({ uploadEnabled: true, maxMb: 25, canReview: false }));
     return () => {
       cancelled = true;
       abortRef.current?.abort(); // page chhorte hi chalti upload band
@@ -51,16 +51,13 @@ export default function AddShort() {
     setProgress(0);
     try {
       const common = { title: form.title, description: form.description, languageSlug: form.languageSlug };
-      let body;
+      let video;
       if (mode === 'youtube') {
-        body = { ...common, source: 'youtube', youtubeUrl: form.youtubeUrl };
+        ({ video } = await request('/videos', { method: 'POST', body: { ...common, source: 'youtube', youtubeUrl: form.youtubeUrl } }));
       } else {
-        const sig = await request('/videos/upload-signature', { method: 'POST' });
         abortRef.current = new AbortController();
-        const uploaded = await uploadToCloudinary(file, sig, setProgress, abortRef.current.signal);
-        body = { ...common, source: 'upload', ...uploaded };
+        video = await uploadVideoFile(file, common, { onProgress: setProgress, signal: abortRef.current.signal });
       }
-      const { video } = await request('/videos', { method: 'POST', body });
       setDone(video);
     } catch (err) {
       if (err.errors?.length) setFieldErrors(Object.fromEntries(err.errors.map((x) => [x.field, x.message])));
@@ -120,13 +117,10 @@ export default function AddShort() {
           type="button"
           className={`btn ${mode === 'upload' ? 'btn-light' : 'btn-outline-light'}`}
           onClick={() => setMode('upload')}
-          disabled={!config.uploadEnabled}
-          title={config.uploadEnabled ? '' : 'File upload is not set up yet'}
         >
           Upload a file
         </button>
       </div>
-      {!config.uploadEnabled && <p className="small text-secondary">File upload is not available yet. You can still add a YouTube link.</p>}
 
       <label className="form-label" htmlFor="sv-title">
         Title

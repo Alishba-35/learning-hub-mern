@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App.jsx';
 import { AuthProvider } from '../context/AuthProvider.jsx';
-import { checkVideoFile, uploadThumb, youtubeEmbed } from '../services/shorts.js';
+import { checkVideoFile, youtubeEmbed } from '../services/shorts.js';
 
 const json = (status, body) => new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
 const student = { id: '1', name: 'Sara', email: 's@example.com', role: 'student', purpose: '' };
@@ -17,7 +17,7 @@ const video = (n, extra = {}) => ({
   languageSlug: 'javascript',
   source: 'youtube',
   youtubeId: `abcdefghi${String(n).padStart(2, '0')}`,
-  fileUrl: null,
+  streamUrl: null,
   status: 'approved',
   uploaderName: 'Admin',
   createdAt: '2026-01-01T00:00:00Z',
@@ -33,7 +33,7 @@ function mockApi(handlers, user = student) {
     'fetch',
     vi.fn(async (url, init = {}) => {
       const key = `${init.method || 'GET'} ${url}`;
-      calls.push({ key, body: init.body ? JSON.parse(init.body) : undefined });
+      calls.push({ key, body: typeof init.body === 'string' ? JSON.parse(init.body) : undefined, raw: init.body instanceof Blob ? init.body : undefined });
       return all[key] ? all[key](init) : json(404, { message: `No mock for ${key}` });
     })
   );
@@ -73,11 +73,11 @@ describe('Short Study page', () => {
   });
 
   it('plays an uploaded file in a video element', async () => {
-    const up = video(3, { source: 'upload', youtubeId: null, fileUrl: 'https://res.cloudinary.com/demo/video/upload/v1/learning-hub/shorts/a1.mp4' });
+    const up = video(3, { source: 'upload', youtubeId: null, streamUrl: '/api/videos/v3/stream?exp=1&sig=abc' });
     mockApi({ 'GET /api/videos?page=1': () => json(200, { videos: [up], page: 1, pages: 1, total: 1 }) });
     renderApp('/shorts');
     await userEvent.click(await screen.findByRole('button', { name: 'Play Video 3' }));
-    expect(document.querySelector('video').getAttribute('src')).toBe(up.fileUrl);
+    expect(document.querySelector('video').getAttribute('src')).toBe(up.streamUrl);
   });
 
   it('filters by language and asks the server for that language only', async () => {
@@ -120,7 +120,7 @@ describe('Short Study page', () => {
 });
 
 describe('Add a video', () => {
-  const config = (over = {}) => ({ 'GET /api/videos/config': () => json(200, { uploadEnabled: false, maxMb: 50, canReview: false, ...over }) });
+  const config = (over = {}) => ({ 'GET /api/videos/config': () => json(200, { uploadEnabled: true, maxMb: 25, canReview: false, ...over }) });
 
   it('checks the title and link before sending anything', async () => {
     const calls = mockApi(config());
@@ -161,10 +161,42 @@ describe('Add a video', () => {
     expect((await screen.findByRole('alert')).textContent).toContain('already on Shorts Study');
   });
 
-  it('disables file upload until the server has it set up', async () => {
-    mockApi(config({ uploadEnabled: false }));
+  it('uploads a video file in parts, then tells the student it is waiting for approval', async () => {
+    const calls = mockApi({
+      ...config(),
+      'POST /api/videos/uploads': () => json(201, { id: 'up1', chunkSize: 4, chunkCount: 3 }),
+      'PUT /api/videos/uploads/up1/0': () => new Response(null, { status: 204 }),
+      'PUT /api/videos/uploads/up1/1': () => new Response(null, { status: 204 }),
+      'PUT /api/videos/uploads/up1/2': () => new Response(null, { status: 204 }),
+      'POST /api/videos/uploads/up1/complete': () => json(200, { video: video(8, { source: 'upload', status: 'pending' }) }),
+    });
     renderApp('/shorts/add');
-    expect((await screen.findByRole('button', { name: 'Upload a file' })).disabled).toBe(true);
+    await userEvent.click(await screen.findByRole('button', { name: 'Upload a file' }));
+    await userEvent.type(screen.getByLabelText('Title'), 'My reel');
+    await userEvent.upload(screen.getByLabelText(/Video file/), new File(['0123456789'], 'reel.mp4', { type: 'video/mp4' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Add video' }));
+    expect(await screen.findByRole('heading', { name: 'Video sent for approval' })).toBeTruthy();
+    expect(calls.find((c) => c.key === 'POST /api/videos/uploads').body).toMatchObject({ title: 'My reel', size: 10, mimeType: 'video/mp4' });
+    const parts = calls.filter((c) => c.key.startsWith('PUT '));
+    expect(parts.map((p) => p.raw.size)).toEqual([4, 4, 2]);
+  });
+
+  it('retries a failed part, and cleans up when the upload cannot finish', async () => {
+    let tries = 0;
+    const calls = mockApi({
+      ...config(),
+      'POST /api/videos/uploads': () => json(201, { id: 'up2', chunkSize: 100, chunkCount: 1 }),
+      'PUT /api/videos/uploads/up2/0': () => (++tries < 2 ? json(503, { message: 'busy' }) : json(400, { message: 'This file is not a valid MP4, MOV or WebM video' })),
+      'DELETE /api/videos/up2': () => new Response(null, { status: 204 }),
+    });
+    renderApp('/shorts/add');
+    await userEvent.click(await screen.findByRole('button', { name: 'Upload a file' }));
+    await userEvent.type(screen.getByLabelText('Title'), 'My reel');
+    await userEvent.upload(screen.getByLabelText(/Video file/), new File(['0123456789'], 'reel.mp4', { type: 'video/mp4' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Add video' }));
+    expect((await screen.findByRole('alert')).textContent).toContain('not a valid MP4');
+    expect(tries).toBe(2); // 503 par dobara koshish, 400 par nahi
+    expect(calls.some((c) => c.key === 'DELETE /api/videos/up2')).toBe(true);
   });
 
   it('rejects a wrong file type before uploading', async () => {
@@ -175,14 +207,14 @@ describe('Add a video', () => {
     await userEvent.upload(screen.getByLabelText(/Video file/), new File(['x'], 'notes.pdf', { type: 'application/pdf' }), { applyAccept: false });
     await userEvent.click(screen.getByRole('button', { name: 'Add video' }));
     expect(screen.getByText('Only MP4, MOV or WebM videos are allowed')).toBeTruthy();
-    expect(calls.some((c) => c.key.includes('upload-signature'))).toBe(false);
+    expect(calls.some((c) => c.key.includes('/uploads'))).toBe(false);
   });
 });
 
 describe('My videos', () => {
   it('a student sees only their own videos and no review list', async () => {
     mockApi({
-      'GET /api/videos/config': () => json(200, { uploadEnabled: false, maxMb: 50, canReview: false }),
+      'GET /api/videos/config': () => json(200, { uploadEnabled: true, maxMb: 25, canReview: false }),
       'GET /api/videos/mine': () => json(200, { videos: [video(1, { status: 'pending', canDelete: true })] }),
     });
     renderApp('/shorts/manage');
@@ -195,7 +227,7 @@ describe('My videos', () => {
     let approved = false;
     const calls = mockApi(
       {
-        'GET /api/videos/config': () => json(200, { uploadEnabled: true, maxMb: 50, canReview: true }),
+        'GET /api/videos/config': () => json(200, { uploadEnabled: true, maxMb: 25, canReview: true }),
         'GET /api/videos/mine': () => json(200, { videos: [] }),
         'GET /api/videos/pending': () => json(200, { videos: approved ? [] : [video(7, { status: 'pending', canDelete: true })] }),
         'PATCH /api/videos/v7/approve': () => {
@@ -214,7 +246,7 @@ describe('My videos', () => {
 
   it('deleting asks for confirmation first', async () => {
     const calls = mockApi({
-      'GET /api/videos/config': () => json(200, { uploadEnabled: false, maxMb: 50, canReview: false }),
+      'GET /api/videos/config': () => json(200, { uploadEnabled: true, maxMb: 25, canReview: false }),
       'GET /api/videos/mine': () => json(200, { videos: [video(1, { canDelete: true })] }),
       'DELETE /api/videos/v1': () => new Response(null, { status: 204 }),
     });
@@ -232,13 +264,10 @@ describe('My videos', () => {
 describe('shorts helpers', () => {
   it('checkVideoFile enforces type and size', () => {
     const mb = (n, type = 'video/mp4') => ({ type, size: n * 1024 * 1024 });
-    expect(checkVideoFile(null, 50)).toMatch(/Choose/);
-    expect(checkVideoFile(mb(1, 'image/png'), 50)).toMatch(/Only MP4/);
-    expect(checkVideoFile(mb(51), 50)).toMatch(/50 MB/);
-    expect(checkVideoFile(mb(50), 50)).toBe('');
-    expect(checkVideoFile(mb(1, 'video/webm'), 50)).toBe('');
-  });
-  it('uploadThumb turns a Cloudinary video link into its first-frame image', () => {
-    expect(uploadThumb('https://res.cloudinary.com/d/video/upload/v1/learning-hub/shorts/a.MOV')).toBe('https://res.cloudinary.com/d/video/upload/v1/learning-hub/shorts/a.jpg');
+    expect(checkVideoFile(null, 25)).toMatch(/Choose/);
+    expect(checkVideoFile(mb(1, 'image/png'), 25)).toMatch(/Only MP4/);
+    expect(checkVideoFile(mb(26), 25)).toMatch(/25 MB/);
+    expect(checkVideoFile(mb(25), 25)).toBe('');
+    expect(checkVideoFile(mb(1, 'video/webm'), 25)).toBe('');
   });
 });

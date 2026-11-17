@@ -1,4 +1,5 @@
 // Shorts ke chhote helpers (UI aur upload dono yahin se lete hain)
+import { request } from './api.js';
 
 export const MAX_TITLE = 100;
 
@@ -6,12 +7,9 @@ export const youtubeThumb = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
 export const youtubeEmbed = (id) =>
   `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
 
-// Cloudinary video ke link ko .jpg kar do to pehla frame thumbnail ban jata hai
-export const uploadThumb = (fileUrl) => fileUrl.replace(/\.(mp4|mov|webm)$/i, '.jpg');
-
 export const ALLOWED_TYPES = ['video/mp4', 'video/quicktime', 'video/webm'];
 
-// File ko upload se pehle check karo (server aur Cloudinary phir bhi apni jaanch karte hain)
+// File ko upload se pehle check karo (server phir bhi apni jaanch karta hai)
 export function checkVideoFile(file, maxMb) {
   if (!file) return 'Choose a video file';
   if (!ALLOWED_TYPES.includes(file.type)) return 'Only MP4, MOV or WebM videos are allowed';
@@ -19,36 +17,39 @@ export function checkVideoFile(file, maxMb) {
   return '';
 }
 
-// File seedha Cloudinary par jati hai (hamare server se nahi). XMLHttpRequest isliye ke progress milti hai.
-export function uploadToCloudinary(file, sig, onProgress, signal) {
-  return new Promise((resolve, reject) => {
-    const form = new FormData();
-    form.append('file', file);
-    form.append('api_key', sig.apiKey);
-    form.append('timestamp', String(sig.timestamp));
-    form.append('signature', sig.signature);
-    form.append('folder', sig.folder);
-    form.append('allowed_formats', sig.allowedFormats);
+const PART_TRIES = 3;
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', `https://api.cloudinary.com/v1_1/${sig.cloudName}/video/upload`);
-    xhr.upload.onprogress = (e) => e.lengthComputable && onProgress?.(Math.round((e.loaded / e.total) * 100));
-    xhr.onerror = () => reject(new Error('Network error while uploading'));
-    xhr.onabort = () => reject(new Error('Upload cancelled'));
-    xhr.onload = () => {
-      let data = null;
-      try {
-        data = JSON.parse(xhr.responseText);
-      } catch {
-        /* neeche handle hota hai */
-      }
-      if (xhr.status >= 200 && xhr.status < 300 && data?.secure_url && data?.public_id) {
-        resolve({ fileUrl: data.secure_url, publicId: data.public_id });
-      } else {
-        reject(new Error(data?.error?.message || 'Upload failed'));
-      }
-    };
-    signal?.addEventListener('abort', () => xhr.abort(), { once: true });
-    xhr.send(form);
+// File ko tukdon mein hamare server par bhejta hai: shuru -> har tukda (3 koshish tak) -> mukammal.
+// Chhoti requests isliye ke host (Vercel/Render) badi body par rok sakte hain. onProgress(0..100), signal se cancel.
+export async function uploadVideoFile(file, meta, { onProgress, signal } = {}) {
+  const { id, chunkSize, chunkCount } = await request('/videos/uploads', {
+    method: 'POST',
+    body: { ...meta, size: file.size, mimeType: file.type },
+    signal,
   });
+
+  try {
+    for (let i = 0; i < chunkCount; i++) {
+      const part = file.slice(i * chunkSize, Math.min((i + 1) * chunkSize, file.size));
+      for (let attempt = 1; ; attempt++) {
+        try {
+          await request(`/videos/uploads/${id}/${i}`, { method: 'PUT', raw: part, signal });
+          break;
+        } catch (err) {
+          // 4xx (login ke ilawa) dobara bhejne se theek nahi hota; sirf network/server ghalti par dobara koshish
+          const retryable = !err.status || err.status >= 500;
+          if (signal?.aborted || !retryable || attempt === PART_TRIES) throw err;
+          await wait(400 * attempt);
+        }
+      }
+      onProgress?.(Math.round(((i + 1) / chunkCount) * 100));
+    }
+    const { video } = await request(`/videos/uploads/${id}/complete`, { method: 'POST', signal });
+    return video;
+  } catch (err) {
+    // Adhoori upload server par na pari rahe (server 1 ghante baad bhi khud saaf karta hai)
+    request(`/videos/${id}`, { method: 'DELETE' }).catch(() => {});
+    throw err;
+  }
 }

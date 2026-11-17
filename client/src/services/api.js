@@ -20,9 +20,10 @@ export class ApiError extends Error {
   }
 }
 
-async function send(path, { method = 'GET', body, auth = true, keepalive = false } = {}) {
+async function send(path, { method = 'GET', body, raw, auth = true, keepalive = false, signal } = {}) {
   const headers = {};
   if (body !== undefined) headers['Content-Type'] = 'application/json';
+  if (raw !== undefined) headers['Content-Type'] = 'application/octet-stream'; // file ka tukda (Blob) jaisa hai waisa jata hai
   if (auth && accessToken) headers.Authorization = `Bearer ${accessToken}`;
 
   const res = await fetch(BASE + path, {
@@ -30,7 +31,8 @@ async function send(path, { method = 'GET', body, auth = true, keepalive = false
     headers,
     credentials: 'include',
     keepalive, // page band hote waqt bhi request poori hoti hai (auto-save ke liye)
-    body: body !== undefined ? JSON.stringify(body) : undefined,
+    signal,
+    body: raw !== undefined ? raw : body !== undefined ? JSON.stringify(body) : undefined,
   });
 
   let data = null;

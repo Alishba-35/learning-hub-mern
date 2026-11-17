@@ -68,3 +68,39 @@ export async function seedShorts(log = () => {}) {
   );
   log(`Shorts: ${result.upsertedCount} new starter videos added (${items.length} in shorts.json)`);
 }
+
+// Lesson/quiz files ki ginti (slug -> kitne topics / quizzes). Database se compare karne ke liye.
+function expectedCounts() {
+  const topics = {};
+  const quizzes = {};
+  for (const f of fs.readdirSync(dataDir).filter((x) => x.endsWith('.json'))) {
+    const { slug, topics: t } = JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8'));
+    topics[slug] = t.length;
+  }
+  if (fs.existsSync(quizDir)) {
+    for (const f of fs.readdirSync(quizDir).filter((x) => x.endsWith('.json'))) {
+      const { languageSlug, quizzes: q } = JSON.parse(fs.readFileSync(path.join(quizDir, f), 'utf8'));
+      quizzes[languageSlug] = q.length;
+    }
+  }
+  return { topics, quizzes };
+}
+
+const sameCounts = (want, rows) => {
+  const have = Object.fromEntries(rows.map((r) => [r._id, r.n]));
+  return Object.keys(want).every((slug) => have[slug] === want[slug]);
+};
+
+// Server start par chalta hai: agar database mein koi language/lesson/quiz kam hai (jaise nayi languages ka zip lagaya
+// magar `npm run seed` nahi chalaya) to khud seed kar deta hai. Sab poora ho to kuch nahi karta, is liye har start par tez.
+export async function ensureSeeded(log = () => {}) {
+  const want = expectedCounts();
+  const [topicRows, quizRows] = await Promise.all([
+    Topic.aggregate([{ $group: { _id: '$languageSlug', n: { $sum: 1 } } }]),
+    Quiz.aggregate([{ $group: { _id: '$languageSlug', n: { $sum: 1 } } }]),
+  ]);
+  if (sameCounts(want.topics, topicRows) && sameCounts(want.quizzes, quizRows)) return false;
+  log('Lessons missing or out of date in the database: seeding now...');
+  await seedAll(log);
+  return true;
+}

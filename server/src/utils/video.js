@@ -1,9 +1,10 @@
 import crypto from 'node:crypto';
 
 export const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/;
-export const UPLOAD_FOLDER = 'learning-hub/shorts';
-export const ALLOWED_FORMATS = ['mp4', 'mov', 'webm'];
-export const MAX_UPLOAD_MB = 50;
+export const CHUNK_SIZE = 2 * 1024 * 1024; // browser file ko itne bare tukdon mein bhejta hai
+export const ALLOWED_MIME = ['video/mp4', 'video/quicktime', 'video/webm'];
+export const MB = 1024 * 1024;
+export const STREAM_LINK_SECONDS = 6 * 60 * 60;
 
 const YOUTUBE_HOSTS = new Set(['youtube.com', 'www.youtube.com', 'm.youtube.com', 'youtube-nocookie.com', 'www.youtube-nocookie.com']);
 
@@ -29,44 +30,48 @@ export function parseYouTubeId(input) {
   return id && VIDEO_ID.test(id) ? id : null;
 }
 
-// Cloudinary ka signature: params ko alphabet order mein "k=v&k=v" bana kar secret jor ke sha1
-export function signParams(params, apiSecret) {
-  const toSign = Object.keys(params)
-    .filter((k) => params[k] !== undefined && params[k] !== '')
-    .sort()
-    .map((k) => `${k}=${params[k]}`)
-    .join('&');
-  return crypto.createHash('sha1').update(toSign + apiSecret).digest('hex');
+// ---- Chunked upload ----
+export const chunkCountFor = (size) => Math.ceil(size / CHUNK_SIZE);
+// Har tukda exact CHUNK_SIZE ka hota hai, sirf aakhri baqi bacha hua
+export const expectedChunkLength = (size, index) => Math.min(CHUNK_SIZE, size - index * CHUNK_SIZE);
+
+// File ke pehle bytes dekh kar pehchanta hai ke wakai MP4/MOV ya WebM hai (naam ya type par bharosa nahi)
+export function looksLikeVideo(buf) {
+  if (!buf || buf.length < 12) return false;
+  const mp4 = buf.subarray(4, 8).toString('latin1') === 'ftyp';
+  const webm = buf[0] === 0x1a && buf[1] === 0x45 && buf[2] === 0xdf && buf[3] === 0xa3;
+  return mp4 || webm;
 }
 
-// Browser ko seedha Cloudinary par upload karne ke liye signed parameters (file server se nahi guzarti)
-export function buildUploadSignature({ cloudName, apiKey, apiSecret }, now = Date.now()) {
-  const timestamp = Math.floor(now / 1000);
-  const allowedFormats = ALLOWED_FORMATS.join(',');
-  const signature = signParams({ allowed_formats: allowedFormats, folder: UPLOAD_FOLDER, timestamp }, apiSecret);
-  return { cloudName, apiKey, timestamp, signature, folder: UPLOAD_FOLDER, allowedFormats, maxMb: MAX_UPLOAD_MB };
+// ---- Signed stream link: <video> tag Authorization header nahi bhej sakta, is liye link khud sign hota hai ----
+const sign = (id, exp, secret) => crypto.createHmac('sha256', secret).update(`stream:${id}:${exp}`).digest('hex');
+
+export function streamPath(id, secret, now = Date.now()) {
+  const exp = Math.floor(now / 1000) + STREAM_LINK_SECONDS;
+  return `/api/videos/${id}/stream?exp=${exp}&sig=${sign(id, exp, secret)}`;
 }
 
-const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-// Sirf hamare apne Cloudinary account ke, hamare folder ke video ka link qabool hota hai
-export function isOwnUpload({ fileUrl, publicId }, cloudName) {
-  if (!/^[a-z0-9_-]{2,60}$/i.test(cloudName ?? '')) return false;
-  if (!new RegExp(`^${escapeRegExp(UPLOAD_FOLDER)}/[A-Za-z0-9_-]{1,100}$`).test(publicId ?? '')) return false;
-  const exts = ALLOWED_FORMATS.join('|');
-  const re = new RegExp(`^https://res\\.cloudinary\\.com/${escapeRegExp(cloudName)}/video/upload/(v\\d+/)?${escapeRegExp(publicId)}\\.(${exts})$`);
-  return re.test(fileUrl ?? '');
+export function verifyStreamLink(id, exp, sig, secret, now = Date.now()) {
+  const e = Number(exp);
+  if (!Number.isInteger(e) || e * 1000 < now || typeof sig !== 'string' || !/^[a-f0-9]{64}$/.test(sig)) return false;
+  return crypto.timingSafeEqual(Buffer.from(sig, 'hex'), Buffer.from(sign(id, e, secret), 'hex'));
 }
 
-// Video delete hone par Cloudinary se bhi hata do (nakam ho jaye to DB ka delete phir bhi chalta hai)
-export async function destroyUpload(publicId, { cloudName, apiKey, apiSecret }, fetchImpl = fetch) {
-  const timestamp = Math.floor(Date.now() / 1000);
-  const body = new URLSearchParams({
-    public_id: publicId,
-    timestamp: String(timestamp),
-    api_key: apiKey,
-    signature: signParams({ public_id: publicId, timestamp }, apiSecret),
-  });
-  const res = await fetchImpl(`https://api.cloudinary.com/v1_1/${cloudName}/video/destroy`, { method: 'POST', body });
-  return res.ok;
+// "Range: bytes=a-b" ko {start, end} mein badalta hai. Header na ho to null, ghalat/hadd se bahar ho to 'invalid'.
+export function parseRange(header, size) {
+  if (!header) return null;
+  const m = /^bytes=(\d*)-(\d*)$/.exec(String(header).trim());
+  if (!m || (m[1] === '' && m[2] === '')) return 'invalid';
+  let start;
+  let end;
+  if (m[1] === '') {
+    const suffix = Number(m[2]); // "-500" = aakhri 500 bytes
+    if (suffix === 0) return 'invalid';
+    start = Math.max(size - suffix, 0);
+    end = size - 1;
+  } else {
+    start = Number(m[1]);
+    end = m[2] === '' ? size - 1 : Math.min(Number(m[2]), size - 1);
+  }
+  return start > end || start >= size ? 'invalid' : { start, end };
 }

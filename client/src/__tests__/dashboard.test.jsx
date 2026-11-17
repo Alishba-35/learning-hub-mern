@@ -12,14 +12,14 @@ const user = { id: 'u1', name: 'Ayesha Noor', email: 'ayesha@example.com', role:
 
 const lang = (slug, name, o = {}) => ({
   slug, name, color: '#336791', total: 8, completed: 0, percent: 0, xp: 0, lastTopic: '', firstTopic: 'intro',
-  nextTopic: { slug: 'intro', title: 'Introduction' }, quizzes: { total: 3, taken: 0 }, ...o,
+  nextTopic: { slug: 'intro', title: 'Introduction' }, quizzes: { total: 3, taken: 0 }, score: { earned: 0, possible: 0, percent: null, passed: 0 }, ...o,
 });
 const series = Array.from({ length: 14 }, (_, i) => ({ day: `2026-10-${String(7 + i).padStart(2, '0')}`, xp: i >= 10 ? 10 * (i - 9) : 0, lessons: i >= 10 ? 1 : 0, quizzes: 0 }));
 const overview = (o = {}) => ({
   stats: { xp: 140, level: 2, xpIntoLevel: 40, xpForNext: 100, streak: 3, longestStreak: 5, activeToday: true, completedTotal: 14, quizzes: { total: 24, taken: 5, passed: 4, perfect: 1 } },
   languages: [
-    lang('html', 'HTML', { completed: 8, percent: 100, xp: 80, lastTopic: 'forms-validation', nextTopic: null, quizzes: { total: 4, taken: 4 } }),
-    lang('css', 'CSS', { completed: 6, total: 12, percent: 50, xp: 60, lastTopic: 'grid', nextTopic: { slug: 'spacing', title: 'Spacing & Responsive Design' }, quizzes: { total: 3, taken: 1 } }),
+    lang('html', 'HTML', { completed: 8, percent: 100, xp: 80, lastTopic: 'forms-validation', nextTopic: null, quizzes: { total: 4, taken: 4 }, score: { earned: 17, possible: 20, percent: 85, passed: 4 } }),
+    lang('css', 'CSS', { completed: 6, total: 12, percent: 50, xp: 60, lastTopic: 'grid', nextTopic: { slug: 'spacing', title: 'Spacing & Responsive Design' }, quizzes: { total: 3, taken: 1 }, score: { earned: 2, possible: 5, percent: 40, passed: 0 } }),
     lang('cpp', 'C++', { total: 20 }),
   ],
   badges: [
@@ -122,6 +122,24 @@ describe('dashboard layout (video design, app theme)', () => {
     expect(css.getByText('6/12')).toBeTruthy();
     expect(css.getByText('1/3')).toBeTruthy();
     expect(css.getByRole('img', { name: 'CSS progress 50%' })).toBeTruthy();
+  });
+
+  it('shows the quiz score of every language, in the table and on each language card', async () => {
+    setup();
+    renderDash();
+    await ready();
+    const table = within(screen.getByRole('heading', { name: 'Score by language' }).nextElementSibling);
+    const rows = table.getAllByRole('listitem');
+    expect(rows).toHaveLength(3);
+    expect(within(rows[0]).getByText('85%')).toBeTruthy();
+    expect(within(rows[0]).getByText(/17\/20 correct · 4\/4 passed/)).toBeTruthy();
+    expect(within(rows[1]).getByText('40%')).toBeTruthy();
+    expect(within(rows[1]).getByText(/2\/5 correct · 0\/3 passed/)).toBeTruthy();
+    expect(within(rows[2]).getByText('No quiz taken yet')).toBeTruthy();
+    expect(screen.getByRole('img', { name: 'HTML quiz score 85%' })).toBeTruthy();
+    expect(screen.getByRole('img', { name: 'C++ quiz score 0%' })).toBeTruthy();
+    expect(screen.getByRole('img', { name: 'HTML score 85%' }).className).toContain('pass');
+    expect(screen.getByRole('img', { name: 'CSS score 40%' }).className).toContain('low');
   });
 
   it('the Continue learning card recommends the next lesson of the language used last', async () => {

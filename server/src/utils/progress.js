@@ -1,3 +1,4 @@
+import { PASS_PERCENT } from './quiz.js';
 export const XP_PER_LESSON = 10;
 export const XP_PER_LEVEL = 100;
 
@@ -102,4 +103,13 @@ export function nextIncomplete(topics, completed) {
   const done = new Set(completed);
   const next = topics.find((t) => !done.has(t.slug));
   return next ? { slug: next.slug, title: next.title } : null;
+}
+
+// Ek language ke diye hue quiz natijon (har quiz ka bestScore/total) se score:
+// percent = sahi jawab / kul sawal, sirf un quizzes mein jo diye gaye hain. Koi quiz na diya ho to percent null.
+export function quizScore(results) {
+  const earned = results.reduce((sum, r) => sum + r.bestScore, 0);
+  const possible = results.reduce((sum, r) => sum + r.total, 0);
+  const passed = results.filter((r) => r.total && (r.bestScore / r.total) * 100 >= PASS_PERCENT).length;
+  return { earned, possible, percent: possible ? Math.round((earned / possible) * 100) : null, passed };
 }

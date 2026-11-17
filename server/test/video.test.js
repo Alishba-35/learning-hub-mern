@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import crypto from 'node:crypto';
-import { ALLOWED_FORMATS, UPLOAD_FOLDER, buildUploadSignature, destroyUpload, isOwnUpload, parseYouTubeId, signParams } from '../src/utils/video.js';
-import { createVideoSchema } from '../src/validators/videoSchemas.js';
+import {
+  CHUNK_SIZE, chunkCountFor, expectedChunkLength, looksLikeVideo, parseRange, parseYouTubeId, streamPath, verifyStreamLink,
+} from '../src/utils/video.js';
+import { createVideoSchema, startUploadSchema } from '../src/validators/videoSchemas.js';
 
 const ID = 'dQw4w9WgXcQ';
 
@@ -39,48 +40,46 @@ test('parseYouTubeId rejects anything that is not a YouTube video', () => {
   for (const link of bad) assert.equal(parseYouTubeId(link), null, String(link));
 });
 
-test('signParams is the documented Cloudinary signature (sorted params + secret, sha1)', () => {
-  const expected = crypto.createHash('sha1').update('folder=a&timestamp=1315060510' + 'secret').digest('hex');
-  assert.equal(signParams({ timestamp: 1315060510, folder: 'a', skip: '', nope: undefined }, 'secret'), expected);
+test('chunk maths: every part is CHUNK_SIZE except the last', () => {
+  const size = CHUNK_SIZE * 2 + 10;
+  assert.equal(chunkCountFor(size), 3);
+  assert.equal(chunkCountFor(CHUNK_SIZE), 1);
+  assert.deepEqual([0, 1, 2].map((i) => expectedChunkLength(size, i)), [CHUNK_SIZE, CHUNK_SIZE, 10]);
 });
 
-test('buildUploadSignature signs folder, formats and timestamp and never exposes the secret', () => {
-  const cfg = { cloudName: 'demo', apiKey: '123', apiSecret: 'topsecret' };
-  const sig = buildUploadSignature(cfg, 1_700_000_000_000);
-  assert.equal(sig.timestamp, 1_700_000_000);
-  assert.equal(sig.folder, UPLOAD_FOLDER);
-  assert.equal(sig.allowedFormats, ALLOWED_FORMATS.join(','));
-  assert.equal(sig.signature, signParams({ allowed_formats: sig.allowedFormats, folder: UPLOAD_FOLDER, timestamp: 1_700_000_000 }, 'topsecret'));
-  assert.ok(!JSON.stringify(sig).includes('topsecret'));
+test('looksLikeVideo checks real file bytes, not names', () => {
+  const mp4 = Buffer.concat([Buffer.from([0, 0, 0, 24]), Buffer.from('ftypisom'), Buffer.alloc(8)]);
+  const webm = Buffer.concat([Buffer.from([0x1a, 0x45, 0xdf, 0xa3]), Buffer.alloc(16)]);
+  assert.ok(looksLikeVideo(mp4));
+  assert.ok(looksLikeVideo(webm));
+  assert.ok(!looksLikeVideo(Buffer.from('MZ\x90\x00 this is an exe, not a video')));
+  assert.ok(!looksLikeVideo(Buffer.alloc(4)));
+  assert.ok(!looksLikeVideo(null));
 });
 
-test('isOwnUpload accepts only our cloud, our folder and our video formats', () => {
-  const publicId = `${UPLOAD_FOLDER}/abc123_XYZ`;
-  const url = (over = {}) => `https://res.cloudinary.com/${over.cloud ?? 'demo'}/video/upload/${over.v ?? 'v1700000000/'}${over.id ?? publicId}.${over.ext ?? 'mp4'}`;
-  assert.ok(isOwnUpload({ fileUrl: url(), publicId }, 'demo'));
-  assert.ok(isOwnUpload({ fileUrl: url({ v: '' }), publicId }, 'demo'));
-  assert.ok(isOwnUpload({ fileUrl: url({ ext: 'webm' }), publicId }, 'demo'));
-  assert.ok(!isOwnUpload({ fileUrl: url({ cloud: 'other' }), publicId }, 'demo'), 'other cloud');
-  assert.ok(!isOwnUpload({ fileUrl: url({ ext: 'exe' }), publicId }, 'demo'), 'bad extension');
-  assert.ok(!isOwnUpload({ fileUrl: url({ id: 'other/abc' }), publicId }, 'demo'), 'url and id differ');
-  assert.ok(!isOwnUpload({ fileUrl: url({ id: 'secret/abc', }), publicId: 'secret/abc' }, 'demo'), 'wrong folder');
-  assert.ok(!isOwnUpload({ fileUrl: `http://res.cloudinary.com/demo/video/upload/${publicId}.mp4`, publicId }, 'demo'), 'http');
-  assert.ok(!isOwnUpload({ fileUrl: `https://evil.com/res.cloudinary.com/demo/video/upload/${publicId}.mp4`, publicId }, 'demo'), 'other host');
-  assert.ok(!isOwnUpload({ fileUrl: url(), publicId: `${UPLOAD_FOLDER}/../x` }, 'demo'), 'path traversal');
-  assert.ok(!isOwnUpload({ fileUrl: url(), publicId }, undefined), 'no cloud name');
+test('stream links verify only for the right video, unexpired and untampered', () => {
+  const secret = 'x'.repeat(40);
+  const now = 1_700_000_000_000;
+  const q = new URL(streamPath('a'.repeat(24), secret, now), 'http://x').searchParams;
+  const ok = (id, exp, sig, at = now) => verifyStreamLink(id, exp, sig, secret, at);
+  assert.ok(ok('a'.repeat(24), q.get('exp'), q.get('sig')));
+  assert.ok(!ok('b'.repeat(24), q.get('exp'), q.get('sig')), 'other video');
+  assert.ok(!ok('a'.repeat(24), Number(q.get('exp')) + 1, q.get('sig')), 'changed expiry');
+  assert.ok(!ok('a'.repeat(24), q.get('exp'), 'f'.repeat(64)), 'wrong signature');
+  assert.ok(!ok('a'.repeat(24), q.get('exp'), 'short'), 'malformed signature');
+  assert.ok(!ok('a'.repeat(24), q.get('exp'), q.get('sig'), now + 7 * 3600 * 1000), 'expired');
+  assert.ok(!verifyStreamLink('a'.repeat(24), q.get('exp'), q.get('sig'), 'y'.repeat(40), now), 'other secret');
 });
 
-test('destroyUpload posts a signed delete request and reports success', async () => {
-  let call;
-  const ok = await destroyUpload(`${UPLOAD_FOLDER}/x`, { cloudName: 'demo', apiKey: 'k', apiSecret: 's' }, async (url, init) => {
-    call = { url, body: init.body };
-    return { ok: true };
-  });
-  assert.equal(ok, true);
-  assert.equal(call.url, 'https://api.cloudinary.com/v1_1/demo/video/destroy');
-  assert.equal(call.body.get('public_id'), `${UPLOAD_FOLDER}/x`);
-  assert.equal(call.body.get('api_key'), 'k');
-  assert.ok(!call.body.toString().includes('=s&') && call.body.get('signature').length === 40);
+test('parseRange handles open, closed, suffix and bad ranges', () => {
+  assert.equal(parseRange(undefined, 100), null);
+  assert.deepEqual(parseRange('bytes=0-9', 100), { start: 0, end: 9 });
+  assert.deepEqual(parseRange('bytes=10-', 100), { start: 10, end: 99 });
+  assert.deepEqual(parseRange('bytes=90-500', 100), { start: 90, end: 99 });
+  assert.deepEqual(parseRange('bytes=-20', 100), { start: 80, end: 99 });
+  for (const bad of ['bytes=100-', 'bytes=5-2', 'bytes=-', 'bytes=-0', 'items=0-1', 'bytes=0-1,5-6', 'junk']) {
+    assert.equal(parseRange(bad, 100), 'invalid', bad);
+  }
 });
 
 test('createVideoSchema: a YouTube video needs a valid link and a real title', () => {
@@ -101,7 +100,18 @@ test('createVideoSchema: a YouTube video needs a valid link and a real title', (
   }
 });
 
-test('createVideoSchema: an upload needs fileUrl and publicId', () => {
-  assert.ok(createVideoSchema.safeParse({ source: 'upload', title: 'My reel', fileUrl: 'https://x', publicId: 'a/b' }).success);
-  assert.ok(!createVideoSchema.safeParse({ source: 'upload', title: 'My reel', fileUrl: 'https://x' }).success);
+test('startUploadSchema: only real video types and a sensible size', () => {
+  const ok = { title: 'My reel', size: 5_000_000, mimeType: 'video/mp4' };
+  assert.ok(startUploadSchema.safeParse(ok).success);
+  assert.ok(startUploadSchema.safeParse({ ...ok, mimeType: 'video/webm' }).success);
+  for (const bad of [
+    { ...ok, mimeType: 'application/x-msdownload' },
+    { ...ok, mimeType: 'video/x-flv' },
+    { ...ok, size: 10 },
+    { ...ok, size: 1.5 },
+    { ...ok, size: '5000000' },
+    { ...ok, title: 'x' },
+  ]) {
+    assert.ok(!startUploadSchema.safeParse(bad).success, JSON.stringify(bad));
+  }
 });

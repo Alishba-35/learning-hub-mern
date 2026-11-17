@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-// Short Study ka ek video: ya to YouTube link (youtubeId) ya Cloudinary par upload ki hui file (fileUrl + publicId).
+// Short Study ka ek video: ya to YouTube link (youtubeId) ya upload ki hui file (tukde VideoChunk mein).
 const videoSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, trim: true, minlength: 3, maxlength: 100 },
@@ -8,10 +8,13 @@ const videoSchema = new mongoose.Schema(
     languageSlug: { type: String, trim: true, lowercase: true, default: '' }, // khali = general
     source: { type: String, enum: ['youtube', 'upload'], required: true },
     youtubeId: { type: String },
-    fileUrl: { type: String },
-    publicId: { type: String },
-    // Teacher/admin ka video foran "approved"; student ka "pending" jab tak teacher approve na kare
-    status: { type: String, enum: ['pending', 'approved'], default: 'pending' },
+    // Upload ki hui file (VideoChunk mein tukdon ki surat mein rakhi hoti hai)
+    fileSize: { type: Number, min: 0 },
+    mimeType: { type: String },
+    chunkCount: { type: Number, min: 1 },
+    // "uploading" = file abhi aa rahi hai (kisi ko nazar nahi aati). Teacher/admin ka video foran "approved",
+    // student ka "pending" jab tak teacher approve na kare.
+    status: { type: String, enum: ['uploading', 'pending', 'approved'], default: 'pending' },
     uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null }, // null = starter video
     uploaderName: { type: String, default: 'Admin' },
   },

@@ -1,15 +1,15 @@
 /* Dashboard: video wala layout, webapp ki dark theme. Sab kuch .dash ke andar, taake baqi app par asar na pare. */
 .dash {
-  --d-bg: #0f172a;
-  --d-surface: #182235;
-  --d-surface-2: #1f2b42;
-  --d-border: #27344d;
+  --d-bg: #0d1021;
+  --d-surface: #161a35;
+  --d-surface-2: #1f2448;
+  --d-border: #2d3363;
   --d-text: #e2e8f0;
-  --d-muted: #94a3b8;
-  --accent: #6fcfa8;
-  --accent-ink: #08201a;
-  --green-a: #1f5a49;
-  --green-b: #2f7d65;
+  --d-muted: #a3a9d1;
+  --accent: #9aa8ff;
+  --accent-ink: #0d1030;
+  --green-a: #3a3f9e;
+  --green-b: #5a63d6;
   --radius: 24px;
 
   display: grid;
@@ -17,7 +17,7 @@
   gap: 8px;
   min-height: 100vh;
   padding: 18px 22px 40px 14px;
-  background: radial-gradient(1200px 500px at 70% -10%, rgba(111, 207, 168, 0.07), transparent 60%), var(--d-bg);
+  background: radial-gradient(1200px 500px at 70% -10%, rgba(154, 168, 255, 0.09), transparent 60%), var(--d-bg);
   color: var(--d-text);
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
@@ -108,7 +108,7 @@
   height: 44px;
   border-radius: 14px;
   background: linear-gradient(135deg, var(--green-a), var(--green-b));
-  color: #d6f5e8;
+  color: #e6e9ff;
 }
 .dash-title { flex: 1; min-width: 0; }
 .dash-title h1 { font-size: 1.35rem; font-weight: 700; }
@@ -231,7 +231,7 @@
 .stat.green {
   border-color: transparent;
   background: linear-gradient(135deg, var(--green-a), var(--green-b));
-  color: #eafaf3;
+  color: #f0f2ff;
 }
 .stat.green .chip-icon { background: rgba(255, 255, 255, 0.16); color: #fff; }
 .stat.green .stat-label, .stat.green .stat-note { color: rgba(234, 250, 243, 0.8); }
@@ -248,7 +248,7 @@
 .status-chip {
   padding: 3px 12px;
   border-radius: 999px;
-  background: rgba(111, 207, 168, 0.14);
+  background: rgba(154, 168, 255, 0.16);
   color: var(--accent);
   font-size: 0.75rem;
   font-weight: 600;
@@ -332,7 +332,7 @@
   transition: background 0.2s ease;
 }
 .btn-dash.primary { border-color: transparent; background: var(--accent); color: var(--accent-ink); }
-.btn-dash.primary:hover { background: #8fe0bf; }
+.btn-dash.primary:hover { background: #b6c0ff; }
 .btn-dash.ghost:hover { background: var(--d-surface-2); }
 
 /* ---------- Recent activity ---------- */
@@ -352,7 +352,7 @@
   flex: none;
   padding: 3px 10px;
   border-radius: 8px;
-  background: rgba(111, 207, 168, 0.16);
+  background: rgba(154, 168, 255, 0.18);
   color: var(--accent);
   font-size: 0.75rem;
   font-weight: 700;
@@ -371,7 +371,7 @@
   place-items: center;
   height: 110px;
   border-radius: 18px;
-  background: linear-gradient(145deg, color-mix(in srgb, var(--lang) 55%, #0b1220), color-mix(in srgb, var(--lang) 18%, var(--d-surface)));
+  background: linear-gradient(145deg, color-mix(in srgb, var(--lang) 55%, #0a0c1c), color-mix(in srgb, var(--lang) 18%, var(--d-surface)));
   color: #fff;
   font-size: 2rem;
   font-weight: 800;
@@ -385,6 +385,13 @@
 .lang-stats > div { padding: 8px; border-radius: 12px; background: var(--d-surface-2); text-align: center; }
 .lang-stats dt { color: var(--d-muted); font-size: 0.66rem; font-weight: 400; }
 .lang-stats dd { margin: 0; font-size: 0.9rem; font-weight: 700; }
+.lang-score { display: grid; gap: 6px; padding: 0 2px; }
+.lang-score-head { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.74rem; color: var(--d-muted); }
+.lang-score-head strong { color: var(--d-text); font-size: 0.95rem; }
+.score-bar { height: 8px; overflow: hidden; border-radius: 999px; background: var(--d-surface-2); }
+.score-bar > span { display: block; height: 100%; border-radius: inherit; background: var(--lang, var(--accent)); }
+.score-bar.pass > span { background: #7ee0a8; }
+.score-bar.low > span { background: #f0b35c; }
 .lang-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
 .dash .badge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
@@ -393,13 +400,13 @@
   flex-direction: column;
   gap: 4px;
   padding: 14px 16px;
-  border: 1px dashed #475569;
+  border: 1px dashed #4a5086;
   border-radius: 18px;
   background: transparent;
   color: var(--d-muted);
   font-size: 0.82rem;
 }
-.dash .badge-card.is-earned { border: 1px solid var(--accent); background: rgba(111, 207, 168, 0.08); color: var(--d-text); }
+.dash .badge-card.is-earned { border: 1px solid var(--accent); background: rgba(154, 168, 255, 0.10); color: var(--d-text); }
 .dash .badge-card strong { font-size: 0.92rem; }
 .dash .badge-card em { font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; }
 
@@ -426,7 +433,7 @@
   padding: 8px 18px 8px 10px;
   border: 1px solid var(--d-border);
   border-radius: 999px;
-  background: #05090f;
+  background: #070816;
   color: #fff;
   font-weight: 600;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
@@ -520,4 +527,17 @@
 
 @media (prefers-reduced-motion: reduce) {
   .dash .skeleton { animation: none; }
+}
+
+/* ---------- Language scores ---------- */
+.score-table { display: grid; gap: 4px; margin: 0; padding: 6px 16px; list-style: none; }
+.score-row { display: grid; grid-template-columns: 140px minmax(0, 1fr) 270px; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--d-border); }
+.score-row:last-child { border-bottom: 0; }
+.score-row .name { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+.score-row .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--lang); }
+.score-row .num { text-align: right; white-space: nowrap; color: var(--d-muted); font-size: 0.8rem; }
+.score-row .num strong { color: var(--d-text); font-size: 1rem; }
+@media (max-width: 640px) {
+  .score-row { grid-template-columns: 1fr auto; }
+  .score-row .score-bar { grid-column: 1 / -1; order: 3; }
 }
