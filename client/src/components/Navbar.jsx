@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
+import ThemeToggle from './ThemeToggle.jsx';
 
 // onToggleTopics diya ho (lesson pages) to left par topics-sidebar ka button dikhta hai
 export default function Navbar({ onToggleTopics }) {
@@ -48,6 +49,7 @@ export default function Navbar({ onToggleTopics }) {
           </ul>
 
           <div className="d-flex align-items-center gap-3">
+            <ThemeToggle />
             <NavLink className="btn btn-outline-light btn-sm" to="/shorts" onClick={close}>
               Shorts Study
             </NavLink>

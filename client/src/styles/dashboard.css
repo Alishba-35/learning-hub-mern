@@ -345,7 +345,7 @@
   padding-left: 12px;
   border-left: 3px solid var(--accent);
 }
-.recent li.quiz { border-left-color: #f0b35c; }
+.recent li.act-quiz { border-left-color: #f0b35c; }
 .recent li strong { display: block; font-size: 0.88rem; }
 .recent li small { color: var(--d-muted); font-size: 0.72rem; }
 .xp-chip {

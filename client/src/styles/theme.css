@@ -1,0 +1,194 @@
+/* Theme: dark (default, purana look) aur light. Rang sirf variables se aate hain, is liye dono themes yahin se badalte hain.
+   --c-<hex> ka matlab: dark mein wohi purana rang, light mein uska light-theme jor. */
+:root {
+  color-scheme: dark;
+  --c-0a1f35: #0a1f35;
+  --c-0b1220: #0b1220;
+  --c-0f172a: #0f172a;
+  --c-172049: #172049;
+  --c-1a2447: #1a2447;
+  --c-1a2847: #1a2847;
+  --c-1e0f3a: #1e0f3a;
+  --c-1e293b: #1e293b;
+  --c-1e3a8a: #1e3a8a;
+  --c-212c43: #212c43;
+  --c-2281a9: #2281a9;
+  --c-283d5b: #283d5b;
+  --c-2e2e2e: #2e2e2e;
+  --c-334155: #334155;
+  --c-38bdf8: #38bdf8;
+  --c-424c5c: #424c5c;
+  --c-475569: #475569;
+  --c-4ade80: #4ade80;
+  --c-888: #888;
+  --c-94a3b8: #94a3b8;
+  --c-a0abd0: #a0abd0;
+  --c-c5d1ff: #c5d1ff;
+  --c-cbd5e1: #cbd5e1;
+  --c-cbd6ff: #cbd6ff;
+  --c-cfe1ff: #cfe1ff;
+  --c-d5dbf0: #d5dbf0;
+  --c-d6e6ff: #d6e6ff;
+  --c-d7def1: #d7def1;
+  --c-ddd: #ddd;
+  --c-e2e8f0: #e2e8f0;
+  --c-e9f2ff: #e9f2ff;
+  --c-f5f8fc: #f5f8fc;
+  --c-f87171: #f87171;
+  --c-f8d866: #f8d866;
+  --c-f8f8f8: #f8f8f8;
+  --c-fbbf24: #fbbf24;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --app-bg: #f1f5f9;
+  --nav-bg: #ffffff;
+  --card-bg: #ffffff;
+  --text: #0f172a;
+  --c-0a1f35: #e0efff;
+  --c-0b1220: #e2e8f0;
+  --c-0f172a: #f1f5f9;
+  --c-172049: #e8eefc;
+  --c-1a2447: #e8eefc;
+  --c-1a2847: #e8eefc;
+  --c-1e0f3a: #f1eaff;
+  --c-1e293b: #ffffff;
+  --c-1e3a8a: #dbeafe;
+  --c-212c43: #e8eefc;
+  --c-2281a9: #0e6f96;
+  --c-283d5b: #cbd5e1;
+  --c-2e2e2e: #e5e7eb;
+  --c-334155: #cbd5e1;
+  --c-38bdf8: #0369a1;
+  --c-424c5c: #e2e8f0;
+  --c-475569: #94a3b8;
+  --c-4ade80: #15803d;
+  --c-888: #64748b;
+  --c-94a3b8: #475569;
+  --c-a0abd0: #4b5563;
+  --c-c5d1ff: #1e3a8a;
+  --c-cbd5e1: #334155;
+  --c-cbd6ff: #1e3a8a;
+  --c-cfe1ff: #1e3a8a;
+  --c-d5dbf0: #1e3a8a;
+  --c-d6e6ff: #1e3a8a;
+  --c-d7def1: #1e3a8a;
+  --c-ddd: #cbd5e1;
+  --c-e2e8f0: #0f172a;
+  --c-e9f2ff: #1e3a8a;
+  --c-f5f8fc: #0f172a;
+  --c-f87171: #dc2626;
+  --c-f8d866: #92400e;
+  --c-f8f8f8: #111827;
+  --c-fbbf24: #b45309;
+}
+
+/* Welcome/Login/Signup (plum) aur Languages (navy) pages ka apna rang dono themes mein ek jaisa rehta hai, is liye yahan dark rang wapas */
+:root[data-theme='light'] .page-plum,
+:root[data-theme='light'] .page-navy {
+  color-scheme: dark;
+  --c-0a1f35: #0a1f35;
+  --c-0b1220: #0b1220;
+  --c-0f172a: #0f172a;
+  --c-172049: #172049;
+  --c-1a2447: #1a2447;
+  --c-1a2847: #1a2847;
+  --c-1e0f3a: #1e0f3a;
+  --c-1e293b: #1e293b;
+  --c-1e3a8a: #1e3a8a;
+  --c-212c43: #212c43;
+  --c-2281a9: #2281a9;
+  --c-283d5b: #283d5b;
+  --c-2e2e2e: #2e2e2e;
+  --c-334155: #334155;
+  --c-38bdf8: #38bdf8;
+  --c-424c5c: #424c5c;
+  --c-475569: #475569;
+  --c-4ade80: #4ade80;
+  --c-888: #888;
+  --c-94a3b8: #94a3b8;
+  --c-a0abd0: #a0abd0;
+  --c-c5d1ff: #c5d1ff;
+  --c-cbd5e1: #cbd5e1;
+  --c-cbd6ff: #cbd6ff;
+  --c-cfe1ff: #cfe1ff;
+  --c-d5dbf0: #d5dbf0;
+  --c-d6e6ff: #d6e6ff;
+  --c-d7def1: #d7def1;
+  --c-ddd: #ddd;
+  --c-e2e8f0: #e2e8f0;
+  --c-e9f2ff: #e9f2ff;
+  --c-f5f8fc: #f5f8fc;
+  --c-f87171: #f87171;
+  --c-f8d866: #f8d866;
+  --c-f8f8f8: #f8f8f8;
+  --c-fbbf24: #fbbf24;
+}
+
+/* Dashboard apne alag variables use karta hai */
+:root[data-theme='light'] .dash {
+  --d-bg: #eef1fb;
+  --d-surface: #ffffff;
+  --d-surface-2: #eef0fb;
+  --d-border: #d9ddf2;
+  --d-text: #161a35;
+  --d-muted: #5b6190;
+  --accent: #4f5bd5;
+  --accent-ink: #ffffff;
+  --green-a: #4f5bd5;
+  --green-b: #6b76e8;
+}
+
+/* ---------- Toggle button ---------- */
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.85;
+}
+.theme-toggle:hover { opacity: 1; }
+.theme-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.theme-toggle.round-btn { width: 44px; height: 44px; border-width: 0; opacity: 1; }
+.app-navbar .theme-toggle { color: #e2e8f0; }
+
+/* ---------- Light theme: Bootstrap ke dark-navbar aur light-button helpers ---------- */
+:root[data-theme='light'] .app-navbar {
+  --bs-navbar-color: rgba(15, 23, 42, 0.7);
+  --bs-navbar-hover-color: #0f172a;
+  --bs-navbar-active-color: #0f172a;
+  --bs-navbar-brand-color: #0f172a;
+  --bs-navbar-brand-hover-color: #0f172a;
+  --bs-navbar-toggler-border-color: rgba(15, 23, 42, 0.3);
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2815,23,42,0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  border-bottom: 1px solid #e2e8f0;
+}
+:root[data-theme='light'] .app-navbar .theme-toggle { color: #0f172a; }
+:root[data-theme='light'] .navbar-text { color: #475569; }
+:root[data-theme='light'] .btn-outline-light {
+  --bs-btn-color: #0f172a;
+  --bs-btn-border-color: #94a3b8;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #0f172a;
+  --bs-btn-hover-border-color: #0f172a;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #0f172a;
+  --bs-btn-active-border-color: #0f172a;
+}
+:root[data-theme='light'] .text-secondary { color: #475569 !important; }
+
+/* ---------- Light theme: lesson buttons (dark mein inka background transparent hai aur safed text dark par dikhta hai) ---------- */
+:root[data-theme='light'] .lesson .btn:not(.btn-success):not(.btn-primary):not(.btn-outline-light) {
+  background: #4f5bd5;
+  color: #fff;
+}
+:root[data-theme='light'] .lesson .btn.secondary:not(.btn-success):not(.btn-primary) { background: #64748b; }
+:root[data-theme='light'] .lesson .btn-outline-light { color: #0f172a; border: 1px solid #94a3b8; }
+:root[data-theme='light'] .lesson .btn-outline-light:hover { color: #fff; }

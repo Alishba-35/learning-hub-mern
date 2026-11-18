@@ -59,7 +59,7 @@ export const languages = [
   {
     slug: 'c',
     name: 'C',
-    image: '/images/C.png',
+    image: '/images/c.svg',
     color: '#4a5d8f',
     description:
       'C is a fast, low-level language that teaches how memory and programs really work.',
@@ -67,7 +67,7 @@ export const languages = [
   {
     slug: 'dsa',
     name: 'Data Structures',
-    image: '/images/dsa.png',
+    image: '/images/dsa.svg',
     color: '#2e7d6b',
     description:
       'Learn how to store and organise data (lists, stacks, trees, graphs) and the classic algorithms that work on it.',
@@ -75,7 +75,7 @@ export const languages = [
   {
     slug: 'typescript',
     name: 'TypeScript',
-    image: '/images/typescript.png',
+    image: '/images/typescript.svg',
     color: '#2f74c0',
     description:
       'TypeScript is JavaScript with types: it catches mistakes while you write code, before the program runs.',
@@ -83,7 +83,7 @@ export const languages = [
   {
     slug: 'react',
     name: 'React',
-    image: '/images/react.png',
+    image: '/images/react.svg',
     color: '#1f8aa6',
     description:
       'React is a JavaScript library for building user interfaces from small reusable components.',
@@ -91,7 +91,7 @@ export const languages = [
   {
     slug: 'nodejs',
     name: 'Node.js & Express',
-    image: '/images/nodejs.png',
+    image: '/images/nodejs.svg',
     color: '#4e8b3a',
     description:
       'Build back-end servers and REST APIs with JavaScript using Node.js, Express and MongoDB.',
@@ -99,7 +99,7 @@ export const languages = [
   {
     slug: 'git',
     name: 'Git & GitHub',
-    image: '/images/git.png',
+    image: '/images/git.svg',
     color: '#c0482d',
     description:
       'Git tracks every change to your code, and GitHub lets you share it and work together with a team.',

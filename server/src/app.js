@@ -12,7 +12,7 @@ import videoRoutes from './routes/videoRoutes.js';
 import { notFound, errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
-app.set('trust proxy', 1);
+app.set('trust proxy', env.trustProxy);
 app.use(helmet());
 app.use(cors({ origin: env.clientOrigin, credentials: true }));
 // Progress route ko bara body chahiye (code drafts), is liye uska apna parser global parser se pehle lagta hai

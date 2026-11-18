@@ -5,6 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Learning Hub</title>
+    <script>
+      // Page dikhne se pehle saved theme lagao, taake light chunne walon ko dark ki jhalak (flash) na dikhe
+      try {
+        var t = localStorage.getItem('lh-theme');
+        if (t === 'light' || t === 'dark') {
+          document.documentElement.setAttribute('data-theme', t);
+          document.documentElement.setAttribute('data-bs-theme', t);
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

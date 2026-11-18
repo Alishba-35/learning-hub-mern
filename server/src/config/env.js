@@ -20,6 +20,8 @@ const clamp = (value, fallback, min, max) => {
 };
 
 export const env = {
+  // Kitne proxy hop ke peeche hain (rate limit sahi IP dekhe). Render par 1; Vercel frontend -> Vercel backend par 2 try karein.
+  trustProxy: clamp(process.env.TRUST_PROXY_HOPS, 1, 0, 5),
   autoSeed: process.env.AUTO_SEED !== 'false',
   maxUploadMb: clamp(process.env.UPLOAD_MAX_MB, 25, 1, 100),
   maxTotalUploadMb: clamp(process.env.UPLOAD_TOTAL_MAX_MB, 300, 10, 100000),

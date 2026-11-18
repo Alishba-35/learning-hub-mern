@@ -5,6 +5,7 @@ import AssistantPanel from './AssistantPanel.jsx';
 import { DashboardContext } from './dashboardContext.js';
 import Icon from './Icon.jsx';
 import Orb from './Orb.jsx';
+import ThemeToggle from '../ThemeToggle.jsx';
 import SearchBar from './SearchBar.jsx';
 
 const NAV = [
@@ -72,6 +73,7 @@ export default function DashboardShell({ user, onLogout, ctx, title, subtitle, c
               <p>{subtitle}</p>
             </div>
             <SearchBar onAsk={askBuddy} />
+            <ThemeToggle className="round-btn" />
             <button type="button" className="round-btn" aria-label="Open Study Buddy" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
               <Icon name="chat" size={18} />
             </button>

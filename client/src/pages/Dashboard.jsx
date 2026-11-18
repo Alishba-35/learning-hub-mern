@@ -215,7 +215,7 @@ function DashboardBody({ data, user }) {
           ) : (
             <ul>
               {recent.map((r, i) => (
-                <li key={`${r.at}-${i}`} className={r.type}>
+                <li key={`${r.at}-${i}`} className={`act-${r.type}`}>
                   <div>
                     <strong>{r.title}</strong>
                     <small>

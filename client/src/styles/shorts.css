@@ -79,7 +79,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #1e293b, #0f172a);
+  background: linear-gradient(135deg, var(--c-1e293b), var(--c-0f172a));
 }
 .short-play-icon {
   position: absolute;
@@ -108,12 +108,12 @@
 }
 .short-desc {
   margin: 0 0 4px;
-  color: #cbd5e1;
+  color: var(--c-cbd5e1);
   font-size: 0.9rem;
 }
 .short-by {
   margin: 0;
-  color: #94a3b8;
+  color: var(--c-94a3b8);
   font-size: 0.85rem;
 }
 .short-actions {
