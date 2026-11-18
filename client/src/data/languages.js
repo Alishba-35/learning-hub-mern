@@ -67,7 +67,7 @@ export const languages = [
   {
     slug: 'dsa',
     name: 'Data Structures',
-    image: '/images/dsa.svg',
+    image: '/images/dsa.png',
     color: '#2e7d6b',
     description:
       'Learn how to store and organise data (lists, stacks, trees, graphs) and the classic algorithms that work on it.',
