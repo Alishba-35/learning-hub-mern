@@ -213,7 +213,9 @@ test('streaming: signed link required, Range gives 206 with exactly the right by
   };
 
   assert.equal((await get(`/api/videos/${OID(50)}/stream`)).res.status, 404, 'no signature');
-  assert.equal((await get(url.replace(/sig=./, 'sig=0'))).res.status, 404, 'bad signature');
+  // Pehla akshar hamesha badlo (pehle "0" lagate the, aur 1/16 baar asal signature bhi "0" se shuru hota tha)
+  const tampered = url.replace(/sig=(.)/, (_, c) => `sig=${c === '0' ? '1' : '0'}`);
+  assert.equal((await get(tampered)).res.status, 404, 'bad signature');
   assert.equal((await get(url.replace(OID(50), OID(51)))).res.status, 404, 'link of another video');
 
   const all = await get(url);
