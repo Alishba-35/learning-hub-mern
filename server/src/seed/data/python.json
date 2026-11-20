@@ -13,7 +13,7 @@
       "blocks": [
         {
           "kind": "html",
-          "html": "<div class=\"container my-4\">\n<h1>Introduction to Python</h1>\n<div class=\"card\">\n<h2>What is Python?</h2>\n<p><strong>Python</strong> is a popular, beginner-friendly programming language. Its code reads almost like English, which is why it is used for web back-ends, data science, automation, AI and teaching. It was created by Guido van Rossum and first released in 1991.</p><ul><li><strong>Interpreted:</strong> you run code line by line, no separate compile step.</li><li><strong>Dynamically typed:</strong> you do not declare types.</li><li><strong>Batteries included:</strong> a huge standard library comes with it.</li><li><strong>Readable:</strong> indentation and simple words make programs easy to follow.</li><li><strong>Multi-purpose:</strong> supports procedural, object-oriented and functional styles.</li><li><strong>Free and open source:</strong> works on Windows, macOS and Linux.</li></ul>"
+          "html": "<div class=\"container my-4\">\n<h1>Introduction to Python</h1>\n<div class=\"card\">\n<h2>What is Python?</h2>\n<p><strong>Python</strong> is a popular, beginner-friendly programming language. Its code reads almost like English, which is why it is used for web back-ends, data science, automation, AI and teaching. It was created by Guido van Rossum and first released in 1991.</p><ul><li><strong>Interpreted:</strong> you run code line by line, no separate compile step.</li><li><strong>Dynamically typed:</strong> you do not declare types.</li><li><strong>Batteries included:</strong> a huge standard library comes with it.</li><li><strong>Readable:</strong> indentation and simple words make programs easy to follow.</li><li><strong>Multi-purpose:</strong> supports procedural, object-oriented and functional styles.</li><li><strong>Free and open source:</strong> works on Windows, macOS and Linux.</li></ul><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/UrsmFxEIp5k?si=QAWTcHKs9VtDjYMQ\" title=\"YouTube video player\" width=\"650\"></iframe>\n"
         },
         {
           "kind": "html",
@@ -29,7 +29,7 @@
         },
         {
           "kind": "html",
-          "html": "</div>\n\n<div class=\"card\">\n<h2>Your First Program</h2>\n<p>Save this as <code>hello.py</code> and run it with <code>python hello.py</code> (or try it in the interactive prompt by typing <code>python</code>).</p><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/UrsmFxEIp5k?si=QAWTcHKs9VtDjYMQ\" title=\"YouTube video player\" width=\"650\"></iframe>\n"
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Your First Program</h2>\n<p>Save this as <code>hello.py</code> and run it with <code>python hello.py</code> (or try it in the interactive prompt by typing <code>python</code>).</p>"
         },
         {
           "kind": "html",
