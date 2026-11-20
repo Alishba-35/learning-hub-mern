@@ -1,425 +1,425 @@
 {
- "slug": "typescript",
- "name": "TypeScript",
- "description": "TypeScript is JavaScript with types: it catches mistakes while you write code, before the program runs.",
- "color": "#2f74c0",
- "order": 10,
- "topics": [
-  {
-   "slug": "intro-setup",
-   "title": "Introduction &amp; Setup",
-   "section": "Type Basics",
-   "order": 1,
-   "styles": "",
-   "blocks": [
+  "slug": "typescript",
+  "name": "TypeScript",
+  "description": "TypeScript is JavaScript with types: it catches mistakes while you write code, before the program runs.",
+  "color": "#2f74c0",
+  "order": 10,
+  "topics": [
     {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Introduction &amp; Setup</h1>\n<div class=\"card\">\n<h2>Why TypeScript?</h2>\n<p>JavaScript is flexible, but that flexibility can hurt. You can pass a number where a string is expected, mistype a property name, or call a function with the wrong arguments. JavaScript will not complain. The program simply breaks later, often when a real user is using it.</p>\n<p><strong>TypeScript</strong> is JavaScript with types. You add small labels that say what kind of value each variable or function should use. A tool called the <strong>compiler</strong> reads your code and shows mistakes while you write, before the program runs. TypeScript is a superset of JavaScript, so every valid JavaScript file is also valid TypeScript. You can learn it step by step.</p>\n<p>Browsers and Node.js cannot run TypeScript directly. The compiler first removes the types and writes normal JavaScript. That JavaScript is what actually runs.</p>\n</div>\n\n<div class=\"card\">\n<h2>Installing TypeScript</h2>\n<p>You need Node.js and npm. Then create a project folder and install TypeScript as a development tool. The flag <code>-D</code> means it is only needed while you develop.</p>\n<pre><code>mkdir hello-ts\ncd hello-ts\nnpm init -y\nnpm install -D typescript\nnpx tsc --version</code></pre>\n<p>The command <code>tsc</code> is the TypeScript compiler. The last line prints the installed version number.</p>\n</div>\n\n<div class=\"card\">\n<h2>Your first file</h2>\n<p>TypeScript files end with <code>.ts</code>. In the code below, <code>: string</code> and <code>: number</code> are type annotations. Press Run demo to see what the compiled JavaScript prints.</p>"
+      "slug": "intro-setup",
+      "title": "Introduction &amp; Setup",
+      "section": "Type Basics",
+      "order": 1,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>Introduction &amp; Setup</h1>\n<div class=\"card\">\n<h2>Why TypeScript?</h2>\n<p>JavaScript is flexible, but that flexibility can hurt. You can pass a number where a string is expected, mistype a property name, or call a function with the wrong arguments. JavaScript will not complain. The program simply breaks later, often when a real user is using it.</p>\n<p><strong>TypeScript</strong> is JavaScript with types. You add small labels that say what kind of value each variable or function should use. A tool called the <strong>compiler</strong> reads your code and shows mistakes while you write, before the program runs. TypeScript is a superset of JavaScript, so every valid JavaScript file is also valid TypeScript. You can learn it step by step.</p>\n<p>Browsers and Node.js cannot run TypeScript directly. The compiler first removes the types and writes normal JavaScript. That JavaScript is what actually runs.</p>\n</div>\n\n<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/d56mG7DezGs?si=T6UkfWueE5o1Jbww\" title=\"YouTube video player\" width=\"650\"></iframe></div>\" title=\"YouTube video player\" width=\"650\"></iframe></div>\n<div class=\"card\">\n<h2>Installing TypeScript</h2>\n<p>You need Node.js and npm. Then create a project folder and install TypeScript as a development tool. The flag <code>-D</code> means it is only needed while you develop.</p>\n<pre><code>mkdir hello-ts\ncd hello-ts\nnpm init -y\nnpm install -D typescript\nnpx tsc --version</code></pre>\n<p>The command <code>tsc</code> is the TypeScript compiler. The last line prints the installed version number.</p>\n</div>\n\n<div class=\"card\">\n<h2>Your first file</h2>\n<p>TypeScript files end with <code>.ts</code>. In the code below, <code>: string</code> and <code>: number</code> are type annotations. Press Run demo to see what the compiled JavaScript prints.</p>"
+        },
+        {
+          "kind": "html",
+          "html": "<figure class=\"lesson-figure\"><img alt=\"hello.ts is checked and compiled by tsc into hello.js, which Node.js runs to print the output.\" class=\"content-image\" src=\"/images/diagrams/typescript-intro-setup.svg\"/><figcaption>The compiler checks your types, then writes plain JavaScript that Node.js or a browser runs.</figcaption></figure>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "function greet(name: string, year: number): string {\n  return \"Hello \" + name + \", welcome to year \" + year;\n}\n\nconsole.log(greet(\"Alishba\", 2));",
+          "output": "Hello Alishba, welcome to year 2"
+        },
+        {
+          "kind": "html",
+          "html": "<p>To compile the file, run <code>npx tsc hello.ts</code>. The compiler creates <code>hello.js</code> with the types removed. Then run it with <code>node hello.js</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>The compiler finds mistakes</h2>\n<p>Here is the real value of TypeScript. The variable below is declared as a number, but we try to store text in it. The compiler refuses. The output below is the real error message from <code>tsc</code> for a file called <code>demo.ts</code>, so it is a compile error and not program output. The numbers <code>(2,1)</code> mean line 2, column 1.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "let score: number = 10;\nscore = \"ten\";",
+          "output": "Compile error (tsc):\ndemo.ts(2,1): error TS2322: Type 'string' is not assignable to type 'number'."
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>tsconfig.json basics</h2>\n<p>A real project uses a settings file named <code>tsconfig.json</code>. Create it with <code>npx tsc --init</code>. After that, running just <code>npx tsc</code> compiles every file in the project. Here are the most common options.</p>\n<table>\n<tr><th>Option</th><th>Meaning</th></tr>\n<tr><td><code>target</code></td><td>Which JavaScript version to produce, such as ES2020</td></tr>\n<tr><td><code>module</code></td><td>Which module system the output uses, such as commonjs</td></tr>\n<tr><td><code>strict</code></td><td>Turns on all the strict checks (recommended)</td></tr>\n<tr><td><code>outDir</code></td><td>Folder where the compiled <code>.js</code> files go</td></tr>\n<tr><td><code>rootDir</code></td><td>Folder where your <code>.ts</code> source files live</td></tr>\n</table>\n<pre><code>{\n  \"compilerOptions\": {\n    \"target\": \"ES2020\",\n    \"module\": \"commonjs\",\n    \"strict\": true,\n    \"rootDir\": \"src\",\n    \"outDir\": \"dist\"\n  }\n}</code></pre>\n</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Trying to run a <code>.ts</code> file with <code>node</code> directly. Compile it first.</li>\n<li>Editing the generated <code>.js</code> file. Always edit the <code>.ts</code> file, because the compiler will overwrite the <code>.js</code>.</li>\n<li>Leaving <code>strict</code> off. It hides many mistakes that TypeScript could catch for you.</li>\n<li>Thinking types exist at run time. They are removed when the code is compiled.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>TypeScript is JavaScript plus types, checked before the program runs.</li>\n<li>Install it with <code>npm install -D typescript</code> and compile with <code>tsc</code>.</li>\n<li>The compiler removes the types and writes plain JavaScript.</li>\n<li><code>tsconfig.json</code> controls the target, strictness and folders.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
     },
     {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"hello.ts is checked and compiled by tsc into hello.js, which Node.js runs to print the output.\" class=\"content-image\" src=\"/images/diagrams/typescript-intro-setup.svg\"/><figcaption>The compiler checks your types, then writes plain JavaScript that Node.js or a browser runs.</figcaption></figure>"
+      "slug": "basic-types",
+      "title": "Basic Types",
+      "section": "Type Basics",
+      "order": 2,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>Basic Types</h1>\n<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/d56mG7DezGs?si=T6UkfWueE5o1Jbww\" title=\"YouTube video player\" width=\"650\"></iframe></div>\" title=\"YouTube video player\" width=\"650\"></iframe></div>\n<div class=\"card\">\n<h2>Primitive types</h2>\n<p>A <strong>type annotation</strong> goes after the variable name with a colon. The three most common basic types are <code>string</code> for text, <code>number</code> for all numbers (whole or decimal) and <code>boolean</code> for true or false. Use lowercase names. Capital names such as <code>String<hn/code> refer to different objects and are not what you want.</p>"
+        },
+        {
+          "kind": "html",
+          "html": "<figure class=\"lesson-figure\"><img alt=\"Table of TypeScript types string, number, boolean, array, tuple, any and unknown with examples.\" class=\"content-image\" src=\"/images/diagrams/typescript-basic-types.svg\"/><figcaption>The everyday TypeScript types and an example of each.</figcaption></figure>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "const studentName: string = \"Alishba\";\nconst age: number = 19;\nconst price: number = 99.5;\nconst isEnrolled: boolean = true;\n\nconsole.log(studentName, age, price, isEnrolled);\nconsole.log(typeof studentName, typeof age, typeof isEnrolled);",
+          "output": "Alishba 19 99.5 true\nstring number boolean"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Type inference</h2>\n<p>You do not have to write a type every time. When you give a variable a starting value, TypeScript <strong>infers</strong> (works out) the type for you. After that the type is fixed. Good TypeScript style is to let inference work for simple variables and write annotations where the type is not obvious, such as function parameters.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "let city = \"Lahore\";\ncity = \"Karachi\";\ncity = 5;",
+          "output": "Compile error (tsc):\ndemo.ts(3,1): error TS2322: Type 'number' is not assignable to type 'string'."
+        },
+        {
+          "kind": "html",
+          "html": "<p>The output above is a compile error from <code>tsc</code>. TypeScript inferred that <code>city</code> is a <code>string</code> from its first value, so storing a number is not allowed.</p>\n</div>\n\n<div class=\"card\">\n<h2>Arrays and tuples</h2>\n<p>An <strong>array</strong> holds many values of the same type. Write the item type followed by <code>[]</code>, for example <code>number[]</code>. You can also write <code>Array&lt;number&gt;</code>. A <strong>tuple</strong> is an array with a fixed length where each position has its own type.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "const marks: number[] = [78, 85, 92];\nmarks.push(60);\n\nconst names: Array<string> = [\"Ali\", \"Sara\"];\n\nconst student: [string, number] = [\"Ayesha\", 21];\nconst [who, years] = student;\n\nconsole.log(marks.length, names[1]);\nconsole.log(who, years);",
+          "output": "4 Sara\nAyesha 21"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>any versus unknown</h2>\n<p>Sometimes you do not know a type, for example data from outside your program. TypeScript gives two choices. The type <code>any</code> turns off checking, so anything is allowed and mistakes come back. The type <code>unknown</code> means \"could be anything\", but you must check the type before you use the value. Prefer <code>unknown</code>.</p>\n<table>\n<tr><th>Type</th><th>Can hold any value?</th><th>Safe to use directly?</th></tr>\n<tr><td><code>any</code></td><td>Yes</td><td>Yes, but no checking at all</td></tr>\n<tr><td><code>unknown</code></td><td>Yes</td><td>No, you must check it first</td></tr>\n</table>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "function describe(value: unknown): string {\n  if (typeof value === \"string\") {\n    return \"text of length \" + value.length;\n  }\n  if (typeof value === \"number\") {\n    return \"number \" + value.toFixed(1);\n  }\n  return \"something else\";\n}\n\nconsole.log(describe(\"hello\"));\nconsole.log(describe(42));\nconsole.log(describe(true));",
+          "output": "text of length 5\nnumber 42.0\nsomething else"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Using <code>String</code> or <code>Number</code> (capital letters) instead of <code>string</code> and <code>number</code>.</li>\n<li>Using <code>any</code> everywhere. It makes TypeScript act like plain JavaScript.</li>\n<li>Writing an annotation that is longer than needed, such as <code>const n: number = 5</code>. Inference already knows it.</li>\n<li>Forgetting that a tuple has a fixed length and fixed types.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Basic types are <code>string</code>, <code>number</code> and <code>boolean</code>.</li>\n<li>Arrays use <code>type[]</code>; tuples fix both length and the type at each position.</li>\n<li>TypeScript infers types from starting values, and the inferred type stays fixed.</li>\n<li>Choose <code>unknown</code> over <code>any</code>, and check it before use.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
     },
     {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "function greet(name: string, year: number): string {\n  return \"Hello \" + name + \", welcome to year \" + year;\n}\n\nconsole.log(greet(\"Alishba\", 2));",
-     "output": "Hello Alishba, welcome to year 2"
+      "slug": "functions-types",
+      "title": "Typing Functions",
+      "section": "Type Basics",
+      "order": 3,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>Typing Functions</h1>\n<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/d56mG7DezGs?si=T6UkfWueE5o1Jbww\" title=\"YouTube video player\" width=\"650\"></iframe></div>\" title=\"YouTube video player\" width=\"650\"></iframe></div>\n<div class=\"card\">\n<h2>Parameter and return types</h2>\n<p>Functions are where types help the most. You write a type for each parameter, and a type for the value the function returns after the closing bracket. If someone calls the function with the wrong kind of value, the compiler tells them at once.</p>"
+        },
+        {
+          "kind": "html",
+          "html": "<figure class=\"lesson-figure\"><img alt=\"Arguments of declared types go into a function and a value of the declared return type comes out.\" class=\"content-image\" src=\"/images/diagrams/typescript-functions-types.svg\"/><figcaption>Parameter types check the input and the return type checks the output.</figcaption></figure>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "function add(a: number, b: number): number {\n  return a + b;\n}\n\nconst square = (n: number): number => n * n;\n\nconsole.log(add(2, 3));\nconsole.log(square(7));",
+          "output": "5\n49"
+        },
+        {
+          "kind": "html",
+          "html": "<p>TypeScript can often infer the return type, but writing it is a good habit. It also protects you if you change the body by mistake.</p>\n</div>\n\n<div class=\"card\">\n<h2>Optional and default parameters</h2>\n<p>In JavaScript, every parameter is optional. In TypeScript, every parameter is <strong>required</strong> unless you say otherwise. Add <code>?</code> after the name to make a parameter optional. Its type then also includes <code>undefined</code>. Or give it a default value with <code>=</code>, and the type is inferred.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "function welcome(name: string, title?: string): string {\n  if (title) {\n    return \"Welcome, \" + title + \" \" + name;\n  }\n  return \"Welcome, \" + name;\n}\n\nfunction power(base: number, exponent: number = 2): number {\n  return base ** exponent;\n}\n\nconsole.log(welcome(\"Sadia\", \"Maam\"));\nconsole.log(welcome(\"Ali\"));\nconsole.log(power(5));\nconsole.log(power(2, 5));",
+          "output": "Welcome, Maam Sadia\nWelcome, Ali\n25\n32"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Calling with wrong arguments</h2>\n<p>Now see what the compiler says when a call does not match. The output is a real <code>tsc</code> compile error for <code>demo.ts</code>, not program output. The function expects a number but receives text.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "function double(n: number): number {\n  return n * 2;\n}\n\nconsole.log(double(\"4\"));",
+          "output": "Compile error (tsc):\ndemo.ts(5,20): error TS2345: Argument of type 'string' is not assignable to parameter of type 'number'."
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>void and never</h2>\n<p>Some functions do not return a value. Their return type is <code>void</code>. Other functions never finish normally, for example a function that always throws an error. Their return type is <code>never</code>.</p>\n<table>\n<tr><th>Type</th><th>Meaning</th><th>Example</th></tr>\n<tr><td><code>void</code></td><td>Returns nothing useful</td><td>A function that only prints</td></tr>\n<tr><td><code>never</code></td><td>Never returns normally</td><td>A function that always throws</td></tr>\n</table>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "function logMessage(msg: string): void {\n  console.log(\"LOG: \" + msg);\n}\n\nfunction fail(msg: string): never {\n  throw new Error(msg);\n}\n\nlogMessage(\"Server started\");\n\ntry {\n  fail(\"Something went wrong\");\n} catch (e) {\n  console.log(\"Caught:\", (e as Error).message);\n}",
+          "output": "LOG: Server started\nCaught: Something went wrong"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Calling a function with too few or too many arguments. TypeScript counts them.</li>\n<li>Putting an optional parameter before a required one. Optional parameters must come last.</li>\n<li>Mixing up <code>void</code> and <code>never</code>. A normal function that just does not return anything is <code>void</code>.</li>\n<li>Forgetting a <code>return</code> in a function that promises a <code>number</code>.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Write parameter types after each name and the return type after the brackets.</li>\n<li>Use <code>?</code> for an optional parameter, or <code>=</code> for a default value.</li>\n<li><code>void</code> means no useful return value; <code>never</code> means the function never returns.</li>\n<li>Wrong arguments are reported by the compiler before the code runs.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
     },
     {
-     "kind": "html",
-     "html": "<p>To compile the file, run <code>npx tsc hello.ts</code>. The compiler creates <code>hello.js</code> with the types removed. Then run it with <code>node hello.js</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>The compiler finds mistakes</h2>\n<p>Here is the real value of TypeScript. The variable below is declared as a number, but we try to store text in it. The compiler refuses. The output below is the real error message from <code>tsc</code> for a file called <code>demo.ts</code>, so it is a compile error and not program output. The numbers <code>(2,1)</code> mean line 2, column 1.</p>"
+      "slug": "interfaces-types",
+      "title": "Interfaces &amp; Type Aliases",
+      "section": "Object Types",
+      "order": 4,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>Interfaces &amp; Type Aliases</h1>\n<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/d56mG7DezGs?si=T6UkfWueE5o1Jbww\" title=\"YouTube video player\" width=\"650\"></iframe></div>\" title=\"YouTube video player\" width=\"650\"></iframe></div>\n<div class=\"card\">\n<h2>Describing the shape of an object</h2>\n<p>Real programs use objects with several properties, such as a student with a name, a roll number and a grade. An <strong>interface</strong> describes the shape of such an object: which property names it must have and what type each one is. Any object with that shape is accepted, and an object with a missing or wrong property is rejected.</p>"
+        },
+        {
+          "kind": "html",
+          "html": "<figure class=\"lesson-figure\"><img alt=\"An interface Course with code, title and optional credits, and three objects that follow it.\" class=\"content-image\" src=\"/images/diagrams/typescript-interfaces-types.svg\"/><figcaption>An interface describes the shape every matching object must have.</figcaption></figure>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "interface Student {\n  name: string;\n  rollNo: number;\n  section: string;\n}\n\nfunction show(s: Student): string {\n  return s.name + \" (Roll \" + s.rollNo + \", Section \" + s.section + \")\";\n}\n\nconst a: Student = { name: \"Alishba\", rollNo: 188, section: \"D\" };\nconsole.log(show(a));",
+          "output": "Alishba (Roll 188, Section D)"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Optional and readonly properties</h2>\n<p>Add <code>?</code> after a property name to make it optional. Add <code>readonly</code> before a name so it can be set when the object is created but never changed afterwards. This is useful for ids.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "interface Course {\n  readonly code: string;\n  title: string;\n  credits?: number;\n}\n\nconst db: Course = { code: \"CS-201\", title: \"Databases\" };\ndb.title = \"Database Systems\";\ndb.code = \"CS-999\";",
+          "output": "Compile error (tsc):\ndemo.ts(9,4): error TS2540: Cannot assign to 'code' because it is a read-only property."
+        },
+        {
+          "kind": "html",
+          "html": "<p>The output above is a compile error from <code>tsc</code>. Changing <code>title</code> is fine, but <code>code</code> is <code>readonly</code>, so the compiler stops us.</p>\n</div>\n\n<div class=\"card\">\n<h2>Type aliases</h2>\n<p>A <strong>type alias</strong> gives a name to any type using the <code>type</code> keyword. It can name an object shape, but also a union, a tuple or a simple type. Use it to avoid repeating a long type.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "type ID = string | number;\ntype Point = { x: number; y: number };\n\ninterface Animal {\n  name: string;\n}\ninterface Dog extends Animal {\n  breed: string;\n}\n\ntype Pair = Point & { label: string };\n\nconst id: ID = 101;\nconst p: Pair = { x: 3, y: 4, label: \"A\" };\nconst d: Dog = { name: \"Rex\", breed: \"Labrador\" };\n\nconsole.log(id, p.x + p.y, p.label);\nconsole.log(d.name, d.breed);",
+          "output": "101 7 A\nRex Labrador"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>interface or type?</h2>\n<p>For object shapes both work and look almost the same. The main differences are small. A simple rule for beginners: use <code>interface</code> for object shapes and classes, and use <code>type</code> for unions and other kinds of types.</p>\n<table>\n<tr><th>Feature</th><th>interface</th><th>type</th></tr>\n<tr><td>Describe an object shape</td><td>Yes</td><td>Yes</td></tr>\n<tr><td>Extend another one</td><td><code>extends</code></td><td>Use <code>&amp;</code> (intersection)</td></tr>\n<tr><td>Name a union such as <code>string | number</code></td><td>No</td><td>Yes</td></tr>\n<tr><td>Can be declared twice and merged</td><td>Yes</td><td>No</td></tr>\n</table>\n</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Forgetting a required property. The compiler will list the missing one.</li>\n<li>Adding an extra property when writing an object directly. TypeScript flags unknown properties in object literals.</li>\n<li>Thinking <code>readonly</code> works at run time. It is checked only by the compiler.</li>\n<li>Using <code>,</code> or <code>;</code> inconsistently. Either is allowed, but pick one style.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>An interface or type alias describes the shape of an object.</li>\n<li><code>?</code> makes a property optional; <code>readonly</code> blocks changes after creation.</li>\n<li>Interfaces use <code>extends</code>; type aliases combine with <code>&amp;</code>.</li>\n<li>Use <code>type</code> for unions, tuples and other non-object types.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
     },
     {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "let score: number = 10;\nscore = \"ten\";",
-     "output": "Compile error (tsc):\ndemo.ts(2,1): error TS2322: Type 'string' is not assignable to type 'number'."
+      "slug": "unions-narrowing",
+      "title": "Union Types &amp; Narrowing",
+      "section": "Object Types",
+      "order": 5,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>Union Types &amp; Narrowing</h1>\n<div class=\"card\">\n<h2>Union types</h2>\n<p>Sometimes a value can be one of several types. A <strong>union type</strong> joins types with the <code>|</code> symbol and is read as \"or\". For example, <code>string | number</code> means the value is a string or a number. A <strong>literal type</strong> is even more exact: it allows only specific values, such as <code>\"yes\"</code> or <code>\"no\"</code>.</p>\n<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/d56mG7DezGs?si=T6UkfWueE5o1Jbww\" title=\"YouTube video player\" width=\"650\"></iframe></div>\" title=\"YouTube video player\" width=\"650\"></iframe></div>"
+        },
+        {
+          "kind": "html",
+          "html": "<figure class=\"lesson-figure\"><img alt=\"A typeof check on string | number: if true value is a string, otherwise a number.\" class=\"content-image\" src=\"/images/diagrams/typescript-unions-narrowing.svg\"/><figcaption>A check like typeof narrows a union to one type inside each branch.</figcaption></figure>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "type Grade = \"A\" | \"B\" | \"C\";\ntype Id = string | number;\n\nconst g: Grade = \"B\";\nconst id1: Id = 42;\nconst id2: Id = \"STU-7\";\n\nconsole.log(g, id1, id2);",
+          "output": "B 42 STU-7"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>The problem with unions</h2>\n<p>With a union you can only use what is safe for <em>every</em> member. A number has no <code>toUpperCase</code> method, so TypeScript will not allow it on <code>string | number</code>. The output below is a real compile error from <code>tsc</code>.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "function shout(value: string | number) {\n  return value.toUpperCase();\n}",
+          "output": "Compile error (tsc):\ndemo.ts(2,16): error TS2339: Property 'toUpperCase' does not exist on type 'string | number'."
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Narrowing with typeof and in</h2>\n<p><strong>Narrowing</strong> means checking a value so TypeScript knows its exact type inside a block. Two common checks are <code>typeof</code> for simple types and the <code>in</code> operator, which tests whether an object has a property.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "function format(value: string | number): string {\n  if (typeof value === \"string\") {\n    return value.toUpperCase();\n  }\n  return value.toFixed(2);\n}\n\ninterface Car { drive(): string }\ninterface Boat { sail(): string }\n\nfunction move(v: Car | Boat): string {\n  if (\"drive\" in v) {\n    return v.drive();\n  }\n  return v.sail();\n}\n\nconsole.log(format(\"pakistan\"));\nconsole.log(format(3.14159));\nconsole.log(move({ drive: () => \"driving\" }));\nconsole.log(move({ sail: () => \"sailing\" }));",
+          "output": "PAKISTAN\n3.14\ndriving\nsailing"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Discriminated unions</h2>\n<p>A <strong>discriminated union</strong> is a union of object types that all share one property with a literal value, often called <code>kind</code>. Checking that one property tells TypeScript which member you have, so you get the right properties safely. A <code>switch</code> on it is very clear.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "type Shape =\n  | { kind: \"circle\"; radius: number }\n  | { kind: \"rectangle\"; width: number; height: number };\n\nfunction area(s: Shape): number {\n  switch (s.kind) {\n    case \"circle\":\n      return Math.round(Math.PI * s.radius ** 2);\n    case \"rectangle\":\n      return s.width * s.height;\n  }\n}\n\nconsole.log(area({ kind: \"circle\", radius: 2 }));\nconsole.log(area({ kind: \"rectangle\", width: 4, height: 5 }));",
+          "output": "13\n20"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Using a method on a union without narrowing first.</li>\n<li>Writing <code>typeof x === \"String\"</code> with a capital. The result is always lowercase, such as <code>\"string\"</code>.</li>\n<li>Forgetting a case in a <code>switch</code> over a discriminated union.</li>\n<li>Using different property names for the tag in each member. The shared property must have the same name.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li><code>A | B</code> means the value is A or B; literal types allow only exact values.</li>\n<li>Narrow a union with <code>typeof</code>, <code>in</code> or equality checks.</li>\n<li>Inside the checked block, TypeScript knows the exact type.</li>\n<li>A shared literal property (such as <code>kind</code>) makes a discriminated union easy to handle.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
     },
     {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>tsconfig.json basics</h2>\n<p>A real project uses a settings file named <code>tsconfig.json</code>. Create it with <code>npx tsc --init</code>. After that, running just <code>npx tsc</code> compiles every file in the project. Here are the most common options.</p>\n<table>\n<tr><th>Option</th><th>Meaning</th></tr>\n<tr><td><code>target</code></td><td>Which JavaScript version to produce, such as ES2020</td></tr>\n<tr><td><code>module</code></td><td>Which module system the output uses, such as commonjs</td></tr>\n<tr><td><code>strict</code></td><td>Turns on all the strict checks (recommended)</td></tr>\n<tr><td><code>outDir</code></td><td>Folder where the compiled <code>.js</code> files go</td></tr>\n<tr><td><code>rootDir</code></td><td>Folder where your <code>.ts</code> source files live</td></tr>\n</table>\n<pre><code>{\n  \"compilerOptions\": {\n    \"target\": \"ES2020\",\n    \"module\": \"commonjs\",\n    \"strict\": true,\n    \"rootDir\": \"src\",\n    \"outDir\": \"dist\"\n  }\n}</code></pre>\n</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Trying to run a <code>.ts</code> file with <code>node</code> directly. Compile it first.</li>\n<li>Editing the generated <code>.js</code> file. Always edit the <code>.ts</code> file, because the compiler will overwrite the <code>.js</code>.</li>\n<li>Leaving <code>strict</code> off. It hides many mistakes that TypeScript could catch for you.</li>\n<li>Thinking types exist at run time. They are removed when the code is compiled.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>TypeScript is JavaScript plus types, checked before the program runs.</li>\n<li>Install it with <code>npm install -D typescript</code> and compile with <code>tsc</code>.</li>\n<li>The compiler removes the types and writes plain JavaScript.</li>\n<li><code>tsconfig.json</code> controls the target, strictness and folders.</li>\n</ul>\n</div>\n</div>"
+      "slug": "classes-access",
+      "title": "Classes &amp; Access Modifiers",
+      "section": "Object Types",
+      "order": 6,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>Classes &amp; Access Modifiers</h1>\n<div class=\"card\">\n<h2>Classes with types</h2>\n<p>TypeScript classes look like JavaScript classes, but every property has a type and you can control who is allowed to use it. This is called <strong>access control</strong>. It helps you hide the inside of a class so other code uses it the safe way.</p>\n<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/d56mG7DezGs?si=T6UkfWueE5o1Jbww\" title=\"YouTube video player\" width=\"650\"></iframe></div>\" title=\"YouTube video player\" width=\"650\"></iframe></div>\n<table>\n<tr><th>Modifier</th><th>Who can use it</th></tr>\n<tr><td><code>public</code></td><td>Anyone (this is the default)</td></tr>\n<tr><td><code>private</code></td><td>Only code inside the same class</td></tr>\n<tr><td><code>protected</code></td><td>The class and its subclasses</td></tr>\n<tr><td><code>readonly</code></td><td>Can be set once (in the constructor) and never changed</td></tr>\n</table>"
+        },
+        {
+          "kind": "html",
+          "html": "<figure class=\"lesson-figure\"><img alt=\"Table showing where public, protected, private and readonly members can be used.\" class=\"content-image\" src=\"/images/diagrams/typescript-classes-access.svg\"/><figcaption>Access modifiers decide who can use a class member; they are checked by the compiler.</figcaption></figure>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "class BankAccount {\n  readonly owner: string;\n  private balance: number = 0;\n\n  constructor(owner: string) {\n    this.owner = owner;\n  }\n\n  deposit(amount: number): void {\n    this.balance += amount;\n  }\n\n  getBalance(): number {\n    return this.balance;\n  }\n}\n\nconst acc = new BankAccount(\"Sara\");\nacc.deposit(500);\nacc.deposit(250);\nconsole.log(acc.owner, acc.getBalance());",
+          "output": "Sara 750"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Private is checked by the compiler</h2>\n<p>If code outside the class touches a private member, the compiler reports an error. The output below is a real <code>tsc</code> compile error, not program output.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "class Wallet {\n  private cash: number = 100;\n}\n\nconst w = new Wallet();\nconsole.log(w.cash);",
+          "output": "Compile error (tsc):\ndemo.ts(6,15): error TS2341: Property 'cash' is private and only accessible within class 'Wallet'."
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Parameter properties</h2>\n<p>Writing a field, a constructor parameter and an assignment for every property is repetitive. TypeScript has a shortcut called <strong>parameter properties</strong>. If you put an access modifier in front of a constructor parameter, TypeScript creates the property and assigns it for you.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "class Teacher {\n  constructor(\n    public name: string,\n    protected subject: string,\n    private readonly salary: number\n  ) {}\n\n  info(): string {\n    return this.name + \" teaches \" + this.subject;\n  }\n}\n\nclass HeadTeacher extends Teacher {\n  describe(): string {\n    return this.name + \" leads \" + this.subject;\n  }\n}\n\nconst t = new HeadTeacher(\"Sadia\", \"Databases\", 90000);\nconsole.log(t.info());\nconsole.log(t.describe());",
+          "output": "Sadia teaches Databases\nSadia leads Databases"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Implementing an interface</h2>\n<p>A class can promise to follow an interface using <code>implements</code>. The compiler then checks that the class really has every required member. This is useful when many classes must offer the same methods.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "interface Printable {\n  print(): string;\n}\n\nclass Invoice implements Printable {\n  constructor(private id: number, private total: number) {}\n\n  print(): string {\n    return \"Invoice #\" + this.id + \": \" + this.total;\n  }\n}\n\nclass Receipt implements Printable {\n  print(): string {\n    return \"Receipt: paid\";\n  }\n}\n\nconst docs: Printable[] = [new Invoice(7, 1500), new Receipt()];\nfor (const d of docs) {\n  console.log(d.print());\n}",
+          "output": "Invoice #7: 1500\nReceipt: paid"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Thinking <code>private</code> hides data at run time. It is only a compile-time check.</li>\n<li>Forgetting the access modifier on a constructor parameter, so no property is created.</li>\n<li>Trying to change a <code>readonly</code> property outside the constructor.</li>\n<li>Confusing <code>extends</code> (inherit from one class) with <code>implements</code> (follow an interface).</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li><code>public</code>, <code>private</code> and <code>protected</code> control who can use a member.</li>\n<li><code>readonly</code> allows a value to be set only once.</li>\n<li>Parameter properties create and assign fields from the constructor.</li>\n<li><code>implements</code> makes the compiler check a class against an interface.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
+    },
+    {
+      "slug": "generics",
+      "title": "Generics",
+      "section": "Advanced Types",
+      "order": 7,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/d56mG7DezGs?si=T6UkfWueE5o1Jbww\" title=\"YouTube video player\" width=\"650\"></iframe></div>\" title=\"YouTube video player\" width=\"650\"></iframe></div>\n<h1>Generics</h1>\n<div class=\"card\">\n<h2>Why generics?</h2>\n<p>Imagine a function that returns the first item of an array. You could write it for numbers, then again for strings, then again for students. Or you could use <code>any</code>, but then you lose type safety. <strong>Generics</strong> solve this. A generic function uses a <strong>type parameter</strong>, usually named <code>T</code>, as a placeholder. The real type is filled in when the function is used.</p>"
+        },
+        {
+          "kind": "html",
+          "html": "<figure class=\"lesson-figure\"><img alt=\"first&lt;T&gt; receives string[], T becomes string, and the function returns a string.\" class=\"content-image\" src=\"/images/diagrams/typescript-generics.svg\"/><figcaption>A type parameter T is filled in from the argument, so the result type matches.</figcaption></figure>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "function first<T>(items: T[]): T {\n  return items[0];\n}\n\nconst n = first([10, 20, 30]);\nconst s = first([\"red\", \"green\"]);\n\nconsole.log(n, s);\nconsole.log(typeof n, typeof s);",
+          "output": "10 red\nnumber string"
+        },
+        {
+          "kind": "html",
+          "html": "<p>TypeScript works out <code>T</code> from the argument. For the first call <code>T</code> is <code>number</code>, and for the second it is <code>string</code>. The result keeps the right type. You can also write it yourself, for example <code>first&lt;string&gt;([\"a\"])</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>Constraints with extends</h2>\n<p>Sometimes <code>T</code> cannot be just anything. If the function uses <code>.length</code>, then <code>T</code> must have a <code>length</code>. Use <code>extends</code> to set that rule. This is called a <strong>constraint</strong>.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "function longest<T extends { length: number }>(a: T, b: T): T {\n  return a.length >= b.length ? a : b;\n}\n\nconsole.log(longest(\"apple\", \"fig\"));\nconsole.log(longest([1, 2, 3], [4, 5]));",
+          "output": "apple\n[ 1, 2, 3 ]"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>The compiler checks the constraint</h2>\n<p>A number has no <code>length</code>, so it breaks the rule. The output below is the real <code>tsc</code> compile error.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "function size<T extends { length: number }>(x: T): number {\n  return x.length;\n}\n\nconsole.log(size(123));",
+          "output": "Compile error (tsc):\ndemo.ts(5,18): error TS2345: Argument of type 'number' is not assignable to parameter of type '{ length: number; }'."
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Generic interfaces and classes</h2>\n<p>Interfaces, type aliases and classes can also take type parameters. A very common example is a box, a list or an API response that can hold any one kind of data.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "interface Box<T> {\n  value: T;\n}\n\ninterface ApiResponse<T> {\n  ok: boolean;\n  data: T;\n}\n\nclass Stack<T> {\n  private items: T[] = [];\n\n  push(item: T): void {\n    this.items.push(item);\n  }\n\n  pop(): T | undefined {\n    return this.items.pop();\n  }\n}\n\nconst numBox: Box<number> = { value: 7 };\nconst res: ApiResponse<string[]> = { ok: true, data: [\"a\", \"b\"] };\n\nconst stack = new Stack<string>();\nstack.push(\"one\");\nstack.push(\"two\");\n\nconsole.log(numBox.value, res.data.length);\nconsole.log(stack.pop(), stack.pop(), stack.pop());",
+          "output": "7 2\ntwo one undefined"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Using <code>any</code> when a generic would keep the type.</li>\n<li>Using properties of <code>T</code> without a constraint. The compiler does not know what <code>T</code> has.</li>\n<li>Naming many type parameters without need. One letter such as <code>T</code> is fine for simple cases.</li>\n<li>Forgetting that generics also disappear after compiling, like all types.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A type parameter such as <code>T</code> is a placeholder for a real type.</li>\n<li>TypeScript usually infers <code>T</code> from the arguments.</li>\n<li><code>T extends Something</code> limits which types are allowed.</li>\n<li>Interfaces and classes can be generic, for example <code>Box&lt;number&gt;</code>.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
+    },
+    {
+      "slug": "utility-types-modules",
+      "title": "Utility Types &amp; Modules",
+      "section": "Advanced Types",
+      "order": 8,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>Utility Types &amp; Modules</h1>\n<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/d56mG7DezGs?si=T6UkfWueE5o1Jbww\" title=\"YouTube video player\" width=\"650\"></iframe></div>\" title=\"YouTube video player\" width=\"650\"></iframe></div>\n<div class=\"card\">\n<h2>Utility types</h2>\n<p>TypeScript includes ready-made helpers called <strong>utility types</strong>. They build a new type from an existing one, so you do not copy and paste shapes. Here are the most useful ones. Assume <code>T</code> is an object type.</p>\n<table>\n<tr><th>Utility</th><th>What it does</th></tr>\n<tr><td><code>Partial&lt;T&gt;</code></td><td>Makes every property optional</td></tr>\n<tr><td><code>Pick&lt;T, \"a\" | \"b\"&gt;</code></td><td>Keeps only the listed properties</td></tr>\n<tr><td><code>Omit&lt;T, \"a\"&gt;</code></td><td>Removes the listed properties</td></tr>\n<tr><td><code>Readonly&lt;T&gt;</code></td><td>Makes every property read-only</td></tr>\n<tr><td><code>Record&lt;K, V&gt;</code></td><td>An object with keys of type K and values of type V</td></tr>\n</table>"
+        },
+        {
+          "kind": "html",
+          "html": "<figure class=\"lesson-figure\"><img alt=\"Table of Partial, Pick, Omit, Readonly and Record with what each one builds from a type.\" class=\"content-image\" src=\"/images/diagrams/typescript-utility-types-modules.svg\"/><figcaption>Utility types build new types from existing ones.</figcaption></figure>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "interface User {\n  id: number;\n  name: string;\n  email: string;\n}\n\nconst update: Partial<User> = { email: \"new@example.com\" };\n\nconst preview: Pick<User, \"id\" | \"name\"> = { id: 1, name: \"Ali\" };\n\nconst noEmail: Omit<User, \"email\"> = { id: 2, name: \"Sara\" };\n\nconst fixed: Readonly<User> = { id: 3, name: \"Zain\", email: \"z@example.com\" };\n\nconst marks: Record<string, number> = { math: 80, physics: 75 };\n\nconsole.log(update);\nconsole.log(preview);\nconsole.log(noEmail);\nconsole.log(fixed.name, marks.physics);",
+          "output": "{ email: 'new@example.com' }\n{ id: 1, name: 'Ali' }\n{ id: 2, name: 'Sara' }\nZain 75"
+        },
+        {
+          "kind": "html",
+          "html": "<p>Notice that <code>Partial</code> is great for update functions, where only some fields are sent. <code>Record</code> is a neat way to type a dictionary.</p>\n</div>\n\n<div class=\"card\">\n<h2>Readonly in action</h2>\n<p>A <code>Readonly</code> object cannot be changed. The output below is a real <code>tsc</code> compile error.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "interface Settings {\n  theme: string;\n}\n\nconst s: Readonly<Settings> = { theme: \"dark\" };\ns.theme = \"light\";",
+          "output": "Compile error (tsc):\ndemo.ts(6,3): error TS2540: Cannot assign to 'theme' because it is a read-only property."
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Modules: import and export</h2>\n<p>Real projects are split into many files. In TypeScript, any file that has a top-level <code>import</code> or <code>export</code> is a <strong>module</strong>. Use <code>export</code> to share something and <code>import</code> to use it in another file. You can export types and interfaces as well as values.</p>\n<pre><code>// math.ts\nexport interface Result {\n  value: number;\n}\n\nexport function add(a: number, b: number): Result {\n  return { value: a + b };\n}\n\nexport default function multiply(a: number, b: number): number {\n  return a * b;\n}\n\n// main.ts\nimport multiply, { add, Result } from \"./math\";\n\nconst r: Result = add(2, 3);\nconsole.log(r.value, multiply(2, 3));</code></pre>\n<p>Names inside braces are <em>named</em> exports. The one without braces is the <em>default</em> export, and a file can have only one. In the import path, leave out the <code>.ts</code> ending.</p>\n</div>\n\n<div class=\"card\">\n<h2>Enums basics</h2>\n<p>An <strong>enum</strong> gives names to a fixed set of values. A numeric enum starts counting at 0. A string enum uses text values you choose and is easier to read when printed.</p>"
+        },
+        {
+          "kind": "demo",
+          "language": "typescript",
+          "code": "enum Role {\n  Student,\n  Teacher,\n  Admin\n}\n\nenum Status {\n  Active = \"ACTIVE\",\n  Blocked = \"BLOCKED\"\n}\n\nconst r: Role = Role.Teacher;\nconsole.log(r, Role.Admin);\nconsole.log(Status.Active);\n\nfunction canEdit(role: Role): boolean {\n  return role !== Role.Student;\n}\nconsole.log(canEdit(Role.Student), canEdit(Role.Admin));",
+          "output": "1 2\nACTIVE\nfalse true"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Using <code>Partial</code> when a value is really required. The compiler will no longer check it.</li>\n<li>Forgetting that <code>Readonly</code> and <code>readonly</code> are checked only by the compiler.</li>\n<li>Writing two default exports in one file.</li>\n<li>Forgetting <code>export</code>, then wondering why another file cannot import the name.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li><code>Partial</code>, <code>Pick</code>, <code>Omit</code>, <code>Readonly</code> and <code>Record</code> build new types from old ones.</li>\n<li>A file with <code>import</code> or <code>export</code> is a module.</li>\n<li>Named exports use braces; a default export does not.</li>\n<li>Enums name a fixed set of values; numeric enums start at 0.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "slug": "basic-types",
-   "title": "Basic Types",
-   "section": "Type Basics",
-   "order": 2,
-   "styles": "",
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Basic Types</h1>\n<div class=\"card\">\n<h2>Primitive types</h2>\n<p>A <strong>type annotation</strong> goes after the variable name with a colon. The three most common basic types are <code>string</code> for text, <code>number</code> for all numbers (whole or decimal) and <code>boolean</code> for true or false. Use lowercase names. Capital names such as <code>String</code> refer to different objects and are not what you want.</p>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"Table of TypeScript types string, number, boolean, array, tuple, any and unknown with examples.\" class=\"content-image\" src=\"/images/diagrams/typescript-basic-types.svg\"/><figcaption>The everyday TypeScript types and an example of each.</figcaption></figure>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "const studentName: string = \"Alishba\";\nconst age: number = 19;\nconst price: number = 99.5;\nconst isEnrolled: boolean = true;\n\nconsole.log(studentName, age, price, isEnrolled);\nconsole.log(typeof studentName, typeof age, typeof isEnrolled);",
-     "output": "Alishba 19 99.5 true\nstring number boolean"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Type inference</h2>\n<p>You do not have to write a type every time. When you give a variable a starting value, TypeScript <strong>infers</strong> (works out) the type for you. After that the type is fixed. Good TypeScript style is to let inference work for simple variables and write annotations where the type is not obvious, such as function parameters.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "let city = \"Lahore\";\ncity = \"Karachi\";\ncity = 5;",
-     "output": "Compile error (tsc):\ndemo.ts(3,1): error TS2322: Type 'number' is not assignable to type 'string'."
-    },
-    {
-     "kind": "html",
-     "html": "<p>The output above is a compile error from <code>tsc</code>. TypeScript inferred that <code>city</code> is a <code>string</code> from its first value, so storing a number is not allowed.</p>\n</div>\n\n<div class=\"card\">\n<h2>Arrays and tuples</h2>\n<p>An <strong>array</strong> holds many values of the same type. Write the item type followed by <code>[]</code>, for example <code>number[]</code>. You can also write <code>Array&lt;number&gt;</code>. A <strong>tuple</strong> is an array with a fixed length where each position has its own type.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "const marks: number[] = [78, 85, 92];\nmarks.push(60);\n\nconst names: Array<string> = [\"Ali\", \"Sara\"];\n\nconst student: [string, number] = [\"Ayesha\", 21];\nconst [who, years] = student;\n\nconsole.log(marks.length, names[1]);\nconsole.log(who, years);",
-     "output": "4 Sara\nAyesha 21"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>any versus unknown</h2>\n<p>Sometimes you do not know a type, for example data from outside your program. TypeScript gives two choices. The type <code>any</code> turns off checking, so anything is allowed and mistakes come back. The type <code>unknown</code> means \"could be anything\", but you must check the type before you use the value. Prefer <code>unknown</code>.</p>\n<table>\n<tr><th>Type</th><th>Can hold any value?</th><th>Safe to use directly?</th></tr>\n<tr><td><code>any</code></td><td>Yes</td><td>Yes, but no checking at all</td></tr>\n<tr><td><code>unknown</code></td><td>Yes</td><td>No, you must check it first</td></tr>\n</table>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "function describe(value: unknown): string {\n  if (typeof value === \"string\") {\n    return \"text of length \" + value.length;\n  }\n  if (typeof value === \"number\") {\n    return \"number \" + value.toFixed(1);\n  }\n  return \"something else\";\n}\n\nconsole.log(describe(\"hello\"));\nconsole.log(describe(42));\nconsole.log(describe(true));",
-     "output": "text of length 5\nnumber 42.0\nsomething else"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Using <code>String</code> or <code>Number</code> (capital letters) instead of <code>string</code> and <code>number</code>.</li>\n<li>Using <code>any</code> everywhere. It makes TypeScript act like plain JavaScript.</li>\n<li>Writing an annotation that is longer than needed, such as <code>const n: number = 5</code>. Inference already knows it.</li>\n<li>Forgetting that a tuple has a fixed length and fixed types.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Basic types are <code>string</code>, <code>number</code> and <code>boolean</code>.</li>\n<li>Arrays use <code>type[]</code>; tuples fix both length and the type at each position.</li>\n<li>TypeScript infers types from starting values, and the inferred type stays fixed.</li>\n<li>Choose <code>unknown</code> over <code>any</code>, and check it before use.</li>\n</ul>\n</div>\n</div>"
-    }
-   ]
-  },
-  {
-   "slug": "functions-types",
-   "title": "Typing Functions",
-   "section": "Type Basics",
-   "order": 3,
-   "styles": "",
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Typing Functions</h1>\n<div class=\"card\">\n<h2>Parameter and return types</h2>\n<p>Functions are where types help the most. You write a type for each parameter, and a type for the value the function returns after the closing bracket. If someone calls the function with the wrong kind of value, the compiler tells them at once.</p>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"Arguments of declared types go into a function and a value of the declared return type comes out.\" class=\"content-image\" src=\"/images/diagrams/typescript-functions-types.svg\"/><figcaption>Parameter types check the input and the return type checks the output.</figcaption></figure>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "function add(a: number, b: number): number {\n  return a + b;\n}\n\nconst square = (n: number): number => n * n;\n\nconsole.log(add(2, 3));\nconsole.log(square(7));",
-     "output": "5\n49"
-    },
-    {
-     "kind": "html",
-     "html": "<p>TypeScript can often infer the return type, but writing it is a good habit. It also protects you if you change the body by mistake.</p>\n</div>\n\n<div class=\"card\">\n<h2>Optional and default parameters</h2>\n<p>In JavaScript, every parameter is optional. In TypeScript, every parameter is <strong>required</strong> unless you say otherwise. Add <code>?</code> after the name to make a parameter optional. Its type then also includes <code>undefined</code>. Or give it a default value with <code>=</code>, and the type is inferred.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "function welcome(name: string, title?: string): string {\n  if (title) {\n    return \"Welcome, \" + title + \" \" + name;\n  }\n  return \"Welcome, \" + name;\n}\n\nfunction power(base: number, exponent: number = 2): number {\n  return base ** exponent;\n}\n\nconsole.log(welcome(\"Sadia\", \"Maam\"));\nconsole.log(welcome(\"Ali\"));\nconsole.log(power(5));\nconsole.log(power(2, 5));",
-     "output": "Welcome, Maam Sadia\nWelcome, Ali\n25\n32"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Calling with wrong arguments</h2>\n<p>Now see what the compiler says when a call does not match. The output is a real <code>tsc</code> compile error for <code>demo.ts</code>, not program output. The function expects a number but receives text.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "function double(n: number): number {\n  return n * 2;\n}\n\nconsole.log(double(\"4\"));",
-     "output": "Compile error (tsc):\ndemo.ts(5,20): error TS2345: Argument of type 'string' is not assignable to parameter of type 'number'."
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>void and never</h2>\n<p>Some functions do not return a value. Their return type is <code>void</code>. Other functions never finish normally, for example a function that always throws an error. Their return type is <code>never</code>.</p>\n<table>\n<tr><th>Type</th><th>Meaning</th><th>Example</th></tr>\n<tr><td><code>void</code></td><td>Returns nothing useful</td><td>A function that only prints</td></tr>\n<tr><td><code>never</code></td><td>Never returns normally</td><td>A function that always throws</td></tr>\n</table>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "function logMessage(msg: string): void {\n  console.log(\"LOG: \" + msg);\n}\n\nfunction fail(msg: string): never {\n  throw new Error(msg);\n}\n\nlogMessage(\"Server started\");\n\ntry {\n  fail(\"Something went wrong\");\n} catch (e) {\n  console.log(\"Caught:\", (e as Error).message);\n}",
-     "output": "LOG: Server started\nCaught: Something went wrong"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Calling a function with too few or too many arguments. TypeScript counts them.</li>\n<li>Putting an optional parameter before a required one. Optional parameters must come last.</li>\n<li>Mixing up <code>void</code> and <code>never</code>. A normal function that just does not return anything is <code>void</code>.</li>\n<li>Forgetting a <code>return</code> in a function that promises a <code>number</code>.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>Write parameter types after each name and the return type after the brackets.</li>\n<li>Use <code>?</code> for an optional parameter, or <code>=</code> for a default value.</li>\n<li><code>void</code> means no useful return value; <code>never</code> means the function never returns.</li>\n<li>Wrong arguments are reported by the compiler before the code runs.</li>\n</ul>\n</div>\n</div>"
-    }
-   ]
-  },
-  {
-   "slug": "interfaces-types",
-   "title": "Interfaces &amp; Type Aliases",
-   "section": "Object Types",
-   "order": 4,
-   "styles": "",
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Interfaces &amp; Type Aliases</h1>\n<div class=\"card\">\n<h2>Describing the shape of an object</h2>\n<p>Real programs use objects with several properties, such as a student with a name, a roll number and a grade. An <strong>interface</strong> describes the shape of such an object: which property names it must have and what type each one is. Any object with that shape is accepted, and an object with a missing or wrong property is rejected.</p>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"An interface Course with code, title and optional credits, and three objects that follow it.\" class=\"content-image\" src=\"/images/diagrams/typescript-interfaces-types.svg\"/><figcaption>An interface describes the shape every matching object must have.</figcaption></figure>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "interface Student {\n  name: string;\n  rollNo: number;\n  section: string;\n}\n\nfunction show(s: Student): string {\n  return s.name + \" (Roll \" + s.rollNo + \", Section \" + s.section + \")\";\n}\n\nconst a: Student = { name: \"Alishba\", rollNo: 188, section: \"D\" };\nconsole.log(show(a));",
-     "output": "Alishba (Roll 188, Section D)"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Optional and readonly properties</h2>\n<p>Add <code>?</code> after a property name to make it optional. Add <code>readonly</code> before a name so it can be set when the object is created but never changed afterwards. This is useful for ids.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "interface Course {\n  readonly code: string;\n  title: string;\n  credits?: number;\n}\n\nconst db: Course = { code: \"CS-201\", title: \"Databases\" };\ndb.title = \"Database Systems\";\ndb.code = \"CS-999\";",
-     "output": "Compile error (tsc):\ndemo.ts(9,4): error TS2540: Cannot assign to 'code' because it is a read-only property."
-    },
-    {
-     "kind": "html",
-     "html": "<p>The output above is a compile error from <code>tsc</code>. Changing <code>title</code> is fine, but <code>code</code> is <code>readonly</code>, so the compiler stops us.</p>\n</div>\n\n<div class=\"card\">\n<h2>Type aliases</h2>\n<p>A <strong>type alias</strong> gives a name to any type using the <code>type</code> keyword. It can name an object shape, but also a union, a tuple or a simple type. Use it to avoid repeating a long type.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "type ID = string | number;\ntype Point = { x: number; y: number };\n\ninterface Animal {\n  name: string;\n}\ninterface Dog extends Animal {\n  breed: string;\n}\n\ntype Pair = Point & { label: string };\n\nconst id: ID = 101;\nconst p: Pair = { x: 3, y: 4, label: \"A\" };\nconst d: Dog = { name: \"Rex\", breed: \"Labrador\" };\n\nconsole.log(id, p.x + p.y, p.label);\nconsole.log(d.name, d.breed);",
-     "output": "101 7 A\nRex Labrador"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>interface or type?</h2>\n<p>For object shapes both work and look almost the same. The main differences are small. A simple rule for beginners: use <code>interface</code> for object shapes and classes, and use <code>type</code> for unions and other kinds of types.</p>\n<table>\n<tr><th>Feature</th><th>interface</th><th>type</th></tr>\n<tr><td>Describe an object shape</td><td>Yes</td><td>Yes</td></tr>\n<tr><td>Extend another one</td><td><code>extends</code></td><td>Use <code>&amp;</code> (intersection)</td></tr>\n<tr><td>Name a union such as <code>string | number</code></td><td>No</td><td>Yes</td></tr>\n<tr><td>Can be declared twice and merged</td><td>Yes</td><td>No</td></tr>\n</table>\n</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Forgetting a required property. The compiler will list the missing one.</li>\n<li>Adding an extra property when writing an object directly. TypeScript flags unknown properties in object literals.</li>\n<li>Thinking <code>readonly</code> works at run time. It is checked only by the compiler.</li>\n<li>Using <code>,</code> or <code>;</code> inconsistently. Either is allowed, but pick one style.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>An interface or type alias describes the shape of an object.</li>\n<li><code>?</code> makes a property optional; <code>readonly</code> blocks changes after creation.</li>\n<li>Interfaces use <code>extends</code>; type aliases combine with <code>&amp;</code>.</li>\n<li>Use <code>type</code> for unions, tuples and other non-object types.</li>\n</ul>\n</div>\n</div>"
-    }
-   ]
-  },
-  {
-   "slug": "unions-narrowing",
-   "title": "Union Types &amp; Narrowing",
-   "section": "Object Types",
-   "order": 5,
-   "styles": "",
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Union Types &amp; Narrowing</h1>\n<div class=\"card\">\n<h2>Union types</h2>\n<p>Sometimes a value can be one of several types. A <strong>union type</strong> joins types with the <code>|</code> symbol and is read as \"or\". For example, <code>string | number</code> means the value is a string or a number. A <strong>literal type</strong> is even more exact: it allows only specific values, such as <code>\"yes\"</code> or <code>\"no\"</code>.</p>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"A typeof check on string | number: if true value is a string, otherwise a number.\" class=\"content-image\" src=\"/images/diagrams/typescript-unions-narrowing.svg\"/><figcaption>A check like typeof narrows a union to one type inside each branch.</figcaption></figure>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "type Grade = \"A\" | \"B\" | \"C\";\ntype Id = string | number;\n\nconst g: Grade = \"B\";\nconst id1: Id = 42;\nconst id2: Id = \"STU-7\";\n\nconsole.log(g, id1, id2);",
-     "output": "B 42 STU-7"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>The problem with unions</h2>\n<p>With a union you can only use what is safe for <em>every</em> member. A number has no <code>toUpperCase</code> method, so TypeScript will not allow it on <code>string | number</code>. The output below is a real compile error from <code>tsc</code>.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "function shout(value: string | number) {\n  return value.toUpperCase();\n}",
-     "output": "Compile error (tsc):\ndemo.ts(2,16): error TS2339: Property 'toUpperCase' does not exist on type 'string | number'."
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Narrowing with typeof and in</h2>\n<p><strong>Narrowing</strong> means checking a value so TypeScript knows its exact type inside a block. Two common checks are <code>typeof</code> for simple types and the <code>in</code> operator, which tests whether an object has a property.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "function format(value: string | number): string {\n  if (typeof value === \"string\") {\n    return value.toUpperCase();\n  }\n  return value.toFixed(2);\n}\n\ninterface Car { drive(): string }\ninterface Boat { sail(): string }\n\nfunction move(v: Car | Boat): string {\n  if (\"drive\" in v) {\n    return v.drive();\n  }\n  return v.sail();\n}\n\nconsole.log(format(\"pakistan\"));\nconsole.log(format(3.14159));\nconsole.log(move({ drive: () => \"driving\" }));\nconsole.log(move({ sail: () => \"sailing\" }));",
-     "output": "PAKISTAN\n3.14\ndriving\nsailing"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Discriminated unions</h2>\n<p>A <strong>discriminated union</strong> is a union of object types that all share one property with a literal value, often called <code>kind</code>. Checking that one property tells TypeScript which member you have, so you get the right properties safely. A <code>switch</code> on it is very clear.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "type Shape =\n  | { kind: \"circle\"; radius: number }\n  | { kind: \"rectangle\"; width: number; height: number };\n\nfunction area(s: Shape): number {\n  switch (s.kind) {\n    case \"circle\":\n      return Math.round(Math.PI * s.radius ** 2);\n    case \"rectangle\":\n      return s.width * s.height;\n  }\n}\n\nconsole.log(area({ kind: \"circle\", radius: 2 }));\nconsole.log(area({ kind: \"rectangle\", width: 4, height: 5 }));",
-     "output": "13\n20"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Using a method on a union without narrowing first.</li>\n<li>Writing <code>typeof x === \"String\"</code> with a capital. The result is always lowercase, such as <code>\"string\"</code>.</li>\n<li>Forgetting a case in a <code>switch</code> over a discriminated union.</li>\n<li>Using different property names for the tag in each member. The shared property must have the same name.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li><code>A | B</code> means the value is A or B; literal types allow only exact values.</li>\n<li>Narrow a union with <code>typeof</code>, <code>in</code> or equality checks.</li>\n<li>Inside the checked block, TypeScript knows the exact type.</li>\n<li>A shared literal property (such as <code>kind</code>) makes a discriminated union easy to handle.</li>\n</ul>\n</div>\n</div>"
-    }
-   ]
-  },
-  {
-   "slug": "classes-access",
-   "title": "Classes &amp; Access Modifiers",
-   "section": "Object Types",
-   "order": 6,
-   "styles": "",
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Classes &amp; Access Modifiers</h1>\n<div class=\"card\">\n<h2>Classes with types</h2>\n<p>TypeScript classes look like JavaScript classes, but every property has a type and you can control who is allowed to use it. This is called <strong>access control</strong>. It helps you hide the inside of a class so other code uses it the safe way.</p>\n<table>\n<tr><th>Modifier</th><th>Who can use it</th></tr>\n<tr><td><code>public</code></td><td>Anyone (this is the default)</td></tr>\n<tr><td><code>private</code></td><td>Only code inside the same class</td></tr>\n<tr><td><code>protected</code></td><td>The class and its subclasses</td></tr>\n<tr><td><code>readonly</code></td><td>Can be set once (in the constructor) and never changed</td></tr>\n</table>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"Table showing where public, protected, private and readonly members can be used.\" class=\"content-image\" src=\"/images/diagrams/typescript-classes-access.svg\"/><figcaption>Access modifiers decide who can use a class member; they are checked by the compiler.</figcaption></figure>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "class BankAccount {\n  readonly owner: string;\n  private balance: number = 0;\n\n  constructor(owner: string) {\n    this.owner = owner;\n  }\n\n  deposit(amount: number): void {\n    this.balance += amount;\n  }\n\n  getBalance(): number {\n    return this.balance;\n  }\n}\n\nconst acc = new BankAccount(\"Sara\");\nacc.deposit(500);\nacc.deposit(250);\nconsole.log(acc.owner, acc.getBalance());",
-     "output": "Sara 750"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Private is checked by the compiler</h2>\n<p>If code outside the class touches a private member, the compiler reports an error. The output below is a real <code>tsc</code> compile error, not program output.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "class Wallet {\n  private cash: number = 100;\n}\n\nconst w = new Wallet();\nconsole.log(w.cash);",
-     "output": "Compile error (tsc):\ndemo.ts(6,15): error TS2341: Property 'cash' is private and only accessible within class 'Wallet'."
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Parameter properties</h2>\n<p>Writing a field, a constructor parameter and an assignment for every property is repetitive. TypeScript has a shortcut called <strong>parameter properties</strong>. If you put an access modifier in front of a constructor parameter, TypeScript creates the property and assigns it for you.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "class Teacher {\n  constructor(\n    public name: string,\n    protected subject: string,\n    private readonly salary: number\n  ) {}\n\n  info(): string {\n    return this.name + \" teaches \" + this.subject;\n  }\n}\n\nclass HeadTeacher extends Teacher {\n  describe(): string {\n    return this.name + \" leads \" + this.subject;\n  }\n}\n\nconst t = new HeadTeacher(\"Sadia\", \"Databases\", 90000);\nconsole.log(t.info());\nconsole.log(t.describe());",
-     "output": "Sadia teaches Databases\nSadia leads Databases"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Implementing an interface</h2>\n<p>A class can promise to follow an interface using <code>implements</code>. The compiler then checks that the class really has every required member. This is useful when many classes must offer the same methods.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "interface Printable {\n  print(): string;\n}\n\nclass Invoice implements Printable {\n  constructor(private id: number, private total: number) {}\n\n  print(): string {\n    return \"Invoice #\" + this.id + \": \" + this.total;\n  }\n}\n\nclass Receipt implements Printable {\n  print(): string {\n    return \"Receipt: paid\";\n  }\n}\n\nconst docs: Printable[] = [new Invoice(7, 1500), new Receipt()];\nfor (const d of docs) {\n  console.log(d.print());\n}",
-     "output": "Invoice #7: 1500\nReceipt: paid"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Thinking <code>private</code> hides data at run time. It is only a compile-time check.</li>\n<li>Forgetting the access modifier on a constructor parameter, so no property is created.</li>\n<li>Trying to change a <code>readonly</code> property outside the constructor.</li>\n<li>Confusing <code>extends</code> (inherit from one class) with <code>implements</code> (follow an interface).</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li><code>public</code>, <code>private</code> and <code>protected</code> control who can use a member.</li>\n<li><code>readonly</code> allows a value to be set only once.</li>\n<li>Parameter properties create and assign fields from the constructor.</li>\n<li><code>implements</code> makes the compiler check a class against an interface.</li>\n</ul>\n</div>\n</div>"
-    }
-   ]
-  },
-  {
-   "slug": "generics",
-   "title": "Generics",
-   "section": "Advanced Types",
-   "order": 7,
-   "styles": "",
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Generics</h1>\n<div class=\"card\">\n<h2>Why generics?</h2>\n<p>Imagine a function that returns the first item of an array. You could write it for numbers, then again for strings, then again for students. Or you could use <code>any</code>, but then you lose type safety. <strong>Generics</strong> solve this. A generic function uses a <strong>type parameter</strong>, usually named <code>T</code>, as a placeholder. The real type is filled in when the function is used.</p>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"first&lt;T&gt; receives string[], T becomes string, and the function returns a string.\" class=\"content-image\" src=\"/images/diagrams/typescript-generics.svg\"/><figcaption>A type parameter T is filled in from the argument, so the result type matches.</figcaption></figure>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "function first<T>(items: T[]): T {\n  return items[0];\n}\n\nconst n = first([10, 20, 30]);\nconst s = first([\"red\", \"green\"]);\n\nconsole.log(n, s);\nconsole.log(typeof n, typeof s);",
-     "output": "10 red\nnumber string"
-    },
-    {
-     "kind": "html",
-     "html": "<p>TypeScript works out <code>T</code> from the argument. For the first call <code>T</code> is <code>number</code>, and for the second it is <code>string</code>. The result keeps the right type. You can also write it yourself, for example <code>first&lt;string&gt;([\"a\"])</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>Constraints with extends</h2>\n<p>Sometimes <code>T</code> cannot be just anything. If the function uses <code>.length</code>, then <code>T</code> must have a <code>length</code>. Use <code>extends</code> to set that rule. This is called a <strong>constraint</strong>.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "function longest<T extends { length: number }>(a: T, b: T): T {\n  return a.length >= b.length ? a : b;\n}\n\nconsole.log(longest(\"apple\", \"fig\"));\nconsole.log(longest([1, 2, 3], [4, 5]));",
-     "output": "apple\n[ 1, 2, 3 ]"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>The compiler checks the constraint</h2>\n<p>A number has no <code>length</code>, so it breaks the rule. The output below is the real <code>tsc</code> compile error.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "function size<T extends { length: number }>(x: T): number {\n  return x.length;\n}\n\nconsole.log(size(123));",
-     "output": "Compile error (tsc):\ndemo.ts(5,18): error TS2345: Argument of type 'number' is not assignable to parameter of type '{ length: number; }'."
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Generic interfaces and classes</h2>\n<p>Interfaces, type aliases and classes can also take type parameters. A very common example is a box, a list or an API response that can hold any one kind of data.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "interface Box<T> {\n  value: T;\n}\n\ninterface ApiResponse<T> {\n  ok: boolean;\n  data: T;\n}\n\nclass Stack<T> {\n  private items: T[] = [];\n\n  push(item: T): void {\n    this.items.push(item);\n  }\n\n  pop(): T | undefined {\n    return this.items.pop();\n  }\n}\n\nconst numBox: Box<number> = { value: 7 };\nconst res: ApiResponse<string[]> = { ok: true, data: [\"a\", \"b\"] };\n\nconst stack = new Stack<string>();\nstack.push(\"one\");\nstack.push(\"two\");\n\nconsole.log(numBox.value, res.data.length);\nconsole.log(stack.pop(), stack.pop(), stack.pop());",
-     "output": "7 2\ntwo one undefined"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Using <code>any</code> when a generic would keep the type.</li>\n<li>Using properties of <code>T</code> without a constraint. The compiler does not know what <code>T</code> has.</li>\n<li>Naming many type parameters without need. One letter such as <code>T</code> is fine for simple cases.</li>\n<li>Forgetting that generics also disappear after compiling, like all types.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A type parameter such as <code>T</code> is a placeholder for a real type.</li>\n<li>TypeScript usually infers <code>T</code> from the arguments.</li>\n<li><code>T extends Something</code> limits which types are allowed.</li>\n<li>Interfaces and classes can be generic, for example <code>Box&lt;number&gt;</code>.</li>\n</ul>\n</div>\n</div>"
-    }
-   ]
-  },
-  {
-   "slug": "utility-types-modules",
-   "title": "Utility Types &amp; Modules",
-   "section": "Advanced Types",
-   "order": 8,
-   "styles": "",
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Utility Types &amp; Modules</h1>\n<div class=\"card\">\n<h2>Utility types</h2>\n<p>TypeScript includes ready-made helpers called <strong>utility types</strong>. They build a new type from an existing one, so you do not copy and paste shapes. Here are the most useful ones. Assume <code>T</code> is an object type.</p>\n<table>\n<tr><th>Utility</th><th>What it does</th></tr>\n<tr><td><code>Partial&lt;T&gt;</code></td><td>Makes every property optional</td></tr>\n<tr><td><code>Pick&lt;T, \"a\" | \"b\"&gt;</code></td><td>Keeps only the listed properties</td></tr>\n<tr><td><code>Omit&lt;T, \"a\"&gt;</code></td><td>Removes the listed properties</td></tr>\n<tr><td><code>Readonly&lt;T&gt;</code></td><td>Makes every property read-only</td></tr>\n<tr><td><code>Record&lt;K, V&gt;</code></td><td>An object with keys of type K and values of type V</td></tr>\n</table>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"Table of Partial, Pick, Omit, Readonly and Record with what each one builds from a type.\" class=\"content-image\" src=\"/images/diagrams/typescript-utility-types-modules.svg\"/><figcaption>Utility types build new types from existing ones.</figcaption></figure>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "interface User {\n  id: number;\n  name: string;\n  email: string;\n}\n\nconst update: Partial<User> = { email: \"new@example.com\" };\n\nconst preview: Pick<User, \"id\" | \"name\"> = { id: 1, name: \"Ali\" };\n\nconst noEmail: Omit<User, \"email\"> = { id: 2, name: \"Sara\" };\n\nconst fixed: Readonly<User> = { id: 3, name: \"Zain\", email: \"z@example.com\" };\n\nconst marks: Record<string, number> = { math: 80, physics: 75 };\n\nconsole.log(update);\nconsole.log(preview);\nconsole.log(noEmail);\nconsole.log(fixed.name, marks.physics);",
-     "output": "{ email: 'new@example.com' }\n{ id: 1, name: 'Ali' }\n{ id: 2, name: 'Sara' }\nZain 75"
-    },
-    {
-     "kind": "html",
-     "html": "<p>Notice that <code>Partial</code> is great for update functions, where only some fields are sent. <code>Record</code> is a neat way to type a dictionary.</p>\n</div>\n\n<div class=\"card\">\n<h2>Readonly in action</h2>\n<p>A <code>Readonly</code> object cannot be changed. The output below is a real <code>tsc</code> compile error.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "interface Settings {\n  theme: string;\n}\n\nconst s: Readonly<Settings> = { theme: \"dark\" };\ns.theme = \"light\";",
-     "output": "Compile error (tsc):\ndemo.ts(6,3): error TS2540: Cannot assign to 'theme' because it is a read-only property."
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Modules: import and export</h2>\n<p>Real projects are split into many files. In TypeScript, any file that has a top-level <code>import</code> or <code>export</code> is a <strong>module</strong>. Use <code>export</code> to share something and <code>import</code> to use it in another file. You can export types and interfaces as well as values.</p>\n<pre><code>// math.ts\nexport interface Result {\n  value: number;\n}\n\nexport function add(a: number, b: number): Result {\n  return { value: a + b };\n}\n\nexport default function multiply(a: number, b: number): number {\n  return a * b;\n}\n\n// main.ts\nimport multiply, { add, Result } from \"./math\";\n\nconst r: Result = add(2, 3);\nconsole.log(r.value, multiply(2, 3));</code></pre>\n<p>Names inside braces are <em>named</em> exports. The one without braces is the <em>default</em> export, and a file can have only one. In the import path, leave out the <code>.ts</code> ending.</p>\n</div>\n\n<div class=\"card\">\n<h2>Enums basics</h2>\n<p>An <strong>enum</strong> gives names to a fixed set of values. A numeric enum starts counting at 0. A string enum uses text values you choose and is easier to read when printed.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "typescript",
-     "code": "enum Role {\n  Student,\n  Teacher,\n  Admin\n}\n\nenum Status {\n  Active = \"ACTIVE\",\n  Blocked = \"BLOCKED\"\n}\n\nconst r: Role = Role.Teacher;\nconsole.log(r, Role.Admin);\nconsole.log(Status.Active);\n\nfunction canEdit(role: Role): boolean {\n  return role !== Role.Student;\n}\nconsole.log(canEdit(Role.Student), canEdit(Role.Admin));",
-     "output": "1 2\nACTIVE\nfalse true"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Using <code>Partial</code> when a value is really required. The compiler will no longer check it.</li>\n<li>Forgetting that <code>Readonly</code> and <code>readonly</code> are checked only by the compiler.</li>\n<li>Writing two default exports in one file.</li>\n<li>Forgetting <code>export</code>, then wondering why another file cannot import the name.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li><code>Partial</code>, <code>Pick</code>, <code>Omit</code>, <code>Readonly</code> and <code>Record</code> build new types from old ones.</li>\n<li>A file with <code>import</code> or <code>export</code> is a module.</li>\n<li>Named exports use braces; a default export does not.</li>\n<li>Enums name a fixed set of values; numeric enums start at 0.</li>\n</ul>\n</div>\n</div>"
-    }
-   ]
-  }
- ]
+  ]
 }
