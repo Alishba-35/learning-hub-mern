@@ -29,7 +29,7 @@
         },
         {
           "kind": "html",
-          "html": "</div>\n\n<div class=\"card\">\n<h2>Your First Program</h2>\n<p>Save this as <code>hello.py</code> and run it with <code>python hello.py</code> (or try it in the interactive prompt by typing <code>python</code>).</p><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/UrsmFxEIp5k?si=38HEi0Xr2tCxayje\" title=\"YouTube video player\" width=\"650\"></iframe>\n"
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Your First Program</h2>\n<p>Save this as <code>hello.py</code> and run it with <code>python hello.py</code> (or try it in the interactive prompt by typing <code>python</code>).</p><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/UrsmFxEIp5k?si=QAWTcHKs9VtDjYMQ\" title=\"YouTube video player\" width=\"650\"></iframe>\n"
         },
         {
           "kind": "html",
@@ -396,7 +396,7 @@
       "blocks": [
         {
           "kind": "html",
-          "html": "<div class=\"container my-4\">\n<h1>Loops</h1>\n<div class=\"card\">\n<h2>for Loops and range()</h2>\n<p>A <code>for</code> loop repeats code for each item in a sequence. <code>range(n)</code> gives the numbers 0 to n-1.</p><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/S73thl0AyFU?si=kSBQdydO_xrmbiV9\" title=\"YouTube video player\" width=\"650\"></iframe>\n"
+          "html": "<div class=\"container my-4\">\n<h1>Loops</h1>\n<div class=\"card\">\n<h2>for Loops and range()</h2>\n<p>A <code>for</code> loop repeats code for each item in a sequence. <code>range(n)</code> gives the numbers 0 to n-1.</p><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/S73thl0AyFU?si=0oQBL7fRHTO0ee4r\" title=\"YouTube video player\" width=\"650\"></iframe>\n"
         },
         {
           "kind": "html",
