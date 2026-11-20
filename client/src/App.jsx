@@ -1,9 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
+import AdminRoute from './components/AdminRoute.jsx';
 import AppLayout from './components/AppLayout.jsx';
 import GuestOnly from './components/GuestOnly.jsx';
 import LearnLayout, { FirstTopic } from './components/LearnLayout.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import AddShort from './pages/AddShort.jsx';
+import AdminPanel from './pages/AdminPanel.jsx';
 import AuthPage from './pages/AuthPage.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Landing from './pages/Landing.jsx';
@@ -41,6 +43,9 @@ export default function App() {
           <Route path="/shorts" element={<ShortsStudy />} />
           <Route path="/shorts/add" element={<AddShort />} />
           <Route path="/shorts/manage" element={<ManageShorts />} />
+          <Route element={<AdminRoute />}>
+            <Route path="/admin" element={<AdminPanel />} />
+          </Route>
         </Route>
       </Route>
 

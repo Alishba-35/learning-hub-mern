@@ -34,6 +34,10 @@ export async function login(req, res) {
   if (!user || !valid) {
     return res.status(401).json({ message: 'Invalid email or password' });
   }
+  // Suspend ka message sirf sahi password wale ko milta hai (warna koi email se account ka haal na jaan sake)
+  if (user.disabled) {
+    return res.status(403).json({ message: 'This account has been suspended. Please contact your teacher or admin.' });
+  }
   await respondWithSession(res, user, remember);
 }
 
@@ -46,7 +50,7 @@ export async function refresh(req, res) {
   }
   const user = await User.findById(stored.user);
   await stored.deleteOne(); // purana token ek hi baar chalta hai (rotation)
-  if (!user) {
+  if (!user || user.disabled) {
     clearRefreshCookie(res);
     return res.status(401).json({ message: 'Session expired' });
   }

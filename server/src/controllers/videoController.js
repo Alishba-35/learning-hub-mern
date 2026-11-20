@@ -22,10 +22,10 @@ const PAGE_SIZE = 12;
 const STALE_UPLOAD_MS = 60 * 60 * 1000;
 const isStaff = (role) => role === 'teacher' || role === 'admin';
 const notFound = (res) => res.status(404).json({ message: 'Video not found' });
-const VISIBLE = { $in: ['pending', 'approved'] };
+const VISIBLE = { $in: ['pending', 'approved', 'rejected'] }; // "My videos" mein rejected bhi, taake student ko wajah nazar aaye
 
 // Browser ko sirf wohi fields milti hain jo zaroori hain
-const shape = (v, user) => ({
+export const shape = (v, user) => ({
   id: String(v._id),
   title: v.title,
   description: v.description,
@@ -34,6 +34,7 @@ const shape = (v, user) => ({
   youtubeId: v.youtubeId ?? null,
   streamUrl: v.source === 'upload' ? streamPath(String(v._id), env.jwtAccessSecret) : null,
   status: v.status,
+  rejectReason: v.status === 'rejected' ? (v.rejectReason ?? '') : '',
   uploaderName: v.uploaderName,
   createdAt: v.createdAt,
   canDelete: isStaff(user.role) || Boolean(v.uploadedBy && String(v.uploadedBy) === user.id),

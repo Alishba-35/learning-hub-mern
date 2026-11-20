@@ -155,10 +155,24 @@ body {
 }
 
 .lang-card img {
+  /* Har logo ek jaisa square tile mein: same size, kisi ka size alag nahi */
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   padding: 20px;
+  box-sizing: border-box;
   border-radius: 8px;
   background: var(--lang-color);
   -webkit-box-reflect: below 8px linear-gradient(to bottom, rgba(255, 255, 255, 0.25), transparent 70%);
+}
+
+.lang-name {
+  margin: 0.75rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .lang-card:hover img {

@@ -14,7 +14,11 @@ const videoSchema = new mongoose.Schema(
     chunkCount: { type: Number, min: 1 },
     // "uploading" = file abhi aa rahi hai (kisi ko nazar nahi aati). Teacher/admin ka video foran "approved",
     // student ka "pending" jab tak teacher approve na kare.
-    status: { type: String, enum: ['uploading', 'pending', 'approved'], default: 'pending' },
+    // Admin kisi video ko "rejected" kar sakta hai (irrelevant content). Rejected video sirf uploader aur admin ko nazar aati hai.
+    status: { type: String, enum: ['uploading', 'pending', 'approved', 'rejected'], default: 'pending' },
+    rejectReason: { type: String, trim: true, maxlength: 200, default: '' },
+    reviewedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
+    reviewedAt: { type: Date, default: null },
     uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null }, // null = starter video
     uploaderName: { type: String, default: 'Admin' },
   },

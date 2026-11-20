@@ -46,6 +46,13 @@ export default function Navbar({ onToggleTopics }) {
                 Dashboard
               </NavLink>
             </li>
+            {user?.role === 'admin' && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/admin" onClick={close}>
+                  Admin
+                </NavLink>
+              </li>
+            )}
           </ul>
 
           <div className="d-flex align-items-center gap-3">

@@ -2,7 +2,7 @@ import { youtubeEmbed, youtubeThumb } from '../../services/shorts.js';
 
 // Ek video. Pehle sirf thumbnail + Play button; player tab load hota hai jab user Play dabaye.
 // Page par ek waqt mein ek hi video chalta hai (active), is liye page tez rehta hai.
-export default function ShortCard({ video, active, onPlay, onDelete, onApprove }) {
+export default function ShortCard({ video, active, onPlay, onDelete, onApprove, children }) {
   const isYoutube = video.source === 'youtube';
 
   return (
@@ -38,7 +38,9 @@ export default function ShortCard({ video, active, onPlay, onDelete, onApprove }
         <p className="short-by">
           Uploaded by {video.uploaderName}
           {video.status === 'pending' && <span className="badge text-bg-warning ms-2">Waiting for approval</span>}
+          {video.status === 'rejected' && <span className="badge text-bg-danger ms-2">Rejected</span>}
         </p>
+        {video.status === 'rejected' && video.rejectReason && <p className="short-desc">Reason: {video.rejectReason}</p>}
         {(onApprove || (onDelete && video.canDelete)) && (
           <div className="short-actions">
             {onApprove && video.status === 'pending' && (
@@ -53,6 +55,7 @@ export default function ShortCard({ video, active, onPlay, onDelete, onApprove }
             )}
           </div>
         )}
+        {children}
       </div>
     </article>
   );

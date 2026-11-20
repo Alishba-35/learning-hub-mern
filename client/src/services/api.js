@@ -20,7 +20,7 @@ export class ApiError extends Error {
   }
 }
 
-async function send(path, { method = 'GET', body, raw, auth = true, keepalive = false, signal } = {}) {
+async function send(path, { method = 'GET', body, raw, auth = true, keepalive = false, signal, text = false } = {}) {
   const headers = {};
   if (body !== undefined) headers['Content-Type'] = 'application/json';
   if (raw !== undefined) headers['Content-Type'] = 'application/octet-stream'; // file ka tukda (Blob) jaisa hai waisa jata hai
@@ -38,7 +38,7 @@ async function send(path, { method = 'GET', body, raw, auth = true, keepalive = 
   let data = null;
   if (res.status !== 204) {
     try {
-      data = await res.json();
+      data = text && res.ok ? await res.text() : await res.json(); // text: CSV jaisi file download
     } catch {
       data = null;
     }

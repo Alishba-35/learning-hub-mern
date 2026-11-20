@@ -7,6 +7,9 @@ const userSchema = new mongoose.Schema(
     passwordHash: { type: String, required: true, select: false },
     role: { type: String, enum: ['student', 'teacher', 'admin'], default: 'student' },
     purpose: { type: String, trim: true, maxlength: 200, default: '' },
+    // Admin kisi account ko suspend kar sakta hai: login aur session refresh dono band
+    disabled: { type: Boolean, default: false },
+    disabledReason: { type: String, trim: true, maxlength: 200, default: '' },
   },
   { timestamps: true }
 );

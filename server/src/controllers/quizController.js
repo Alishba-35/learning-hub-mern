@@ -3,6 +3,7 @@ import Quiz from '../models/Quiz.js';
 import QuizResult from '../models/QuizResult.js';
 import { awardXp } from '../utils/award.js';
 import { resolveDay } from '../utils/progress.js';
+import { recordFirstAttempt } from '../utils/questionStats.js';
 import { retryOnDuplicate } from '../utils/retry.js';
 import { gradeQuiz, publicQuestion, xpForImprovement } from '../utils/quiz.js';
 
@@ -75,6 +76,8 @@ export async function submitQuiz(req, res) {
       { upsert: true, returnDocument: 'before' }
     )
   );
+  // Admin insights ke liye: sawal kitna mushkil hai (sirf pehli koshish gini jati hai; fail ho to quiz na ruke)
+  if (!before) await recordFirstAttempt(slug, quizSlug, graded).catch((err) => console.error('question stats failed:', err.message));
   const previousBest = before?.bestScore ?? 0;
   const xpGained = xpForImprovement(previousBest, graded.score);
 
