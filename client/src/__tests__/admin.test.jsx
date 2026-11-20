@@ -78,7 +78,7 @@ describe('admin panel', () => {
     );
     renderApp('/admin');
     expect(await screen.findByText('Students signed up')).toBeTruthy();
-    await userEvent.click(screen.getByRole('tab', { name: 'Students' }));
+    await userEvent.click(screen.getByRole('link', { name: 'Students' }));
     expect(await screen.findByText('sara@example.com')).toBeTruthy();
     expect(screen.getByText(/1 waiting/)).toBeTruthy();
     expect(screen.getByText('Level 3')).toBeTruthy();
@@ -94,7 +94,7 @@ describe('admin panel', () => {
       admin
     );
     renderApp('/admin');
-    await userEvent.click(await screen.findByRole('tab', { name: 'Students' }));
+    await userEvent.click(await screen.findByRole('link', { name: 'Students' }));
     await userEvent.click(await screen.findByRole('button', { name: 'View details' }));
     expect(await screen.findByText('Why they joined: Learn web')).toBeTruthy();
     expect(screen.getByText('3/6 lessons, quizzes 80%')).toBeTruthy();
@@ -116,7 +116,7 @@ describe('admin panel', () => {
       admin
     );
     renderApp('/admin');
-    await userEvent.click(await screen.findByRole('tab', { name: 'Students' }));
+    await userEvent.click(await screen.findByRole('link', { name: 'Students' }));
     await userEvent.click(await screen.findByRole('button', { name: 'View details' }));
 
     await userEvent.click(await screen.findByRole('button', { name: 'Suspend' }));
@@ -147,7 +147,7 @@ describe('admin panel', () => {
       admin
     );
     renderApp('/admin');
-    await userEvent.click(await screen.findByRole('tab', { name: 'Videos' }));
+    await userEvent.click(await screen.findByRole('link', { name: 'Videos' }));
     await userEvent.click(await screen.findByRole('button', { name: 'Reject' }));
     const confirm = screen.getByRole('button', { name: 'Confirm reject' });
     expect(confirm.disabled).toBe(true);
@@ -175,7 +175,7 @@ describe('admin panel', () => {
       admin
     );
     renderApp('/admin');
-    await userEvent.click(await screen.findByRole('tab', { name: 'Insights' }));
+    await userEvent.click(await screen.findByRole('link', { name: 'Insights' }));
 
     expect(await screen.findByText('Inactive Ina')).toBeTruthy();
     expect(screen.getByText('No activity for 7+ days')).toBeTruthy();
@@ -188,5 +188,31 @@ describe('admin panel', () => {
     expect(await screen.findByText('Why they joined: Learn web')).toBeTruthy(); // student ki detail khul gayi
     expect(calls.some((c) => c.key === 'GET /api/admin/students/1')).toBe(true);
   });
-});
 
+  it('has its own admin shell (sidebar), not the student navbar', async () => {
+    mockApi({ 'GET /api/admin/stats': () => json(200, stats) }, admin);
+    renderApp('/admin');
+    expect(await screen.findByText('Students signed up')).toBeTruthy();
+    const nav = screen.getByRole('navigation', { name: 'Admin sections' });
+    expect(['Overview', 'Students', 'Insights', 'Videos'].every((n) => nav.textContent.includes(n))).toBe(true);
+    expect(screen.getByText('Administrator')).toBeTruthy();
+    expect(screen.queryByRole('link', { name: 'Shorts Study' })).toBeNull(); // student navbar nahi
+    expect(screen.getByRole('link', { name: 'Back to student site' })).toBeTruthy();
+  });
+
+  it('each admin page has its own address: a student page opens directly, and their videos are filtered', async () => {
+    const calls = mockApi(
+      {
+        'GET /api/admin/students/1': () => json(200, detail),
+        'GET /api/admin/videos?status=all&student=1&page=1': () => json(200, { videos: [pendingVideo], page: 1, pages: 1, total: 1 }),
+      },
+      admin
+    );
+    renderApp('/admin/students/1');
+    expect(await screen.findByText('Why they joined: Learn web')).toBeTruthy();
+    await userEvent.click(screen.getByRole('button', { name: /Their videos/ }));
+    expect(await screen.findByText(/Showing videos by/)).toBeTruthy();
+    expect(screen.getByText('Sara', { selector: 'strong' })).toBeTruthy();
+    expect(calls.some((c) => c.key === 'GET /api/admin/videos?status=all&student=1&page=1')).toBe(true);
+  });
+});

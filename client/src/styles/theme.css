@@ -42,54 +42,55 @@
 
 :root[data-theme='light'] {
   color-scheme: light;
-  /* Soft, cool palette: koi pure white nahi. Page > card > raised surface, sab halke neele-grey. */
-  --app-bg: #e4eaf4;
-  --nav-bg: #d9e2f0;
-  --card-bg: #edf2f9;
-  --text: #1f2a44;
-  --c-0a1f35: #d6e3f4;
-  --c-0b1220: #dae3f0;
-  --c-0f172a: #e4eaf4;
-  --c-172049: #dce6f5;
-  --c-1a2447: #dce6f5;
-  --c-1a2847: #dce6f5;
-  --c-1e0f3a: #e6e3f4;
-  --c-1e293b: #edf2f9;
-  --c-1e3a8a: #d2e0f6;
-  --c-212c43: #dce6f5;
-  --c-2281a9: #1c5f85;
-  --c-283d5b: #c2d0e5;
-  --c-2e2e2e: #dbe2ed;
-  --c-334155: #c2d0e5;
-  --c-38bdf8: #1d5f94;
-  --c-424c5c: #d3dcea;
-  --c-475569: #9db0ca;
-  --c-4ade80: #16683c;
-  --c-888: #4f5f7e;
-  --c-94a3b8: #465782;
-  --c-a0abd0: #465782;
-  --c-c5d1ff: #23407a;
-  --c-cbd5e1: #32415f;
-  --c-cbd6ff: #23407a;
-  --c-cfe1ff: #23407a;
-  --c-d5dbf0: #23407a;
-  --c-d6e6ff: #23407a;
-  --c-d7def1: #23407a;
-  --c-ddd: #c2d0e5;
-  --c-e2e8f0: #1f2a44;
-  --c-e9f2ff: #23407a;
-  --c-f5f8fc: #1f2a44;
-  --c-f87171: #a5312a;
-  --c-f8d866: #85561a;
-  --c-f8f8f8: #1f2a44;
-  --c-fbbf24: #7d500e;
-  /* Bootstrap ke apne rang bhi soft: warna form boxes, tables aur alerts safed dikhte hain */
-  --bs-body-bg: #e4eaf4;
-  --bs-body-color: #1f2a44;
-  --bs-secondary-bg: #dbe3f0;
-  --bs-tertiary-bg: #e0e8f3;
-  --bs-border-color: #c2d0e5;
-  --bs-emphasis-color: #17213a;
+  /* Soft, cool palette: ankhon ko na chubhne wala. Koi safed nahi; page, card aur navbar sab halke neele-grey,
+     aur pehle se thora gehra (page #d4dcea). */
+  --app-bg: #d4dcea;
+  --nav-bg: #c3cee1;
+  --card-bg: #dfe6f1;
+  --text: #1b2540;
+  --c-0a1f35: #c9d8ec;
+  --c-0b1220: #ced8e8;
+  --c-0f172a: #d4dcea;
+  --c-172049: #d0daec;
+  --c-1a2447: #d0daec;
+  --c-1a2847: #d0daec;
+  --c-1e0f3a: #dcd9ee;
+  --c-1e293b: #dfe6f1;
+  --c-1e3a8a: #c4d4ef;
+  --c-212c43: #d0daec;
+  --c-2281a9: #1a5a80;
+  --c-283d5b: #b4c4de;
+  --c-2e2e2e: #cfd7e4;
+  --c-334155: #b4c4de;
+  --c-38bdf8: #174f85;
+  --c-424c5c: #c3cee1;
+  --c-475569: #8fa3c2;
+  --c-4ade80: #14603a;
+  --c-888: #46567a;
+  --c-94a3b8: #3d4e78;
+  --c-a0abd0: #3d4e78;
+  --c-c5d1ff: #1f3a72;
+  --c-cbd5e1: #2b3a58;
+  --c-cbd6ff: #1f3a72;
+  --c-cfe1ff: #1f3a72;
+  --c-d5dbf0: #1f3a72;
+  --c-d6e6ff: #1f3a72;
+  --c-d7def1: #1f3a72;
+  --c-ddd: #b4c4de;
+  --c-e2e8f0: #1b2540;
+  --c-e9f2ff: #1f3a72;
+  --c-f5f8fc: #1b2540;
+  --c-f87171: #9c2d26;
+  --c-f8d866: #7a4f14;
+  --c-f8f8f8: #1b2540;
+  --c-fbbf24: #744a0c;
+  /* Bootstrap ke apne rang bhi soft */
+  --bs-body-bg: #d4dcea;
+  --bs-body-color: #1b2540;
+  --bs-secondary-bg: #cbd5e6;
+  --bs-tertiary-bg: #d0daea;
+  --bs-border-color: #b4c4de;
+  --bs-emphasis-color: #131c33;
 }
 
 /* Welcome/Login/Signup (plum) aur Languages (navy) pages ka apna rang dono themes mein ek jaisa rehta hai, is liye yahan dark rang wapas */
@@ -136,16 +137,16 @@
 
 /* Dashboard apne alag variables use karta hai */
 :root[data-theme='light'] .dash {
-  --d-bg: #e1e8f4;
-  --d-surface: #ecf1f9;
-  --d-surface-2: #dbe4f2;
-  --d-border: #c3d0e6;
-  --d-text: #1f2a44;
-  --d-muted: #4f5f82;
-  --accent: #4a56c9;
-  --accent-ink: #f1f4fc;
-  --green-a: #4a56c9;
-  --green-b: #6672dd;
+  --d-bg: #ced7e8;
+  --d-surface: #dbe3f0;
+  --d-surface-2: #cdd7e8;
+  --d-border: #b2c1dc;
+  --d-text: #1b2540;
+  --d-muted: #46567a;
+  --accent: #4650bd;
+  --accent-ink: #e9edf9;
+  --green-a: #4650bd;
+  --green-b: #606ad6;
 }
 
 /* ---------- Toggle button ---------- */
@@ -169,37 +170,37 @@
 
 /* ---------- Light theme: Bootstrap ke dark-navbar aur light-button helpers ---------- */
 :root[data-theme='light'] .app-navbar {
-  --bs-navbar-color: rgba(15, 23, 42, 0.7);
-  --bs-navbar-hover-color: #0f172a;
-  --bs-navbar-active-color: #0f172a;
-  --bs-navbar-brand-color: #0f172a;
-  --bs-navbar-brand-hover-color: #0f172a;
-  --bs-navbar-toggler-border-color: rgba(15, 23, 42, 0.3);
-  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2815,23,42,0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-  border-bottom: 1px solid #c2d0e5;
+  --bs-navbar-color: rgba(27, 37, 64, 0.7);
+  --bs-navbar-hover-color: #1b2540;
+  --bs-navbar-active-color: #1b2540;
+  --bs-navbar-brand-color: #1b2540;
+  --bs-navbar-brand-hover-color: #1b2540;
+  --bs-navbar-toggler-border-color: rgba(27, 37, 64, 0.3);
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2827,37,64,0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  border-bottom: 1px solid #b4c4de;
 }
-:root[data-theme='light'] .app-navbar .theme-toggle { color: #0f172a; }
-:root[data-theme='light'] .navbar-text { color: #475569; }
+:root[data-theme='light'] .app-navbar .theme-toggle { color: #1b2540; }
+:root[data-theme='light'] .navbar-text { color: #3d4e78; }
 :root[data-theme='light'] .btn-outline-light {
-  --bs-btn-color: #0f172a;
-  --bs-btn-border-color: #94a3b8;
-  --bs-btn-hover-color: #f1f4fc;
-  --bs-btn-hover-bg: #0f172a;
-  --bs-btn-hover-border-color: #0f172a;
-  --bs-btn-active-color: #f1f4fc;
-  --bs-btn-active-bg: #0f172a;
-  --bs-btn-active-border-color: #0f172a;
+  --bs-btn-color: #1b2540;
+  --bs-btn-border-color: #7f93b5;
+  --bs-btn-hover-color: #e9edf9;
+  --bs-btn-hover-bg: #1b2540;
+  --bs-btn-hover-border-color: #1b2540;
+  --bs-btn-active-color: #e9edf9;
+  --bs-btn-active-bg: #1b2540;
+  --bs-btn-active-border-color: #1b2540;
 }
-:root[data-theme='light'] .text-secondary { color: #475569 !important; }
+:root[data-theme='light'] .text-secondary { color: #3d4e78 !important; }
 
 /* ---------- Light theme: lesson buttons (dark mein inka background transparent hai aur safed text dark par dikhta hai) ---------- */
 :root[data-theme='light'] .lesson .btn:not(.btn-success):not(.btn-primary):not(.btn-outline-light) {
-  background: #4a56c9;
-  color: #f1f4fc;
+  background: #4650bd;
+  color: #e9edf9;
 }
 :root[data-theme='light'] .lesson .btn.secondary:not(.btn-success):not(.btn-primary) { background: #64748b; }
-:root[data-theme='light'] .lesson .btn-outline-light { color: #0f172a; border: 1px solid #94a3b8; }
-:root[data-theme='light'] .lesson .btn-outline-light:hover { color: #f1f4fc; }
+:root[data-theme='light'] .lesson .btn-outline-light { color: #1b2540; border: 1px solid #7f93b5; }
+:root[data-theme='light'] .lesson .btn-outline-light:hover { color: #e9edf9; }
 
 /* =====================================================================
    Light theme polish (step 2): jahan light mein text/background ka contrast kam tha
@@ -207,67 +208,67 @@
 
 /* JS lessons ke --panel / --border / --muted kabhi define hi nahi hue the; light mein inhe proper rang do */
 :root[data-theme='light'] .lesson--javascript {
-  --panel: #edf2f9;
-  --border: #c2d0e5;
-  --muted: #465782;
+  --panel: #dfe6f1;
+  --border: #b4c4de;
+  --muted: #3d4e78;
 }
 
 /* Output boxes: dark mein neon green on navy tha; light mein dark text on light box */
 :root[data-theme='light'] .lesson .output-box,
 :root[data-theme='light'] .lesson .out,
 :root[data-theme='light'] .lesson--javascript .out {
-  background: #dfe8f4;
+  background: #d2dcec;
   color: #0f5a43;
-  border-color: #c2d0e5;
+  border-color: #b4c4de;
 }
-:root[data-theme='light'] .lesson--javascript #output.error { color: #b0352b; }
+:root[data-theme='light'] .lesson--javascript #output.error { color: #9f2f27; }
 
 /* JS lesson buttons: safed text ke peeche light background aa gaya tha */
 :root[data-theme='light'] .lesson--javascript button:not(.btn-outline-light),
 :root[data-theme='light'] .lesson--javascript .btn:not(.btn-outline-light),
 :root[data-theme='light'] .lesson--javascript .run-btn {
-  background: #4a56c9;
-  color: #f1f4fc;
+  background: #4650bd;
+  color: #e9edf9;
 }
 :root[data-theme='light'] .lesson--javascript button:disabled,
 :root[data-theme='light'] .lesson--javascript .btn:disabled {
-  background: #d3dcea;
-  color: #465782;
+  background: #c3cee1;
+  color: #3d4e78;
 }
 
 /* Green chips (XP toast, quiz best score): light background par gehra green text */
 :root[data-theme='light'] .xp-toast,
 :root[data-theme='light'] .quiz-best {
   background: rgba(28, 117, 71, 0.13);
-  color: #1c6b43;
+  color: #165e38;
 }
 
 /* Dashboard */
-:root[data-theme='light'] .dash-error { color: #b0352b; }
-:root[data-theme='light'] .btn-dash.primary:hover { background: #3f4ab3; }
+:root[data-theme='light'] .dash-error { color: #9f2f27; }
+:root[data-theme='light'] .btn-dash.primary:hover { background: #3a44a6; }
 
 /* .note ka background hamesha light blue hai, is liye text dono themes mein dark hona chahiye
    (dark mein pehle light text light box par tha) */
-.lesson .note { color: #1f2a44; }
-:root[data-theme='light'] .lesson .note { background: #d9e6f7; border-left-color: #4a6fc2; }
+.lesson .note { color: #1b2540; }
+:root[data-theme='light'] .lesson .note { background: #cfdcf0; border-left-color: #4660b4; }
 
 /* Light theme: Bootstrap ke form boxes aur cards soft rang mein (pehle seedhe safed aate the) */
 :root[data-theme='light'] .form-control,
 :root[data-theme='light'] .form-select {
-  background-color: #f0f4fa;
-  color: #1f2a44;
-  border-color: #b9c8de;
+  background-color: #e3e9f3;
+  color: #1b2540;
+  border-color: #a9b9d3;
 }
-:root[data-theme='light'] .form-control::placeholder { color: #6a7a97; }
+:root[data-theme='light'] .form-control::placeholder { color: #52628a; }
 :root[data-theme='light'] .form-control:focus,
 :root[data-theme='light'] .form-select:focus {
-  background-color: #f4f7fc;
-  border-color: #4a56c9;
+  background-color: #e9eef7;
+  border-color: #4650bd;
   box-shadow: 0 0 0 0.2rem rgba(74, 86, 201, 0.2);
 }
-:root[data-theme='light'] .alert-danger { --bs-alert-bg: #f3dcdc; --bs-alert-color: #6e1f1f; --bs-alert-border-color: #e3b7b7; }
-:root[data-theme='light'] .alert-success { --bs-alert-bg: #d9eee3; --bs-alert-color: #174a2f; --bs-alert-border-color: #b3d9c3; }
-:root[data-theme='light'] .alert-info { --bs-alert-bg: #d8e8f6; --bs-alert-color: #173f66; --bs-alert-border-color: #b3cfe8; }
-:root[data-theme='light'] .alert-warning { --bs-alert-bg: #f4e9cf; --bs-alert-color: #5e4313; --bs-alert-border-color: #e3d1a4; }
+:root[data-theme='light'] .alert-danger { --bs-alert-bg: #e8cfcf; --bs-alert-color: #6e1f1f; --bs-alert-border-color: #e3b7b7; }
+:root[data-theme='light'] .alert-success { --bs-alert-bg: #cfe5d8; --bs-alert-color: #174a2f; --bs-alert-border-color: #b3d9c3; }
+:root[data-theme='light'] .alert-info { --bs-alert-bg: #cbdcee; --bs-alert-color: #173f66; --bs-alert-border-color: #b3cfe8; }
+:root[data-theme='light'] .alert-warning { --bs-alert-bg: #eadfc0; --bs-alert-color: #5e4313; --bs-alert-border-color: #e3d1a4; }
 :root[data-theme='light'] .short-card,
-:root[data-theme='light'] .admin-stat { box-shadow: 0 3px 10px rgba(52, 73, 120, 0.14); }
+:root[data-theme='light'] .admin-stat { box-shadow: 0 3px 10px rgba(40, 58, 100, 0.16); }
