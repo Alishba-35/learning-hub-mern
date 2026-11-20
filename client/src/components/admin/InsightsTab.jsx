@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { request } from '../../services/api.js';
 import { ProgressRow } from './Charts.jsx';
 import { formatDate, relativeDay } from './format.js';
 import { Loading } from './shared.jsx';
@@ -12,18 +13,21 @@ const GROUPS = [
     title: 'Stopped learning',
     hint: (t) => `No activity for ${t.inactiveDays}+ days`,
     line: (s) => `Last active ${relativeDay(s.lastActiveDay)}, ${s.xp} XP`,
+    reminder: { title: 'We miss you', body: 'We have not seen you for a while. Pick up where you left off, your next lesson is waiting.' },
   },
   {
     key: 'neverStarted',
     title: 'Never started',
     hint: (t) => `Signed up ${t.neverStartedDays}+ days ago, but no lesson or quiz yet`,
     line: (s) => `Signed up ${formatDate(s.joinedAt)}`,
+    reminder: { title: 'Start your first lesson', body: 'Welcome to Learning Hub! Begin with your first lesson. It only takes a few minutes.' },
   },
   {
     key: 'streakBroken',
     title: 'Lost a streak',
     hint: () => 'Had a streak of 3+ days, then went quiet',
     line: (s) => `Best streak ${s.longestStreak} days, last active ${relativeDay(s.lastActiveDay)}`,
+    reminder: { title: 'Keep your streak going', body: 'Your learning streak took a break. Finish one lesson today to start a new one!' },
   },
 ];
 
@@ -31,6 +35,10 @@ const GROUPS = [
 function NudgeGroup({ group, data, thresholds, onOpenStudent }) {
   const [all, setAll] = useState(false);
   const [copied, setCopied] = useState('');
+  const [reminding, setReminding] = useState(false);
+  const [message, setMessage] = useState(group.reminder.body);
+  const [sending, setSending] = useState(false);
+  const [result, setResult] = useState({ text: '', error: false });
   const students = data.students;
   const shown = all ? students : students.slice(0, SHOWN);
   const emails = students.map((s) => s.email);
@@ -41,6 +49,25 @@ function NudgeGroup({ group, data, thresholds, onOpenStudent }) {
       setCopied('Copied!');
     } catch {
       setCopied('Could not copy');
+    }
+  };
+
+  // Reminder: in students ke dashboard par 7 din tak dikhne wala personal paigham
+  const send = async (e) => {
+    e.preventDefault();
+    setSending(true);
+    setResult({ text: '', error: false });
+    try {
+      const res = await request('/admin/announcements', {
+        method: 'POST',
+        body: { title: group.reminder.title, body: message, level: 'info', audience: 'selected', userIds: students.map((s) => s.id), expiresInDays: 7 },
+      });
+      setResult({ text: `Reminder sent to ${res.recipients} student${res.recipients === 1 ? '' : 's'}. They will see it on their dashboard.`, error: false });
+      setReminding(false);
+    } catch (err) {
+      setResult({ text: err.message || 'Could not send the reminder', error: true });
+    } finally {
+      setSending(false);
     }
   };
 
@@ -76,6 +103,9 @@ function NudgeGroup({ group, data, thresholds, onOpenStudent }) {
             <button type="button" className="btn btn-primary btn-sm" onClick={copy}>
               Copy emails
             </button>
+            <button type="button" className="btn btn-primary btn-sm" onClick={() => setReminding(!reminding)} aria-expanded={reminding}>
+              Send reminder
+            </button>
             <a className="btn btn-outline-light btn-sm" href={`mailto:?bcc=${emails.map(encodeURIComponent).join(',')}&subject=${encodeURIComponent('We miss you on Learning Hub')}`}>
               Email them
             </a>
@@ -85,6 +115,28 @@ function NudgeGroup({ group, data, thresholds, onOpenStudent }) {
               </span>
             )}
           </div>
+          {reminding && (
+            <form className="admin-reject" onSubmit={send}>
+              <label htmlFor={`reminder-${group.key}`}>
+                Reminder for {students.length} student{students.length === 1 ? '' : 's'}
+                {data.total > students.length ? ` (the first ${students.length} of ${data.total})` : ''}. It shows on their dashboard for 7 days.
+              </label>
+              <textarea id={`reminder-${group.key}`} className="form-control" rows={3} maxLength={500} value={message} onChange={(e) => setMessage(e.target.value)} />
+              <div className="admin-actions">
+                <button type="submit" className="btn btn-primary btn-sm" disabled={sending || message.trim().length < 3}>
+                  {sending ? 'Sending...' : 'Send'}
+                </button>
+                <button type="button" className="btn btn-outline-light btn-sm" onClick={() => setReminding(false)}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          )}
+          {result.text && (
+            <p className={result.error ? 'admin-warning' : 'admin-success'} role="status">
+              {result.text}
+            </p>
+          )}
         </>
       )}
     </section>

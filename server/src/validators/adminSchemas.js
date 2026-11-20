@@ -15,3 +15,17 @@ export const suspensionSchema = z
 
 // Admin banana sirf command line se (npm run role), taake koi admin galti se na ban jaye
 export const roleSchema = z.object({ role: z.enum(['student', 'teacher']) });
+
+const objectId = z.string().regex(/^[a-f\d]{24}$/i, 'Invalid student id');
+
+// Naya announcement: sab ko, ya sirf chune hue students ko (reminder). Muddat din mein, null = hamesha.
+export const announcementSchema = z
+  .object({
+    title: z.string().trim().min(3, 'Title is too short').max(80),
+    body: z.string().trim().min(3, 'Message is too short').max(500),
+    level: z.enum(['info', 'important']).optional().default('info'),
+    audience: z.enum(['everyone', 'selected']).optional().default('everyone'),
+    userIds: z.array(objectId).max(200).optional().default([]),
+    expiresInDays: z.number().int().min(1).max(90).nullable().optional().default(null),
+  })
+  .refine((v) => v.audience !== 'selected' || v.userIds.length > 0, { message: 'Pick at least one student', path: ['userIds'] });

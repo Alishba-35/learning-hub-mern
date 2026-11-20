@@ -250,3 +250,13 @@
   .admin-table td { padding: 4px 14px; border: 0; }
   .admin-table td[data-label]::before { content: attr(data-label) ': '; font-weight: 600; }
 }
+
+/* ---------- Announcements (step 7) ---------- */
+.admin-announce-form { display: grid; gap: 6px; max-width: 720px; }
+.admin-announce-form label { margin-top: 6px; font-size: 0.85rem; font-weight: 600; }
+.admin-announce-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.admin-success { margin: 6px 0 0; padding: 8px 12px; border-radius: 10px; background: color-mix(in srgb, var(--adm-accent) 18%, transparent); font-weight: 600; }
+.admin-announce-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.admin-announce-head h3 { margin: 0; font-size: 1.05rem; }
+.admin-announce p { margin: 0 0 6px; }
+.admin-announce.is-expired { opacity: 0.7; }

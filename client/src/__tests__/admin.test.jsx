@@ -215,4 +215,72 @@ describe('admin panel', () => {
     expect(screen.getByText('Sara', { selector: 'strong' })).toBeTruthy();
     expect(calls.some((c) => c.key === 'GET /api/admin/videos?status=all&student=1&page=1')).toBe(true);
   });
+
+  it('announcements: write one for everyone, see the list, remove one', async () => {
+    const sent = { id: 'n1', title: 'Quiz on Friday', body: 'Revise CSS.', level: 'info', audience: 'everyone', recipientCount: null, createdAt: '2026-11-10T10:00:00Z', expiresAt: null, active: true, createdByName: 'Alishba' };
+    let list = [sent];
+    const calls = mockApi(
+      {
+        'GET /api/admin/stats': () => json(200, stats),
+        'GET /api/admin/announcements': () => json(200, { announcements: list }),
+        'POST /api/admin/announcements': () => {
+          list = [{ ...sent, id: 'n2', title: 'Holiday on Monday', level: 'important' }, ...list];
+          return json(201, { announcement: list[0], recipients: 0 });
+        },
+        'DELETE /api/admin/announcements/n1': () => {
+          list = list.filter((a) => a.id !== 'n1');
+          return new Response(null, { status: 204 });
+        },
+      },
+      admin
+    );
+    vi.spyOn(window, 'confirm').mockReturnValue(true);
+    renderApp('/admin');
+    await userEvent.click(await screen.findByRole('link', { name: 'Announcements' }));
+    expect(await screen.findByText('Quiz on Friday')).toBeTruthy();
+
+    const publish = screen.getByRole('button', { name: 'Publish' });
+    expect(publish.disabled).toBe(true);
+    await userEvent.type(screen.getByLabelText('Title'), 'Holiday on Monday');
+    await userEvent.type(screen.getByLabelText('Message'), 'No class on Monday.');
+    await userEvent.selectOptions(screen.getByLabelText('Type'), 'important');
+    await userEvent.selectOptions(screen.getByLabelText('Show for'), '7');
+    await userEvent.click(publish);
+    await waitFor(() => expect(calls.find((c) => c.key === 'POST /api/admin/announcements')?.body).toEqual({ title: 'Holiday on Monday', body: 'No class on Monday.', level: 'important', audience: 'everyone', expiresInDays: 7 }));
+    expect(await screen.findByText(/Every student will see it/)).toBeTruthy();
+    expect((await screen.findAllByText('Holiday on Monday')).length).toBeGreaterThan(0);
+
+    await userEvent.click((await screen.findAllByRole('button', { name: 'Remove' }))[1]); // purana "Quiz on Friday"
+    await waitFor(() => expect(calls.some((c) => c.key === 'DELETE /api/admin/announcements/n1')).toBe(true));
+    await waitFor(() => expect(screen.queryByText('Quiz on Friday')).toBeNull());
+  });
+
+  it('insights: a reminder goes only to the students in that list', async () => {
+    const ina = { id: '1', name: 'Inactive Ina', email: 'ina@example.com', joinedAt: '2026-01-01T00:00:00Z', xp: 50, longestStreak: 2, lastActiveDay: null, daysInactive: 10, daysSinceJoined: 40 };
+    const insights = {
+      thresholds: { inactiveDays: 7, neverStartedDays: 3, minAsked: 3 },
+      atRisk: { inactive: { total: 1, students: [ina] }, neverStarted: { total: 0, students: [] }, streakBroken: { total: 0, students: [] } },
+      hardQuestions: [],
+      dropOff: [],
+    };
+    const calls = mockApi(
+      {
+        'GET /api/admin/stats': () => json(200, stats),
+        'GET /api/admin/insights': () => json(200, insights),
+        'POST /api/admin/announcements': () => json(201, { announcement: {}, recipients: 1 }),
+      },
+      admin
+    );
+    renderApp('/admin');
+    await userEvent.click(await screen.findByRole('link', { name: 'Insights' }));
+    await userEvent.click(await screen.findByRole('button', { name: 'Send reminder' }));
+    const box = await screen.findByLabelText(/Reminder for 1 student/);
+    expect(box.value).toMatch(/We have not seen you for a while/); // pehle se likha hua paigham
+    await userEvent.click(screen.getByRole('button', { name: 'Send' }));
+    await waitFor(() =>
+      expect(calls.find((c) => c.key === 'POST /api/admin/announcements')?.body).toMatchObject({ title: 'We miss you', audience: 'selected', userIds: ['1'], expiresInDays: 7, level: 'info' })
+    );
+    expect(await screen.findByText(/Reminder sent to 1 student/)).toBeTruthy();
+  });
 });
+

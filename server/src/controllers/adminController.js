@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Activity from '../models/Activity.js';
+import Announcement from '../models/Announcement.js';
 import Language from '../models/Language.js';
 import Progress from '../models/Progress.js';
 import Quiz from '../models/Quiz.js';
@@ -280,6 +281,7 @@ export async function deleteStudent(req, res) {
     UserStats.deleteMany({ user: user._id }),
     Activity.deleteMany({ user: user._id }),
     RefreshToken.deleteMany({ user: user._id }),
+    Announcement.updateMany({ recipients: user._id }, { $pull: { recipients: user._id } }),
   ]);
   await User.deleteOne({ _id: user._id });
   res.status(204).end();

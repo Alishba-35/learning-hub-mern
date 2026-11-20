@@ -81,7 +81,7 @@
   --c-e9f2ff: #1f3a72;
   --c-f5f8fc: #1b2540;
   --c-f87171: #9c2d26;
-  --c-f8d866: #7a4f14;
+  --c-f8d866: #724710;
   --c-f8f8f8: #1b2540;
   --c-fbbf24: #744a0c;
   /* Bootstrap ke apne rang bhi soft */
@@ -97,6 +97,11 @@
 :root[data-theme='light'] .page-plum,
 :root[data-theme='light'] .page-navy {
   color-scheme: dark;
+  /* Sirf --c-* hi nahi: card/page ke rang bhi dark wapas, warna .lang-card halka ho jata hai aur safed text gayab */
+  --app-bg: #0f172a;
+  --nav-bg: #1e293b;
+  --card-bg: #202040;
+  --text: #e2e8f0;
   --c-0a1f35: #0a1f35;
   --c-0b1220: #0b1220;
   --c-0f172a: #0f172a;
@@ -134,6 +139,28 @@
   --c-f8f8f8: #f8f8f8;
   --c-fbbf24: #fbbf24;
 }
+
+/* In dark pages par Bootstrap ke form boxes aur alerts bhi dark rahen (light-mode ke soft rang yahan nahi lagte) */
+:root[data-theme='light'] .page-plum .form-control,
+:root[data-theme='light'] .page-plum .form-select,
+:root[data-theme='light'] .page-navy .form-control,
+:root[data-theme='light'] .page-navy .form-select {
+  background-color: #212529;
+  color: #dee2e6;
+  border-color: #495057;
+}
+:root[data-theme='light'] .page-plum .form-control::placeholder,
+:root[data-theme='light'] .page-navy .form-control::placeholder { color: rgba(222, 226, 230, 0.7); }
+:root[data-theme='light'] .page-plum .form-control:focus,
+:root[data-theme='light'] .page-navy .form-control:focus { background-color: #212529; }
+:root[data-theme='light'] .page-plum .alert-danger,
+:root[data-theme='light'] .page-navy .alert-danger { --bs-alert-bg: #2c0b0e; --bs-alert-color: #ea868f; --bs-alert-border-color: #842029; }
+:root[data-theme='light'] .page-plum .alert-success,
+:root[data-theme='light'] .page-navy .alert-success { --bs-alert-bg: #051b11; --bs-alert-color: #75b798; --bs-alert-border-color: #0f5132; }
+:root[data-theme='light'] .page-plum .alert-info,
+:root[data-theme='light'] .page-navy .alert-info { --bs-alert-bg: #032830; --bs-alert-color: #6edff6; --bs-alert-border-color: #087990; }
+:root[data-theme='light'] .page-plum .alert-warning,
+:root[data-theme='light'] .page-navy .alert-warning { --bs-alert-bg: #332701; --bs-alert-color: #ffda6a; --bs-alert-border-color: #997404; }
 
 /* Dashboard apne alag variables use karta hai */
 :root[data-theme='light'] .dash {

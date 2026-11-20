@@ -6,7 +6,7 @@ import GuestOnly from './components/GuestOnly.jsx';
 import LearnLayout, { FirstTopic } from './components/LearnLayout.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import AddShort from './pages/AddShort.jsx';
-import { AdminInsightsPage, AdminOverviewPage, AdminStudentPage, AdminStudentsPage, AdminVideosPage } from './pages/AdminPanel.jsx';
+import { AdminAnnouncementsPage, AdminInsightsPage, AdminOverviewPage, AdminStudentPage, AdminStudentsPage, AdminVideosPage } from './pages/AdminPanel.jsx';
 import AuthPage from './pages/AuthPage.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Landing from './pages/Landing.jsx';
@@ -52,6 +52,7 @@ export default function App() {
             <Route path="students/:id" element={<AdminStudentPage />} />
             <Route path="insights" element={<AdminInsightsPage />} />
             <Route path="videos" element={<AdminVideosPage />} />
+            <Route path="announcements" element={<AdminAnnouncementsPage />} />
           </Route>
         </Route>
       </Route>

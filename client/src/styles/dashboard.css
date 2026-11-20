@@ -541,3 +541,24 @@
   .score-row { grid-template-columns: 1fr auto; }
   .score-row .score-bar { grid-column: 1 / -1; order: 3; }
 }
+
+/* ---------- Announcements (admin ke paigham) ---------- */
+.announce-list { display: grid; gap: 10px; margin-bottom: 16px; }
+.announce {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--d-border);
+  border-left: 4px solid var(--accent);
+  border-radius: 16px;
+  background: var(--d-surface);
+}
+.announce.is-important { border-left-color: #d99a22; background: color-mix(in srgb, #d99a22 11%, var(--d-surface)); }
+.announce h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 4px; font-size: 1rem; }
+.announce p { color: var(--d-text); line-height: 1.45; }
+.announce-meta { display: block; margin-top: 6px; color: var(--d-muted); font-size: 0.78rem; }
+.announce-tag { padding: 1px 8px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 22%, transparent); color: var(--d-text); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; }
+.announce-close { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 8px; background: transparent; color: var(--d-muted); cursor: pointer; }
+.announce-close:hover { background: var(--d-surface-2); color: var(--d-text); }

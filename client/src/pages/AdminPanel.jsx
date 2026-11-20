@@ -1,4 +1,5 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import AnnouncementsTab from '../components/admin/AnnouncementsTab.jsx';
 import InsightsTab from '../components/admin/InsightsTab.jsx';
 import Overview from '../components/admin/Overview.jsx';
 import StudentDetail from '../components/admin/StudentDetail.jsx';
@@ -81,6 +82,14 @@ export function AdminVideosPage() {
         onClearStudent={() => navigate(`/admin/videos?status=${status}`)}
         onOpenStudent={(id) => navigate(`/admin/students/${id}`)}
       />
+    </AdminPage>
+  );
+}
+
+export function AdminAnnouncementsPage() {
+  return (
+    <AdminPage title="Announcements" subtitle="Messages students see on their dashboard">
+      <AnnouncementsTab />
     </AdminPage>
   );
 }

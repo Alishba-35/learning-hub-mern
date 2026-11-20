@@ -6,6 +6,7 @@ import { languages as languageCards } from '../data/languages.js';
 import { localDay } from '../utils/day.js';
 import { formatWhen, plural } from '../utils/format.js';
 import { pickContinue } from '../utils/recommend.js';
+import Announcements from '../components/dashboard/Announcements.jsx';
 import { AreaChart, Donut, MiniBars, Sparkline } from '../components/dashboard/charts.jsx';
 import DashboardShell from '../components/dashboard/DashboardShell.jsx';
 import DashboardSkeleton from '../components/dashboard/DashboardSkeleton.jsx';
@@ -105,6 +106,7 @@ function DashboardBody({ data, user }) {
 
   return (
     <>
+      <Announcements />
       <div className="stat-row">
         <StatCard icon="bolt" label="XP this week" value={week.weekXp}>
           <MiniBars values={last7.map((d) => d.xp)} label="XP for each of the last 7 days" />

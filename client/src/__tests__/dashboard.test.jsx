@@ -326,3 +326,46 @@ describe('Study Buddy panel', () => {
     expect(within(panel).getByRole('button', { name: 'Send question' }).disabled).toBe(true);
   });
 });
+
+describe('announcements on the dashboard', () => {
+  const note = (o = {}) => ({ id: 'a1', title: 'JavaScript quiz opens tomorrow', body: 'Revise loops and functions.', level: 'info', personal: false, createdAt: new Date().toISOString(), expiresAt: null, ...o });
+
+  it('shows what the admin published, highlights important ones and "for you" reminders', async () => {
+    setup({ 'GET /api/announcements': () => json(200, { announcements: [note({ id: 'a2', title: 'Server maintenance', body: 'Back by 6pm.', level: 'important' }), note({ id: 'a3', title: 'We miss you', body: 'Pick up where you left off.', personal: true }), note()] }) });
+    renderDash();
+    await ready();
+    const box = within(await screen.findByRole('region', { name: 'Announcements' }));
+    expect(box.getByText('Server maintenance')).toBeTruthy();
+    expect(box.getByText('Important')).toBeTruthy();
+    expect(box.getByText('For you')).toBeTruthy();
+    expect(box.getByText('Revise loops and functions.')).toBeTruthy();
+    expect(box.getByText('Back by 6pm.')).toBeTruthy();
+  });
+
+  it('dismissing hides it and remembers that on this device', async () => {
+    setup({ 'GET /api/announcements': () => json(200, { announcements: [note()] }) });
+    const first = renderDash();
+    await ready();
+    await userEvent.click(await screen.findByRole('button', { name: 'Dismiss announcement: JavaScript quiz opens tomorrow' }));
+    expect(screen.queryByText('JavaScript quiz opens tomorrow')).toBeNull();
+    expect(JSON.parse(localStorage.getItem('lh-dismissed-announcements'))).toEqual(['a1']);
+
+    first.unmount();
+    renderDash(); // dobara khola: wahi paigham wapas nahi aata
+    await ready();
+    expect(screen.queryByRole('region', { name: 'Announcements' })).toBeNull();
+  });
+
+  it('shows nothing, and the dashboard still works, when there are none or the request fails', async () => {
+    setup({ 'GET /api/announcements': () => json(200, { announcements: [] }) });
+    renderDash();
+    await ready();
+    expect(screen.queryByRole('region', { name: 'Announcements' })).toBeNull();
+    cleanup();
+    setup({ 'GET /api/announcements': () => json(500, { message: 'boom' }) });
+    renderDash();
+    await ready();
+    expect(screen.queryByRole('region', { name: 'Announcements' })).toBeNull();
+  });
+});
+

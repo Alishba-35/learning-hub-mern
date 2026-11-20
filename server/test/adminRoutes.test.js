@@ -20,6 +20,7 @@ const { default: QuizResult } = await import('../src/models/QuizResult.js');
 const { default: Activity } = await import('../src/models/Activity.js');
 const { default: RefreshToken } = await import('../src/models/RefreshToken.js');
 const { default: VideoChunk } = await import('../src/models/VideoChunk.js');
+const { default: Announcement } = await import('../src/models/Announcement.js');
 
 const OID = (n) => String(n).padStart(24, '0');
 const token = (id, role) => jwt.sign({ sub: id, role }, process.env.JWT_ACCESS_SECRET, { algorithm: 'HS256', expiresIn: '5m' });
@@ -81,6 +82,7 @@ beforeEach(() => {
   mock.method(RefreshToken, 'countDocuments', async () => 2);
   mock.method(RefreshToken, 'deleteMany', async (f) => deleted.push(['RefreshToken', f]));
   mock.method(VideoChunk, 'deleteMany', async (f) => deleted.push(['VideoChunk', f]));
+  mock.method(Announcement, 'updateMany', async (f) => deleted.push(['Announcement', f]));
   mock.method(Video, 'find', chain([video()], (f) => (videoFilter = f)));
   mock.method(Video, 'countDocuments', async () => 1);
   mock.method(Video, 'deleteMany', async (f) => deleted.push(['Video', f]));
@@ -206,7 +208,7 @@ test('deleting a student needs the email typed, then removes the account and eve
   mock.method(Video, 'find', chain([]));
   const r = await api('DELETE', `${path}?confirm=SARA%40x.com`, { as: ADMIN });
   assert.equal(r.status, 204);
-  assert.deepEqual(deleted.map(([m]) => m).sort(), ['Activity', 'Progress', 'QuizResult', 'RefreshToken', 'User', 'UserStats', 'Video']);
+  assert.deepEqual(deleted.map(([m]) => m).sort(), ['Activity', 'Announcement', 'Progress', 'QuizResult', 'RefreshToken', 'User', 'UserStats', 'Video']);
 
   deleted = [];
   mock.method(Video, 'find', chain([{ _id: OID(60) }]));

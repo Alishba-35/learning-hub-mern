@@ -9,6 +9,7 @@ const ICONS = {
   students: 'M16 11a4 4 0 1 0-8 0 4 4 0 0 0 8 0zM4 21c0-4 3.6-6 8-6s8 2 8 6',
   insights: 'M4 20V10M10 20V4M16 20v-7M22 20H2',
   videos: 'M5 4l14 8-14 8z',
+  announcements: 'M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1zM16 8a5 5 0 0 1 0 8',
 };
 
 function Icon({ name }) {
@@ -24,6 +25,7 @@ const NAV = [
   { to: '/admin/students', label: 'Students', icon: 'students' },
   { to: '/admin/insights', label: 'Insights', icon: 'insights' },
   { to: '/admin/videos', label: 'Videos', icon: 'videos' },
+  { to: '/admin/announcements', label: 'Announcements', icon: 'announcements' },
 ];
 
 // Admin ka apna shell: student site ke navbar/dashboard se alag sidebar, rang (teal) aur layout
