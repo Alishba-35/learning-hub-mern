@@ -369,3 +369,64 @@ describe('announcements on the dashboard', () => {
   });
 });
 
+describe('certificates on the dashboard', () => {
+  const html = { code: 'LH-7K3M-9QXA-4TPW', languageSlug: 'html', languageName: 'HTML', issuedAt: '2026-11-20T10:00:00Z', revoked: false };
+
+  it('a finished language offers a certificate; getting it gives a PDF link and a verify link to copy', async () => {
+    const writeText = vi.fn().mockResolvedValue();
+    Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });
+    setup({ 'GET /api/certificates': () => json(200, { certificates: [] }), 'POST /api/certificates/html': () => json(201, { certificate: html, created: true }) });
+    renderDash();
+    await ready();
+    const card = within((await screen.findByRole('heading', { name: 'HTML Course' })).closest('li'));
+    expect(card.getByText(/Your certificate is ready/)).toBeTruthy();
+
+    await userEvent.click(card.getByRole('button', { name: 'Get certificate' }));
+    const pdf = await card.findByRole('link', { name: 'Download PDF' });
+    expect(pdf.getAttribute('href')).toBe('/api/certificates/LH-7K3M-9QXA-4TPW/pdf');
+    expect(card.getByText('ID LH-7K3M-9QXA-4TPW')).toBeTruthy();
+    expect(card.queryByRole('button', { name: 'Get certificate' })).toBeNull();
+
+    await userEvent.click(card.getByRole('button', { name: 'Copy verify link' }));
+    expect(writeText).toHaveBeenCalledWith(`${window.location.origin}/verify/LH-7K3M-9QXA-4TPW`);
+    expect(await card.findByRole('button', { name: 'Link copied' })).toBeTruthy();
+  });
+
+  it('an earned certificate shows right away, a revoked one explains itself', async () => {
+    setup({ 'GET /api/certificates': () => json(200, { certificates: [html] }) });
+    const first = renderDash();
+    await ready();
+    const card = within((await screen.findByRole('heading', { name: 'HTML Course' })).closest('li'));
+    expect(card.getByRole('link', { name: 'Download PDF' })).toBeTruthy();
+    expect(card.queryByRole('button', { name: 'Get certificate' })).toBeNull();
+
+    first.unmount();
+    setup({ 'GET /api/certificates': () => json(200, { certificates: [{ ...html, revoked: true }] }) });
+    renderDash();
+    await ready();
+    const revoked = within((await screen.findByRole('heading', { name: 'HTML Course' })).closest('li'));
+    expect(revoked.getByText(/was withdrawn/)).toBeTruthy();
+    expect(revoked.queryByRole('link', { name: 'Download PDF' })).toBeNull();
+  });
+
+  it('a refused certificate shows the reason; the card stays so the student can try again', async () => {
+    setup({ 'GET /api/certificates': () => json(200, { certificates: [] }), 'POST /api/certificates/html': () => json(403, { message: 'Finish every lesson in HTML first (7 of 8 done)' }) });
+    renderDash();
+    await ready();
+    await userEvent.click(await screen.findByRole('button', { name: 'Get certificate' }));
+    expect((await screen.findByRole('alert')).textContent).toMatch(/7 of 8 done/);
+    expect(screen.getByRole('button', { name: 'Get certificate' }).disabled).toBe(false);
+  });
+
+  it('with nothing finished it encourages, naming the closest language', async () => {
+    setup({
+      'GET /api/progress?day=*': () => json(200, overview({ languages: [lang('html', 'HTML', { completed: 6, percent: 75 }), lang('css', 'CSS', { completed: 2, percent: 25 })] })),
+      'GET /api/certificates': () => json(200, { certificates: [] }),
+    });
+    renderDash();
+    await ready();
+    expect(await screen.findByText(/Finish every lesson of a language to earn a certificate\. Closest: HTML, 75% done\./)).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Get certificate' })).toBeNull();
+  });
+});
+

@@ -7,6 +7,7 @@ import { localDay } from '../utils/day.js';
 import { formatWhen, plural } from '../utils/format.js';
 import { pickContinue } from '../utils/recommend.js';
 import Announcements from '../components/dashboard/Announcements.jsx';
+import Certificates from '../components/dashboard/Certificates.jsx';
 import { AreaChart, Donut, MiniBars, Sparkline } from '../components/dashboard/charts.jsx';
 import DashboardShell from '../components/dashboard/DashboardShell.jsx';
 import DashboardSkeleton from '../components/dashboard/DashboardSkeleton.jsx';
@@ -280,6 +281,8 @@ function DashboardBody({ data, user }) {
           <LanguageCard key={l.slug} lang={l} />
         ))}
       </div>
+
+      <Certificates languages={languages} />
 
       <h2 className="section-title" id="badges">
         Badges <small>({earned}/{badges.length})</small>

@@ -10,6 +10,7 @@ export default function Overview({ onOpenVideos, onOpenStudent }) {
   const cards = [
     { label: 'Students signed up', value: data.students, note: `${data.newStudents} new in the last 7 days` },
     { label: 'Active this week', value: data.activeWeek, note: 'Learned something in the last 7 days' },
+    { label: 'Certificates issued', value: data.certificates, note: 'Genuine, not revoked' },
     { label: 'Videos waiting', value: data.videos.pending, note: 'Need your review', action: () => onOpenVideos('pending') },
     { label: 'Videos approved', value: data.videos.approved, note: 'Visible to everyone', action: () => onOpenVideos('approved') },
     { label: 'Videos rejected', value: data.videos.rejected, note: 'Hidden from Shorts Study', action: () => onOpenVideos('rejected') },

@@ -33,7 +33,7 @@ const renderApp = (path) =>
   );
 
 const stats = {
-  students: 3, newStudents: 1, activeWeek: 2, videos: { pending: 2, approved: 5, rejected: 0 },
+  students: 3, newStudents: 1, activeWeek: 2, certificates: 4, videos: { pending: 2, approved: 5, rejected: 0 },
   signups: Array.from({ length: 30 }, (_, i) => ({ day: `2026-11-${String((i % 28) + 1).padStart(2, '0')}`, count: i === 29 ? 2 : 0 })),
   topLearners: [{ id: '1', name: 'Sara', xp: 230, level: 3, streak: 3 }],
   popularLanguages: [{ slug: 'css', name: 'CSS', color: '#1f4e78', learners: 2, lessons: 7 }],
@@ -49,6 +49,7 @@ const detail = {
   series: Array.from({ length: 14 }, (_, i) => ({ day: `2026-11-${String(i + 1).padStart(2, '0')}`, xp: i === 13 ? 10 : 0, lessons: 0, quizzes: 0 })),
   recent: [{ type: 'lesson', languageSlug: 'css', title: 'Selectors', detail: '', xp: 10, at: '2026-11-14T10:00:00Z' }],
   videos: { pending: 1, approved: 0, rejected: 0, total: 1 },
+  certificates: [{ code: 'LH-AAAA-BBBB-CCCC', languageSlug: 'css', languageName: 'CSS', issuedAt: '2026-03-01T00:00:00Z', revoked: false }],
 };
 const pendingVideo = {
   id: 'v1', title: 'Cat memes', description: '', languageSlug: '', source: 'youtube', youtubeId: 'abcdefghi01', streamUrl: null,
@@ -281,6 +282,43 @@ describe('admin panel', () => {
       expect(calls.find((c) => c.key === 'POST /api/admin/announcements')?.body).toMatchObject({ title: 'We miss you', audience: 'selected', userIds: ['1'], expiresInDays: 7, level: 'info' })
     );
     expect(await screen.findByText(/Reminder sent to 1 student/)).toBeTruthy();
+  });
+
+  it('overview counts the certificates that were issued', async () => {
+    mockApi({ 'GET /api/admin/stats': () => json(200, stats) }, admin);
+    renderApp('/admin');
+    expect(await screen.findByText('Certificates issued')).toBeTruthy();
+    expect(screen.getByText('Genuine, not revoked')).toBeTruthy();
+  });
+
+  it('a student certificate can be opened, revoked (after confirming) and restored', async () => {
+    let revoked = false;
+    const calls = mockApi(
+      {
+        'GET /api/admin/students/1': () => json(200, { ...detail, certificates: [{ ...detail.certificates[0], revoked }] }),
+        'PATCH /api/admin/certificates/LH-AAAA-BBBB-CCCC': (init) => {
+          revoked = JSON.parse(init.body).revoked;
+          return json(200, { code: 'LH-AAAA-BBBB-CCCC', revoked });
+        },
+      },
+      admin
+    );
+    const confirm = vi.spyOn(window, 'confirm').mockReturnValueOnce(false).mockReturnValue(true);
+    renderApp('/admin/students/1');
+    expect((await screen.findByRole('link', { name: 'Open PDF' })).getAttribute('href')).toBe('/api/certificates/LH-AAAA-BBBB-CCCC/pdf');
+
+    await userEvent.click(screen.getByRole('button', { name: 'Revoke' }));
+    expect(confirm).toHaveBeenCalled();
+    expect(calls.some((c) => c.key.startsWith('PATCH /api/admin/certificates'))).toBe(false); // "Cancel" dabaya: kuch nahi hua
+
+    await userEvent.click(screen.getByRole('button', { name: 'Revoke' }));
+    expect(await screen.findByText('Revoked')).toBeTruthy();
+    expect(calls.find((c) => c.key.startsWith('PATCH /api/admin/certificates'))?.body).toEqual({ revoked: true });
+    expect(screen.queryByRole('link', { name: 'Open PDF' })).toBeNull(); // revoke ke baad PDF nahi
+
+    await userEvent.click(screen.getByRole('button', { name: 'Restore' }));
+    await waitFor(() => expect(screen.queryByText('Revoked')).toBeNull());
+    expect(screen.getByRole('link', { name: 'Open PDF' })).toBeTruthy();
   });
 });
 

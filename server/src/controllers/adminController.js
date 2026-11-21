@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import Activity from '../models/Activity.js';
 import Announcement from '../models/Announcement.js';
+import Certificate from '../models/Certificate.js';
 import Language from '../models/Language.js';
 import Progress from '../models/Progress.js';
 import Quiz from '../models/Quiz.js';
@@ -11,6 +12,7 @@ import User from '../models/User.js';
 import UserStats from '../models/UserStats.js';
 import Video from '../models/Video.js';
 import VideoChunk from '../models/VideoChunk.js';
+import { normalizeCode } from '../utils/certificateCode.js';
 import { PASS_PERCENT } from '../utils/quiz.js';
 import { addDays, badgesFor, buildSeries, currentStreak, levelInfo, quizScore, utcDay } from '../utils/progress.js';
 import { shape } from './videoController.js';
@@ -59,7 +61,7 @@ export async function getStats(req, res) {
   const signupSince = new Date(Date.now() - (SIGNUP_DAYS - 1) * DAY_MS);
   signupSince.setUTCHours(0, 0, 0, 0);
 
-  const [students, newStudents, byStatus, signupRows, activeWeek, topStats, progressRows, languages, quizRows] = await Promise.all([
+  const [students, newStudents, byStatus, signupRows, activeWeek, topStats, progressRows, languages, quizRows, certificates] = await Promise.all([
     User.countDocuments({ role: 'student' }),
     User.countDocuments({ role: 'student', createdAt: { $gte: new Date(Date.now() - 7 * DAY_MS) } }),
     Video.aggregate([{ $match: { status: { $in: STATUSES } } }, { $group: { _id: '$status', n: { $sum: 1 } } }]),
@@ -78,6 +80,7 @@ export async function getStats(req, res) {
       { $match: { attempts: { $gt: 0 } } },
       { $group: { _id: null, attempts: { $sum: '$attempts' }, best: { $sum: '$bestScore' }, possible: { $sum: '$total' }, takers: { $addToSet: '$user' } } },
     ]),
+    Certificate.countDocuments({ revoked: { $ne: true } }),
   ]);
 
   const videos = { pending: 0, approved: 0, rejected: 0 };
@@ -104,7 +107,7 @@ export async function getStats(req, res) {
   const q = quizRows[0];
   const quizzes = { attempts: q?.attempts ?? 0, takers: q?.takers?.length ?? 0, averagePercent: q?.possible ? Math.round((q.best / q.possible) * 100) : null };
 
-  res.json({ students, newStudents, activeWeek, videos, signups, topLearners, popularLanguages, quizzes });
+  res.json({ students, newStudents, activeWeek, certificates, videos, signups, topLearners, popularLanguages, quizzes });
 }
 
 // ---------- Students ----------
@@ -155,7 +158,7 @@ export async function getStudent(req, res) {
   const user = await User.findById(userId).select('name email purpose role disabled disabledReason createdAt').lean();
   if (!user) return notFound(res, 'Student');
 
-  const [stats, progressDocs, languages, topicCounts, quizDefs, results, window, recent, sessions, counts] = await Promise.all([
+  const [stats, progressDocs, languages, topicCounts, quizDefs, results, window, recent, sessions, counts, certificates] = await Promise.all([
     UserStats.findOne({ user: userId }).lean(),
     Progress.find({ user: userId }).select('languageSlug completed lastTopic -_id').lean(),
     Language.find().sort('order').select('slug name color -_id').lean(),
@@ -166,6 +169,7 @@ export async function getStudent(req, res) {
     Activity.find({ user: userId }).sort({ at: -1 }).limit(15).select('type languageSlug title detail xp at -_id').lean(),
     RefreshToken.countDocuments({ user: userId }),
     videoCounts([user._id]),
+    Certificate.find({ user: userId }).sort({ issuedAt: -1 }).select('code languageSlug languageName issuedAt revoked -_id').lean(),
   ]);
 
   const quizTitle = new Map(quizDefs.map((q) => [`${q.languageSlug}/${q.slug}`, q.title]));
@@ -231,6 +235,7 @@ export async function getStudent(req, res) {
     series: buildSeries(window, today, 14),
     recent,
     videos: counts.get(String(user._id)) ?? emptyCounts(),
+    certificates: certificates.map((c) => ({ code: c.code, languageSlug: c.languageSlug, languageName: c.languageName, issuedAt: c.issuedAt, revoked: Boolean(c.revoked) })),
   });
 }
 
@@ -282,6 +287,7 @@ export async function deleteStudent(req, res) {
     Activity.deleteMany({ user: user._id }),
     RefreshToken.deleteMany({ user: user._id }),
     Announcement.updateMany({ recipients: user._id }, { $pull: { recipients: user._id } }),
+    Certificate.deleteMany({ user: user._id }),
   ]);
   await User.deleteOne({ _id: user._id });
   res.status(204).end();
@@ -351,4 +357,16 @@ export async function setVideoStatus(req, res) {
   const video = await Video.findOneAndUpdate({ _id: req.params.id, status: { $in: STATUSES } }, { $set: update }, { returnDocument: 'after' }).lean();
   if (!video) return notFound(res);
   res.json({ video: adminShape(video, req.user) });
+}
+
+// ---------- Certificates ----------
+
+// Certificate wapas lo (verify "revoked" dikhata hai aur PDF band) ya bahal karo
+export async function setCertificateRevoked(req, res) {
+  const code = normalizeCode(req.params.code);
+  if (!code) return notFound(res, 'Certificate');
+  const { revoked } = req.body;
+  const cert = await Certificate.findOneAndUpdate({ code }, { $set: { revoked, revokedAt: revoked ? new Date() : null } }, { returnDocument: 'after' }).lean();
+  if (!cert) return notFound(res, 'Certificate');
+  res.json({ code: cert.code, revoked: Boolean(cert.revoked) });
 }

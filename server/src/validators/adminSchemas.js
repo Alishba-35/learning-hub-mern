@@ -29,3 +29,6 @@ export const announcementSchema = z
     expiresInDays: z.number().int().min(1).max(90).nullable().optional().default(null),
   })
   .refine((v) => v.audience !== 'selected' || v.userIds.length > 0, { message: 'Pick at least one student', path: ['userIds'] });
+
+// Certificate wapas lena (jaise dhoka mile) ya dobara chalu karna
+export const revokeSchema = z.object({ revoked: z.boolean() });

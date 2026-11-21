@@ -13,7 +13,7 @@
       "blocks": [
         {
           "kind": "html",
-          "html": "<div class=\"container my-4\">\n<h1>Introduction to Java</h1>\n<div class=\"card\">\n<h2>What is Java?</h2>\n<p><strong>Java</strong> is a powerful, object-oriented language used for Android apps, enterprise back-ends, banking systems and big universities' courses. It is <strong>strongly typed</strong>: every variable has a declared type, and the compiler catches many mistakes before the program runs.</p><ul><li><strong>JDK</strong> (Java Development Kit): tools to write and compile code.</li><li><strong>JVM</strong> (Java Virtual Machine): runs the compiled code, so the same program works on Windows, Mac and Linux (\"write once, run anywhere\").</li><li>Source files end in <code>.java</code>; the compiler turns them into <code>.class</code> files (bytecode).</li></ul>"
+          "html": "<div class=\"container my-4\">\n<h1>Introduction to Java</h1>\n<div class=\"card\">\n<h2>What is Java?</h2>\n<p><strong>Java</strong> is a powerful, object-oriented language used for Android apps, enterprise back-ends, banking systems and big universities' courses. It is <strong>strongly typed</strong>: every variable has a declared type, and the compiler catches many mistakes before the program runs.</p><ul><li><strong>JDK</strong> (Java Development Kit): tools to write and compile code.</li><li><strong>JVM</strong> (Java Virtual Machine): runs the compiled code, so the same program works on Windows, Mac and Linux (\"write once, run anywhere\").</li><li>Source files end in \n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/yRpLlJmRo2w?si=5DzPBkgD0YEIGKg6\" title=\"YouTube video player\" width=\"650\"></iframe>\n<code>.java</code>; the compiler turns them into <code>.class</code> files (bytecode).</li></ul>"
         },
         {
           "kind": "html",
@@ -29,7 +29,7 @@
         },
         {
           "kind": "html",
-          "html": "</div>\n\n<div class=\"card\">\n<h2>Hello, World</h2>\n<p>Every Java program starts in a class that has a <code>main</code> method. This is the smallest complete program.</p><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/yRpLlJmRo2w?si=5DzPBkgD0YEIGKg6\" title=\"YouTube video player\" width=\"650\"></iframe>\n"
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Hello, World</h2>\n<p>Every Java program starts in a class that has a <code>main</code> method. This is the smallest complete program.</p>"
         },
         {
           "kind": "html",

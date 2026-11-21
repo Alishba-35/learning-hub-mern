@@ -21,6 +21,7 @@ const { default: Activity } = await import('../src/models/Activity.js');
 const { default: RefreshToken } = await import('../src/models/RefreshToken.js');
 const { default: VideoChunk } = await import('../src/models/VideoChunk.js');
 const { default: Announcement } = await import('../src/models/Announcement.js');
+const { default: Certificate } = await import('../src/models/Certificate.js');
 
 const OID = (n) => String(n).padStart(24, '0');
 const token = (id, role) => jwt.sign({ sub: id, role }, process.env.JWT_ACCESS_SECRET, { algorithm: 'HS256', expiresIn: '5m' });
@@ -34,6 +35,7 @@ let userFilter;
 let videoFilter;
 let update;
 let userUpdate;
+let certUpdate;
 let deleted;
 const today = new Date().toISOString().slice(0, 10);
 const student = (over = {}) => ({ _id: OID(1), name: 'Sara', email: 'sara@x.com', role: 'student', purpose: 'Learn web', createdAt: new Date('2026-02-01'), ...over });
@@ -56,7 +58,7 @@ const video = (over = {}) => ({
 
 beforeEach(() => {
   mock.restoreAll();
-  userFilter = videoFilter = update = userUpdate = undefined;
+  userFilter = videoFilter = update = userUpdate = certUpdate = undefined;
   deleted = [];
   mock.method(User, 'find', chain([student({ _id: OID(1) })], (f) => (userFilter = f)));
   mock.method(User, 'countDocuments', async () => 3);
@@ -83,6 +85,13 @@ beforeEach(() => {
   mock.method(RefreshToken, 'deleteMany', async (f) => deleted.push(['RefreshToken', f]));
   mock.method(VideoChunk, 'deleteMany', async (f) => deleted.push(['VideoChunk', f]));
   mock.method(Announcement, 'updateMany', async (f) => deleted.push(['Announcement', f]));
+  mock.method(Certificate, 'countDocuments', async () => 6);
+  mock.method(Certificate, 'find', chain([{ code: 'LH-AAAA-BBBB-CCCC', languageSlug: 'css', languageName: 'CSS', issuedAt: new Date('2026-03-01'), revoked: false }]));
+  mock.method(Certificate, 'deleteMany', async (f) => deleted.push(['Certificate', f]));
+  mock.method(Certificate, 'findOneAndUpdate', (filter, change) => {
+    certUpdate = { filter, change };
+    return { lean: async () => (filter.code === 'LH-ZZZZ-ZZZZ-ZZZZ' ? null : { code: filter.code, revoked: change.$set.revoked }) };
+  });
   mock.method(Video, 'find', chain([video()], (f) => (videoFilter = f)));
   mock.method(Video, 'countDocuments', async () => 1);
   mock.method(Video, 'deleteMany', async (f) => deleted.push(['Video', f]));
@@ -107,7 +116,7 @@ async function api(method, path, { as, body } = {}) {
 }
 
 test('admin routes need a login and the admin role', async () => {
-  for (const [m, p] of [['GET', '/api/admin/stats'], ['GET', '/api/admin/students'], ['GET', '/api/admin/videos'], ['PATCH', `/api/admin/videos/${OID(50)}/status`], ['DELETE', `/api/admin/videos/${OID(50)}`]]) {
+  for (const [m, p] of [['GET', '/api/admin/stats'], ['GET', '/api/admin/students'], ['GET', '/api/admin/videos'], ['PATCH', `/api/admin/videos/${OID(50)}/status`], ['DELETE', `/api/admin/videos/${OID(50)}`], ['PATCH', '/api/admin/certificates/LH-AAAA-BBBB-CCCC']]) {
     assert.equal((await api(m, p)).status, 401, `${m} ${p} without login`);
     assert.equal((await api(m, p, { as: STUDENT })).status, 403, `${m} ${p} as student`);
     assert.equal((await api(m, p, { as: TEACHER })).status, 403, `${m} ${p} as teacher`);
@@ -120,6 +129,7 @@ test('stats: overview numbers, 30-day signups, top learners, popular languages, 
   const d = r.data;
   assert.equal(d.students, 3);
   assert.equal(d.activeWeek, 4);
+  assert.equal(d.certificates, 6, 'certificates issued (revoked ones are not counted)');
   assert.deepEqual(d.videos, { pending: 2, approved: 5, rejected: 0 });
   assert.equal(d.signups.length, 30);
   assert.equal(d.signups.at(-1).day, today);
@@ -161,6 +171,7 @@ test('student detail: profile, level, per-language progress, quizzes, badges, ac
   assert.equal(d.series.length, 14);
   assert.equal(d.recent[0].title, 'Selectors');
   assert.deepEqual(d.videos, { pending: 0, approved: 2, rejected: 1, total: 3 });
+  assert.deepEqual(d.certificates, [{ code: 'LH-AAAA-BBBB-CCCC', languageSlug: 'css', languageName: 'CSS', issuedAt: '2026-03-01T00:00:00.000Z', revoked: false }]);
   assert.equal((await api('GET', `/api/admin/students/${OID(77)}`, { as: ADMIN })).status, 404);
   assert.equal((await api('GET', '/api/admin/students/nope', { as: ADMIN })).status, 404);
 });
@@ -208,7 +219,7 @@ test('deleting a student needs the email typed, then removes the account and eve
   mock.method(Video, 'find', chain([]));
   const r = await api('DELETE', `${path}?confirm=SARA%40x.com`, { as: ADMIN });
   assert.equal(r.status, 204);
-  assert.deepEqual(deleted.map(([m]) => m).sort(), ['Activity', 'Announcement', 'Progress', 'QuizResult', 'RefreshToken', 'User', 'UserStats', 'Video']);
+  assert.deepEqual(deleted.map(([m]) => m).sort(), ['Activity', 'Announcement', 'Certificate', 'Progress', 'QuizResult', 'RefreshToken', 'User', 'UserStats', 'Video']);
 
   deleted = [];
   mock.method(Video, 'find', chain([{ _id: OID(60) }]));
@@ -276,4 +287,19 @@ test('approving clears an old reject reason; moving back to pending clears the r
   await api('PATCH', path, { as: ADMIN, body: { status: 'pending' } });
   assert.equal(update.change.$set.reviewedBy, null);
   assert.equal((await api('PATCH', '/api/admin/videos/not-an-id/status', { as: ADMIN, body: { status: 'approved' } })).status, 404);
+});
+
+test('revoking a certificate: only a real code, and it can be restored', async () => {
+  const path = '/api/admin/certificates/LH-AAAA-BBBB-CCCC';
+  assert.equal((await api('PATCH', path, { as: ADMIN, body: { revoked: 'yes' } })).status, 400);
+  assert.equal(certUpdate, undefined);
+  const r = await api('PATCH', path, { as: ADMIN, body: { revoked: true } });
+  assert.deepEqual([r.status, r.data], [200, { code: 'LH-AAAA-BBBB-CCCC', revoked: true }]);
+  assert.equal(certUpdate.change.$set.revoked, true);
+  assert.ok(certUpdate.change.$set.revokedAt instanceof Date);
+  await api('PATCH', path.toLowerCase(), { as: ADMIN, body: { revoked: false } });
+  assert.equal(certUpdate.filter.code, 'LH-AAAA-BBBB-CCCC', 'code is normalised to capitals');
+  assert.equal(certUpdate.change.$set.revokedAt, null);
+  assert.equal((await api('PATCH', '/api/admin/certificates/nope', { as: ADMIN, body: { revoked: true } })).status, 404);
+  assert.equal((await api('PATCH', '/api/admin/certificates/LH-ZZZZ-ZZZZ-ZZZZ', { as: ADMIN, body: { revoked: true } })).status, 404);
 });

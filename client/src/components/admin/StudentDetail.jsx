@@ -40,13 +40,17 @@ export default function StudentDetail({ id, onBack, onOpenVideos }) {
   }
   if (!data) return <Loading />;
 
-  const { student: s, stats, languages, quizzes, badges, series, recent, videos } = data;
+  const { student: s, stats, languages, quizzes, badges, series, recent, videos, certificates } = data;
   const started = languages.filter((l) => l.completed > 0).sort((a, b) => b.percent - a.percent);
   const notStarted = languages.filter((l) => l.total > 0 && l.completed === 0);
   const path = `/admin/students/${s.id}`;
 
   const toggleSuspension = () => act(() => request(`${path}/suspension`, { method: 'PATCH', body: { disabled: !s.disabled, reason } }), reload);
   const changeRole = (role) => act(() => request(`${path}/role`, { method: 'PATCH', body: { role } }), reload);
+  const setRevoked = (c, revoked) => {
+    if (revoked && !window.confirm(`Revoke the ${c.languageName} certificate? It will stop verifying and the PDF will stop opening.`)) return;
+    act(() => request(`/admin/certificates/${c.code}`, { method: 'PATCH', body: { revoked } }), reload);
+  };
   const deleteAccount = () => act(() => request(`${path}?confirm=${encodeURIComponent(confirm.trim())}`, { method: 'DELETE' }), onBack);
 
   return (
@@ -207,6 +211,37 @@ export default function StudentDetail({ id, onBack, onOpenVideos }) {
               </tbody>
             </table>
           </div>
+        )}
+      </section>
+
+      <section className="admin-panel-box">
+        <h2>Certificates ({certificates.length})</h2>
+        {certificates.length === 0 ? (
+          <p className="admin-sub">No certificates yet.</p>
+        ) : (
+          <ul className="admin-cert-list">
+            {certificates.map((c) => (
+              <li key={c.code}>
+                <span>
+                  <strong>{c.languageName}</strong>
+                  {c.revoked && <span className="badge text-bg-danger ms-2">Revoked</span>}
+                  <small className="admin-sub">
+                    {c.code}, issued {formatDate(c.issuedAt)}
+                  </small>
+                </span>
+                <span className="admin-actions">
+                  {!c.revoked && (
+                    <a className="btn btn-outline-light btn-sm" href={`/api/certificates/${c.code}/pdf`} target="_blank" rel="noreferrer">
+                      Open PDF
+                    </a>
+                  )}
+                  <button type="button" className={`btn btn-sm ${c.revoked ? 'btn-primary' : 'btn-outline-danger'}`} onClick={() => setRevoked(c, !c.revoked)}>
+                    {c.revoked ? 'Restore' : 'Revoke'}
+                  </button>
+                </span>
+              </li>
+            ))}
+          </ul>
         )}
       </section>
 

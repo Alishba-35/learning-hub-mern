@@ -1,0 +1,33 @@
+/* Certificate verify page: theme ke rang (dark mein dark, light mein soft) */
+.verify-page {
+  --ok: #34d399;
+  --bad: #f87171;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 24px 16px;
+  background: var(--app-bg);
+  color: var(--text);
+}
+:root[data-theme='light'] .verify-page { --ok: #15703f; --bad: #a3302a; }
+.verify-card {
+  width: min(460px, 100%);
+  padding: 28px 24px;
+  border-radius: 18px;
+  background: var(--card-bg);
+  text-align: center;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+}
+.verify-brand { margin: 0 0 14px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }
+.verify-badge { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 12px; border-radius: 50%; font-size: 1.8rem; font-weight: 800; }
+.verify-badge.is-ok { background: color-mix(in srgb, var(--ok) 22%, transparent); color: var(--ok); }
+.verify-badge.is-bad { background: color-mix(in srgb, var(--bad) 22%, transparent); color: var(--bad); }
+.verify-card h1 { margin: 0 0 14px; font-size: 1.4rem; }
+.verify-note { margin: 0 0 14px; opacity: 0.85; }
+.verify-details { display: grid; gap: 8px; margin: 0 0 18px; text-align: left; }
+.verify-details div { display: flex; justify-content: space-between; gap: 12px; padding: 8px 12px; border-radius: 10px; background: color-mix(in srgb, var(--text) 8%, transparent); }
+.verify-details dt { font-weight: 600; opacity: 0.8; }
+.verify-details dd { margin: 0; font-weight: 700; text-align: right; overflow-wrap: anywhere; }
+.verify-btn { display: inline-block; margin-bottom: 14px; padding: 9px 18px; border-radius: 10px; background: #4650bd; color: #fff; font-weight: 600; text-decoration: none; }
+.verify-btn:hover { filter: brightness(1.1); color: #fff; }
+.verify-home { display: block; font-size: 0.88rem; opacity: 0.8; }

@@ -16,6 +16,7 @@ import ManageShorts from './pages/ManageShorts.jsx';
 import NotFound from './pages/NotFound.jsx';
 import QuizPage from './pages/QuizPage.jsx';
 import ShortsStudy from './pages/ShortsStudy.jsx';
+import VerifyCertificate from './pages/VerifyCertificate.jsx';
 
 export default function App() {
   return (
@@ -29,6 +30,9 @@ export default function App() {
           </GuestOnly>
         }
       />
+
+      {/* Public: koi bhi certificate ka code check kar sakta hai */}
+      <Route path="/verify/:code" element={<VerifyCertificate />} />
 
       <Route element={<ProtectedRoute />}>
         {/* Languages page par navbar nahi (purane card page jaisa) */}
