@@ -66,7 +66,7 @@ export default function DashboardShell({ user, onLogout, ctx, title, subtitle, c
 
         <div className="dash-main" id="dash-main" tabIndex={-1}>
           <header className="dash-header">
-            <BrandLogo size={44} className="dash-logo" />
+            <BrandLogo variant="icon" surface="dark" size={42} className="dash-logo" />
             <div className="dash-title">
               <h1>{title}</h1>
               <p>{subtitle}</p>

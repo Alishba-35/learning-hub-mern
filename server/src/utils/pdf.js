@@ -15,6 +15,7 @@ export function toWinAnsi(input) {
 
 // Text ki chaurai points mein (accent wale harf apne base harf jitne chaure hote hain)
 export function textWidth(text, font, size, spacing = 0) {
+  if (font && font.isTtf) return font.width(text, size, spacing);
   const table = WIDTHS[font];
   if (!table) throw new Error(`Unknown font: ${font}`);
   let units = 0;
@@ -49,6 +50,9 @@ export class PdfPage {
     this.author = toWinAnsi(author);
     this.ops = [];
     this.images = [];
+    this.ttf = new Map(); // TTF font -> { id, used: Map(glyph -> unicode) }
+    this.texts = []; // jo text likha gaya (tests aur debugging ke liye)
+    this.links = []; // clickable link wale dabbe
   }
 
   rect(x, y, w, h, { fill, stroke, lineWidth = 1 } = {}) {
@@ -82,15 +86,46 @@ export class PdfPage {
   }
 
   // align: left (x se shuru), center (x beech mein), right (x par khatam). spacing: harf ke beech extra jagah.
-  text(str, { x, y, font = 'Helvetica', size = 12, color = '#000000', align = 'left', spacing = 0 }) {
+  // font: standard font ka naam (jaise 'Helvetica-Bold') ya loadFont() se mila TTF font.
+  // bold: sirf TTF ke liye, harf ke kinare par patli lakeer (lakeer ki motai points mein) taake text mota lage.
+  text(str, { x, y, font = 'Helvetica', size = 12, color = '#000000', align = 'left', spacing = 0, bold = 0 }) {
+    if (font && font.isTtf) {
+      const clean = font.constructor.clean(str);
+      if (!clean) return;
+      const width = font.width(clean, size, spacing);
+      const left = align === 'center' ? x - width / 2 : align === 'right' ? x - width : x;
+      let rec = this.ttf.get(font);
+      if (!rec) {
+        rec = { id: `T${this.ttf.size + 1}`, used: new Map() };
+        this.ttf.set(font, rec);
+      }
+      const hex = [...clean]
+        .map((ch) => {
+          const cp = ch.codePointAt(0);
+          const gid = font.glyph(cp);
+          if (!rec.used.has(gid)) rec.used.set(gid, gid ? cp : 0xfffd);
+          return gid.toString(16).padStart(4, '0');
+        })
+        .join('');
+      const mode = bold ? `${rgb(color)} RG ${num(bold)} w 2 Tr ` : '';
+      this.texts.push(clean);
+      this.ops.push(`BT /${rec.id} ${num(size)} Tf ${rgb(color)} rg ${mode}${num(spacing)} Tc ${num(left)} ${num(y)} Td <${hex}> Tj ET`);
+      return;
+    }
     const clean = toWinAnsi(str);
     if (!clean) return;
     const width = textWidth(clean, font, size, spacing);
     const left = align === 'center' ? x - width / 2 : align === 'right' ? x - width : x;
+    this.texts.push(clean);
     this.ops.push(`BT /${FONT_IDS[font]} ${num(size)} Tf ${rgb(color)} rg ${num(spacing)} Tc ${num(left)} ${num(y)} Td (${escape(clean)}) Tj ET`);
   }
 
-  // PNG ki tasveer (decodePng ka natija) x, y (neeche-bayen kone) par w x h ke dabbe mein. Transparency (alpha) chalti hai.
+  // Clickable link: dabba (x, y neeche-bayen kone se, w x h) kholne par url khulta hai
+  link(x, y, w, h, url) {
+    this.links.push({ rect: [x, y, x + w, y + h], url: toWinAnsi(url) });
+  }
+
+  // Tasveer (decodePng ya readJpeg ka natija) x, y (neeche-bayen kone) par w x h ke dabbe mein. Transparency (alpha) chalti hai.
   image(img, x, y, w, h) {
     let idx = this.images.indexOf(img);
     if (idx === -1) idx = this.images.push(img) - 1;
@@ -100,34 +135,56 @@ export class PdfPage {
   toBuffer() {
     const content = this.ops.join('\n');
     const fontNames = Object.keys(FONT_IDS);
-    const fontObjStart = 5;
-    const fontRefs = fontNames.map((name, i) => `/${FONT_IDS[name]} ${fontObjStart + i} 0 R`).join(' ');
-    const infoNum = fontObjStart + fontNames.length;
-    // Har tasveer ke do object: pehle alpha mask (SMask), phir RGB tasveer
-    const xobjects = this.images.map((_, i) => `/Im${i + 1} ${infoNum + 2 + i * 2} 0 R`).join(' ');
-    const resources = `<< /Font << ${fontRefs} >>${xobjects ? ` /XObject << ${xobjects} >>` : ''} >>`;
-    const stream = (dict, data) => {
-      const body = deflateSync(data).toString('latin1');
-      return `<< ${dict} /Filter /FlateDecode /Length ${Buffer.byteLength(body, 'latin1')} >>\nstream\n${body}\nendstream`;
+    const objects = new Array(5 + fontNames.length).fill(null); // 1-4: catalog, pages, page, content; phir standard fonts; phir info
+    const add = (body) => objects.push(body);
+    const raw = (dict, buf) => `<< ${dict} /Length ${buf.length} >>\nstream\n${buf.toString('latin1')}\nendstream`;
+    const packed = (dict, data) => {
+      const body = deflateSync(data);
+      return raw(`${dict} /Filter /FlateDecode`, body);
     };
-    const imageObjects = this.images.flatMap((img, i) => {
-      const smask = img.alpha ? infoNum + 1 + i * 2 : null;
+
+    const fontObjStart = 5;
+    const infoNum = fontObjStart + fontNames.length;
+    fontNames.forEach((name, i) => {
+      objects[fontObjStart - 1 + i] = `<< /Type /Font /Subtype /Type1 /BaseFont /${name} /Encoding /WinAnsiEncoding >>`;
+    });
+    objects[infoNum - 1] = `<< /Title (${escape(this.title)}) /Author (${escape(this.author)}) /Producer (Learning Hub) >>`;
+    const fontRefs = fontNames.map((name, i) => `/${FONT_IDS[name]} ${fontObjStart + i} 0 R`);
+
+    // Tasveerein: JPEG seedhi, PNG ke liye RGB aur (agar ho) alpha mask (SMask)
+    const xobjects = this.images.map((img, i) => {
       const base = `/Type /XObject /Subtype /Image /Width ${img.width} /Height ${img.height}`;
-      return [
-        img.alpha ? stream(`${base} /ColorSpace /DeviceGray /BitsPerComponent 8`, img.alpha) : '<< /Type /XObject /Subtype /Form /BBox [0 0 1 1] >>\nstream\n\nendstream',
-        stream(`${base} /ColorSpace /DeviceRGB /BitsPerComponent 8${smask ? ` /SMask ${smask} 0 R` : ''}`, img.rgb),
-      ];
+      if (img.jpeg) return `/Im${i + 1} ${add(raw(`${base} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode`, img.jpeg))} 0 R`;
+      const mask = img.alpha ? add(packed(`${base} /ColorSpace /DeviceGray /BitsPerComponent 8`, img.alpha)) : null;
+      const ref = add(packed(`${base} /ColorSpace /DeviceRGB /BitsPerComponent 8${mask ? ` /SMask ${mask} 0 R` : ''}`, img.rgb));
+      return `/Im${i + 1} ${ref} 0 R`;
     });
 
-    const objects = [
-      '<< /Type /Catalog /Pages 2 0 R >>',
-      '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
-      `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${num(this.width)} ${num(this.height)}] /Resources ${resources} /Contents 4 0 R >>`,
-      `<< /Length ${Buffer.byteLength(content, 'latin1')} >>\nstream\n${content}\nendstream`,
-      ...fontNames.map((name) => `<< /Type /Font /Subtype /Type1 /BaseFont /${name} /Encoding /WinAnsiEncoding >>`),
-      `<< /Title (${escape(this.title)}) /Author (${escape(this.author)}) /Producer (Learning Hub) >>`,
-      ...imageObjects,
-    ];
+    // TTF fonts: Type0 font + CIDFont + descriptor + font file + ToUnicode (copy/search ke liye)
+    for (const [font, rec] of this.ttf) {
+      const gids = [...rec.used.keys()].sort((a, b) => a - b);
+      const file = add(packed(`/Length1 ${font.data.length}`, font.data));
+      const desc = add(`<< /Type /FontDescriptor /FontName /${font.name} /Flags 4 /FontBBox [${font.bbox.join(' ')}] /ItalicAngle ${num(font.italicAngle)} /Ascent ${font.ascent} /Descent ${font.descent} /CapHeight ${font.capHeight} /StemV 80 /FontFile2 ${file} 0 R >>`);
+      const widths = gids.map((g) => `${g} [${font.advance(g)}]`).join(' ');
+      const cid = add(`<< /Type /Font /Subtype /CIDFontType2 /BaseFont /${font.name} /CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >> /FontDescriptor ${desc} 0 R /CIDToGIDMap /Identity /DW 0 /W [${widths}] >>`);
+      const hex4 = (n) => n.toString(16).padStart(4, '0');
+      const chunks = [];
+      for (let i = 0; i < gids.length; i += 100) {
+        const part = gids.slice(i, i + 100);
+        chunks.push(`${part.length} beginbfchar\n${part.map((g) => `<${hex4(g)}> <${hex4(rec.used.get(g))}>`).join('\n')}\nendbfchar`);
+      }
+      const cmap = `/CIDInit /ProcSet findresource begin\n12 dict begin\nbegincmap\n/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def\n/CMapName /Adobe-Identity-UCS def\n/CMapType 2 def\n1 begincodespacerange\n<0000> <FFFF>\nendcodespacerange\n${chunks.join('\n')}\nendcmap\nCMapName currentdict /CMap defineresource pop\nend\nend`;
+      const toUnicode = add(packed('', Buffer.from(cmap, 'latin1')));
+      const type0 = add(`<< /Type /Font /Subtype /Type0 /BaseFont /${font.name} /Encoding /Identity-H /DescendantFonts [${cid} 0 R] /ToUnicode ${toUnicode} 0 R >>`);
+      fontRefs.push(`/${rec.id} ${type0} 0 R`);
+    }
+
+    const annots = this.links.map((l) => add(`<< /Type /Annot /Subtype /Link /Rect [${l.rect.map(num).join(' ')}] /Border [0 0 0] /A << /S /URI /URI (${escape(l.url)}) >> >>`));
+    const resources = `<< /Font << ${fontRefs.join(' ')} >>${xobjects.length ? ` /XObject << ${xobjects.join(' ')} >>` : ''} >>`;
+    objects[0] = '<< /Type /Catalog /Pages 2 0 R >>';
+    objects[1] = '<< /Type /Pages /Kids [3 0 R] /Count 1 >>';
+    objects[2] = `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${num(this.width)} ${num(this.height)}] /Resources ${resources}${annots.length ? ` /Annots [${annots.map((n) => `${n} 0 R`).join(' ')}]` : ''} /Contents 4 0 R >>`;
+    objects[3] = `<< /Length ${Buffer.byteLength(content, 'latin1')} >>\nstream\n${content}\nendstream`;
 
     let out = '%PDF-1.4\n';
     const offsets = [];

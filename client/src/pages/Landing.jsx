@@ -19,7 +19,7 @@ export default function Landing() {
 
   return (
     <div className="page-plum page-plum--landing">
-      <BrandLogo size={120} className="brand-logo--hero fade-up" />
+      <BrandLogo size={150} className="brand-logo--hero fade-up" />
       <h1 className="m-0 fade-up">
         <img src="/images/welcome.png" alt="Welcome Programmers" />
       </h1>

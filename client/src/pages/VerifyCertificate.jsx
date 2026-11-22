@@ -88,7 +88,7 @@ export default function VerifyCertificate() {
   return (
     <main className="verify-page">
       <article className="verify-card" aria-live="polite">
-        <BrandLogo size={72} className="verify-logo" />
+        <BrandLogo surface="auto" size={110} className="verify-logo" />
         <p className="verify-brand">Learning Hub</p>
         {body}
         <Link className="verify-home" to="/">

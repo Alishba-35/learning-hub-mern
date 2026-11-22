@@ -50,7 +50,7 @@ export default function AdminLayout() {
 
       <aside id="admin-sidebar" className={`adm-side${open ? ' is-open' : ''}`}>
         <div className="adm-brand">
-          <BrandLogo size={40} className="adm-logo" decorative />
+          <BrandLogo variant="icon" surface="auto" size={38} className="adm-logo" decorative />
           <span>
             <strong>Learning Hub</strong>
             <small>Admin console</small>

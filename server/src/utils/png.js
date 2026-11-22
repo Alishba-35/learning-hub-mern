@@ -88,3 +88,21 @@ export function decodePng(buf) {
   }
   return { width, height, rgb, alpha };
 }
+
+// JPEG ki sirf size aur rang ki jankari (SOF marker se). Tasveer jyon ki tyon PDF mein jati hai (DCTDecode), is liye decode nahi karte.
+export function readJpeg(buf) {
+  if (buf.length < 4 || buf[0] !== 0xff || buf[1] !== 0xd8) throw new Error('Not a JPEG file');
+  for (let pos = 2; pos + 9 < buf.length; ) {
+    if (buf[pos] !== 0xff) { pos++; continue; }
+    const marker = buf[pos + 1];
+    if (marker === 0xff) { pos++; continue; }
+    const len = buf.readUInt16BE(pos + 2);
+    if ((marker >= 0xc0 && marker <= 0xc3) || (marker >= 0xc5 && marker <= 0xc7) || (marker >= 0xc9 && marker <= 0xcb)) {
+      const components = buf[pos + 9];
+      if (components !== 3) throw new Error('JPEG must be RGB (3 components)');
+      return { jpeg: buf, height: buf.readUInt16BE(pos + 5), width: buf.readUInt16BE(pos + 7) };
+    }
+    pos += 2 + len;
+  }
+  throw new Error('JPEG size not found');
+}

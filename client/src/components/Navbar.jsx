@@ -21,7 +21,7 @@ export default function Navbar({ onToggleTopics }) {
           </button>
         )}
         <Link className="navbar-brand d-flex align-items-center gap-2" to="/languages" onClick={close}>
-          <BrandLogo size={36} decorative />
+          <BrandLogo variant="icon" surface="auto" size={34} decorative />
           Learning Hub
         </Link>
 

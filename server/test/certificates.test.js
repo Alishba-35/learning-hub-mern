@@ -14,7 +14,9 @@ const { default: Topic } = await import('../src/models/Topic.js');
 const { default: Progress } = await import('../src/models/Progress.js');
 const { default: User } = await import('../src/models/User.js');
 const { PdfPage, fitSize, textWidth, toWinAnsi } = await import('../src/utils/pdf.js');
-const { renderCertificate } = await import('../src/utils/certificatePdf.js');
+const { buildCertificate, renderCertificate } = await import('../src/utils/certificatePdf.js');
+const { loadFont } = await import('../src/utils/ttf.js');
+const { readJpeg } = await import('../src/utils/png.js');
 const { CODE_PATTERN, makeCertificateCode, normalizeCode } = await import('../src/utils/certificateCode.js');
 
 const OID = (n) => String(n).padStart(24, '0');
@@ -55,7 +57,7 @@ test('the PDF is well formed: header, one page, and every xref offset points at 
   const text = file.toString('latin1');
   assert.ok(text.startsWith('%PDF-1.4'));
   assert.ok(text.trimEnd().endsWith('%%EOF'));
-  assert.match(text, /\/Type \/Page \/Parent 2 0 R \/MediaBox \[0 0 841\.89 595\.28\]/);
+  assert.match(text, /\/Type \/Page \/Parent 2 0 R \/MediaBox \[0 0 841\.89 561\.26\]/);
   const start = Number(text.match(/startxref\n(\d+)\n/)[1]);
   assert.ok(text.slice(start).startsWith('xref'), 'startxref points at the table');
   const entries = [...text.slice(start).matchAll(/^(\d{10}) 00000 n $/gm)].map((m) => Number(m[1]));
@@ -66,42 +68,81 @@ test('the PDF is well formed: header, one page, and every xref offset points at 
   assert.equal(text.slice(streamStart + length, streamStart + length + 10), '\nendstream', 'stream length is exact');
 });
 
-test('the certificate shows the name, course, date, code and verify link', () => {
-  const text = renderCertificate({ studentName: 'Alishba Noor', languageName: 'C++', issuedAt: new Date('2026-01-05T10:00:00Z'), code: CODE, verifyUrl: `https://x.example/verify/${CODE}`, lessonCount: 12 }).toString('latin1');
-  for (const expected of ['(Alishba Noor) Tj', 'C++ Course', '5 January 2026', `(${CODE}) Tj`, `Verify at https://x.example/verify/${CODE}`, 'all 12 lessons']) {
-    assert.ok(text.includes(expected), `has ${expected}`);
+test('the certificate shows the name, course, date, code, verify link and the signatory', () => {
+  const texts = buildCertificate({ studentName: 'Alishba Noor', languageName: 'C++', issuedAt: new Date('2026-01-05T10:00:00Z'), code: CODE, verifyUrl: `https://x.example/verify/${CODE}`, lessonCount: 12 }).texts;
+  for (const expected of ['Alishba', 'Noor', 'C++ Course', '5 January 2026', CODE, `x.example/verify/${CODE}`, 'AUTHORIZED SIGNATURE']) {
+    assert.ok(texts.includes(expected), `has ${expected}`);
   }
+  assert.ok(texts.some((t) => t.includes('all 12 lessons')));
+  assert.equal(texts.filter((t) => t === 'Alishba Noor').length, 1, 'the signatory name is printed once, under the signature');
 });
 
-test('the logo and the signature are embedded as transparent images', () => {
+test('the template, logo and signature are embedded; the fonts are embedded with a ToUnicode map', () => {
   const file = renderCertificate({ studentName: 'Alishba Noor', languageName: 'HTML', issuedAt: new Date('2026-11-20T10:00:00Z'), code: CODE, verifyUrl: 'https://x.example/v', lessonCount: 8 });
   const text = file.toString('latin1');
-  assert.equal((text.match(/\/Subtype \/Image/g) || []).length, 4, 'two images, each with its alpha mask');
+  assert.equal((text.match(/\/Subtype \/Image/g) || []).length, 5, 'template (jpeg) + logo and signature (each with an alpha mask)');
+  assert.equal((text.match(/\/DCTDecode/g) || []).length, 1);
   assert.equal((text.match(/\/SMask \d+ 0 R/g) || []).length, 2);
-  assert.match(text, /\/XObject << \/Im1 \d+ 0 R \/Im2 \d+ 0 R >>/);
-  assert.ok(text.includes('(Alishba Noor) Tj'), 'signatory name is printed under the signature');
+  assert.match(text, /\/XObject << \/Im1 \d+ 0 R \/Im2 \d+ 0 R \/Im3 \d+ 0 R >>/);
+  for (const font of ['GreatVibes-Regular', 'Poppins-Medium', 'Poppins-SemiBold']) assert.ok(text.includes(`/BaseFont /${font}`), font);
+  assert.equal((text.match(/\/ToUnicode \d+ 0 R/g) || []).length, 3);
+  assert.ok(file.length < 1_500_000, 'the file stays small');
   const start = Number(text.match(/startxref\n(\d+)\n/)[1]);
   const entries = [...text.slice(start).matchAll(/^(\d{10}) 00000 n $/gm)].map((m) => Number(m[1]));
   entries.forEach((offset, i) => assert.ok(text.slice(offset).startsWith(`${i + 1} 0 obj`), `object ${i + 1} sits at its offset`));
 });
 
+test('TTF fonts: widths come from the font, letters it lacks are detected, and the hex text is escaped by construction', () => {
+  const script = loadFont('GreatVibes-Regular.ttf', 'GreatVibes-Regular');
+  const sans = loadFont('Poppins-Medium.ttf', 'Poppins-Medium');
+  assert.ok(script && sans);
+  assert.ok(textWidth('Alishba', script, 40) > textWidth('Ali', script, 40));
+  assert.ok(textWidth('Hello', sans, 12, 2) > textWidth('Hello', sans, 12));
+  assert.equal(sans.covers('José & C++ (v2)'), true);
+  assert.equal(sans.covers('علی'), false);
+  const page = new PdfPage(100, 100);
+  page.text('A) Tj ET (B', { x: 1, y: 1, font: sans, size: 10 });
+  const out = page.toBuffer().toString('latin1');
+  assert.match(out, /\/T1 10 Tf [\d. ]+ rg 0 Tc 1 1 Td <[0-9a-f]+> Tj ET/);
+  assert.ok(out.includes('/CIDToGIDMap /Identity'));
+  assert.ok(out.includes('/Length1 '));
+});
+
+test('readJpeg reads the size of the bundled template and refuses other files', async () => {
+  const { readFileSync } = await import('node:fs');
+  const img = readJpeg(readFileSync(new URL('../src/assets/certificate-template.jpg', import.meta.url)));
+  assert.deepEqual([img.width, img.height], [1536, 1024]);
+  assert.throws(() => readJpeg(Buffer.from('not a jpeg file at all')));
+});
+
 test('decodePng reads the bundled RGBA assets', async () => {
   const { decodePng } = await import('../src/utils/png.js');
   const { readFileSync } = await import('node:fs');
-  const img = decodePng(readFileSync(new URL('../src/assets/logo.png', import.meta.url)));
-  assert.equal(img.width, 480);
-  assert.equal(img.rgb.length, 480 * 480 * 3);
-  assert.equal(img.alpha.length, 480 * 480);
+  const img = decodePng(readFileSync(new URL('../src/assets/logo-light.png', import.meta.url)));
+  assert.equal(img.width, 700);
+  assert.equal(img.rgb.length, 700 * 700 * 3);
+  assert.equal(img.alpha.length, 700 * 700);
   assert.equal(img.alpha[0], 0, 'corner outside the round logo is transparent');
   assert.throws(() => decodePng(Buffer.from('not a png at all, definitely not a png')));
 });
 
-test('names with brackets or backslashes cannot break the PDF; non-Latin names do not crash', () => {
-  const make = (studentName) => renderCertificate({ studentName, languageName: 'CSS', issuedAt: new Date(), code: CODE, verifyUrl: 'https://x.example/v' }).toString('latin1');
-  assert.ok(make('A) Tj ET (B').includes('(A\\) Tj ET \\(B) Tj'), 'brackets are escaped');
-  assert.ok(make('back\\slash').includes('(back\\\\slash) Tj'));
-  assert.ok(make('علی حسن').includes('(??? ???) Tj'));
-  assert.ok(make('').length > 500, 'an empty name still gives a valid file');
+test('odd names cannot break the PDF: brackets, backslashes, non-Latin letters, empty and very long names', () => {
+  const make = (studentName) => buildCertificate({ studentName, languageName: 'CSS', issuedAt: new Date(), code: CODE, verifyUrl: 'https://x.example/v' });
+  const wellFormed = (page) => {
+    const text = page.toBuffer().toString('latin1');
+    const start = Number(text.match(/startxref\n(\d+)\n/)[1]);
+    const entries = [...text.slice(start).matchAll(/^(\d{10}) 00000 n $/gm)].map((m) => Number(m[1]));
+    entries.forEach((offset, i) => assert.ok(text.slice(offset).startsWith(`${i + 1} 0 obj`)));
+    return text;
+  };
+  assert.ok(make('A) Tj ET (B').texts.join(' ').includes('A) Tj ET (B'), 'script font draws it as glyphs, so nothing can break out');
+  wellFormed(make('A) Tj ET (B'));
+  wellFormed(make('back\\slash'));
+  const arabic = make('علی حسن');
+  assert.ok(arabic.texts.includes('???') && !arabic.texts.includes('علی'), 'letters the fonts cannot draw fall back to the standard font and become ?');
+  assert.match(wellFormed(arabic), /\/BaseFont \/Times-Italic/);
+  assert.ok(wellFormed(make('')).length > 500, 'an empty name still gives a valid file');
+  wellFormed(make('Muhammad Abdul Rahman Al-Farooqui Bin Abdullah Ibn Khalid'));
 });
 
 test('the shapes helper draws paths, and an unknown font is refused', () => {
@@ -263,8 +304,8 @@ test('the PDF can be opened by anyone with the code, and carries the right verif
   assert.equal(Number(r.headers.get('content-length')), r.buf.length);
   const text = r.buf.toString('latin1');
   assert.ok(text.startsWith('%PDF-1.4'));
-  assert.ok(text.includes('(Alishba Noor) Tj'));
-  assert.ok(text.includes(`Verify at https://learning-hub.example/verify/${CODE}`), 'no double slash from the site address');
+  assert.ok(text.includes('/BaseFont /GreatVibes-Regular'), 'the name is drawn with the embedded script font');
+  assert.ok(text.includes(`/URI (https://learning-hub.example/verify/${CODE})`), 'the verify link is clickable, with no double slash from the site address');
 });
 
 test('a revoked or unknown certificate gives no PDF', async () => {

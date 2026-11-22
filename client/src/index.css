@@ -688,8 +688,9 @@ body {
   user-select: none;
 }
 .brand-logo--hero {
+  margin: 0 auto 10px;
   filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
 }
-.app-navbar .brand-logo {
-  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
-}
+/* surface="auto": theme ke hisab se ek hi logo dikhao */
+:root[data-theme='light'] .brand-logo--on-dark { display: none; }
+:root:not([data-theme='light']) .brand-logo--on-light { display: none; }

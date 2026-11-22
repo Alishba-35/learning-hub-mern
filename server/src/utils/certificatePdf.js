@@ -1,35 +1,35 @@
-import { readFileSync } from 'node:fs';
-import { fitSize, PdfPage } from './pdf.js';
-import { decodePng } from './png.js';
+import { readFileSync } from "node:fs";
+import { fitSize, PdfPage, textWidth } from "./pdf.js";
+import { decodePng, readJpeg } from "./png.js";
+import { loadFont } from "./ttf.js";
 
-// A4 aaray (landscape). Design: halka ivory kaghaz, kone mein gehre navy-teal tikone, sunehri lakeer,
-// upar-dayen Learning Hub ka logo, neeche signature, naam aur verify link. Naqsha 757x527 ke reference design par
-// bana hai, is liye nuqte usi paimane mein (px) likhe hain.
+// Design: certificate-template.jpg (navy + purple, Learning Hub ke rang). Template mein sirf wo cheezein hain jo
+// har certificate par ek jaisi rehti hain (title, seal, rosette, sajawat). Naam, course, tareekh, ID, signature aur logo
+// har baar PDF mein asli (saaf, crisp) text/tasveer ki tarah likhe jate hain.
+// Saare nuqte template ke 1536 x 1024 px par naape gaye hain; PX() unhein PDF points mein badalta hai.
 const W = 841.89;
-const H = 595.28;
-const SX = W / 757;
-const SY = H / 527;
-const P = ([x, y]) => [x * SX, H - y * SY]; // design ka nuqta -> PDF ka nuqta
+const H = (W * 1024) / 1536;
+const K = W / 1536;
+const X = (px) => px * K;
+const Y = (px) => H - px * K;
 
-// Rang Learning Hub ke logo se liye gaye hain: gehra navy-teal + sunehri, ivory kaghaz par
-const NAVY = '#0a3a4c';
-const NAVY_SOFT = '#17596e';
-const ACCENT = '#1b7f9a'; // logo ki kitaab wali neeli-hari patti
-const GOLD = '#cf9f35';
-const GOLD_LIGHT = '#e8c46a';
-const PAPER = '#f4efe2';
-const INK = '#12313d';
-const MUTED = '#6b7479';
+// Rang template se liye gaye hain
+const NAVY = "#06102f";
+const PURPLE = "#4814c4";
+const MUTED = "#565b78";
 
-// Signature wale ka naam aur oohda: yahan se badal sakte hain
-const SIGNATORY = { name: 'Alishba Noor', title: 'Founder, Learning Hub' };
+// Signature wale ka naam: yahan se badal sakte hain
+const SIGNATORY = "Alishba Noor";
 
-// Logo aur signature (server/src/assets). Ek baar parh kar yaad rakhte hain; file na mile to certificate phir bhi banta hai.
+// Tasveerein (server/src/assets). Ek baar parh kar yaad rakhte hain; na milein to certificate phir bhi banta hai.
 const cache = new Map();
-function loadImage(file) {
+function load(file, reader) {
   if (!cache.has(file)) {
     try {
-      cache.set(file, decodePng(readFileSync(new URL(`../assets/${file}`, import.meta.url))));
+      cache.set(
+        file,
+        reader(readFileSync(new URL(`../assets/${file}`, import.meta.url))),
+      );
     } catch (err) {
       console.warn(`Certificate: could not load ${file}: ${err.message}`);
       cache.set(file, null);
@@ -37,8 +37,21 @@ function loadImage(file) {
   }
   return cache.get(file);
 }
+const png = (file) => load(file, decodePng);
+const jpeg = (file) => load(file, readJpeg);
 
-const longDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const TtfClean = (t) =>
+  String(t ?? "")
+    .replace(/[\u0000-\u001f\u007f]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+const longDate = (d) =>
+  new Date(d).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
 
 // Tasveer ko dabbe (cx, cy, maxW, maxH) ke beech mein, asli tanasub (aspect) mein rakho
 function placeImage(page, img, cx, cy, maxW, maxH) {
@@ -49,69 +62,188 @@ function placeImage(page, img, cx, cy, maxW, maxH) {
   page.image(img, cx - w / 2, cy - h / 2, w, h);
 }
 
-export function renderCertificate({ studentName, languageName, issuedAt, code, verifyUrl, lessonCount }) {
-  const page = new PdfPage(W, H, { title: `${languageName} Certificate - ${studentName}`, author: 'Learning Hub' });
-  const cx = W / 2 - 4;
+// Ek line jis mein alag alag font/rang ke tukde hon, beech mein rakhi hui. Zyada chaurai ho to size chhota ho jata hai.
+function centeredRuns(page, runs, cx, y, size, maxWidth) {
+  const gapAt = (font, s) =>
+    textWidth("i i", font, s) - textWidth("ii", font, s);
+  const total = (s) =>
+    runs.reduce(
+      (sum, r, i) =>
+        sum + textWidth(r.text, r.font, s) + (i ? gapAt(r.font, s) : 0),
+      0,
+    );
+  let s = size;
+  while (s > 7 && total(s) > maxWidth) s -= 0.2;
+  let x = cx - total(s) / 2;
+  runs.forEach((r, i) => {
+    if (i) x += gapAt(r.font, s);
+    page.text(r.text, { x, y, font: r.font, size: s, color: r.color });
+    x += textWidth(r.text, r.font, s);
+  });
+}
 
-  // Kaghaz
-  page.rect(0, 0, W, H, { fill: PAPER });
-  page.rect(10, 10, W - 20, H - 20, { stroke: GOLD, lineWidth: 0.8 }); // bahar ki patli sunehri fareem
+// Pehle certificate ka page banata hai (tests isi ko dekhte hain), renderCertificate use PDF bana deta hai
+export function buildCertificate({
+  studentName,
+  languageName,
+  issuedAt,
+  code,
+  verifyUrl,
+  lessonCount,
+}) {
+  const page = new PdfPage(W, H, {
+    title: `${languageName} Certificate - ${studentName}`,
+    author: "Learning Hub",
+  });
 
-  // Safed andar ka hissa, kate hue konon ke saath, aur uski sunehri lakeer
-  const frame = [[228, 33], [722, 33], [722, 330], [688, 290], [520, 468], [28, 468], [28, 178], [62, 210]].map(P);
-  page.path(frame, { fill: '#fffdf8', stroke: GOLD, lineWidth: 1.6 });
+  // Fonts: na milein to standard fonts se kaam chalta hai
+  const script = loadFont("GreatVibes-Regular.ttf", "GreatVibes-Regular");
+  const medium =
+    loadFont("Poppins-Medium.ttf", "Poppins-Medium") || "Helvetica";
+  const semi =
+    loadFont("Poppins-SemiBold.ttf", "Poppins-SemiBold") || "Helvetica-Bold";
+  // Script font mein sirf Latin harf hain; kisi aur zabaan ka naam ho to Times-Italic (jahan "?" ban jate hain)
+  const nameFont =
+    script && script.covers(studentName) ? script : "Times-Italic";
 
-  // Gehre teal kone (upar-bayen aur neeche-dayen) aur un ke andar patli safed lakeer
-  page.path([[0, 0], [203, 0], [46, 167], [0, 115]].map(P), { fill: NAVY });
-  page.path([[0, 103], [44, 153], [188, 0]].map(P), { stroke: GOLD_LIGHT, lineWidth: 1, closed: false });
-  page.path([[757, 328], [757, 527], [545, 527], [716, 330]].map(P), { fill: NAVY });
-  page.path([[580, 527], [716, 372], [757, 411]].map(P), { stroke: GOLD_LIGHT, lineWidth: 1, closed: false });
+  // Background template (poora page), warna saada safed
+  const template = jpeg("certificate-template.jpg");
+  if (template) page.image(template, 0, 0, W, H);
+  else page.rect(0, 0, W, H, { fill: "#f4f3fb" });
 
-  // Title
-  page.text('CERTIFICATE', { x: cx, y: H - 110 * SY, font: 'Helvetica-Bold', size: 36, color: NAVY, align: 'center', spacing: 5 });
-  page.text('of completion', { x: cx, y: H - 136 * SY, font: 'Times-Italic', size: 21, color: NAVY, align: 'center', spacing: 3 });
+  // Logo (dark panel ke liye halka version), upar-bayen
+  placeImage(page, png("logo-light.png"), X(186), Y(155), X(262), X(262));
 
-  // Sunehri sajawat: lakeer aur dono taraf heere
-  const orn = H - 152 * SY;
-  page.line(cx - 78, orn, cx + 78, orn, { stroke: GOLD, lineWidth: 1.3 });
-  for (const dx of [-84, 84]) page.path([[cx + dx - 6, orn], [cx + dx, orn + 4], [cx + dx + 6, orn], [cx + dx, orn - 4]], { fill: GOLD });
-  page.path([[cx - 6, orn], [cx, orn + 3], [cx + 6, orn], [cx, orn - 3]], { fill: GOLD });
+  // Naam: script font ka space bahut tang hota hai, is liye har lafz alag likhte hain aur beech mein saaf gap rakhte hain
+  const CX = 821;
+  const nameSize = fitSize(
+    TtfClean(studentName).split(" ").join("  "),
+    nameFont,
+    nameFont === script ? 70 : 54,
+    X(800),
+    22,
+  );
+  const words = TtfClean(studentName).split(" ").filter(Boolean);
+  const gap = nameSize * (nameFont === script ? 0.34 : 0.25);
+  const widths = words.map((w) => textWidth(w, nameFont, nameSize));
+  let wx =
+    X(CX) -
+    (widths.reduce((a, b) => a + b, 0) + gap * Math.max(words.length - 1, 0)) /
+      2;
+  words.forEach((w, i) => {
+    page.text(w, {
+      x: wx,
+      y: Y(466),
+      font: nameFont,
+      size: nameSize,
+      color: NAVY,
+      bold: nameFont === script ? 0.7 : 0,
+    });
+    wx += widths[i] + gap;
+  });
 
-  // Naam
-  page.text('THIS CERTIFICATE IS PROUDLY PRESENTED TO', { x: cx, y: H - 203 * SY, font: 'Helvetica-Bold', size: 11.5, color: INK, align: 'center', spacing: 1.2 });
-  page.text(studentName, { x: cx, y: H - 252 * SY, font: 'Times-Italic', size: fitSize(studentName, 'Times-Italic', 50, 430, 22), color: NAVY, align: 'center' });
-  page.line(cx - 190, H - 266 * SY, cx + 190, H - 266 * SY, { stroke: GOLD, lineWidth: 1.6 });
+  // Course aur tafseel
+  const TX = 816;
+  const language = String(languageName ?? "");
+  centeredRuns(
+    page,
+    [
+      { text: "for successfully completing the", font: medium, color: NAVY },
+      { text: `${language} Course`, font: semi, color: PURPLE },
+    ],
+    X(TX),
+    Y(571),
+    13.4,
+    X(810),
+  );
+  const lessons = lessonCount
+    ? `You completed all ${lessonCount} lessons and showed excellent ${language} skills`
+    : `You showed excellent ${language} skills`;
+  [
+    ["with dedication, hard work and a passion for coding.", 612],
+    [lessons, 644],
+    ["and are now one step closer to becoming a skilled developer.", 676],
+  ].forEach(([line, y]) => {
+    centeredRuns(
+      page,
+      [{ text: line, font: medium, color: NAVY }],
+      X(TX),
+      Y(y),
+      11.6,
+      X(790),
+    );
+  });
 
-  // Tafseel
-  page.text(`for successfully completing every lesson of the ${languageName} Course`, { x: cx, y: H - 303 * SY, font: 'Helvetica-Bold', size: 12.5, color: INK, align: 'center' });
-  const lessons = lessonCount ? `all ${lessonCount} lessons` : 'every lesson';
-  page.text(`Awarded on ${longDate(issuedAt)} for finishing ${lessons} of the ${languageName} course on Learning Hub.`, { x: cx, y: H - 328 * SY, font: 'Helvetica', size: 8.5, color: MUTED, align: 'center' });
-  page.text('Anyone can confirm that this certificate is genuine by opening the link below.', { x: cx, y: H - 341 * SY, font: 'Helvetica', size: 8.5, color: MUTED, align: 'center' });
+  // Tareekh (calendar icon aur "DATE OF ISSUE" template mein hain)
+  page.text(longDate(issuedAt), {
+    x: X(432),
+    y: Y(853),
+    font: medium,
+    size: 13,
+    color: NAVY,
+  });
 
-  // Neeche teen jagah, sab sunehri lakeer ke upar: signature, tareekh, certificate ID.
-  // Neeche-dayen kone ka navy tikona hai, is liye teeno bayen taraf ko khiske hue hain.
-  const base = H - 412 * SY;
-  const colSig = 140;
-  const colDate = 340;
-  const colId = 540;
-  const rule = (x) => page.line(x - 76, base, x + 76, base, { stroke: GOLD, lineWidth: 1.4 });
+  // Certificate ID aur verify link, tareekh ke neeche (seal se pehle khatam)
+  page.text("CERTIFICATE ID", {
+    x: X(433),
+    y: Y(938),
+    font: medium,
+    size: 6.6,
+    color: MUTED,
+    spacing: 1.2,
+  });
+  page.text(code, {
+    x: X(433) + textWidth("CERTIFICATE ID", medium, 6.6, 1.2) + 6,
+    y: Y(938),
+    font: semi,
+    size: 8.2,
+    color: PURPLE,
+    spacing: 0.5,
+  });
+  const link = String(verifyUrl ?? "").replace(/^https?:\/\//, "");
+  const linkSize =
+    [6.6, 6.2, 5.8, 5.4, 5].find(
+      (sz) => textWidth(link, medium, sz) <= X(335),
+    ) ?? 5;
+  page.text(link, {
+    x: X(433),
+    y: Y(958),
+    font: medium,
+    size: linkSize,
+    color: MUTED,
+  });
+  if (verifyUrl)
+    page.link(
+      X(433),
+      Y(958) - 2,
+      textWidth(link, medium, linkSize),
+      linkSize + 3,
+      verifyUrl,
+    ); // PDF mein clickable
 
-  // 1) Signature: lakeer ke upar haath ka signature, neeche naam aur oohda
-  rule(colSig);
-  placeImage(page, loadImage('signature.png'), colSig, base + 42, 142, 82);
-  page.text(SIGNATORY.name, { x: colSig, y: base - 13, font: 'Times-Italic', size: 14, color: NAVY, align: 'center' });
-  page.text(SIGNATORY.title, { x: colSig, y: base - 25, font: 'Helvetica-Bold', size: 7, color: ACCENT, align: 'center', spacing: 0.9 });
+  // Signature: lakeer (template mein) ke upar, neeche naam aur "AUTHORIZED SIGNATURE"
+  placeImage(page, png("signature.png"), X(1163), Y(868 - 70), X(250), X(140));
+  page.text(SIGNATORY, {
+    x: X(1163),
+    y: Y(902),
+    font: semi,
+    size: 10.8,
+    color: NAVY,
+    align: "center",
+  });
+  page.text("FOUNDER & DEVELOPER", {
+    x: X(1163),
+    y: Y(924),
+    font: medium,
+    size: 7.2,
+    color: NAVY,
+    align: "center",
+    spacing: 1.6,
+  });
 
-  // 2) Tareekh aur 3) certificate ID
-  for (const [x, value, label] of [[colDate, longDate(issuedAt), 'DATE ISSUED'], [colId, code, 'CERTIFICATE ID']]) {
-    rule(x);
-    page.text(value, { x, y: base + 6, font: label === 'CERTIFICATE ID' ? 'Helvetica-Bold' : 'Helvetica', size: 11.5, color: INK, align: 'center', spacing: label === 'CERTIFICATE ID' ? 0.8 : 0 });
-    page.text(label, { x, y: base - 11, font: 'Helvetica-Bold', size: 7.5, color: ACCENT, align: 'center', spacing: 1.2 });
-  }
-  page.text(`Verify at ${verifyUrl}`, { x: cx, y: H - 446 * SY, font: 'Helvetica', size: 8.5, color: MUTED, align: 'center' });
+  return page;
+}
 
-  // Learning Hub ka logo (upar-dayen), jo pehle seal ki jagah tha
-  placeImage(page, loadImage('logo.png'), 613 * SX, H - 112 * SY, 132, 132);
-
-  return page.toBuffer();
+export function renderCertificate(details) {
+  return buildCertificate(details).toBuffer();
 }
