@@ -15,6 +15,7 @@ import LessonPage from './pages/LessonPage.jsx';
 import ManageShorts from './pages/ManageShorts.jsx';
 import NotFound from './pages/NotFound.jsx';
 import QuizPage from './pages/QuizPage.jsx';
+import ForgotPassword from './pages/ForgotPassword.jsx';
 import ShortsStudy from './pages/ShortsStudy.jsx';
 import VerifyCertificate from './pages/VerifyCertificate.jsx';
 
@@ -27,6 +28,15 @@ export default function App() {
         element={
           <GuestOnly>
             <AuthPage />
+          </GuestOnly>
+        }
+      />
+
+      <Route
+        path="/forgot-password"
+        element={
+          <GuestOnly>
+            <ForgotPassword />
           </GuestOnly>
         }
       />

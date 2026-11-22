@@ -21,7 +21,7 @@ export default function BrandLogo({ size = 40, variant = 'full', surface = 'dark
           alt={alt}
           width={size}
           height={size}
-          className={`brand-logo brand-logo--on-${on} ${className}`.trim()}
+          className={`brand-logo${surface === 'auto' ? ` brand-logo--auto-${on}` : ''} ${className}`.trim()}
           draggable="false"
         />
       ))}

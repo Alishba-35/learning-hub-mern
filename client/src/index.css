@@ -692,5 +692,19 @@ body {
   filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
 }
 /* surface="auto": theme ke hisab se ek hi logo dikhao */
-:root[data-theme='light'] .brand-logo--on-dark { display: none; }
-:root:not([data-theme='light']) .brand-logo--on-light { display: none; }
+:root[data-theme='light'] .brand-logo--auto-dark { display: none; }
+:root:not([data-theme='light']) .brand-logo--auto-light { display: none; }
+
+/* ---------- Password reset page ---------- */
+.auth-simple {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: left;
+}
+.auth-simple h3 { text-align: center; }
+.otp-input { text-align: center; font-size: 1.5rem; letter-spacing: 0.5em; font-weight: 600; }
+.auth-link { color: #c4b5fd; font-size: 0.9rem; }
+.auth-link:hover { color: #fff; }

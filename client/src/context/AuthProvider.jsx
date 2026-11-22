@@ -35,6 +35,13 @@ export function AuthProvider({ children }) {
     [startSession]
   );
 
+  // Naam aur/ya photo badlo (avatar: tasveer ka data URL, null = hatao)
+  const updateProfile = useCallback(async (changes) => {
+    const data = await request('/auth/profile', { method: 'PATCH', body: changes });
+    setUser(data.user);
+    return data.user;
+  }, []);
+
   const logout = useCallback(async () => {
     try {
       await request('/auth/logout', { method: 'POST', auth: false });
@@ -47,8 +54,8 @@ export function AuthProvider({ children }) {
   }, []);
 
   const value = useMemo(
-    () => ({ user, loading, login, register, logout }),
-    [user, loading, login, register, logout]
+    () => ({ user, loading, login, register, logout, updateProfile }),
+    [user, loading, login, register, logout, updateProfile]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

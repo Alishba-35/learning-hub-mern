@@ -20,6 +20,8 @@ app.use(helmet());
 app.use(cors({ origin: env.clientOrigin, credentials: true }));
 // Progress route ko bara body chahiye (code drafts), is liye uska apna parser global parser se pehle lagta hai
 app.use('/api/progress', express.json({ limit: '64kb' }), progressRoutes);
+// Profile photo (chhoti tasveer) ke liye is raaste par bada body; baqi sab par 10kb
+app.use('/api/auth/profile', express.json({ limit: '140kb' }));
 app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
 

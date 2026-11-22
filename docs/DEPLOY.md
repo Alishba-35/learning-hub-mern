@@ -31,3 +31,20 @@ Dhyan rakhein:
 - Rate limit har function instance ki memory mein hota hai, is liye Render se thoda kam sakht hai. Login ke liye bhi bruteforce se bachne ko password strong rakhein.
 - Upload ki hui video chalana (stream) is setup par sab se kam test hua hissa hai. YouTube links par koi asar nahi.
 - Free (Hobby) plan par function 60 seconds tak chalta hai; so nahi jata, Render wali 30-60 second ki neend nahi hoti.
+
+## Email (password reset OTP aur students ko email)
+
+Server `nodemailer` se SMTP ke zariye email bhejta hai. Backend ke environment variables mein ye daalen (Render / Vercel dashboard, aur local `.env`):
+
+| Variable | Misal |
+| --- | --- |
+| `SMTP_HOST` | `smtp.gmail.com` |
+| `SMTP_PORT` | `587` (ya `465`) |
+| `SMTP_USER` | `your.email@gmail.com` |
+| `SMTP_PASS` | Gmail ka 16 harf ka **App password** (asli password nahi) |
+| `MAIL_FROM` | `Learning Hub <your.email@gmail.com>` |
+
+Gmail App password: Google Account > Security > 2-Step Verification on karein > `myaccount.google.com/apppasswords`.
+
+- Local development mein SMTP khali ho to email console mein print hoti hai (OTP wahin dikh jata hai).
+- Production mein SMTP khali ho to email nahi jati: admin ko "Email is not set up" ka error milta hai.

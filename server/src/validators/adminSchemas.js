@@ -32,3 +32,10 @@ export const announcementSchema = z
 
 // Certificate wapas lena (jaise dhoka mile) ya dobara chalu karna
 export const revokeSchema = z.object({ revoked: z.boolean() });
+
+// Students ko seedha email (insights ke groups se)
+export const emailSchema = z.object({
+  userIds: z.array(objectId).min(1, 'Pick at least one student').max(100),
+  subject: z.string().trim().min(3, 'Subject is too short').max(120),
+  message: z.string().trim().min(3, 'Message is too short').max(2000),
+});

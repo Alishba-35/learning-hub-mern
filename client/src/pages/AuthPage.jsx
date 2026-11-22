@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
 import BrandLogo from '../components/BrandLogo.jsx';
 import PasswordInput from '../components/PasswordInput.jsx';
@@ -133,6 +134,14 @@ function AuthForm({ mode, active, onSwitch }) {
             Keep me signed in for 30 days
           </label>
         </div>
+
+        {!isSignup && (
+          <div className="mb-3 text-end">
+            <Link to="/forgot-password" className="auth-link">
+              Forgot password?
+            </Link>
+          </div>
+        )}
 
         {error && !hasFieldErrors && (
           <div className="alert alert-danger py-2" role="alert">

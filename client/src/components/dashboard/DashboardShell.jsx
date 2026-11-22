@@ -1,11 +1,13 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { answer } from '../../utils/buddy.js';
+import Avatar from '../Avatar.jsx';
 import BrandLogo from '../BrandLogo.jsx';
 import AssistantPanel from './AssistantPanel.jsx';
 import { DashboardContext } from './dashboardContext.js';
 import Icon from './Icon.jsx';
 import Orb from './Orb.jsx';
+import ProfileModal from './ProfileModal.jsx';
 import ThemeToggle from '../ThemeToggle.jsx';
 import SearchBar from './SearchBar.jsx';
 
@@ -18,6 +20,7 @@ const NAV = [
 // Video wala layout: floating sidebar + header (greeting, search) + content + assistant panel
 export default function DashboardShell({ user, onLogout, ctx, title, subtitle, children }) {
   const [open, setOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const nextId = useRef(1);
   const firstName = user.name.split(' ')[0];
@@ -58,9 +61,9 @@ export default function DashboardShell({ user, onLogout, ctx, title, subtitle, c
             <button type="button" className="side-btn" aria-label="Log out" data-tip="Log out" onClick={onLogout}>
               <Icon name="logout" />
             </button>
-            <span className="side-avatar" aria-hidden="true">
-              {firstName[0]?.toUpperCase()}
-            </span>
+            <button type="button" className="side-avatar" aria-label="Edit profile" data-tip="Edit profile" onClick={() => setProfileOpen(true)}>
+              <Avatar user={user} />
+            </button>
           </div>
         </aside>
 
@@ -87,6 +90,7 @@ export default function DashboardShell({ user, onLogout, ctx, title, subtitle, c
             Ask Buddy
           </button>
         )}
+        {profileOpen && <ProfileModal user={user} onClose={() => setProfileOpen(false)} />}
         {open && <AssistantPanel name={firstName} messages={messages} onAsk={askBuddy} onClose={() => setOpen(false)} />}
       </div>
     </DashboardContext.Provider>

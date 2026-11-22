@@ -30,4 +30,12 @@ export const env = {
   mongoUri: process.env.MONGO_URI,
   jwtAccessSecret: process.env.JWT_ACCESS_SECRET,
   clientOrigin: process.env.CLIENT_ORIGIN,
+  // Email bhejne ke liye SMTP (jaise Gmail). Na ho to dev mein email console mein likha jata hai, production mein bhejna band.
+  smtp: {
+    host: process.env.SMTP_HOST || '',
+    port: Number(process.env.SMTP_PORT) || 587,
+    user: process.env.SMTP_USER || '',
+    pass: process.env.SMTP_PASS || '',
+    from: process.env.MAIL_FROM || (process.env.SMTP_USER ? `Learning Hub <${process.env.SMTP_USER}>` : ''),
+  },
 };

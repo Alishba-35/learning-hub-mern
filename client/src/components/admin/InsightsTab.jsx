@@ -39,6 +39,10 @@ function NudgeGroup({ group, data, thresholds, onOpenStudent }) {
   const [message, setMessage] = useState(group.reminder.body);
   const [sending, setSending] = useState(false);
   const [result, setResult] = useState({ text: '', error: false });
+  const [emailing, setEmailing] = useState(false);
+  const [subject, setSubject] = useState('We miss you on Learning Hub');
+  const [emailBody, setEmailBody] = useState(group.reminder.body);
+  const [emailSending, setEmailSending] = useState(false);
   const students = data.students;
   const shown = all ? students : students.slice(0, SHOWN);
   const emails = students.map((s) => s.email);
@@ -68,6 +72,26 @@ function NudgeGroup({ group, data, thresholds, onOpenStudent }) {
       setResult({ text: err.message || 'Could not send the reminder', error: true });
     } finally {
       setSending(false);
+    }
+  };
+
+  // Email: server har student ko alag email bhejta hai (mail app nahi khulti)
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    setEmailSending(true);
+    setResult({ text: '', error: false });
+    try {
+      const res = await request('/admin/email', { method: 'POST', body: { userIds: students.map((x) => x.id), subject, message: emailBody } });
+      const parts = [`Email sent to ${res.sent} student${res.sent === 1 ? '' : 's'}.`];
+      if (res.failed) parts.push(`${res.failed} could not be delivered.`);
+      if (res.skipped) parts.push(`${res.skipped} skipped (suspended or removed).`);
+      if (res.devLogged) parts.push('SMTP is not set up, so the email was only printed in the server console.');
+      setResult({ text: parts.join(' '), error: res.failed > 0 || res.devLogged });
+      if (!res.failed) setEmailing(false);
+    } catch (err) {
+      setResult({ text: err.message || 'Could not send the email', error: true });
+    } finally {
+      setEmailSending(false);
     }
   };
 
@@ -106,9 +130,9 @@ function NudgeGroup({ group, data, thresholds, onOpenStudent }) {
             <button type="button" className="btn btn-primary btn-sm" onClick={() => setReminding(!reminding)} aria-expanded={reminding}>
               Send reminder
             </button>
-            <a className="btn btn-outline-light btn-sm" href={`mailto:?bcc=${emails.map(encodeURIComponent).join(',')}&subject=${encodeURIComponent('We miss you on Learning Hub')}`}>
+            <button type="button" className="btn btn-outline-light btn-sm" onClick={() => setEmailing(!emailing)} aria-expanded={emailing}>
               Email them
-            </a>
+            </button>
             {copied && (
               <span className="admin-sub-inline" role="status">
                 {copied}
@@ -127,6 +151,24 @@ function NudgeGroup({ group, data, thresholds, onOpenStudent }) {
                   {sending ? 'Sending...' : 'Send'}
                 </button>
                 <button type="button" className="btn btn-outline-light btn-sm" onClick={() => setReminding(false)}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          )}
+          {emailing && (
+            <form className="admin-reject" onSubmit={sendEmail}>
+              <label htmlFor={`email-subject-${group.key}`}>
+                Email to {students.length} student{students.length === 1 ? '' : 's'}
+                {data.total > students.length ? ` (the first ${students.length} of ${data.total})` : ''}. Each student gets their own email.
+              </label>
+              <input id={`email-subject-${group.key}`} className="form-control mb-2" maxLength={120} value={subject} onChange={(e) => setSubject(e.target.value)} placeholder="Subject" />
+              <textarea className="form-control" rows={5} maxLength={2000} value={emailBody} onChange={(e) => setEmailBody(e.target.value)} aria-label="Email message" />
+              <div className="admin-actions">
+                <button type="submit" className="btn btn-primary btn-sm" disabled={emailSending || subject.trim().length < 3 || emailBody.trim().length < 3}>
+                  {emailSending ? 'Sending...' : 'Send email'}
+                </button>
+                <button type="button" className="btn btn-outline-light btn-sm" onClick={() => setEmailing(false)}>
                   Cancel
                 </button>
               </div>

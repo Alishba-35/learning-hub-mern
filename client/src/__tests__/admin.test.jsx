@@ -172,7 +172,7 @@ describe('admin panel', () => {
       ],
     };
     const calls = mockApi(
-      { 'GET /api/admin/stats': () => json(200, stats), 'GET /api/admin/insights': () => json(200, insights), 'GET /api/admin/students/1': () => json(200, detail) },
+      { 'GET /api/admin/stats': () => json(200, stats), 'GET /api/admin/insights': () => json(200, insights), 'GET /api/admin/students/1': () => json(200, detail), 'POST /api/admin/email': () => json(200, { sent: 1, failed: 0, skipped: 0, devLogged: false }) },
       admin
     );
     renderApp('/admin');
@@ -183,7 +183,15 @@ describe('admin panel', () => {
     expect(screen.getAllByText('Nobody here. Good news!').length).toBe(2);
     expect(screen.getByText(/75% wrong \(3 of 4\)/)).toBeTruthy();
     expect(screen.getByText(/Biggest drop: after "Selectors" 75% of students stop/)).toBeTruthy();
-    expect(screen.getByRole('link', { name: 'Email them' }).getAttribute('href')).toContain('bcc=ina%40example.com');
+    // "Email them" ab mail app nahi kholta: server seedha email bhejta hai
+    expect(screen.queryByRole('link', { name: 'Email them' })).toBeNull();
+    await userEvent.click(screen.getByRole('button', { name: 'Email them' }));
+    expect(screen.getByLabelText('Email message').value).toContain('We have not seen you');
+    await userEvent.click(screen.getByRole('button', { name: 'Send email' }));
+    expect(await screen.findByText(/Email sent to 1 student\./)).toBeTruthy();
+    const sent = calls.find((c) => c.key === 'POST /api/admin/email');
+    expect(sent.body.userIds).toEqual(['1']);
+    expect(sent.body.subject).toBe('We miss you on Learning Hub');
 
     await userEvent.click(screen.getByRole('button', { name: 'View' }));
     expect(await screen.findByText('Why they joined: Learn web')).toBeTruthy(); // student ki detail khul gayi
