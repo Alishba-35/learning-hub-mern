@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
+import BrandLogo from './BrandLogo.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
 
 // onToggleTopics diya ho (lesson pages) to left par topics-sidebar ka button dikhta hai
@@ -19,7 +20,8 @@ export default function Navbar({ onToggleTopics }) {
             </svg>
           </button>
         )}
-        <Link className="navbar-brand" to="/languages" onClick={close}>
+        <Link className="navbar-brand d-flex align-items-center gap-2" to="/languages" onClick={close}>
+          <BrandLogo size={36} decorative />
           Learning Hub
         </Link>
 

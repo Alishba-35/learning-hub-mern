@@ -73,6 +73,29 @@ test('the certificate shows the name, course, date, code and verify link', () =>
   }
 });
 
+test('the logo and the signature are embedded as transparent images', () => {
+  const file = renderCertificate({ studentName: 'Alishba Noor', languageName: 'HTML', issuedAt: new Date('2026-11-20T10:00:00Z'), code: CODE, verifyUrl: 'https://x.example/v', lessonCount: 8 });
+  const text = file.toString('latin1');
+  assert.equal((text.match(/\/Subtype \/Image/g) || []).length, 4, 'two images, each with its alpha mask');
+  assert.equal((text.match(/\/SMask \d+ 0 R/g) || []).length, 2);
+  assert.match(text, /\/XObject << \/Im1 \d+ 0 R \/Im2 \d+ 0 R >>/);
+  assert.ok(text.includes('(Alishba Noor) Tj'), 'signatory name is printed under the signature');
+  const start = Number(text.match(/startxref\n(\d+)\n/)[1]);
+  const entries = [...text.slice(start).matchAll(/^(\d{10}) 00000 n $/gm)].map((m) => Number(m[1]));
+  entries.forEach((offset, i) => assert.ok(text.slice(offset).startsWith(`${i + 1} 0 obj`), `object ${i + 1} sits at its offset`));
+});
+
+test('decodePng reads the bundled RGBA assets', async () => {
+  const { decodePng } = await import('../src/utils/png.js');
+  const { readFileSync } = await import('node:fs');
+  const img = decodePng(readFileSync(new URL('../src/assets/logo.png', import.meta.url)));
+  assert.equal(img.width, 480);
+  assert.equal(img.rgb.length, 480 * 480 * 3);
+  assert.equal(img.alpha.length, 480 * 480);
+  assert.equal(img.alpha[0], 0, 'corner outside the round logo is transparent');
+  assert.throws(() => decodePng(Buffer.from('not a png at all, definitely not a png')));
+});
+
 test('names with brackets or backslashes cannot break the PDF; non-Latin names do not crash', () => {
   const make = (studentName) => renderCertificate({ studentName, languageName: 'CSS', issuedAt: new Date(), code: CODE, verifyUrl: 'https://x.example/v' }).toString('latin1');
   assert.ok(make('A) Tj ET (B').includes('(A\\) Tj ET \\(B) Tj'), 'brackets are escaped');
@@ -249,4 +272,29 @@ test('a revoked or unknown certificate gives no PDF', async () => {
   assert.equal((await call('GET', '/api/certificates/bad-code/pdf')).status, 404);
   mock.method(Certificate, 'findOne', () => ({ lean: async () => cert({ revoked: true }) }));
   assert.equal((await call('GET', `/api/certificates/${CODE}/pdf`)).status, 404);
+});
+
+test('decodePng also reads gray and palette PNGs', async () => {
+  const { decodePng } = await import('../src/utils/png.js');
+  const { deflateSync } = await import('node:zlib');
+  const chunk = (name, data) => {
+    const head = Buffer.alloc(8);
+    head.writeUInt32BE(data.length, 0);
+    head.write(name, 4, 'latin1');
+    return Buffer.concat([head, data, Buffer.alloc(4)]); // crc is not checked by our decoder
+  };
+  const make = (type, body, extra = []) => {
+    const ihdr = Buffer.alloc(13);
+    ihdr.writeUInt32BE(2, 0);
+    ihdr.writeUInt32BE(1, 4);
+    ihdr[8] = 8;
+    ihdr[9] = type;
+    return Buffer.concat([Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]), chunk('IHDR', ihdr), ...extra, chunk('IDAT', deflateSync(body)), chunk('IEND', Buffer.alloc(0))]);
+  };
+  const gray = decodePng(make(0, Buffer.from([0, 10, 200])));
+  assert.deepEqual([...gray.rgb], [10, 10, 10, 200, 200, 200]);
+  assert.equal(gray.alpha, null);
+  const pal = decodePng(make(3, Buffer.from([0, 0, 1]), [chunk('PLTE', Buffer.from([1, 2, 3, 4, 5, 6])), chunk('tRNS', Buffer.from([0]))]));
+  assert.deepEqual([...pal.rgb], [1, 2, 3, 4, 5, 6]);
+  assert.deepEqual([...pal.alpha], [0, 255]);
 });

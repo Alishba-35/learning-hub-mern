@@ -1,3 +1,4 @@
+import { deflateSync } from 'node:zlib';
 import { WIDTHS } from './pdfMetrics.js';
 
 // Bahut chhota PDF likhne wala: ek page, standard fonts, rangeen shapes aur text. Koi library nahi chahiye
@@ -47,6 +48,7 @@ export class PdfPage {
     this.title = toWinAnsi(title);
     this.author = toWinAnsi(author);
     this.ops = [];
+    this.images = [];
   }
 
   rect(x, y, w, h, { fill, stroke, lineWidth = 1 } = {}) {
@@ -88,20 +90,43 @@ export class PdfPage {
     this.ops.push(`BT /${FONT_IDS[font]} ${num(size)} Tf ${rgb(color)} rg ${num(spacing)} Tc ${num(left)} ${num(y)} Td (${escape(clean)}) Tj ET`);
   }
 
+  // PNG ki tasveer (decodePng ka natija) x, y (neeche-bayen kone) par w x h ke dabbe mein. Transparency (alpha) chalti hai.
+  image(img, x, y, w, h) {
+    let idx = this.images.indexOf(img);
+    if (idx === -1) idx = this.images.push(img) - 1;
+    this.ops.push(`q ${num(w)} 0 0 ${num(h)} ${num(x)} ${num(y)} cm /Im${idx + 1} Do Q`);
+  }
+
   toBuffer() {
     const content = this.ops.join('\n');
     const fontNames = Object.keys(FONT_IDS);
     const fontObjStart = 5;
     const fontRefs = fontNames.map((name, i) => `/${FONT_IDS[name]} ${fontObjStart + i} 0 R`).join(' ');
     const infoNum = fontObjStart + fontNames.length;
+    // Har tasveer ke do object: pehle alpha mask (SMask), phir RGB tasveer
+    const xobjects = this.images.map((_, i) => `/Im${i + 1} ${infoNum + 2 + i * 2} 0 R`).join(' ');
+    const resources = `<< /Font << ${fontRefs} >>${xobjects ? ` /XObject << ${xobjects} >>` : ''} >>`;
+    const stream = (dict, data) => {
+      const body = deflateSync(data).toString('latin1');
+      return `<< ${dict} /Filter /FlateDecode /Length ${Buffer.byteLength(body, 'latin1')} >>\nstream\n${body}\nendstream`;
+    };
+    const imageObjects = this.images.flatMap((img, i) => {
+      const smask = img.alpha ? infoNum + 1 + i * 2 : null;
+      const base = `/Type /XObject /Subtype /Image /Width ${img.width} /Height ${img.height}`;
+      return [
+        img.alpha ? stream(`${base} /ColorSpace /DeviceGray /BitsPerComponent 8`, img.alpha) : '<< /Type /XObject /Subtype /Form /BBox [0 0 1 1] >>\nstream\n\nendstream',
+        stream(`${base} /ColorSpace /DeviceRGB /BitsPerComponent 8${smask ? ` /SMask ${smask} 0 R` : ''}`, img.rgb),
+      ];
+    });
 
     const objects = [
       '<< /Type /Catalog /Pages 2 0 R >>',
       '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
-      `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${num(this.width)} ${num(this.height)}] /Resources << /Font << ${fontRefs} >> >> /Contents 4 0 R >>`,
+      `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${num(this.width)} ${num(this.height)}] /Resources ${resources} /Contents 4 0 R >>`,
       `<< /Length ${Buffer.byteLength(content, 'latin1')} >>\nstream\n${content}\nendstream`,
       ...fontNames.map((name) => `<< /Type /Font /Subtype /Type1 /BaseFont /${name} /Encoding /WinAnsiEncoding >>`),
       `<< /Title (${escape(this.title)}) /Author (${escape(this.author)}) /Producer (Learning Hub) >>`,
+      ...imageObjects,
     ];
 
     let out = '%PDF-1.4\n';

@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
+import BrandLogo from '../components/BrandLogo.jsx';
 import { useApi } from '../hooks/useApi.js';
 import '../styles/verify.css';
 
@@ -87,6 +88,7 @@ export default function VerifyCertificate() {
   return (
     <main className="verify-page">
       <article className="verify-card" aria-live="polite">
+        <BrandLogo size={72} className="verify-logo" />
         <p className="verify-brand">Learning Hub</p>
         {body}
         <Link className="verify-home" to="/">

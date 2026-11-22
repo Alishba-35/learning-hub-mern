@@ -18,6 +18,7 @@
   text-align: center;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
 }
+.verify-logo { margin: 0 auto 8px; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.35)); }
 .verify-brand { margin: 0 0 14px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }
 .verify-badge { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 12px; border-radius: 50%; font-size: 1.8rem; font-weight: 800; }
 .verify-badge.is-ok { background: color-mix(in srgb, var(--ok) 22%, transparent); color: var(--ok); }
@@ -28,6 +29,6 @@
 .verify-details div { display: flex; justify-content: space-between; gap: 12px; padding: 8px 12px; border-radius: 10px; background: color-mix(in srgb, var(--text) 8%, transparent); }
 .verify-details dt { font-weight: 600; opacity: 0.8; }
 .verify-details dd { margin: 0; font-weight: 700; text-align: right; overflow-wrap: anywhere; }
-.verify-btn { display: inline-block; margin-bottom: 14px; padding: 9px 18px; border-radius: 10px; background: #4650bd; color: #fff; font-weight: 600; text-decoration: none; }
+.verify-btn { display: inline-block; margin-bottom: 14px; padding: 9px 18px; border-radius: 10px; background: #0a3a4c; color: #fff; font-weight: 600; text-decoration: none; border: 1px solid #cf9f35; }
 .verify-btn:hover { filter: brightness(1.1); color: #fff; }
 .verify-home { display: block; font-size: 0.88rem; opacity: 0.8; }

@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { answer } from '../../utils/buddy.js';
+import BrandLogo from '../BrandLogo.jsx';
 import AssistantPanel from './AssistantPanel.jsx';
 import { DashboardContext } from './dashboardContext.js';
 import Icon from './Icon.jsx';
@@ -65,9 +66,7 @@ export default function DashboardShell({ user, onLogout, ctx, title, subtitle, c
 
         <div className="dash-main" id="dash-main" tabIndex={-1}>
           <header className="dash-header">
-            <span className="dash-logo" aria-hidden="true">
-              <Icon name="bolt" size={22} />
-            </span>
+            <BrandLogo size={44} className="dash-logo" />
             <div className="dash-title">
               <h1>{title}</h1>
               <p>{subtitle}</p>

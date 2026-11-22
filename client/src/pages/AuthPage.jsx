@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../hooks/useAuth.js';
+import BrandLogo from '../components/BrandLogo.jsx';
 import PasswordInput from '../components/PasswordInput.jsx';
 
 const initialForm = { name: '', email: '', password: '', purpose: '', remember: true };
@@ -157,6 +158,7 @@ export default function AuthPage() {
 
   return (
     <div className="page-plum page-plum--auth">
+      <BrandLogo size={96} className="brand-logo--hero" />
       <div className={`auth-wrapper show-${mode}`}>
         <AuthForm mode="login" active={mode === 'login'} onSwitch={() => setMode('signup')} />
         <AuthForm mode="signup" active={mode === 'signup'} onSwitch={() => setMode('login')} />

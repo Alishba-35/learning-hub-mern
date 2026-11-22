@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import BrandLogo from '../components/BrandLogo.jsx';
 import { useAuth } from '../hooks/useAuth.js';
 
 // fade-up animation 0.8s ki hai; us ke mukammal hone ke baad button badalta hai
@@ -18,6 +19,7 @@ export default function Landing() {
 
   return (
     <div className="page-plum page-plum--landing">
+      <BrandLogo size={120} className="brand-logo--hero fade-up" />
       <h1 className="m-0 fade-up">
         <img src="/images/welcome.png" alt="Welcome Programmers" />
       </h1>

@@ -102,13 +102,10 @@
 .dash-main { min-width: 0; padding-left: 8px; outline: none; }
 .dash-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
 .dash-logo {
-  display: grid;
-  place-items: center;
   width: 44px;
   height: 44px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--green-a), var(--green-b));
-  color: #e6e9ff;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 .dash-title { flex: 1; min-width: 0; }
 .dash-title h1 { font-size: 1.35rem; font-weight: 700; }

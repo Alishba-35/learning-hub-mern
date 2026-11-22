@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth.js';
+import BrandLogo from '../BrandLogo.jsx';
 import ThemeToggle from '../ThemeToggle.jsx';
 
 // Chhote inline icons (koi icon library nahi)
@@ -49,9 +50,7 @@ export default function AdminLayout() {
 
       <aside id="admin-sidebar" className={`adm-side${open ? ' is-open' : ''}`}>
         <div className="adm-brand">
-          <span className="adm-logo" aria-hidden="true">
-            LH
-          </span>
+          <BrandLogo size={40} className="adm-logo" decorative />
           <span>
             <strong>Learning Hub</strong>
             <small>Admin console</small>

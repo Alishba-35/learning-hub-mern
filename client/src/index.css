@@ -679,3 +679,17 @@ body {
   border-top: 1px solid var(--c-334155);
   color: var(--c-cbd5e1);
 }
+
+/* ---------- Learning Hub logo ---------- */
+.brand-logo {
+  display: block;
+  flex: none;
+  object-fit: contain;
+  user-select: none;
+}
+.brand-logo--hero {
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
+}
+.app-navbar .brand-logo {
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
+}
