@@ -29,7 +29,11 @@ export const env = {
   port: Number(process.env.PORT) || 5000,
   mongoUri: process.env.MONGO_URI,
   jwtAccessSecret: process.env.JWT_ACCESS_SECRET,
-  clientOrigin: process.env.CLIENT_ORIGIN,
+  // Aakhri "/" aur spaces hata do: browser ka Origin bina slash ke aata hai, warna CORS har request rok deta hai
+  clientOrigin: process.env.CLIENT_ORIGIN.trim().replace(/\/+$/, ''),
+  // Vercel Cron (roz khud chalne wali emails) isi secret se pehchanta hai ke request asli hai
+  cronSecret: process.env.CRON_SECRET || '',
+  autoNudgeMax: Number(process.env.AUTO_NUDGE_MAX) || 100, // ek din mein zyada se zyada itni automatic emails
   // Email bhejne ke liye SMTP (jaise Gmail). Na ho to dev mein email console mein likha jata hai, production mein bhejna band.
   smtp: {
     host: process.env.SMTP_HOST || '',

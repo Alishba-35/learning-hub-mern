@@ -2,10 +2,11 @@ import { Router } from 'express';
 import rateLimit from 'express-rate-limit';
 import { requireAuth, requireRole } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.js';
-import { announcementSchema, emailSchema, revokeSchema, roleSchema, suspensionSchema, videoStatusSchema } from '../validators/adminSchemas.js';
+import { announcementSchema, autoNudgeSchema, emailSchema, nudgeGroupSchema, revokeSchema, roleSchema, suspensionSchema, videoStatusSchema } from '../validators/adminSchemas.js';
 import { deleteStudent, setCertificateRevoked, exportStudents, getStats, getStudent, listStudents, listVideos, setRole, setSuspension, setVideoStatus } from '../controllers/adminController.js';
 import { create as createAnnouncement, listAll as listAnnouncements, remove as removeAnnouncement } from '../controllers/announcementController.js';
 import { emailStudents } from '../controllers/emailController.js';
+import { getAuto, sendGroup, setAuto } from '../controllers/nudgeController.js';
 import { getInsights } from '../controllers/insightsController.js';
 import { removeVideo } from '../controllers/videoController.js';
 
@@ -17,6 +18,9 @@ router.use(requireAuth, requireRole('admin'));
 router.get('/stats', getStats);
 router.get('/insights', getInsights);
 router.post('/email', emailLimiter, validate(emailSchema), emailStudents);
+router.post('/nudges/send', emailLimiter, validate(nudgeGroupSchema), sendGroup);
+router.get('/nudges/auto', getAuto);
+router.put('/nudges/auto', validate(autoNudgeSchema), setAuto);
 router.get('/students', listStudents);
 router.get('/students/export.csv', exportStudents); // /:id se pehle, warna "export.csv" id ban jata
 router.get('/students/:id', getStudent);

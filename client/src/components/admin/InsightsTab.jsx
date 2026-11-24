@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useApi } from '../../hooks/useApi.js';
 import { request } from '../../services/api.js';
 import { ProgressRow } from './Charts.jsx';
 import { formatDate, relativeDay } from './format.js';
@@ -43,6 +44,7 @@ function NudgeGroup({ group, data, thresholds, onOpenStudent }) {
   const [subject, setSubject] = useState('We miss you on Learning Hub');
   const [emailBody, setEmailBody] = useState(group.reminder.body);
   const [emailSending, setEmailSending] = useState(false);
+  const [readySending, setReadySending] = useState(false);
   const students = data.students;
   const shown = all ? students : students.slice(0, SHOWN);
   const emails = students.map((s) => s.email);
@@ -75,7 +77,26 @@ function NudgeGroup({ group, data, thresholds, onOpenStudent }) {
     }
   };
 
-  // Email: server har student ko alag email bhejta hai (mail app nahi khulti)
+  // Ek click: group ke SAARE students ko tayyar paigham (server bhejta hai; jise pichle 7 din mein nudge gayi ho use chhod deta hai)
+  const sendReady = async () => {
+    if (!window.confirm(`Email all ${data.total} student${data.total === 1 ? '' : 's'} in "${group.title}" with the ready-made message?\nAnyone who already got a nudge in the last 7 days is skipped.`)) return;
+    setReadySending(true);
+    setResult({ text: '', error: false });
+    try {
+      const res = await request('/admin/nudges/send', { method: 'POST', body: { group: group.key } });
+      const parts = [`Email sent to ${res.sent} student${res.sent === 1 ? '' : 's'}.`];
+      if (res.skippedRecent) parts.push(`${res.skippedRecent} skipped (already emailed in the last 7 days).`);
+      if (res.failed) parts.push(`${res.failed} could not be delivered.`);
+      if (res.devLogged) parts.push('SMTP is not set up, so the email was only printed in the server console.');
+      setResult({ text: parts.join(' '), error: res.failed > 0 || res.devLogged });
+    } catch (err) {
+      setResult({ text: err.message || 'Could not send the email', error: true });
+    } finally {
+      setReadySending(false);
+    }
+  };
+
+  // Apna paigham likh kar: server har student ko alag email bhejta hai (mail app nahi khulti)
   const sendEmail = async (e) => {
     e.preventDefault();
     setEmailSending(true);
@@ -130,8 +151,11 @@ function NudgeGroup({ group, data, thresholds, onOpenStudent }) {
             <button type="button" className="btn btn-primary btn-sm" onClick={() => setReminding(!reminding)} aria-expanded={reminding}>
               Send reminder
             </button>
+            <button type="button" className="btn btn-primary btn-sm" onClick={sendReady} disabled={readySending}>
+              {readySending ? 'Sending...' : 'Email them'}
+            </button>
             <button type="button" className="btn btn-outline-light btn-sm" onClick={() => setEmailing(!emailing)} aria-expanded={emailing}>
-              Email them
+              Write my own
             </button>
             {copied && (
               <span className="admin-sub-inline" role="status">
@@ -243,6 +267,70 @@ function DropOff({ languages }) {
   );
 }
 
+// Roz khud chalne wali emails: on/off aur kin groups ko
+function AutoEmails() {
+  const { data, error } = useApi('/admin/nudges/auto');
+  const [saved, setSaved] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const [problem, setProblem] = useState('');
+  const settings = saved ?? data;
+  if (error) return <div className="alert alert-danger">{error.message}</div>;
+  if (!settings) return <Loading />;
+
+  const save = async (patch) => {
+    setSaving(true);
+    setProblem('');
+    try {
+      setSaved(await request('/admin/nudges/auto', { method: 'PUT', body: { enabled: settings.enabled, groups: settings.groups, ...patch } }));
+    } catch (err) {
+      setProblem(err.message || 'Could not save');
+    } finally {
+      setSaving(false);
+    }
+  };
+  const toggleGroup = (key) => {
+    const groups = settings.groups.includes(key) ? settings.groups.filter((g) => g !== key) : [...settings.groups, key];
+    if (groups.length === 0) return setProblem('Pick at least one group');
+    save({ groups });
+  };
+  const last = settings.lastRun;
+
+  return (
+    <section className="admin-panel-box">
+      <h2>Automatic emails</h2>
+      <p className="admin-sub">
+        Every day at 9:00 AM (Pakistan time) Learning Hub emails the students below by itself. Each student gets at most one email every {settings.cooldownDays} days, and at most {settings.dailyMax} emails go out per day.
+      </p>
+      <div className="form-check form-switch">
+        <input id="auto-nudges" className="form-check-input" type="checkbox" role="switch" checked={settings.enabled} disabled={saving} onChange={(e) => save({ enabled: e.target.checked })} />
+        <label className="form-check-label" htmlFor="auto-nudges">
+          Send automatically
+        </label>
+      </div>
+      <fieldset className="mt-2" disabled={saving}>
+        <legend className="admin-sub">Who gets them</legend>
+        {GROUPS.map((g) => (
+          <div className="form-check" key={g.key}>
+            <input id={`auto-${g.key}`} className="form-check-input" type="checkbox" checked={settings.groups.includes(g.key)} onChange={() => toggleGroup(g.key)} />
+            <label className="form-check-label" htmlFor={`auto-${g.key}`}>
+              {g.title}
+            </label>
+          </div>
+        ))}
+      </fieldset>
+      {settings.enabled && !settings.cronReady && <p className="admin-warning">The server has no CRON_SECRET yet, so the daily run cannot start. Add it in the server settings (see .env.example).</p>}
+      <p className="admin-sub mt-2">
+        {last ? `Last run: ${formatDate(last.at)}. Sent ${last.sent}${last.failed ? `, ${last.failed} failed` : ''}${last.skippedRecent ? `, ${last.skippedRecent} skipped (emailed recently)` : ''}${last.waiting ? `, ${last.waiting} waiting for tomorrow` : ''}.` : 'It has not run yet.'}
+      </p>
+      {problem && (
+        <p className="text-danger small" role="alert">
+          {problem}
+        </p>
+      )}
+    </section>
+  );
+}
+
 // Insights: kaun peeche reh gaya, kaunse sawal/lessons mushkil hain
 export default function InsightsTab({ onOpenStudent }) {
   const { data, error } = useAdminList('/admin/insights');
@@ -252,6 +340,7 @@ export default function InsightsTab({ onOpenStudent }) {
   return (
     <>
       <h2 className="admin-section-title">Students who need a nudge</h2>
+      <AutoEmails />
       <div className="admin-columns admin-columns-top">
         {GROUPS.map((g) => (
           <NudgeGroup key={g.key} group={g} data={data.atRisk[g.key]} thresholds={data.thresholds} onOpenStudent={onOpenStudent} />

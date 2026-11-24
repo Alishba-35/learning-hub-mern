@@ -39,3 +39,10 @@ export const emailSchema = z.object({
   subject: z.string().trim().min(3, 'Subject is too short').max(120),
   message: z.string().trim().min(3, 'Message is too short').max(2000),
 });
+
+export const nudgeGroupSchema = z.object({ group: z.enum(['inactive', 'neverStarted', 'streakBroken']) });
+
+export const autoNudgeSchema = z.object({
+  enabled: z.boolean(),
+  groups: z.array(z.enum(['inactive', 'neverStarted', 'streakBroken'])).min(1, 'Pick at least one group').max(3).optional(),
+});

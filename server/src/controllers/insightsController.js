@@ -46,12 +46,18 @@ function atRiskStudents(students, statsByUser, today) {
     }
   }
 
-  const list = (rows, compare) => ({ total: rows.length, students: rows.sort(compare).slice(0, MAX_LIST) });
   return {
-    inactive: list(inactive, (a, b) => b.daysInactive - a.daysInactive),
-    neverStarted: list(neverStarted, (a, b) => b.daysSinceJoined - a.daysSinceJoined),
-    streakBroken: list(streakBroken, (a, b) => b.longestStreak - a.longestStreak),
+    inactive: inactive.sort((a, b) => b.daysInactive - a.daysInactive),
+    neverStarted: neverStarted.sort((a, b) => b.daysSinceJoined - a.daysSinceJoined),
+    streakBroken: streakBroken.sort((a, b) => b.longestStreak - a.longestStreak),
   };
+}
+
+// Teeno groups ke SAARE students (ek click wali aur automatic emails yahin se lete hain)
+export async function loadAtRiskGroups() {
+  const students = await User.find({ role: 'student', disabled: { $ne: true } }).sort({ createdAt: -1 }).limit(MAX_STUDENTS).select('name email createdAt').lean();
+  const stats = students.length ? await UserStats.find({ user: { $in: students.map((u) => u._id) } }).select('user xp streak longestStreak lastActiveDay -_id').lean() : [];
+  return atRiskStudents(students, new Map(stats.map((x) => [String(x.user), x])), utcDay());
 }
 
 // Har language mein lesson-by-lesson: kitne students ne khatam kiya, aur kahan sab se zyada log ruk jate hain
@@ -123,21 +129,18 @@ async function hardestQuestions(languages) {
 }
 
 export async function getInsights(req, res) {
-  const today = utcDay();
-  const [students, languages, topics, completions, starters] = await Promise.all([
-    User.find({ role: 'student', disabled: { $ne: true } }).sort({ createdAt: -1 }).limit(MAX_STUDENTS).select('name email createdAt').lean(),
+  const [groups, languages, topics, completions, starters] = await Promise.all([
+    loadAtRiskGroups(),
     Language.find().sort('order').select('slug name color -_id').lean(),
     Topic.find().sort({ languageSlug: 1, order: 1 }).select('languageSlug slug title -_id').lean(),
     Progress.aggregate([{ $unwind: '$completed' }, { $group: { _id: { l: '$languageSlug', t: '$completed' }, n: { $sum: 1 } } }]),
     Progress.aggregate([{ $match: { 'completed.0': { $exists: true } } }, { $group: { _id: '$languageSlug', n: { $sum: 1 } } }]),
   ]);
 
-  const stats = students.length ? await UserStats.find({ user: { $in: students.map((u) => u._id) } }).select('user xp streak longestStreak lastActiveDay -_id').lean() : [];
-  const statsByUser = new Map(stats.map((s) => [String(s.user), s]));
-
+  const list = (rows) => ({ total: rows.length, students: rows.slice(0, MAX_LIST) });
   res.json({
     thresholds: { inactiveDays: INACTIVE_DAYS, neverStartedDays: NEVER_STARTED_DAYS, minAsked: MIN_ASKED },
-    atRisk: atRiskStudents(students, statsByUser, today),
+    atRisk: { inactive: list(groups.inactive), neverStarted: list(groups.neverStarted), streakBroken: list(groups.streakBroken) },
     hardQuestions: await hardestQuestions(languages),
     dropOff: lessonDropOff(languages, topics, completions, starters),
   });

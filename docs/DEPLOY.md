@@ -48,3 +48,13 @@ Gmail App password: Google Account > Security > 2-Step Verification on karein > 
 
 - Local development mein SMTP khali ho to email console mein print hoti hai (OTP wahin dikh jata hai).
 - Production mein SMTP khali ho to email nahi jati: admin ko "Email is not set up" ka error milta hai.
+
+## Roz khud chalne wali nudge emails (Insights)
+
+Admin > Insights > "Automatic emails" mein on/off hota hai. Server par ye chahiye:
+
+- `CRON_SECRET` = koi bhi lamba random text (kam az kam 16 harf). Vercel backend project > Settings > Environment Variables mein add karein, phir Redeploy.
+- `AUTO_NUDGE_MAX` (optional) = ek din mein zyada se zyada emails, default 100 (Gmail ki roz ki hadd ke liye).
+- `server/vercel.json` mein cron likha hai: har din 04:00 UTC (subah 9 baje Pakistan) `/api/cron/nudges` chalta hai. Vercel `CRON_SECRET` khud request ke saath bhejta hai.
+- Vercel Cron sirf production deployment par chalta hai. Hobby plan mein din mein ek baar chal sakta hai (waqt ek ghante ke andar aage peeche ho sakta hai).
+- Ek student ko hafte mein ek se zyada nudge nahi jati (ek click wali ho ya automatic).

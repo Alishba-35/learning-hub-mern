@@ -172,7 +172,10 @@ describe('admin panel', () => {
       ],
     };
     const calls = mockApi(
-      { 'GET /api/admin/stats': () => json(200, stats), 'GET /api/admin/insights': () => json(200, insights), 'GET /api/admin/students/1': () => json(200, detail), 'POST /api/admin/email': () => json(200, { sent: 1, failed: 0, skipped: 0, devLogged: false }) },
+      { 'GET /api/admin/stats': () => json(200, stats), 'GET /api/admin/insights': () => json(200, insights), 'GET /api/admin/students/1': () => json(200, detail), 'POST /api/admin/email': () => json(200, { sent: 1, failed: 0, skipped: 0, devLogged: false }),
+        'POST /api/admin/nudges/send': () => json(200, { sent: 4, failed: 0, skippedRecent: 1, waiting: 0, devLogged: false }),
+        'GET /api/admin/nudges/auto': () => json(200, { enabled: false, groups: ['inactive', 'neverStarted', 'streakBroken'], lastRun: null, cooldownDays: 7, dailyMax: 100, cronReady: true }),
+        'PUT /api/admin/nudges/auto': (init) => json(200, { ...JSON.parse(init.body), lastRun: null, cooldownDays: 7, dailyMax: 100, cronReady: true }) },
       admin
     );
     renderApp('/admin');
@@ -183,15 +186,36 @@ describe('admin panel', () => {
     expect(screen.getAllByText('Nobody here. Good news!').length).toBe(2);
     expect(screen.getByText(/75% wrong \(3 of 4\)/)).toBeTruthy();
     expect(screen.getByText(/Biggest drop: after "Selectors" 75% of students stop/)).toBeTruthy();
-    // "Email them" ab mail app nahi kholta: server seedha email bhejta hai
+    // "Email them" ab ek click mein tayyar paigham sab ko bhejta hai (confirm ke baad); mail app nahi khulti
     expect(screen.queryByRole('link', { name: 'Email them' })).toBeNull();
+    const confirm = vi.spyOn(window, 'confirm').mockReturnValue(true);
     await userEvent.click(screen.getByRole('button', { name: 'Email them' }));
+    expect(confirm).toHaveBeenCalledWith(expect.stringContaining('Stopped learning'));
+    expect(await screen.findByText(/Email sent to 4 students\. 1 skipped \(already emailed/)).toBeTruthy();
+    expect(calls.find((c) => c.key === 'POST /api/admin/nudges/send').body).toEqual({ group: 'inactive' });
+    confirm.mockReturnValue(false);
+    await userEvent.click(screen.getByRole('button', { name: 'Email them' }));
+    expect(calls.filter((c) => c.key === 'POST /api/admin/nudges/send')).toHaveLength(1); // "Cancel" par kuch nahi gaya
+    confirm.mockRestore();
+
+    // Apna paigham likh kar bhejna
+    await userEvent.click(screen.getByRole('button', { name: 'Write my own' }));
     expect(screen.getByLabelText('Email message').value).toContain('We have not seen you');
     await userEvent.click(screen.getByRole('button', { name: 'Send email' }));
     expect(await screen.findByText(/Email sent to 1 student\./)).toBeTruthy();
     const sent = calls.find((c) => c.key === 'POST /api/admin/email');
     expect(sent.body.userIds).toEqual(['1']);
     expect(sent.body.subject).toBe('We miss you on Learning Hub');
+
+    // Automatic emails ka panel: on karna aur group chunna
+    expect(screen.getByRole('switch', { name: 'Send automatically' }).checked).toBe(false);
+    expect(screen.getByText('It has not run yet.')).toBeTruthy();
+    await userEvent.click(screen.getByRole('switch', { name: 'Send automatically' }));
+    await waitFor(() => expect(screen.getByRole('switch', { name: 'Send automatically' }).checked).toBe(true));
+    expect(calls.find((c) => c.key === 'PUT /api/admin/nudges/auto').body).toEqual({ enabled: true, groups: ['inactive', 'neverStarted', 'streakBroken'] });
+    await userEvent.click(screen.getByRole('checkbox', { name: 'Never started' }));
+    await waitFor(() => expect(calls.filter((c) => c.key === 'PUT /api/admin/nudges/auto')).toHaveLength(2));
+    expect(calls.filter((c) => c.key === 'PUT /api/admin/nudges/auto')[1].body.groups).toEqual(['inactive', 'streakBroken']);
 
     await userEvent.click(screen.getByRole('button', { name: 'View' }));
     expect(await screen.findByText('Why they joined: Learn web')).toBeTruthy(); // student ki detail khul gayi

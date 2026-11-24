@@ -10,5 +10,11 @@
       "maxDuration": 60,
       "includeFiles": "{src/seed/**,src/assets/**}"
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/nudges",
+      "schedule": "0 4 * * *"
+    }
+  ]
 }
