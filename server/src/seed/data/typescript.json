@@ -130,7 +130,7 @@
         },
         {
           "kind": "html",
-          "html": "<div class=\"card\"><h2>Key points</h2><ul><li>Use <code>number[]</code> and <code>string[]</code> for typed arrays.</li><li>Tuples type each position and their intended length.</li><li>Enums name a fixed set of values; string enums are readable in output.</li><li>Readonly array types stop mutation through that reference.</li></ul></div></div>"
+          "html": "<div class=\"card\"><h2>Enum or union of strings?</h2><p>Many TypeScript teams prefer a union of string literals, such as <code>type Role = 'admin' | 'student'</code>, over an enum, because it adds no extra JavaScript code and works with plain strings. Use an enum when you want a named group of constants, like <code>Direction.Up</code>. Both are checked by the compiler, so a typo such as <code>'admn'</code> is reported before the program runs.</p></div><div class=\"card\"><h2>Key points</h2><ul><li>Use <code>number[]</code> and <code>string[]</code> for typed arrays.</li><li>Tuples type each position and their intended length.</li><li>Enums name a fixed set of values; string enums are readable in output.</li><li>Readonly array types stop mutation through that reference.</li></ul></div></div>"
         }
       ]
     },
@@ -445,7 +445,7 @@
         },
         {
           "kind": "html",
-          "html": "<div class=\"card\"><h2>Common mistakes &amp; key points</h2><ul><li>Using <code>any</code> instead of a generic loses type safety.</li><li>Using properties of <code>T</code> without a constraint.</li><li>Type parameters are placeholders, not runtime variables.</li><li>TypeScript infers generic types from arguments.</li><li><code>T extends X</code> sets a constraint; it does not mean T must be exactly X.</li></ul></div></div>"
+          "html": "<div class=\"card\"><h2>Why generics are worth learning</h2><p>Generics let you write one function or type that works safely with many types, instead of copying the same code for numbers, strings and objects. The compiler remembers the type you used, so the result of <code>first([1, 2, 3])</code> is known to be a <code>number</code> and a wrong method call is caught immediately.</p></div><div class=\"card\"><h2>Common mistakes &amp; key points</h2><ul><li>Using <code>any</code> instead of a generic loses type safety.</li><li>Using properties of <code>T</code> without a constraint.</li><li>Type parameters are placeholders, not runtime variables.</li><li>TypeScript infers generic types from arguments.</li><li><code>T extends X</code> sets a constraint; it does not mean T must be exactly X.</li></ul></div></div>"
         }
       ]
     },

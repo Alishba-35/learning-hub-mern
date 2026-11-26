@@ -1,388 +1,333 @@
 {
- "slug": "java",
- "name": "Java",
- "description": "Java is a strongly typed, object-oriented language used for Android apps, enterprise systems and university courses.",
- "color": "#e76f00",
- "order": 6,
- "topics": [
-  {
-   "slug": "intro",
-   "title": "Introduction to Java",
-   "section": "Getting Started",
-   "order": 1,
-   "blocks": [
+  "slug": "sql",
+  "name": "SQL",
+  "description": "SQL is the language of relational databases: query, combine, change and design data stored in tables.",
+  "color": "#336791",
+  "order": 7,
+  "topics": [
     {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Introduction to Java</h1>\n<div class=\"card\">\n<h2>What is Java?</h2>\n<p><strong>Java</strong> is a powerful, object-oriented language used for Android apps, enterprise back-ends, banking systems and big universities' courses. It is <strong>strongly typed</strong>: every variable has a declared type, and the compiler catches many mistakes before the program runs.</p>\n<ul><li><strong>JDK</strong> (Java Development Kit): tools to write and compile code.</li><li><strong>JVM</strong> (Java Virtual Machine): runs the compiled code, so the same program works on Windows, Mac and Linux (\"write once, run anywhere\").</li><li>Source files end in <code>.java</code>; the compiler turns them into <code>.class</code> files (bytecode).</li></ul>\n</div>\n\n<div class=\"card\">\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/yRpLlJmRo2w?si=5DzPBkgD0YEIGKg6\" title=\"YouTube video player\" width=\"650\"></iframe>\n<h2>Hello, World</h2>"
+      "slug": "intro",
+      "title": "Databases, Tables & SELECT",
+      "section": "SQL Basics",
+      "order": 1,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>Databases, Tables &amp; SELECT</h1>\n<div class=\"card\">\n<h2>What is a database table?</h2>\n<p>A <strong>relational database</strong> stores information in <strong>tables</strong>. A table looks like a spreadsheet: every <strong>column</strong> has a name and a type (for example <code>name</code> is text and <code>score</code> is a whole number), and every <strong>row</strong> is one record, such as one student. <strong>SQL</strong> (Structured Query Language) is the language you use to ask the database questions and to change its data. The same basic SQL works in MySQL, PostgreSQL, SQLite, SQL Server and Oracle.</p>\n<p>All the examples in this course use a small <code>students</code> table. Read it once, because you will see it in every lesson:</p>\n<table>\n<tr><th>id</th><th>name</th><th>city</th><th>dept</th><th>score</th></tr>\n<tr><td>1</td><td>Ayesha</td><td>Lahore</td><td>CS</td><td>85</td></tr>\n<tr><td>2</td><td>Bilal</td><td>Karachi</td><td>SE</td><td>72</td></tr>\n<tr><td>3</td><td>Hira</td><td>Lahore</td><td>CS</td><td>91</td></tr>\n<tr><td>4</td><td>Usman</td><td>Islamabad</td><td>EE</td><td>64</td></tr>\n<tr><td>5</td><td>Sara</td><td>Karachi</td><td>SE</td><td>78</td></tr>\n</table>\n</div>\n\n<div class=\"card\">\n<h2>Reading data with SELECT</h2>\n<p><code>SELECT</code> is the command that reads data. You list the columns you want after <code>SELECT</code> and the table after <code>FROM</code>. A query always ends with a semicolon. SQL keywords are not case sensitive, but writing them in capital letters makes a query easier to read.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT name, city\nFROM students;",
+          "output": " name   | city     \n--------+-----------\n Ayesha | Lahore   \n Bilal  | Karachi  \n Hira   | Lahore   \n Usman  | Islamabad\n Sara   | Karachi  \n(5 rows)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>The database returns a new table with only the two columns you asked for. The original table is not changed: <code>SELECT</code> never modifies data.</p>\n</div>\n\n<div class=\"card\">\n<h2>All columns, aliases and DISTINCT</h2>\n<p>A star <code>*</code> means \"every column\". It is handy while exploring, but in real projects list the columns you need, because it is faster and clearer. Use <code>AS</code> to give a column a friendlier name (an <strong>alias</strong>) in the result. Use <code>DISTINCT</code> to remove repeated values.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT DISTINCT city\nFROM students;\n\nSELECT name AS student, score AS marks\nFROM students;",
+          "output": " city     \n-----------\n Lahore   \n Karachi  \n Islamabad\n(3 rows)\n\n student | marks\n---------+-------\n Ayesha  | 85   \n Bilal   | 72   \n Hira    | 91   \n Usman   | 64   \n Sara    | 78   \n(5 rows)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>Without <code>DISTINCT</code> the city list would show Lahore and Karachi twice. An alias only changes the heading in the result, not the table.</p>\n</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Forgetting the comma between column names, or adding an extra comma before <code>FROM</code>.</li>\n<li>Putting <code>FROM</code> before <code>SELECT</code>. The order is always <code>SELECT</code> then <code>FROM</code>.</li>\n<li>Using double quotes for text. In standard SQL text values use <strong>single quotes</strong>, like <code>'Lahore'</code>.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A table has columns (name and type) and rows (records).</li>\n<li><code>SELECT columns FROM table;</code> reads data and never changes it.</li>\n<li><code>*</code> selects all columns; <code>AS</code> renames a column in the result.</li>\n<li><code>DISTINCT</code> removes duplicate values from the result.</li>\n<li>Text values use single quotes.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
     },
     {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"Main.java is compiled by javac into Main.class bytecode, which the JVM runs to produce output.\" class=\"content-image\" src=\"/images/diagrams/java-intro.svg\"/><figcaption>Source code is compiled to bytecode, then the JVM runs it.</figcaption></figure>"
+      "slug": "filtering-sorting",
+      "title": "Filtering & Sorting Rows",
+      "section": "SQL Basics",
+      "order": 2,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>Filtering &amp; Sorting Rows</h1>\n<div class=\"card\">\n<h2>Filtering with WHERE</h2>\n<p>Most of the time you do not want every row. The <code>WHERE</code> clause keeps only the rows for which a condition is true. It comes after <code>FROM</code>. You can compare with <code>=</code>, <code>&lt;&gt;</code> (not equal), <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code> and <code>&gt;=</code>. Combine conditions with <code>AND</code> (both must be true), <code>OR</code> (at least one) and <code>NOT</code>. Use brackets when you mix <code>AND</code> and <code>OR</code>, because <code>AND</code> is evaluated first.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT name, score\nFROM students\nWHERE city = 'Lahore'\n  AND score > 85;",
+          "output": " name | score\n------+-------\n Hira | 91   \n(1 row)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>Only Hira is from Lahore <em>and</em> has a score above 85. Ayesha is from Lahore but her score is exactly 85, so <code>score &gt; 85</code> is false for her.</p>\n</div>\n\n<div class=\"card\">\n<h2>BETWEEN, IN, LIKE and NULL</h2>\n<p>SQL has shortcuts for common tests. <code>BETWEEN 70 AND 80</code> includes both ends. <code>IN ('CS', 'EE')</code> checks against a list. <code>LIKE</code> matches text patterns: <code>%</code> stands for any number of characters and <code>_</code> for exactly one. A missing value is <code>NULL</code>, and you must test it with <code>IS NULL</code> or <code>IS NOT NULL</code>, because <code>= NULL</code> never matches anything.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT name, dept, score\nFROM students\nWHERE score BETWEEN 70 AND 80\n  AND dept IN ('SE', 'CS');\n\nSELECT name\nFROM students\nWHERE name LIKE 'S%';",
+          "output": " name  | dept | score\n-------+------+-------\n Bilal | SE   | 72   \n Sara  | SE   | 78   \n(2 rows)\n\n name\n------\n Sara\n(1 row)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>Bilal (72) and Sara (78) are the SE students between 70 and 80. The pattern <code>'S%'</code> means \"starts with S\", which matches only Sara.</p>\n</div>\n\n<div class=\"card\">\n<h2>Sorting and limiting</h2>\n<p>Rows come back in no guaranteed order unless you ask. <code>ORDER BY</code> sorts the result: <code>ASC</code> is ascending (the default) and <code>DESC</code> is descending. You can sort by several columns; the second column is used to break ties. <code>LIMIT n</code> keeps only the first <em>n</em> rows, which is perfect for \"top 3\" questions. (SQL Server writes <code>SELECT TOP 3</code> instead.)</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT name, score\nFROM students\nORDER BY score DESC\nLIMIT 3;",
+          "output": " name   | score\n--------+-------\n Hira   | 91   \n Ayesha | 85   \n Sara   | 78   \n(3 rows)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>The clauses always appear in this order: <code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>, <code>ORDER BY</code>, <code>LIMIT</code>. Writing them in another order is a syntax error.</p>\n</div>\n\n<div class=\"card\">\n<h2>Common mistakes</h2>\n<ul>\n<li>Writing <code>WHERE score = NULL</code>. Use <code>IS NULL</code>.</li>\n<li>Mixing <code>AND</code> and <code>OR</code> without brackets and getting surprising rows.</li>\n<li>Expecting a particular order without <code>ORDER BY</code>.</li>\n</ul>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li><code>WHERE</code> keeps only rows where the condition is true.</li>\n<li>Combine tests with <code>AND</code>, <code>OR</code>, <code>NOT</code>; use brackets to be clear.</li>\n<li><code>BETWEEN</code>, <code>IN</code> and <code>LIKE</code> are shortcuts for common conditions.</li>\n<li>Test missing values with <code>IS NULL</code>, never <code>= NULL</code>.</li>\n<li><code>ORDER BY</code> sorts and <code>LIMIT</code> keeps the first rows.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
     },
     {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, Learning Hub!\");\n        System.out.println(2 + 3);\n        System.out.print(\"No new line, \");\n        System.out.println(\"then a new line\"); // comment\n    }\n}",
-     "output": "Hello, Learning Hub!\n5\nNo new line, then a new line"
+      "slug": "insert-update-delete",
+      "title": "INSERT, UPDATE & DELETE",
+      "section": "SQL Basics",
+      "order": 3,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>INSERT, UPDATE &amp; DELETE</h1>\n<div class=\"card\">\n<h2>Adding rows with INSERT</h2>\n<p>So far we only read data. <code>INSERT INTO</code> adds a new row. Name the columns in brackets, then give the matching values in the same order. Always name the columns: the query keeps working even if someone later adds a column to the table. A column you leave out gets its default value (usually <code>NULL</code>).</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "INSERT INTO students (id, name, city, dept, score)\nVALUES (6, 'Zainab', 'Lahore', 'CS', 70);\n\nSELECT id, name, score\nFROM students\nWHERE id = 6;",
+          "output": "INSERT 1 row\n\n id | name   | score\n----+--------+-------\n 6  | Zainab | 70   \n(1 row)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>You can insert many rows in one statement by repeating the brackets after <code>VALUES</code>, separated by commas.</p>\n</div>\n\n<div class=\"card\">\n<h2>Changing rows with UPDATE</h2>\n<p><code>UPDATE</code> changes existing rows. <code>SET</code> says which columns get which new values, and <code>WHERE</code> says <em>which rows</em>. The <code>WHERE</code> clause is not optional in practice: <strong>an <code>UPDATE</code> without <code>WHERE</code> changes every row in the table.</strong> Imagine setting every student's score to 75 by accident. Make it a habit to run the same condition as a <code>SELECT</code> first and check the rows it returns.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "UPDATE students\nSET score = 75\nWHERE id = 4;\n\nSELECT id, name, score\nFROM students\nWHERE id = 4;",
+          "output": "UPDATE 1 row\n\n id | name  | score\n----+-------+-------\n 4  | Usman | 75   \n(1 row)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>Usman's score changed from 64 to 75 and no other row was touched, because the condition matched only <code>id = 4</code>.</p>\n</div>\n\n<div class=\"card\">\n<h2>Removing rows with DELETE</h2>\n<p><code>DELETE FROM</code> removes rows, and again <code>WHERE</code> decides which. <code>DELETE FROM students;</code> with no condition empties the whole table. Deleted rows are gone for good unless you have a backup or you are inside a <strong>transaction</strong> that you can <code>ROLLBACK</code>. In real applications many teams avoid deleting and instead add a column such as <code>is_active</code>, so the data can be recovered.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "DELETE FROM students\nWHERE id = 6;\n\nSELECT COUNT(*) AS students_left\nFROM students;",
+          "output": "DELETE 1 row\n\n students_left\n---------------\n 5            \n(1 row)"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li><code>INSERT INTO table (columns) VALUES (values);</code> adds a row.</li>\n<li><code>UPDATE table SET column = value WHERE condition;</code> changes rows.</li>\n<li><code>DELETE FROM table WHERE condition;</code> removes rows.</li>\n<li>Without <code>WHERE</code>, <code>UPDATE</code> and <code>DELETE</code> affect <strong>every</strong> row.</li>\n<li>Test the condition with <code>SELECT</code> before you change data.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
     },
     {
-     "kind": "html",
-     "html": "<ul><li><code>public class Main</code>: every Java program lives inside a class. The file must be named after the public class (<code>Main.java</code>).</li><li><code>public static void main(String[] args)</code> is the entry point: the JVM starts here.</li><li><code>System.out.println()</code> prints a line. Every statement ends with a semicolon <code>;</code>.</li></ul>\n<pre><code>javac Main.java     # compile\njava Main           # run</code></pre>\n</div>\n\n<div class=\"card\">\n<h2>Syntax Rules to Remember</h2>\n<table><tr><th>Rule</th><th>Example</th></tr><tr><td>Case sensitive</td><td><code>Main</code> and <code>main</code> are different</td></tr><tr><td>Blocks use braces</td><td><code>{ ... }</code></td></tr><tr><td>Comments</td><td><code>// one line</code> and <code>/* many lines */</code></td></tr><tr><td>Class names</td><td><code>PascalCase</code> (<code>BankAccount</code>)</td></tr><tr><td>Variables and methods</td><td><code>camelCase</code> (<code>totalMarks</code>)</td></tr></table>\n</div>\n</div>"
+      "slug": "joins",
+      "title": "Combining Tables with JOIN",
+      "section": "Combining Data",
+      "order": 4,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>Combining Tables with JOIN</h1>\n<div class=\"card\">\n<h2>Why we split data into tables</h2>\n<p>A database does not keep everything in one huge table. Students, courses and the grades that connect them live in separate tables, so each fact is stored once. Besides <code>students</code> we now use <code>courses</code> and <code>enrollments</code>. An enrollment row says \"student 1 took course 2 and got a B\". The columns <code>student_id</code> and <code>course_id</code> point to rows in the other tables.</p>\n<table>\n<tr><th>courses</th><th></th><th></th><th>enrollments</th><th></th><th></th></tr>\n<tr><td><strong>id</strong></td><td><strong>title</strong></td><td><strong>credits</strong></td><td><strong>student_id</strong></td><td><strong>course_id</strong></td><td><strong>grade</strong></td></tr>\n<tr><td>1</td><td>Databases</td><td>3</td><td>1</td><td>1</td><td>A</td></tr>\n<tr><td>2</td><td>Web Engineering</td><td>3</td><td>1</td><td>2</td><td>B</td></tr>\n<tr><td>3</td><td>Assembly Language</td><td>2</td><td>2</td><td>1</td><td>B</td></tr>\n<tr><td></td><td></td><td></td><td>3</td><td>1</td><td>A</td></tr>\n<tr><td></td><td></td><td></td><td>3</td><td>3</td><td>A</td></tr>\n<tr><td></td><td></td><td></td><td>5</td><td>2</td><td>C</td></tr>\n</table>\n<p>To see names instead of ids you must <strong>join</strong> the tables.</p>\n</div>\n\n<div class=\"card\">\n<h2>INNER JOIN</h2>\n<p>A <code>JOIN</code> glues rows from two tables together. The <code>ON</code> clause says how they match, usually \"the id in one table equals the id stored in the other\". An <code>INNER JOIN</code> (just <code>JOIN</code> for short) keeps only rows that have a match on <strong>both</strong> sides. Give tables short aliases such as <code>s</code> and <code>e</code> and write the alias before the column (<code>s.name</code>) so there is no confusion when two tables have a column with the same name.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT s.name, e.grade\nFROM students s\nINNER JOIN enrollments e\n  ON e.student_id = s.id\nWHERE e.course_id = 1;",
+          "output": " name   | grade\n--------+-------\n Ayesha | A    \n Bilal  | B    \n Hira   | A    \n(3 rows)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>Three students took Databases (course 1). Usman and Sara do not appear because they have no enrollment in course 1.</p>\n</div>\n\n<div class=\"card\">\n<h2>LEFT JOIN keeps everyone from the left</h2>\n<p>A <code>LEFT JOIN</code> keeps <strong>every row of the left table</strong>, even when there is no match on the right. For those rows the columns of the right table are filled with <code>NULL</code>. This is how you find \"students with no enrollments\": join, then keep the rows where the right side is <code>NULL</code>. <code>RIGHT JOIN</code> is the mirror image, and <code>FULL JOIN</code> keeps unmatched rows from both sides (not available in every database).</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT s.name, e.course_id\nFROM students s\nLEFT JOIN enrollments e\n  ON e.student_id = s.id\nWHERE e.course_id IS NULL;",
+          "output": " name  | course_id\n-------+-----------\n Usman | NULL     \n(1 row)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>Usman (id 4) has no enrollment at all, so an <code>INNER JOIN</code> would have dropped him, but the <code>LEFT JOIN</code> kept him with <code>NULL</code> in the course column.</p>\n</div>\n\n<div class=\"card\">\n<h2>Joining three tables</h2>\n<p>You can chain joins. Here we connect students to courses through the enrollments table, which sits in the middle.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT s.name, c.title, e.grade\nFROM students s\nJOIN enrollments e ON e.student_id = s.id\nJOIN courses c     ON c.id = e.course_id\nWHERE s.city = 'Lahore'\nORDER BY s.name, c.title;",
+          "output": " name   | title             | grade\n--------+-------------------+-------\n Ayesha | Databases         | A    \n Ayesha | Web Engineering   | B    \n Hira   | Assembly Language | A    \n Hira   | Databases         | A    \n(4 rows)"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A <code>JOIN</code> combines rows from two tables using a matching condition in <code>ON</code>.</li>\n<li><code>INNER JOIN</code> keeps only rows that match on both sides.</li>\n<li><code>LEFT JOIN</code> keeps all rows from the left table; missing matches become <code>NULL</code>.</li>\n<li>Use <code>LEFT JOIN ... WHERE right.id IS NULL</code> to find rows with no match.</li>\n<li>Use table aliases and write <code>alias.column</code> to avoid confusion.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
+    },
+    {
+      "slug": "aggregates-group-by",
+      "title": "COUNT, SUM, AVG & GROUP BY",
+      "section": "Combining Data",
+      "order": 5,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>COUNT, SUM, AVG &amp; GROUP BY</h1>\n<div class=\"card\">\n<h2>Aggregate functions</h2>\n<p>An <strong>aggregate function</strong> reads many rows and returns a single value. <code>COUNT(*)</code> counts rows, <code>SUM(col)</code> adds, <code>AVG(col)</code> averages, <code>MIN(col)</code> and <code>MAX(col)</code> find the smallest and largest. <code>COUNT(col)</code> counts only the rows where <code>col</code> is not <code>NULL</code>, while <code>COUNT(*)</code> counts all rows. Aggregates ignore <code>NULL</code> values (except <code>COUNT(*)</code>).</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT COUNT(*) AS students,\n       AVG(score) AS average,\n       MAX(score) AS highest,\n       MIN(score) AS lowest\nFROM students;",
+          "output": " students | average | highest | lowest\n----------+---------+---------+--------\n 5        | 78.0    | 91      | 64    \n(1 row)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>The whole table became one row. To find <em>who</em> has the highest score, you cannot put <code>name</code> next to <code>MAX(score)</code> directly; use <code>ORDER BY score DESC LIMIT 1</code> or a subquery (next lesson).</p>\n</div>\n\n<div class=\"card\">\n<h2>GROUP BY: one result per group</h2>\n<p><code>GROUP BY</code> splits the rows into groups that share the same value and applies the aggregate to each group. Every column in the <code>SELECT</code> list must either be in the <code>GROUP BY</code> or be inside an aggregate function. Think of it as \"for each city, give me the number of students and their average\".</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT city,\n       COUNT(*) AS students,\n       AVG(score) AS average\nFROM students\nGROUP BY city\nORDER BY students DESC, city;",
+          "output": " city      | students | average\n-----------+----------+---------\n Karachi   | 2        | 75.0   \n Lahore    | 2        | 88.0   \n Islamabad | 1        | 64.0   \n(3 rows)"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>WHERE or HAVING?</h2>\n<p><code>WHERE</code> filters <strong>rows before</strong> they are grouped. <code>HAVING</code> filters <strong>groups after</strong> the aggregates are calculated, so it is the only place where you can write a condition on <code>COUNT</code>, <code>AVG</code> and friends. A good test: if the condition needs an aggregate, it belongs in <code>HAVING</code>; otherwise use <code>WHERE</code>, which is also faster.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT dept, AVG(score) AS average\nFROM students\nWHERE score >= 70\nGROUP BY dept\nHAVING AVG(score) > 78\nORDER BY dept;",
+          "output": " dept | average\n------+---------\n CS   | 88.0   \n(1 row)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>First <code>WHERE</code> removed Usman (64). Then the rows were grouped by department and only CS (average 88) passed <code>HAVING AVG(score) &gt; 78</code>. SE averages 75, so it was dropped.</p>\n</div>\n\n<div class=\"card\">\n<h2>Aggregates with joins</h2>\n<p>Joins and grouping work together. This query counts how many students took each course, including courses nobody took if you use a <code>LEFT JOIN</code> from <code>courses</code>.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT c.title, COUNT(e.student_id) AS taken\nFROM courses c\nLEFT JOIN enrollments e ON e.course_id = c.id\nGROUP BY c.id, c.title\nORDER BY taken DESC, c.title;",
+          "output": " title             | taken\n-------------------+-------\n Databases         | 3    \n Web Engineering   | 2    \n Assembly Language | 1    \n(3 rows)"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li><code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code> turn many rows into one value.</li>\n<li><code>GROUP BY</code> makes one result row per group.</li>\n<li>Every selected column is either grouped or inside an aggregate.</li>\n<li><code>WHERE</code> filters rows before grouping; <code>HAVING</code> filters groups after.</li>\n<li><code>COUNT(col)</code> skips <code>NULL</code>; <code>COUNT(*)</code> does not.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
+    },
+    {
+      "slug": "subqueries",
+      "title": "Subqueries & Combining Results",
+      "section": "Combining Data",
+      "order": 6,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>Subqueries &amp; Combining Results</h1>\n<div class=\"card\">\n<h2>A query inside a query</h2>\n<p>A <strong>subquery</strong> is a <code>SELECT</code> written inside another query, in brackets. The database runs the inner query first and uses its result in the outer one. The classic example answers \"who scored above the average?\". You cannot write <code>WHERE score &gt; AVG(score)</code> directly, because <code>WHERE</code> works on single rows and cannot use an aggregate. A subquery solves it in one step.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT name, score\nFROM students\nWHERE score > (SELECT AVG(score) FROM students)\nORDER BY score DESC;",
+          "output": " name   | score\n--------+-------\n Hira   | 91   \n Ayesha | 85   \n(2 rows)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>The average score is 78. The inner query returns that single number and the outer query keeps the students above it. Sara (78) is not included because 78 is not greater than 78.</p>\n</div>\n\n<div class=\"card\">\n<h2>IN and NOT IN with a list of values</h2>\n<p>When the inner query returns a column of values, test against it with <code>IN</code>. This finds students who took at least one course, and <code>NOT IN</code> finds the others. Be careful: if the inner list contains a <code>NULL</code>, <code>NOT IN</code> returns nothing at all. <code>NOT EXISTS</code> or a <code>LEFT JOIN</code> is safer for that question.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT name\nFROM students\nWHERE id IN (SELECT student_id FROM enrollments WHERE grade = 'A')\nORDER BY name;\n\nSELECT name\nFROM students s\nWHERE NOT EXISTS (\n  SELECT 1 FROM enrollments e WHERE e.student_id = s.id\n);",
+          "output": " name  \n--------\n Ayesha\n Hira  \n(2 rows)\n\n name \n-------\n Usman\n(1 row)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>Ayesha and Hira earned an A. In the second query the inner part refers to <code>s.id</code> from the outer query (a <strong>correlated subquery</strong>), so it is checked once per student. Only Usman has no enrollments.</p>\n</div>\n\n<div class=\"card\">\n<h2>UNION: stacking two results</h2>\n<p><code>UNION</code> puts the rows of two queries one after the other. Both queries must return the same number of columns with compatible types. <code>UNION</code> removes duplicates; <code>UNION ALL</code> keeps them and is faster. It is useful when similar data lives in two tables, for example current students and alumni.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "SELECT name, 'top' AS band FROM students WHERE score >= 85\nUNION ALL\nSELECT name, 'needs help' FROM students WHERE score < 70\nORDER BY name;",
+          "output": " name   | band      \n--------+------------\n Ayesha | top       \n Hira   | top       \n Usman  | needs help\n(3 rows)"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A subquery is a <code>SELECT</code> inside brackets, used by the outer query.</li>\n<li>Use a subquery to compare with an aggregate, like <code>score &gt; (SELECT AVG(score) ...)</code>.</li>\n<li><code>IN</code> and <code>EXISTS</code> test against the rows of a subquery.</li>\n<li><code>NOT IN</code> misbehaves when the list has <code>NULL</code>; prefer <code>NOT EXISTS</code>.</li>\n<li><code>UNION</code> stacks results (no duplicates); <code>UNION ALL</code> keeps duplicates.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
+    },
+    {
+      "slug": "keys-constraints",
+      "title": "Keys, Constraints & Relationships",
+      "section": "Database Design",
+      "order": 7,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>Keys, Constraints &amp; Relationships</h1>\n<div class=\"card\">\n<h2>Primary keys</h2>\n<p>Every table should have a <strong>primary key</strong>: a column (or group of columns) whose value is <strong>unique</strong> and <strong>never NULL</strong>, so it identifies exactly one row. Usually it is a number that the database generates, such as <code>id</code>. Names make poor keys, because two students can share a name. A primary key also gets an index automatically, so searching by it is fast.</p>\n</div>\n\n<div class=\"card\">\n<h2>Foreign keys and relationships</h2>\n<p>A <strong>foreign key</strong> is a column that stores the primary key of a row in another table. It creates a relationship and lets the database protect it: you cannot enroll a student who does not exist, and you cannot delete a course that still has enrollments (unless you choose <code>ON DELETE CASCADE</code>). The most common relationship is <strong>one-to-many</strong>: one department has many students, so the students table stores the department id.</p>\n<p>A <strong>many-to-many</strong> relationship, like students and courses (a student takes many courses and a course has many students), cannot be stored in either table directly. You add a third table, a <strong>junction table</strong>. That is exactly what <code>enrollments</code> is: each row links one student to one course, and each of its two columns is a foreign key.</p>\n</div>\n\n<div class=\"card\">\n<h2>Creating tables with constraints</h2>\n<p><strong>Constraints</strong> are rules the database enforces for you. <code>NOT NULL</code> forbids missing values, <code>UNIQUE</code> forbids duplicates (a good fit for an email address), <code>CHECK</code> tests a condition and <code>DEFAULT</code> supplies a value when none is given. Putting rules in the database is safer than only checking in your application, because every program that touches the data must obey them.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "CREATE TABLE users (\n  id      INTEGER PRIMARY KEY,\n  email   TEXT NOT NULL UNIQUE,\n  name    TEXT NOT NULL,\n  score   INTEGER CHECK (score BETWEEN 0 AND 100),\n  active  INTEGER DEFAULT 1\n);\n\nCREATE TABLE enrollments (\n  student_id INTEGER NOT NULL REFERENCES students(id),\n  course_id  INTEGER NOT NULL REFERENCES courses(id),\n  grade      TEXT,\n  PRIMARY KEY (student_id, course_id)\n);",
+          "output": "CREATE TABLE\nCREATE TABLE"
+        },
+        {
+          "kind": "html",
+          "html": "<p>The junction table uses a <strong>composite primary key</strong> made of both columns, so the same student cannot be enrolled in the same course twice.</p>\n</div>\n\n<div class=\"card\">\n<h2>What happens when a rule is broken?</h2>\n<p>If a query violates a constraint, the database refuses it and returns an error, and nothing is saved. For example, inserting a second user with an existing email fails because of <code>UNIQUE</code>, and inserting a score of 150 fails because of <code>CHECK</code>. Read these errors carefully: they tell you which rule you broke.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "INSERT INTO users (id, email, name, score)\nVALUES (1, 'ayesha@example.com', 'Ayesha', 85);\n\nINSERT INTO users (id, email, name, score)\nVALUES (2, 'ayesha@example.com', 'Copy', 90);",
+          "output": "INSERT 1 row\n\nERROR: duplicate value violates UNIQUE constraint \"users.email\"\n(nothing was inserted)"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>A primary key is unique, never <code>NULL</code> and identifies one row.</li>\n<li>A foreign key points to a primary key in another table and keeps the data consistent.</li>\n<li>One-to-many: store the parent id in the child table.</li>\n<li>Many-to-many needs a junction table with two foreign keys.</li>\n<li><code>NOT NULL</code>, <code>UNIQUE</code>, <code>CHECK</code> and <code>DEFAULT</code> let the database enforce your rules.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
+    },
+    {
+      "slug": "indexes-views-normalization",
+      "title": "Indexes, Views & Normalization",
+      "section": "Database Design",
+      "order": 8,
+      "styles": "",
+      "blocks": [
+        {
+          "kind": "html",
+          "html": "<div class=\"container my-4\">\n<h1>Indexes, Views &amp; Normalization</h1>\n<div class=\"card\">\n<h2>Indexes: faster reads, slower writes</h2>\n<p>Without help, finding a row by <code>city</code> means reading the whole table, row by row. An <strong>index</strong> is a sorted lookup structure (like the index at the back of a book) that lets the database jump straight to the matching rows. Create indexes on columns you often use in <code>WHERE</code>, <code>JOIN</code> and <code>ORDER BY</code>. Primary keys and <code>UNIQUE</code> columns are indexed automatically.</p>\n<p>The <strong>trade-off</strong>: every index takes extra disk space, and every <code>INSERT</code>, <code>UPDATE</code> and <code>DELETE</code> must also update the index, so writes get slower. Indexing every column is a mistake. Add indexes where reads are frequent and slow, and measure the result.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "CREATE INDEX idx_students_city\n  ON students (city);\n\n-- the same query now uses the index\nSELECT name FROM students WHERE city = 'Karachi';",
+          "output": "CREATE INDEX\n\n name \n-------\n Bilal\n Sara \n(2 rows)"
+        },
+        {
+          "kind": "html",
+          "html": "</div>\n\n<div class=\"card\">\n<h2>Views: saved queries</h2>\n<p>A <strong>view</strong> is a saved <code>SELECT</code> that you can read like a table. It stores no data itself; the query runs every time you read from it. Views keep complicated joins in one place, give each user a simpler picture of the data, and can hide sensitive columns such as passwords.</p>\n"
+        },
+        {
+          "kind": "demo",
+          "language": "sql",
+          "code": "CREATE VIEW top_students AS\nSELECT name, dept, score\nFROM students\nWHERE score >= 80;\n\nSELECT * FROM top_students\nORDER BY score DESC;",
+          "output": "CREATE VIEW\n\n name   | dept | score\n--------+------+-------\n Hira   | CS   | 91   \n Ayesha | CS   | 85   \n(2 rows)"
+        },
+        {
+          "kind": "html",
+          "html": "<p>You read from the view with <code>FROM top_students</code>, exactly as if it were a table. If a student's score changes in <code>students</code>, the view shows the new result automatically.</p>\n</div>\n\n<div class=\"card\">\n<h2>Normalization in plain words</h2>\n<p><strong>Normalization</strong> means organizing tables so that each fact is stored once. Bad design repeats data: if every enrollment row also stored the course title and the student's city, then renaming a course means editing many rows, and one missed row leaves the data contradicting itself. The usual steps are:</p>\n<ul>\n<li><strong>1NF:</strong> each cell holds one value. No lists like <code>\"Databases, Web\"</code> in a single column.</li>\n<li><strong>2NF:</strong> every column depends on the <em>whole</em> key, not just a part of it.</li>\n<li><strong>3NF:</strong> columns depend only on the key, not on other non-key columns. A city's province belongs in a <code>cities</code> table, not in every student row.</li>\n</ul>\n<p>Normalized designs avoid update mistakes. Sometimes people <strong>denormalize</strong> on purpose (keep a copy) to make a slow report faster, but that is a decision to make carefully, after measuring.</p>\n</div>\n\n<div class=\"card\">\n<h2>Key Points</h2>\n<ul>\n<li>An index speeds up reads but slows down writes and uses space.</li>\n<li>Index the columns you often filter, join and sort by, not everything.</li>\n<li>A view is a saved query; you read from it with <code>FROM view_name</code>.</li>\n<li>Normalization stores each fact once: 1NF, 2NF, 3NF.</li>\n<li>Denormalize only on purpose, after measuring.</li>\n</ul>\n</div>\n</div>"
+        }
+      ]
     }
-   ],
-   "styles": ""
-  },
-  {
-   "slug": "variables-types",
-   "title": "Variables & Data Types",
-   "section": "Getting Started",
-   "order": 2,
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Variables & Data Types</h1>\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/LusTv0RlnSU?si=xkglB1AFEsYQaXNj\" title=\"YouTube video player\" width=\"650\"></iframe><div class=\"card\">\n<h2>Declaring Variables</h2>\n<p>In Java you write the <strong>type</strong> first, then the name. Once declared, a variable can only hold that type.</p>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"Table of the Java types byte, int, long, double, char and boolean with their size and an example.\" class=\"content-image\" src=\"/images/diagrams/java-variables-types.svg\"/><figcaption>The everyday Java primitive types and what they hold.</figcaption></figure>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        int age = 20;\n        double price = 19.99;\n        boolean student = true;\n        char grade = 'A';\n        String name = \"Ayesha\";\n        final int MAX = 100;\n\n        System.out.println(name + \" is \" + age + \" years old\");\n        System.out.println(\"Grade \" + grade + \", student: \" + student);\n        System.out.println(price * 2);\n        System.out.println(MAX);\n    }\n}",
-     "output": "Ayesha is 20 years old\nGrade A, student: true\n39.98\n100"
-    },
-    {
-     "kind": "html",
-     "html": "<ul><li><code>final</code> makes a constant that cannot change.</li><li><code>String</code> starts with a capital S: it is a class, not a primitive.</li><li>Characters use single quotes (<code>&#x27;A&#x27;</code>), strings use double quotes.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Primitive Types</h2>\n<table><tr><th>Type</th><th>Holds</th><th>Example</th></tr><tr><td><code>int</code></td><td>Whole numbers (about +-2 billion)</td><td><code>42</code></td></tr><tr><td><code>long</code></td><td>Very big whole numbers</td><td><code>9000000000L</code></td></tr><tr><td><code>double</code></td><td>Decimal numbers</td><td><code>3.14</code></td></tr><tr><td><code>boolean</code></td><td>true or false</td><td><code>true</code></td></tr><tr><td><code>char</code></td><td>One character</td><td><code>&#x27;A&#x27;</code></td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>Type Casting and Integer Division</h2>\n<p>Java converts a smaller type to a bigger one automatically (<code>int</code> to <code>double</code>). Going the other way needs an explicit <strong>cast</strong>. Dividing two ints gives an int.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        int a = 7, b = 2;\n        System.out.println(a / b);              // int division\n        System.out.println((double) a / b);     // cast first\n        System.out.println(a % b);\n\n        double d = 9.99;\n        int cut = (int) d;                      // casting cuts the decimals\n        System.out.println(cut);\n\n        long big = a;                           // automatic widening\n        System.out.println(big + 1);\n    }\n}",
-     "output": "3\n3.5\n1\n9\n8"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n</div>"
-    }
-   ],
-   "styles": ""
-  },
-  {
-   "slug": "operators-conditions",
-   "title": "Operators & Conditions",
-   "section": "Getting Started",
-   "order": 3,
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Operators & Conditions</h1><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/I5srDu75h_M?si=f1l6S8iWZsdxWTG2\" title=\"YouTube video player\" width=\"650\"></iframe>\n<div class=\"card\">\n<h2>Operators</h2>\n<table><tr><th>Kind</th><th>Operators</th></tr><tr><td>Arithmetic</td><td><code>+  -  *  /  %</code></td></tr><tr><td>Increment</td><td><code>i++  i--  +=  -=</code></td></tr><tr><td>Comparison</td><td><code>==  !=  &lt;  &gt;  &lt;=  &gt;=</code></td></tr><tr><td>Logical</td><td><code>&amp;&amp;  ||  !</code></td></tr></table>\n<p>Important: use <code>==</code> to compare numbers, but <strong><code>.equals()</code></strong> to compare String contents.</p>\n</div>\n\n<div class=\"card\">\n<h2>if / else if / else</h2><div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/Oud4alVQU4s?si=HtAJHq7vmyz2Ir3P\" title=\"YouTube video player\" width=\"650\"></iframe></div>\n<p>Use <code>if</code> to run code only when a condition is true. Use <code>else if</code> for more options, and <code>else</code> for the default.</p>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"A decision diamond: if marks &gt;= 50 is true print Pass, otherwise print Fail.\" class=\"content-image\" src=\"/images/diagrams/java-operators-conditions.svg\"/><figcaption>A condition is true or false, and only one branch runs.</figcaption></figure>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        int marks = 72;\n        String grade;\n        if (marks >= 90) {\n            grade = \"A\";\n        } else if (marks >= 75) {\n            grade = \"B\";\n        } else if (marks >= 60) {\n            grade = \"C\";\n        } else {\n            grade = \"F\";\n        }\n        System.out.println(\"Marks \" + marks + \" -> \" + grade);\n\n        String a = \"java\";\n        String b = new String(\"java\");\n        System.out.println(a == b);        // compares references\n        System.out.println(a.equals(b));   // compares text\n    }\n}",
-     "output": "Marks 72 -> C\nfalse\ntrue"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>switch</h2>\n<p>Use <code>switch</code> when you compare one value with many fixed options. The modern arrow form (<code>-&gt;</code>) needs no <code>break</code>.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        int day = 3;\n        switch (day) {\n            case 1 -> System.out.println(\"Monday\");\n            case 2 -> System.out.println(\"Tuesday\");\n            case 3 -> System.out.println(\"Wednesday\");\n            default -> System.out.println(\"Another day\");\n        }\n\n        int age = 17;\n        String type = age >= 18 ? \"adult\" : \"minor\";\n        System.out.println(type);\n    }\n}",
-     "output": "Wednesday\nminor"
-    },
-    {
-     "kind": "html",
-     "html": "<p>The ternary operator <code>condition ? a : b</code> is a short if/else for values.</p>\n</div>\n</div>"
-    }
-   ],
-   "styles": ""
-  },
-  {
-   "slug": "loops",
-   "title": "Loops",
-   "section": "Control & Methods",
-   "order": 4,
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Loops</h1><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/0r1SfRoLuzU?si=Mta4kNYhGTziazbE\" title=\"YouTube video player\" width=\"650\"></iframe>\n<div class=\"card\">\n<h2>for, while and do-while</h2>\n<table><tr><th>Loop</th><th>Use it when</th></tr><tr><td><code>for</code></td><td>You know how many times</td></tr><tr><td><code>while</code></td><td>You repeat until a condition changes</td></tr><tr><td><code>do-while</code></td><td>The body must run at least once</td></tr></table>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 3; i++) {\n            System.out.println(\"for round \" + i);\n        }\n\n        int n = 3;\n        while (n > 0) {\n            System.out.println(\"while \" + n);\n            n--;\n        }\n\n        int k = 10;\n        do {\n            System.out.println(\"do-while runs once, k = \" + k);\n        } while (k < 5);\n    }\n}",
-     "output": "for round 1\nfor round 2\nfor round 3\nwhile 3\nwhile 2\nwhile 1\ndo-while runs once, k = 10"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Enhanced for, break and continue</h2>\n<ul><li>The <strong>enhanced for</strong> loop visits every item of an array or collection.</li><li><code>break</code> exits the loop; <code>continue</code> skips to the next round.</li></ul>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        int[] numbers = {4, 8, 15, 16, 23, 42};\n        int sum = 0;\n        for (int x : numbers) {\n            if (x % 2 != 0) continue;     // skip odd numbers\n            if (x > 30) break;            // stop at big numbers\n            sum += x;\n        }\n        System.out.println(\"Sum of small even numbers: \" + sum);\n    }\n}",
-     "output": "Sum of small even numbers: 28"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Nested Loops</h2>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        for (int row = 1; row <= 3; row++) {\n            for (int col = 1; col <= 3; col++) {\n                System.out.print(row * col + \"\\t\");\n            }\n            System.out.println();\n        }\n    }\n}",
-     "output": "1\t2\t3\n2\t4\t6\n3\t6\t9"
-    },
-    {
-     "kind": "html",
-     "html": "<p>The inner loop runs completely for each round of the outer loop.</p>\n</div>\n</div>"
-    }
-   ],
-   "styles": ""
-  },
-  {
-   "slug": "arrays-strings",
-   "title": "Arrays & Strings",
-   "section": "Control & Methods",
-   "order": 5,
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Arrays & Strings</h1>\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/NTHVTY6w2Co?si=_pfk4wpwGRndQxqg\" title=\"YouTube video player\" width=\"650\"></iframe>\n<div class=\"card\">\n<h2>Arrays</h2>\n<p>An <strong>array</strong> holds a fixed number of values of the same type. The size cannot change after creation, and indexes start at 0.</p>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"An int array holding 10, 20, 30, 40, 50 at indexes 0 to 4.\" class=\"content-image\" src=\"/images/diagrams/java-arrays-strings.svg\"/><figcaption>Array items sit side by side and are found by their index, which starts at 0.</figcaption></figure><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/18Zt5I4S45o?si=4btaDZv3cEoHeQ2x\" title=\"YouTube video player\" width=\"650\"></iframe>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "import java.util.Arrays;\n\npublic class Main {\n    public static void main(String[] args) {\n        int[] marks = {72, 95, 60, 88};\n        System.out.println(marks.length + \" marks, first = \" + marks[0]);\n\n        marks[2] = 65;                       // change an element\n        Arrays.sort(marks);\n        System.out.println(Arrays.toString(marks));\n\n        int[] empty = new int[3];            // filled with 0\n        System.out.println(Arrays.toString(empty));\n\n        try {\n            System.out.println(marks[10]);\n        } catch (ArrayIndexOutOfBoundsException e) {\n            System.out.println(\"Index 10 is outside the array\");\n        }\n    }\n}",
-     "output": "4 marks, first = 72\n[65, 72, 88, 95]\n[0, 0, 0]\nIndex 10 is outside the array"
-    },
-    {
-     "kind": "html",
-     "html": "<ul><li><code>array.length</code> (no parentheses) is the size.</li><li>Going outside the range throws <code>ArrayIndexOutOfBoundsException</code>.</li><li><code>Arrays.sort()</code>, <code>Arrays.toString()</code> come from <code>java.util.Arrays</code>.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>2D Arrays</h2>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "import java.util.Arrays;\n\npublic class Main {\n    public static void main(String[] args) {\n        int[][] grid = {\n            {1, 2, 3},\n            {4, 5, 6}\n        };\n        System.out.println(grid[1][2]);\n        System.out.println(grid.length + \" rows, \" + grid[0].length + \" columns\");\n        for (int[] row : grid) {\n            System.out.println(Arrays.toString(row));\n        }\n    }\n}",
-     "output": "6\n2 rows, 3 columns\n[1, 2, 3]\n[4, 5, 6]"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Strings</h2>\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/vCRD36bG8xQ?si=P_LRSKDTwAKh4nGm\" title=\"YouTube video player\" width=\"650\"></iframe>\n<p>A <code>String</code> is an <strong>immutable</strong> object: methods return a new string instead of changing the old one.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        String s = \"Learning Hub\";\n        System.out.println(s.length());\n        System.out.println(s.charAt(0));\n        System.out.println(s.substring(0, 8));\n        System.out.println(s.indexOf(\"Hub\"));\n        System.out.println(s.toUpperCase());\n        System.out.println(String.join(\"-\", s.split(\" \")));\n        System.out.println(s.replace(\"Hub\", \"Center\"));\n        System.out.println(s);   // the original is unchanged\n    }\n}",
-     "output": "12\nL\nLearning\n9\nLEARNING HUB\nLearning-Hub\nLearning Center\nLearning Hub"
-    },
-    {
-     "kind": "html",
-     "html": "<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/ZLDwskEhIFg?si=UXip15UeH__pAYec\" title=\"YouTube video player\" width=\"650\"></iframe></div>\n<table><tr><th>Method</th><th>Result</th></tr><tr><td><code>length()</code></td><td>Number of characters</td></tr><tr><td><code>charAt(i)</code></td><td>Character at index i</td></tr><tr><td><code>substring(a, b)</code></td><td>Part from a up to b</td></tr><tr><td><code>indexOf(&quot;x&quot;)</code></td><td>Position or -1</td></tr><tr><td><code>toUpperCase()</code></td><td>Upper-case copy</td></tr><tr><td><code>split(&quot; &quot;)</code></td><td>Array of pieces</td></tr></table>\n</div>\n</div>"
-    }
-   ],
-   "styles": ""
-  },
-  {
-   "slug": "methods",
-   "title": "Methods",
-   "section": "Control & Methods",
-   "order": 6,
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Methods</h1>\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/qcSz4ef9UHA?si=1-ru9JFeWJEWjSIH\" title=\"YouTube video player\" width=\"650\"></iframe>\n<div class=\"card\">\n<h2>Writing Methods</h2>\n<p>A <strong>method</strong> is a named block of code. Its header says who can call it, whether it belongs to the class (<code>static</code>), what it returns and what it takes.</p>\n<pre><code>public static int add(int a, int b) {\n    return a + b;\n}</code></pre>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"main calls add(2, 3), add runs and returns 5, and main receives the value.\" class=\"content-image\" src=\"/images/diagrams/java-methods.svg\"/><figcaption>Arguments go into a method and a return value comes back to the caller.</figcaption></figure>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(add(2, 3));\n        System.out.println(isEven(10) + \" \" + isEven(7));\n        greet(\"Ali\");\n    }\n\n    static int add(int a, int b) {\n        return a + b;\n    }\n\n    static boolean isEven(int n) {\n        return n % 2 == 0;\n    }\n\n    static void greet(String name) {\n        System.out.println(\"Hello, \" + name);\n    }\n}",
-     "output": "5\ntrue false\nHello, Ali"
-    },
-    {
-     "kind": "html",
-     "html": "<ul><li><code>void</code> means the method returns nothing.</li><li>Parameters are a copy of the values you pass: Java is <strong>pass-by-value</strong>.</li></ul>\n</div>\n\n<div class=\"card\">\n<h2>Overloading</h2>\n<p>You can have several methods with the same name if their parameters differ. This is called <strong>overloading</strong>.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(area(5));\n        System.out.println(area(4, 6));\n        System.out.println(area(2.5));\n    }\n\n    static int area(int side) {\n        return side * side;\n    }\n\n    static int area(int width, int height) {\n        return width * height;\n    }\n\n    static double area(double radius) {\n        return 3.14 * radius * radius;\n    }\n}",
-     "output": "25\n24\n19.625"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Pass by Value</h2>\n<p>Changing a primitive parameter inside a method does not change the caller's variable. (For arrays and objects the <em>reference</em> is copied, so changes to the contents are visible.)</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        int number = 5;\n        int[] array = {1, 2, 3};\n        change(number, array);\n        System.out.println(number);              // unchanged\n        System.out.println(array[0]);            // contents changed\n    }\n\n    static void change(int n, int[] a) {\n        n = 99;        // only the local copy\n        a[0] = 99;     // same array as the caller\n    }\n}",
-     "output": "5\n99"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n</div>"
-    }
-   ],
-   "styles": ""
-  },
-  {
-   "slug": "classes-objects",
-   "title": "Classes & Objects",
-   "section": "Object-Oriented Java",
-   "order": 7,
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Classes & Objects</h1>\n<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/bSrm9RXwBaI?si=AXbrD0r_bPchR_ZN\" title=\"YouTube video player\" width=\"650\"></iframe></div>\n<div class=\"card\">\n<h2>Classes, Objects and Constructors</h2>\n<p>A <strong>class</strong> is a blueprint with <em>fields</em> (data) and <em>methods</em> (actions). <code>new</code> creates an <strong>object</strong>, and the <strong>constructor</strong> sets it up. <code>this</code> means the current object.</p>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"A Car class with color and speed fields and three car objects with different values.\" class=\"content-image\" src=\"/images/diagrams/java-classes-objects.svg\"/><figcaption>A class describes the shape; objects are the real things made from it.</figcaption></figure>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        Student a = new Student(\"Ayesha\", 82);\n        Student b = new Student(\"Bilal\", 41);\n        System.out.println(a.name + \" passed? \" + a.passed());\n        System.out.println(b.name + \" passed? \" + b.passed());\n    }\n}\n\nclass Student {\n    String name;\n    int marks;\n\n    Student(String name, int marks) {\n        this.name = name;\n        this.marks = marks;\n    }\n\n    boolean passed() {\n        return marks >= 50;\n    }\n}",
-     "output": "Ayesha passed? true\nBilal passed? false"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Encapsulation</h2>\n<p>Make fields <code>private</code> and give controlled access through public <strong>getters and setters</strong>. This lets the class protect its own rules.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        Account acc = new Account(100);\n        acc.withdraw(30);\n        acc.withdraw(500);          // refused\n        System.out.println(acc.getBalance());\n        // acc.balance = 1000000;   // would not compile: balance is private\n    }\n}\n\nclass Account {\n    private double balance;\n\n    Account(double balance) {\n        this.balance = balance;\n    }\n\n    void withdraw(double amount) {\n        if (amount > 0 && amount <= balance) balance -= amount;\n    }\n\n    double getBalance() {\n        return balance;\n    }\n}",
-     "output": "70.0"
-    },
-    {
-     "kind": "html",
-     "html": "<table><tr><th>Modifier</th><th>Visible from</th></tr><tr><td><code>private</code></td><td>Only inside the class</td></tr><tr><td>(none)</td><td>Same package</td></tr><tr><td><code>protected</code></td><td>Same package and subclasses</td></tr><tr><td><code>public</code></td><td>Everywhere</td></tr></table>\n</div>\n\n<div class=\"card\">\n<h2>static Members</h2>\n<p>A <code>static</code> field or method belongs to the <strong>class</strong>, not to a single object. All objects share it.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        new Counter();\n        new Counter();\n        new Counter();\n        System.out.println(\"Objects created: \" + Counter.created);\n        System.out.println(Counter.describe());\n    }\n}\n\nclass Counter {\n    static int created = 0;      // shared by all objects\n\n    Counter() {\n        created++;\n    }\n\n    static String describe() {\n        return \"Counter class\";\n    }\n}",
-     "output": "Objects created: 3\nCounter class"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n</div>"
-    }
-   ],
-   "styles": ""
-  },
-  {
-   "slug": "inheritance-interfaces",
-   "title": "Inheritance & Interfaces",
-   "section": "Object-Oriented Java",
-   "order": 8,
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Inheritance & Interfaces</h1>\n<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/bSrm9RXwBaI?si=AXbrD0r_bPchR_ZN\" title=\"YouTube video player\" width=\"650\"></iframe></div>\n<div class=\"card\">\n<h2>Inheritance</h2>\n<p>A class can <code>extend</code> another to reuse its fields and methods. The child may <strong>override</strong> a method (mark it with <code>@Override</code>) and calls the parent's constructor with <code>super(...)</code>. Java allows only <em>one</em> parent class.</p>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"Dog and Cat extend Animal; an interface Pet can be implemented by them.\" class=\"content-image\" src=\"/images/diagrams/java-inheritance-interfaces.svg\"/><figcaption>A subclass extends one parent and may implement many interfaces.</figcaption></figure>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        Dog d = new Dog(\"Rex\");\n        System.out.println(d.name + \" says \" + d.speak());\n        System.out.println(d.describe());\n    }\n}\n\nclass Animal {\n    String name;\n    Animal(String name) { this.name = name; }\n    String speak() { return \"...\"; }\n    String describe() { return \"I am \" + name; }\n}\n\nclass Dog extends Animal {\n    Dog(String name) { super(name); }\n    @Override\n    String speak() { return \"Woof\"; }\n}",
-     "output": "Rex says Woof\nI am Rex"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Polymorphism and Abstract Classes</h2>\n<p>A parent variable can hold any child object, and Java runs the child's version of the method. An <strong>abstract class</strong> cannot be instantiated; it forces children to implement its abstract methods.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        Shape[] shapes = { new Circle(2), new Rect(3, 4) };\n        for (Shape s : shapes) {\n            System.out.println(s.getClass().getSimpleName() + \" area = \" + s.area());\n        }\n    }\n}\n\nabstract class Shape {\n    abstract double area();\n}\n\nclass Circle extends Shape {\n    double r;\n    Circle(double r) { this.r = r; }\n    double area() { return Math.round(3.14159 * r * r * 100) / 100.0; }\n}\n\nclass Rect extends Shape {\n    double w, h;\n    Rect(double w, double h) { this.w = w; this.h = h; }\n    double area() { return w * h; }\n}",
-     "output": "Circle area = 12.57\nRect area = 12.0"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>Interfaces</h2>\n<p>An <strong>interface</strong> is a contract: it lists methods a class promises to have. A class can <code>implement</code> <em>many</em> interfaces.</p>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        Payable[] items = { new Employee(\"Sara\", 50000), new Invoice(1200) };\n        for (Payable p : items) {\n            System.out.println(\"Pay: \" + p.amount());\n        }\n    }\n}\n\ninterface Payable {\n    int amount();\n}\n\nclass Employee implements Payable {\n    String name;\n    int salary;\n    Employee(String name, int salary) { this.name = name; this.salary = salary; }\n    public int amount() { return salary; }\n}\n\nclass Invoice implements Payable {\n    int total;\n    Invoice(int total) { this.total = total; }\n    public int amount() { return total; }\n}",
-     "output": "Pay: 50000\nPay: 1200"
-    },
-    {
-     "kind": "html",
-     "html": "<table><tr><th></th><th>abstract class</th><th>interface</th></tr><tr><td>Can have fields and constructors</td><td>Yes</td><td>No (only constants)</td></tr><tr><td>A class can use</td><td>One (extends)</td><td>Many (implements)</td></tr><tr><td>Best for</td><td>A shared base with some code</td><td>A capability (Comparable, Runnable)</td></tr></table>\n</div>\n</div>"
-    }
-   ],
-   "styles": ""
-  },
-  {
-   "slug": "exceptions-collections",
-   "title": "Exceptions & Collections",
-   "section": "Object-Oriented Java",
-   "order": 9,
-   "blocks": [
-    {
-     "kind": "html",
-     "html": "<div class=\"container my-4\">\n<h1>Exceptions & Collections</h1>\n<div class=\"card\">\n<h2>Exceptions</h2>\n<p>Errors in Java are <strong>exceptions</strong>. Handle them with <code>try</code>, <code>catch</code> and <code>finally</code>. <strong>Checked</strong> exceptions (like <code>IOException</code>) must be handled or declared with <code>throws</code>; <strong>unchecked</strong> ones (like <code>NullPointerException</code>) need not.</p><p>Use <code>throw</code> to create your own exception.</p><p>Java has a hierarchy of exception classes. <code>Exception</code> is the base class for checked exceptions, and <code>RuntimeException</code> is the base for unchecked ones.</p>\n<iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/WeF3_nk-UqY?si=CR9BRKlf11Vgzy5E\" title=\"YouTube video player\" width=\"650\"></iframe>"
-    },
-    {
-     "kind": "html",
-     "html": "<figure class=\"lesson-figure\"><img alt=\"Code in try runs; if an exception is thrown catch handles it; finally always runs.\" class=\"content-image\" src=\"/images/diagrams/java-exceptions-collections.svg\"/><figcaption>Errors are caught in catch, and finally always runs.</figcaption></figure>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(divide(10, 2));\n        try {\n            System.out.println(divide(10, 0));\n        } catch (ArithmeticException e) {\n            System.out.println(\"Caught: \" + e.getMessage());\n        } finally {\n            System.out.println(\"finally always runs\");\n        }\n\n        try {\n            checkAge(-5);\n        } catch (IllegalArgumentException e) {\n            System.out.println(\"Invalid: \" + e.getMessage());\n        }\n    }\n\n    static int divide(int a, int b) {\n        return a / b;\n    }\n\n    static void checkAge(int age) {\n        if (age < 0) throw new IllegalArgumentException(\"age cannot be negative\");\n    }\n}",
-     "output": "5\nCaught: / by zero\nfinally always runs\nInvalid: age cannot be negative"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>ArrayList</h2>\n<p>An <code>ArrayList</code> is a resizable list. The type in angle brackets (<code>&lt;String&gt;</code>) says what it holds. Use wrapper types such as <code>Integer</code> for numbers.</p>\n<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/liFyhzZl9uw?si=SVvV189G7BnRGTcg\" title=\"YouTube video player\" width=\"650\"></iframe></div>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "import java.util.ArrayList;\nimport java.util.Collections;\nimport java.util.List;\n\npublic class Main {\n    public static void main(String[] args) {\n        List<String> names = new ArrayList<>();\n        names.add(\"Zain\");\n        names.add(\"Ayesha\");\n        names.add(\"Hira\");\n        System.out.println(names + \" size \" + names.size());\n\n        names.remove(\"Zain\");\n        Collections.sort(names);\n        System.out.println(names + \" first \" + names.get(0));\n        System.out.println(names.contains(\"Hira\"));\n\n        for (String n : names) System.out.println(\"Hello \" + n);\n    }\n}",
-     "output": "[Zain, Ayesha, Hira] size 3\n[Ayesha, Hira] first Ayesha\ntrue\nHello Ayesha\nHello Hira"
-    },
-    {
-     "kind": "html",
-     "html": "</div>\n\n<div class=\"card\">\n<h2>HashMap</h2>\n<p>A <code>HashMap</code> stores key to value pairs with fast lookup.</p>\n<div><iframe allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"335\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/WeF3_nk-UqY?si=CR9BRKlf11Vgzy5E\" title=\"YouTube video player\" width=\"650\"></iframe></div>"
-    },
-    {
-     "kind": "demo",
-     "language": "java",
-     "code": "import java.util.HashMap;\nimport java.util.Map;\nimport java.util.TreeMap;\n\npublic class Main {\n    public static void main(String[] args) {\n        Map<String, Integer> marks = new HashMap<>();\n        marks.put(\"Ali\", 70);\n        marks.put(\"Sara\", 95);\n        marks.put(\"Ali\", 75);                    // replaces the old value\n        System.out.println(marks.get(\"Ali\"));\n        System.out.println(marks.getOrDefault(\"Omar\", 0));\n        System.out.println(marks.containsKey(\"Sara\") + \" \" + marks.size());\n\n        for (Map.Entry<String, Integer> e : new TreeMap<>(marks).entrySet()) {\n            System.out.println(e.getKey() + \" -> \" + e.getValue());\n        }\n    }\n}",
-     "output": "75\n0\ntrue 2\nAli -> 75\nSara -> 95"
-    },
-    {
-     "kind": "html",
-     "html": "<ul><li>Import them first: <code>import java.util.*;</code>.</li><li>Declare with the interface type: <code>List&lt;String&gt; names = new ArrayList&lt;&gt;();</code>.</li></ul>\n</div>\n</div>"
-    }
-   ],
-   "styles": ""
-  }
- ]
+  ]
 }

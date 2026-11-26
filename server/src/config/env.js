@@ -28,6 +28,8 @@ export const env = {
   isProd: process.env.NODE_ENV === 'production',
   port: Number(process.env.PORT) || 5000,
   mongoUri: process.env.MONGO_URI,
+  bcryptRounds: clamp(process.env.BCRYPT_ROUNDS, 12, 10, 14), // password hash ki mehnat: 12 mazboot (default), 10 chaar guna tez
+  mongoPoolSize: clamp(process.env.MONGO_POOL_SIZE, 10, 1, 100), // ek instance ke database connections
   jwtAccessSecret: process.env.JWT_ACCESS_SECRET,
   // Aakhri "/" aur spaces hata do: browser ka Origin bina slash ke aata hai, warna CORS har request rok deta hai
   clientOrigin: process.env.CLIENT_ORIGIN.trim().replace(/\/+$/, ''),

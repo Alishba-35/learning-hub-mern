@@ -1,11 +1,9 @@
 import Activity from '../models/Activity.js';
-import Language from '../models/Language.js';
 import Progress from '../models/Progress.js';
-import Quiz from '../models/Quiz.js';
 import QuizResult from '../models/QuizResult.js';
-import Topic from '../models/Topic.js';
 import UserStats from '../models/UserStats.js';
 import { awardXp } from '../utils/award.js';
+import { getCatalog } from '../utils/catalog.js';
 import { retryOnDuplicate } from '../utils/retry.js';
 import { topicTitle } from '../utils/topicIndex.js';
 import { PASS_PERCENT } from '../utils/quiz.js';
@@ -37,24 +35,18 @@ export async function getOverview(req, res) {
   const today = resolveDay(req.query.day);
   const since = addDays(today, -13);
 
-  const [progressDocs, stats, languages, topicRows, quizRows, quizResults, windowActivities, recent] = await Promise.all([
+  // Languages, topics aur quizzes ki list sab ke liye ek jaisi hai: catalog cache se (pehle har request par 3 queries thin)
+  const [progressDocs, stats, catalog, quizResults, windowActivities, recent] = await Promise.all([
     Progress.find({ user: userId }).select('languageSlug completed lastTopic -_id').lean(),
     UserStats.findOne({ user: userId }).lean(),
-    Language.find().sort('order').select('slug name color description -_id').lean(),
-    Topic.find().sort('order').select('languageSlug slug title -_id').lean(),
-    Quiz.find().select('languageSlug slug -_id').lean(),
+    getCatalog(),
     QuizResult.find({ user: userId, attempts: { $gt: 0 } }).select('languageSlug quizSlug bestScore total -_id').lean(),
     Activity.find({ user: userId, day: { $gte: since } }).select('day xp type -_id').lean(),
     Activity.find({ user: userId }).sort({ at: -1 }).limit(6).select('type languageSlug title detail xp at -_id').lean(),
   ]);
 
+  const { languages, topicsByLanguage, quizzes: quizRows } = catalog;
   const progressBySlug = new Map(progressDocs.map((p) => [p.languageSlug, p]));
-  // topicRows order ke mutabiq sorted hain
-  const topicsByLanguage = new Map();
-  for (const t of topicRows) {
-    if (!topicsByLanguage.has(t.languageSlug)) topicsByLanguage.set(t.languageSlug, []);
-    topicsByLanguage.get(t.languageSlug).push(t);
-  }
 
   // Quiz ke sirf wohi natije gine jate hain jo quiz abhi maujood hain
   const existingQuizzes = new Set(quizRows.map((q) => `${q.languageSlug}/${q.slug}`));
@@ -152,11 +144,12 @@ export async function complete(req, res) {
   if (!first) return res.json({ alreadyCompleted: true, xpGained: 0 });
 
   const day = resolveDay(req.body.day);
-  const stats = await awardXp(userId, XP_PER_LESSON, day);
+  // XP aur activity log ek dusre par nirbhar nahi, is liye ek saath (ek round-trip kam).
   // Activity sirf dikhane ke liye hai: ye fail ho to lesson ka XP phir bhi mil chuka hota hai
-  await Activity.create({ user: userId, type: 'lesson', languageSlug: slug, title, xp: XP_PER_LESSON, day }).catch((err) =>
-    console.error('activity log failed:', err.message)
-  );
+  const [stats] = await Promise.all([
+    awardXp(userId, XP_PER_LESSON, day),
+    Activity.create({ user: userId, type: 'lesson', languageSlug: slug, title, xp: XP_PER_LESSON, day }).catch((err) => console.error('activity log failed:', err.message)),
+  ]);
   res.json({ alreadyCompleted: false, xpGained: XP_PER_LESSON, stats });
 }
 

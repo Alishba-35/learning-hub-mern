@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(here, '../src/seed/data');
 const clientPublic = path.join(process.cwd(), '../client/public'); // npm test server folder se chalta hai
-const expected = { html: 8, css: 12, javascript: 16, cpp: 20, python: 9, java: 9, sql: 8, c: 8, dsa: 8, typescript: 8, react: 8, nodejs: 8, git: 8 };
+const expected = { html: 8, css: 12, javascript: 16, cpp: 20, python: 12, java: 14, sql: 8, c: 8, dsa: 8, typescript: 10, react: 8, nodejs: 8, git: 8 };
 
 const languages = fs
   .readdirSync(dataDir)
@@ -38,7 +38,7 @@ test('every block is valid and html blocks are free of scripts, handlers and Bla
           assert.ok(b.html.trim(), `${l.slug}/${t.slug}: blank html block`);
           assert.ok(!/<script/i.test(b.html), `${l.slug}/${t.slug}: <script>`);
           assert.ok(!/<[^>]+\son\w+=/i.test(b.html), `${l.slug}/${t.slug}: inline handler`);
-          assert.ok(!/\{\{|@section|@extends|route\(/.test(b.html), `${l.slug}/${t.slug}: Blade leftover`);
+          assert.ok(!/\{\{|@section|@extends|(?<![.\w])route\(/.test(b.html), `${l.slug}/${t.slug}: Blade leftover`);
           assert.ok(!/<style/i.test(b.html), `${l.slug}/${t.slug}: <style> in html`);
         } else {
           assert.ok(b.code && b.code.trim(), `${l.slug}/${t.slug}: ${b.kind} without code`);

@@ -1,10 +1,10 @@
-import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import { env } from '../config/env.js';
 import PasswordReset from '../models/PasswordReset.js';
 import RefreshToken from '../models/RefreshToken.js';
 import User from '../models/User.js';
 import { sendMail } from '../utils/mailer.js';
+import { hashPassword, verifyAgainstDummy, verifyPassword } from '../utils/password.js';
 import { otpEmail } from '../utils/mailTemplates.js';
 import {
   signAccessToken,
@@ -13,9 +13,6 @@ import {
   clearRefreshCookie,
   REFRESH_COOKIE,
 } from '../utils/tokens.js';
-
-// Jab email exist hi na kare, tab bhi same time lagay (timing attack se bachao)
-const DUMMY_HASH = bcrypt.hashSync('dummy-password-for-timing', 12);
 
 async function respondWithSession(res, user, remember, status = 200) {
   await startRefreshSession(res, user.id, remember);
@@ -27,7 +24,7 @@ export async function register(req, res) {
   if (await User.exists({ email })) {
     return res.status(409).json({ message: 'Email already registered' });
   }
-  const passwordHash = await bcrypt.hash(password, 12);
+  const passwordHash = await hashPassword(password);
   // role hamesha 'student'. Teacher account admin banata hai (self-signup nahi)
   const user = await User.create({ name, email, passwordHash, purpose });
   await respondWithSession(res, user, remember, 201);
@@ -36,7 +33,8 @@ export async function register(req, res) {
 export async function login(req, res) {
   const { email, password, remember } = req.body;
   const user = await User.findOne({ email }).select('+passwordHash +avatar');
-  const valid = await bcrypt.compare(password, user ? user.passwordHash : DUMMY_HASH);
+  // Email na ho tab bhi hash ka waqt lagta hai (timing attack se bachao)
+  const valid = user ? await verifyPassword(password, user.passwordHash) : await verifyAgainstDummy(password);
   if (!user || !valid) {
     return res.status(401).json({ message: 'Invalid email or password' });
   }
@@ -126,7 +124,7 @@ export async function resetPassword(req, res) {
     return invalid();
   }
 
-  await User.updateOne({ _id: user._id }, { passwordHash: await bcrypt.hash(password, 12) });
+  await User.updateOne({ _id: user._id }, { passwordHash: await hashPassword(password) });
   await PasswordReset.deleteMany({ user: user._id });
   await RefreshToken.deleteMany({ user: user._id }); // purane sab login band
   res.json({ message: 'Password updated. Please log in with your new password.' });

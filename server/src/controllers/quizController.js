@@ -2,6 +2,7 @@ import Activity from '../models/Activity.js';
 import Quiz from '../models/Quiz.js';
 import QuizResult from '../models/QuizResult.js';
 import { awardXp } from '../utils/award.js';
+import { getQuizDoc } from '../utils/catalog.js';
 import { resolveDay } from '../utils/progress.js';
 import { recordFirstAttempt } from '../utils/questionStats.js';
 import { retryOnDuplicate } from '../utils/retry.js';
@@ -37,7 +38,7 @@ export async function getQuiz(req, res) {
   if (!SLUG.test(slug) || !SLUG.test(quizSlug)) return notFound(res);
 
   const [quiz, result] = await Promise.all([
-    Quiz.findOne({ languageSlug: slug, slug: quizSlug }).lean(),
+    getQuizDoc(slug, quizSlug),
     QuizResult.findOne({ user: req.user.id, languageSlug: slug, quizSlug }).select('bestScore total attempts -_id').lean(),
   ]);
   if (!quiz) return notFound(res);
@@ -59,7 +60,7 @@ export async function submitQuiz(req, res) {
   if (!SLUG.test(slug) || !SLUG.test(quizSlug)) return notFound(res);
   const userId = req.user.id;
 
-  const quiz = await Quiz.findOne({ languageSlug: slug, slug: quizSlug }).lean();
+  const quiz = await getQuizDoc(slug, quizSlug);
   if (!quiz) return notFound(res);
 
   const graded = gradeQuiz(quiz, req.body.answers);
@@ -82,15 +83,18 @@ export async function submitQuiz(req, res) {
   const xpGained = xpForImprovement(previousBest, graded.score);
 
   const day = resolveDay(req.body.day);
-  const stats = await awardXp(userId, xpGained, day);
-  await Activity.create({
-    user: userId,
-    type: 'quiz',
-    languageSlug: slug,
-    title: quiz.title,
-    detail: `Score ${graded.score}/${graded.total}`,
-    xp: xpGained,
-    day,
-  }).catch((err) => console.error('activity log failed:', err.message));
+  // XP aur activity log ek saath
+  const [stats] = await Promise.all([
+    awardXp(userId, xpGained, day),
+    Activity.create({
+      user: userId,
+      type: 'quiz',
+      languageSlug: slug,
+      title: quiz.title,
+      detail: `Score ${graded.score}/${graded.total}`,
+      xp: xpGained,
+      day,
+    }).catch((err) => console.error('activity log failed:', err.message)),
+  ]);
   res.json({ ...graded, xpGained, bestScore: Math.max(previousBest, graded.score), previousBest, stats });
 }

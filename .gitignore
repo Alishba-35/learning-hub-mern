@@ -4,3 +4,6 @@ node_modules
 !.env.example
 dist
 .vercel
+
+# load test: nakli users ke tokens
+loadtest/data/
