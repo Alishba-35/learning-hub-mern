@@ -13,6 +13,7 @@ import DashboardShell from '../components/dashboard/DashboardShell.jsx';
 import DashboardSkeleton from '../components/dashboard/DashboardSkeleton.jsx';
 import { useDashboard } from '../components/dashboard/dashboardContext.js';
 import Icon from '../components/dashboard/Icon.jsx';
+import { usePageTitle } from '../hooks/usePageTitle.js';
 
 const DAY = localDay();
 
@@ -301,6 +302,7 @@ function DashboardBody({ data, user }) {
 }
 
 export default function Dashboard() {
+  usePageTitle('Dashboard', { noindex: true });
   const { user, logout } = useAuth();
   const { data, error, loading } = useApi(`/progress?day=${DAY}`);
   const firstName = user.name.split(' ')[0];

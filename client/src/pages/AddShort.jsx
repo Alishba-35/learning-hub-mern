@@ -4,9 +4,11 @@ import { languages } from '../data/languages.js';
 import { request } from '../services/api.js';
 import { MAX_TITLE, checkVideoFile, uploadVideoFile } from '../services/shorts.js';
 import '../styles/shorts.css';
+import { usePageTitle } from '../hooks/usePageTitle.js';
 
 // Video add karne ka form: YouTube link ya apni file. Student ka video teacher ke approve karne ke baad dikhta hai.
 export default function AddShort() {
+  usePageTitle('Add a short video', { noindex: true });
   const navigate = useNavigate();
   const abortRef = useRef(null);
   const [config, setConfig] = useState(null);

@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BrandLogo from '../components/BrandLogo.jsx';
 import { useAuth } from '../hooks/useAuth.js';
+import { usePageTitle } from '../hooks/usePageTitle.js';
 
 // fade-up animation 0.8s ki hai; us ke mukammal hone ke baad button badalta hai
 const REVEAL_MS = 900;
 
 export default function Landing() {
+  usePageTitle('Learn to code for free: lessons, quizzes and certificates', { bare: true, description: 'Learning Hub is a free place for beginners to learn HTML, CSS, JavaScript, Python, Java, C++, SQL and more with lessons, code playgrounds, quizzes, progress tracking and verifiable certificates.' });
   const { user } = useAuth();
   // idle: sirf Start button | revealing: tagline animate ho rahi hai | ready: "Go to ..." link
   const [stage, setStage] = useState('idle');

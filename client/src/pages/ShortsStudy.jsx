@@ -4,9 +4,11 @@ import ShortCard from '../components/shorts/ShortCard.jsx';
 import { languages } from '../data/languages.js';
 import { request } from '../services/api.js';
 import '../styles/shorts.css';
+import { usePageTitle } from '../hooks/usePageTitle.js';
 
 // Short Study: chhote study videos (YouTube ya upload kiye hue), language ke hisaab se filter
 export default function ShortsStudy() {
+  usePageTitle('Shorts Study', { noindex: true });
   const [language, setLanguage] = useState('');
   const [page, setPage] = useState(1);
   const [retry, setRetry] = useState(0);

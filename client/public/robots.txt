@@ -1,0 +1,14 @@
+# Learning Hub
+# Public pages: Google inhein index kare. Login ke andar wale pages private hain.
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dashboard
+Disallow: /languages
+Disallow: /learn/
+Disallow: /shorts
+Disallow: /admin
+Disallow: /verify/
+Disallow: /forgot-password
+
+Sitemap: https://learning-hub-lilac-theta.vercel.app/sitemap.xml

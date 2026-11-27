@@ -7,6 +7,7 @@ import QuestionView from '../components/quiz/QuestionView.jsx';
 import QuizResults from '../components/quiz/QuizResults.jsx';
 import Spinner from '../components/Spinner.jsx';
 import NotFound from './NotFound.jsx';
+import { usePageTitle } from '../hooks/usePageTitle.js';
 
 const hasAnswer = (v) => v !== undefined && v !== null && v !== '';
 
@@ -149,6 +150,7 @@ function QuizRunner({ slug, data, language, onRecorded }) {
 }
 
 export default function QuizPage() {
+  usePageTitle('Quiz', { noindex: true });
   const { slug, quizSlug } = useParams();
   const { language, recordQuiz } = useOutletContext();
   const { data, error, loading } = useApi(`/quizzes/${slug}/${quizSlug}`);

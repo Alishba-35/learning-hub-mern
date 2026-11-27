@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
 import BrandLogo from '../components/BrandLogo.jsx';
 import PasswordInput from '../components/PasswordInput.jsx';
+import { usePageTitle } from '../hooks/usePageTitle.js';
 
 const initialForm = { name: '', email: '', password: '', purpose: '', remember: true };
 
@@ -163,6 +164,7 @@ function AuthForm({ mode, active, onSwitch }) {
 }
 
 export default function AuthPage() {
+  usePageTitle('Log in or sign up', { description: 'Log in or create a free Learning Hub account to start learning programming.' });
   const [mode, setMode] = useState('login');
 
   return (

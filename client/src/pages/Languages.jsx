@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
 import { languages } from '../data/languages.js';
+import { usePageTitle } from '../hooks/usePageTitle.js';
 
 export default function Languages() {
+  usePageTitle('Choose a language', { noindex: true });
   const { user, logout } = useAuth();
   return (
     <div className="page-navy">

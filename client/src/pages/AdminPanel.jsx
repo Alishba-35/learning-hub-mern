@@ -7,10 +7,12 @@ import StudentsTab from '../components/admin/StudentsTab.jsx';
 import VideosTab from '../components/admin/VideosTab.jsx';
 import '../styles/shorts.css';
 import '../styles/admin.css';
+import { usePageTitle } from '../hooks/usePageTitle.js';
 
 const VIDEO_STATUSES = ['pending', 'approved', 'rejected', 'all'];
 
 function AdminPage({ title, subtitle, children }) {
+  usePageTitle(`${title} (Admin)`, { noindex: true });
   return (
     <>
       <header className="adm-page-head">

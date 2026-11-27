@@ -2,11 +2,13 @@ import { Link, useParams } from 'react-router-dom';
 import BrandLogo from '../components/BrandLogo.jsx';
 import { useApi } from '../hooks/useApi.js';
 import '../styles/verify.css';
+import { usePageTitle } from '../hooks/usePageTitle.js';
 
 const when = (iso) => new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' });
 
 // Public page (login ki zaroorat nahi): koi bhi certificate ka code daal kar check kar sakta hai ke asli hai ya nahi
 export default function VerifyCertificate() {
+  usePageTitle('Verify a certificate', { noindex: true });
   const { code } = useParams();
   const { data, error, loading } = useApi(`/certificates/verify/${encodeURIComponent(code)}`);
 

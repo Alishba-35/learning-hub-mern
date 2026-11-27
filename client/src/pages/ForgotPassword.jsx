@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import BrandLogo from '../components/BrandLogo.jsx';
 import PasswordInput from '../components/PasswordInput.jsx';
 import { request } from '../services/api.js';
+import { usePageTitle } from '../hooks/usePageTitle.js';
 
 // Password reset: 1) email likho  2) email par aaya 6 digit code + naya password  3) ho gaya
 export default function ForgotPassword() {
+  usePageTitle('Reset your password', { noindex: true });
   const [step, setStep] = useState('email'); // email | code | done
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');

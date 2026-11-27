@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import ShortCard from '../components/shorts/ShortCard.jsx';
 import { request } from '../services/api.js';
 import '../styles/shorts.css';
+import { usePageTitle } from '../hooks/usePageTitle.js';
 
 // "My videos" sab ke liye. Teacher/admin ko upar "Waiting for approval" list bhi milti hai.
 export default function ManageShorts() {
+  usePageTitle('Manage videos', { noindex: true });
   const [mine, setMine] = useState(null);
   const [pending, setPending] = useState([]);
   const [canReview, setCanReview] = useState(false);

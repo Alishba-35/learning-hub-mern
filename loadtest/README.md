@@ -1,5 +1,25 @@
 # Load, stress aur scalability testing (free)
 
+## Sab se aasaan tareeqa (5 minute, koi database ya seed nahi)
+Ye aap ki **live site** par halka test chalata hai (20 users tak, 1 minute). Sirf public pages naapta hai.
+
+1. **k6 install karein** (free). Windows PowerShell mein: `winget install k6`. Baad mein PowerShell band kar ke dobara kholein.
+2. Repo ke root folder se ye chalayein:
+```powershell
+k6 run -e SITE_URL=https://learning-hub-lilac-theta.vercel.app -e API_URL=https://learning-hub-mern.vercel.app loadtest/live-light.js
+```
+3. Aakhir mein summary aati hai. Ye cheezein dekhein:
+   - `failures` **0%** (ya 2% se kam)
+   - `http_req_duration` ka **p(95)** (ye 1500 ms se neeche ho)
+   - `http_reqs` (kitni requests har second)
+   - Neeche `[OK]`/`✓` tick, na ke `✗`.
+4. Presentation ke liye is summary ka screenshot kaafi hai.
+
+`rate_limited` ka matlab hai server ne zyada requests rok di. Ye ghalti nahi, server ka bachao hai.
+**MAX=20 se upar mat jayein** (free plans ki hadein hoti hain).
+
+Baqi tests (stress, spike, scalability, soak, login) neeche hain. Wo local database par chalte hain, asli site par nahi.
+
 Tools: **k6** (free, open source) aur Node. Koi paisa nahi lagta. Ye folder aap ke backend ko **apne computer par** test karta hai.
 
 ## Pehle ye parh lein (zaroori)
@@ -32,6 +52,7 @@ Tokens 3 ghante mein expire ho jate hain. Test fail ho (sab 401) to `loadtest:pr
 ## Tests (repo ke root folder se)
 | Test | Command | Kya dekhta hai |
 | --- | --- | --- |
+| Live (halka) | `k6 run -e SITE_URL=... -e API_URL=... loadtest/live-light.js` | live site par 20 users, bina seed |
 | Smoke | `k6 run loadtest/smoke.js` | sab kuch chal raha hai? (pehle yahi) |
 | Quick | `k6 run -e VUS=100 -e THINK=0 loadtest/quick.js` | 30 second ka tez compare (code badalne se pehle/baad) |
 | **Load** | `k6 run loadtest/load.js` | aam din ka bojh: 100 students, 5 minute |

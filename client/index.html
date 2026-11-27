@@ -6,7 +6,42 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#0a3a4c" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Learning Hub</title>
+    <title>Learning Hub | Learn to code with lessons, quizzes and certificates</title>
+    <meta
+      name="description"
+      content="Learning Hub is a free place for beginners to learn HTML, CSS, JavaScript, Python, Java, C++, SQL and more with lessons, code playgrounds, quizzes, progress tracking and verifiable certificates."
+    />
+    <meta name="robots" content="index, follow" />
+    <!-- Site ka asli address badalne par neeche ke 5 jagah (canonical, og:url, og:image, twitter:image, JSON-LD) aur public/sitemap.xml, robots.txt mein bhi badlein -->
+    <link rel="canonical" href="https://learning-hub-lilac-theta.vercel.app/" />
+
+    <!-- Link share karne par (WhatsApp, LinkedIn, Facebook, X) ka preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Learning Hub" />
+    <meta property="og:title" content="Learning Hub | Learn to code with lessons, quizzes and certificates" />
+    <meta property="og:description" content="Free lessons, code playgrounds, quizzes and verifiable certificates for 13 programming languages." />
+    <meta property="og:url" content="https://learning-hub-lilac-theta.vercel.app/" />
+    <meta property="og:image" content="https://learning-hub-lilac-theta.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Learning Hub logo: Learn, Practice, Grow" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Learning Hub | Learn to code" />
+    <meta name="twitter:description" content="Free lessons, code playgrounds, quizzes and verifiable certificates for 13 programming languages." />
+    <meta name="twitter:image" content="https://learning-hub-lilac-theta.vercel.app/og-image.png" />
+
+    <!-- Google ke liye structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Learning Hub",
+        "url": "https://learning-hub-lilac-theta.vercel.app/",
+        "description": "A free interactive programming learning platform with lessons, quizzes, progress tracking and verifiable certificates.",
+        "inLanguage": "en",
+        "publisher": { "@type": "EducationalOrganization", "name": "Learning Hub", "logo": "https://learning-hub-lilac-theta.vercel.app/images/logo.png" }
+      }
+    </script>
     <script>
       // Page dikhne se pehle saved theme lagao, taake light chunne walon ko dark ki jhalak (flash) na dikhe
       try {
@@ -19,6 +54,10 @@
     </script>
   </head>
   <body>
+    <noscript>
+      <h1>Learning Hub</h1>
+      <p>Learning Hub is a free place to learn programming: lessons, code playgrounds, quizzes, progress tracking and verifiable certificates for HTML, CSS, JavaScript, TypeScript, React, Node.js, Python, Java, C, C++, SQL, Git and Data Structures. Please turn on JavaScript to use the site.</p>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
